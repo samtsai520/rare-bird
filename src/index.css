@@ -751,10 +751,36 @@ body {
 }
 
 .td-location {
-  max-width: 350px;
+  max-width: 320px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.location-link {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  gap: 0.35rem;
+  transition: var(--transition-smooth);
+  max-width: 100%;
+}
+
+.location-nav-icon {
+  color: var(--accent-secondary);
+  flex-shrink: 0;
+  transition: var(--transition-smooth);
+}
+
+.location-link:hover .location-name-text {
+  color: var(--accent-secondary);
+  text-decoration: underline;
+}
+
+.location-link:hover .location-nav-icon {
+  transform: scale(1.15);
+  color: var(--accent-primary);
 }
 
 .td-count {
@@ -772,30 +798,22 @@ body {
   border: 1px solid var(--glass-border);
 }
 
-/* Table Navigation Action Button */
-.btn-table-nav {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  background: var(--badge-bg);
-  border: 1px solid var(--glass-border);
-  color: var(--text-primary);
-  text-decoration: none;
-  font-family: var(--font-heading);
-  font-weight: 600;
-  font-size: 0.8rem;
-  padding: 0.35rem 0.75rem;
-  border-radius: var(--radius-sm);
-  cursor: pointer;
-  transition: var(--transition-smooth);
-}
-
-.btn-table-nav:hover {
-  background: linear-gradient(135deg, var(--accent-secondary), #0284c7);
-  color: white;
-  border-color: transparent;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 10px rgba(14, 165, 233, 0.15);
+@media (max-width: 600px) {
+  .sightings-table th,
+  .sightings-table td {
+    padding: 0.6rem 0.5rem;
+    font-size: 0.8rem;
+  }
+  .td-location {
+    max-width: 170px;
+  }
+  .td-date {
+    font-size: 0.78rem;
+  }
+  .count-tag {
+    padding: 0.1rem 0.35rem;
+    font-size: 0.72rem;
+  }
 }
 
 /* State Panels */

@@ -524,9 +524,8 @@ export default function App() {
                             <thead>
                               <tr>
                                 <th>觀測日期</th>
-                                <th>發現地點</th>
-                                <th>數量</th>
-                                <th style={{ textAlign: 'center' }}>地圖導航</th>
+                                <th>發現地點 (點擊導航)</th>
+                                <th style={{ textAlign: 'right' }}>數量</th>
                               </tr>
                             </thead>
                             <tbody>
@@ -539,25 +538,20 @@ export default function App() {
                                       <span>{sighting.obsDt}</span>
                                     </td>
                                     <td className="td-location" title={sighting.locName}>
-                                      <MapPin size={14} style={{ marginRight: '0.4rem', verticalAlign: 'middle', color: 'var(--text-muted)' }} />
-                                      <span>{sighting.locName}</span>
-                                    </td>
-                                    <td className="td-count">
-                                      <span className="count-tag">
-                                        {sighting.howMany ? `${sighting.howMany} 隻` : '出現'}
-                                      </span>
-                                    </td>
-                                    <td className="td-nav" style={{ textAlign: 'center' }}>
                                       <a 
                                         href={mapUrl}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="btn-table-nav"
-                                        title="開啟 Google 地圖導航"
+                                        className="location-link"
                                       >
-                                        <Navigation size={12} />
-                                        <span>導航</span>
+                                        <MapPin size={14} className="location-nav-icon" />
+                                        <span className="location-name-text">{sighting.locName}</span>
                                       </a>
+                                    </td>
+                                    <td className="td-count" style={{ textAlign: 'right' }}>
+                                      <span className="count-tag">
+                                        {sighting.howMany ? `${sighting.howMany} 隻` : '出現'}
+                                      </span>
                                     </td>
                                   </tr>
                                 );
