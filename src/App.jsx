@@ -489,17 +489,21 @@ export default function App() {
                       onClick={() => toggleSpecies(sp.speciesCode)}
                     >
                       <div className="species-primary-info">
-                        <div className="species-title-row">
+                        <div className="species-name-row">
                           <span className="species-chinese">{sp.comNameZh}</span>
+                          <span className="species-english">{sp.comNameEn}</span>
+                          <span className="species-scientific">({sp.sciName})</span>
+                        </div>
+                        
+                        <div className="species-subtitle-row">
                           <span className="species-latest-date">
-                            最新觀測: {sp.sightings[0].obsDt}
+                            {sp.sightings[0].obsDt}
                           </span>
+                          <span className="species-latest-separator">·</span>
                           <span className="species-latest-loc" title={sp.sightings[0].locName}>
                             {cleanLocationName(sp.sightings[0].locName)}
                           </span>
                         </div>
-                        <span className="species-english">{sp.comNameEn}</span>
-                        <span className="species-scientific">{sp.sciName}</span>
                       </div>
                       
                       <div className="species-meta-info">
