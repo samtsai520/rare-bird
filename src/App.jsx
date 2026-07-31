@@ -300,7 +300,7 @@ export default function App() {
       <header className="glass-panel app-header">
         <div className="brand-wrapper">
           <div className="logo-icon">
-            <Compass size={28} />
+            <span>e</span>
           </div>
           <div className="title-section">
             <div className="title-row-container">

@@ -129,16 +129,26 @@ body {
 }
 
 .logo-icon {
-  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
-  color: white;
-  width: 48px;
-  height: 48px;
-  border-radius: var(--radius-md);
+  background: rgba(76, 175, 80, 0.08);
+  border: 1px solid rgba(76, 175, 80, 0.2);
+  color: #4caf50;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+  font-family: 'Outfit', 'Inter', sans-serif;
+  font-weight: 800;
+  font-size: 2.1rem;
+  line-height: 1;
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.15);
   flex-shrink: 0;
+  user-select: none;
+}
+
+.logo-icon span {
+  margin-top: -3px;
 }
 
 .title-section {
@@ -167,10 +177,24 @@ body {
 
 @media (max-width: 600px) {
   .title-section h1 {
-    font-size: 1.4rem;
+    font-size: 1.15rem;
+    white-space: normal;
+    line-height: 1.25;
   }
   .brand-wrapper {
-    max-width: calc(100% - 100px);
+    max-width: calc(100% - 90px);
+    gap: 0.6rem;
+  }
+  .logo-icon {
+    width: 34px;
+    height: 34px;
+    font-size: 1.6rem;
+  }
+  .logo-icon span {
+    margin-top: -2px;
+  }
+  .title-section p {
+    font-size: 0.72rem;
   }
 }
 
