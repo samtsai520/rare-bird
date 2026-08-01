@@ -15,6 +15,7 @@ import {
   Settings,
   Key
 } from 'lucide-react';
+import { Analytics } from '@vercel/analytics/react';
 
 const STORAGE_API_KEY_KEY = "taiwan_birds_ebird_api_key";
 const STORAGE_OBS_KEY = "taiwan_birds_obs_cache";
@@ -586,6 +587,7 @@ export default function App() {
           50% { transform: scale(1.08); opacity: 0.8; }
         }
       `}</style>
+      <Analytics />
     </div>
   );
 }
