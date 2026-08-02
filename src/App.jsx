@@ -524,13 +524,13 @@ export default function App() {
                             <thead>
                               <tr>
                                 <th>觀測日期</th>
-                                <th>發現地點 (點擊導航)</th>
+                                <th>發現地點</th>
                                 <th style={{ textAlign: 'right' }}>數量</th>
                               </tr>
                             </thead>
                             <tbody>
                               {sp.sightings.map((sighting, sIdx) => {
-                                const mapUrl = `https://www.google.com/maps/dir/?api=1&destination=${sighting.lat},${sighting.lng}`;
+                                const mapUrl = `https://www.google.com/maps/search/?api=1&query=${sighting.lat},${sighting.lng}`;
                                 return (
                                   <tr key={`${sighting.subId}-${sIdx}`}>
                                     <td className="td-date">
