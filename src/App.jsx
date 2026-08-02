@@ -85,8 +85,8 @@ export default function App() {
       const headers = { 'x-ebirdapitoken': activeKey };
 
       const [resEn, resZh] = await Promise.all([
-        fetch(urlEn, { headers }),
-        fetch(urlZh, { headers })
+        fetch(urlEn, { headers, cache: 'no-store' }),
+        fetch(urlZh, { headers, cache: 'no-store' })
       ]);
 
       if (!resEn.ok || !resZh.ok) {

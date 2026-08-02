@@ -3,3 +3,5 @@ dist
 .DS_Store
 deploy.js
 config.json
+enable_pages.js
+.vercel
