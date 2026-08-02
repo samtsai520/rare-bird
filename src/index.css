@@ -112,6 +112,29 @@ body {
   }
 }
 
+/* Mobile: compact controls row */
+@media (max-width: 600px) {
+  .controls-grid {
+    gap: 0.5rem;
+  }
+  .custom-select {
+    padding: 0.55rem 0.75rem;
+    font-size: 0.85rem;
+  }
+  .btn-primary {
+    padding: 0.55rem 0.9rem;
+    font-size: 0.85rem;
+    height: 42px;
+    gap: 0.35rem;
+  }
+  .btn-primary span {
+    font-size: 0.85rem;
+  }
+  .select-label {
+    font-size: 0.8rem;
+  }
+}
+
 /* Header Section */
 .app-header {
   display: flex;
@@ -247,9 +270,9 @@ body {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  align-items: center;
-  gap: 2rem;
-  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 1rem;
+  flex-wrap: nowrap;
 }
 
 /* Dropdown Selector Styles */
@@ -258,7 +281,7 @@ body {
   flex-direction: column;
   gap: 0.5rem;
   flex: 1;
-  min-width: 250px;
+  min-width: 0;
 }
 
 .select-label {
@@ -309,6 +332,8 @@ body {
   box-shadow: 0 4px 14px rgba(16, 185, 129, 0.2);
   transition: var(--transition-smooth);
   height: 48px;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .btn-primary:hover:not(:disabled) {
