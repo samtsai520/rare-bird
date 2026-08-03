@@ -906,6 +906,53 @@ body {
   font-size: 0.9rem;
 }
 
+@media (max-width: 600px) {
+  .sightings-table-container {
+    overflow-x: hidden;
+    width: 100%;
+  }
+
+  .sightings-table {
+    table-layout: fixed;
+    width: 100%;
+  }
+
+  .sightings-table th,
+  .sightings-table td {
+    padding: 0.6rem 0.35rem;
+    font-size: 0.78rem;
+  }
+
+  .td-date {
+    width: 46%;
+    white-space: normal;
+    word-break: break-word;
+  }
+
+  .td-location {
+    width: 38%;
+    max-width: none;
+  }
+
+  .td-count {
+    width: 16%;
+    padding-right: 0.2rem !important;
+  }
+
+  .location-name-text {
+    display: inline-block;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    vertical-align: middle;
+  }
+
+  .location-link {
+    max-width: 100%;
+  }
+}
+
 .sightings-table th,
 .sightings-table td {
   padding: 0.9rem 1.5rem;

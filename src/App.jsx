@@ -227,7 +227,7 @@ export default function App() {
     }
   }, []);
 
-  // Fetch taxonomy order map (cache for 30 days) — uses locale=zh for Chinese names
+  // Fetch taxonomy order map (cache for 30 days) — fetches both zh & en names
   const fetchTaxonomy = useCallback(async (activeKey = apiKey) => {
     if (!activeKey) return;
     // Check cache age (30 days)
@@ -238,18 +238,31 @@ export default function App() {
     }
     try {
       const headers = { 'x-ebirdapitoken': activeKey };
-      const url = 'https://api.ebird.org/v2/ref/taxonomy/ebird?fmt=json&locale=zh';
-      const res = await fetch(url, { headers });
-      if (!res.ok) return;
-      const data = await res.json();
+      const urlZh = 'https://api.ebird.org/v2/ref/taxonomy/ebird?fmt=json&locale=zh';
+      const urlEn = 'https://api.ebird.org/v2/ref/taxonomy/ebird?fmt=json';
+      const [resZh, resEn] = await Promise.all([
+        fetch(urlZh, { headers }),
+        fetch(urlEn, { headers })
+      ]);
+      const dataZh = resZh.ok ? await resZh.json() : [];
+      const dataEn = resEn.ok ? await resEn.json() : [];
+
+      const enMap = {};
+      (Array.isArray(dataEn) ? dataEn : []).forEach(item => {
+        if (item.speciesCode) {
+          enMap[item.speciesCode] = item.comName;
+        }
+      });
+
       const orderMap = {};
-      (Array.isArray(data) ? data : []).forEach(item => {
+      (Array.isArray(dataZh) ? dataZh : []).forEach(item => {
         if (item.speciesCode && item.taxonOrder != null) {
           orderMap[item.speciesCode] = {
             taxonOrder: item.taxonOrder,
             order: item.order || '',
             familyComName: item.familyComName || '',
             comNameZh: item.comName || '',
+            comNameEn: enMap[item.speciesCode] || '',
           };
         }
       });
@@ -384,16 +397,26 @@ export default function App() {
       } catch { /* ignore */ }
       const mergedList = dataEn.map(item => {
         let zhName = zhNamesMap[item.speciesCode];
+        let enName = null;
+
+        if (taxonomyZhMap && taxonomyZhMap[item.speciesCode]) {
+          const tax = taxonomyZhMap[item.speciesCode];
+          if (tax.comNameZh) zhName = tax.comNameZh;
+          if (tax.comNameEn) enName = tax.comNameEn;
+        }
+
         if (!zhName && item.comName && /[\u4e00-\u9fa5]/.test(item.comName)) {
           zhName = item.comName;
         }
-        if (!zhName && taxonomyZhMap && taxonomyZhMap[item.speciesCode]) {
-          zhName = taxonomyZhMap[item.speciesCode].comNameZh;
+
+        if (!enName || enName === zhName) {
+          enName = (!/[\u4e00-\u9fa5]/.test(item.comName) ? item.comName : item.sciName) || '';
         }
+
         return {
           ...item,
           comNameZh: zhName || item.comName,
-          comNameEn: item.comName
+          comNameEn: enName !== zhName ? enName : '',
         };
       });
 
@@ -940,7 +963,9 @@ export default function App() {
                                 <td className="td-date">
                                   <div style={{ fontWeight: '600', color: 'var(--text-primary)', marginBottom: '0.15rem' }}>
                                     <span style={{ color: 'var(--accent-primary)', marginRight: '0.4rem' }}>{sp.comNameZh}</span>
-                                    <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)', fontWeight: '400' }}>({sp.comNameEn})</span>
+                                    {sp.comNameEn && sp.comNameEn !== sp.comNameZh && (
+                                      <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)', fontWeight: '400' }}>({sp.comNameEn})</span>
+                                    )}
                                   </div>
                                   <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>
                                     <Calendar size={13} style={{ marginRight: '0.3rem', verticalAlign: 'middle', color: 'var(--text-muted)' }} />
@@ -1062,17 +1087,6 @@ export default function App() {
             </div>
           </div>
         </section>
-
-        {/* Selected region capsules (recent tab only) */}
-        {!isNotable && selectedRegions.length > 0 && (
-          <div className="region-capsules-bar">
-            {selectedRegions.map(code => (
-              <span key={code} className="region-capsule">
-                {TW_REGION_MAP[code] || code}
-              </span>
-            ))}
-          </div>
-        )}
 
         {/* Info Section */}
         <div className="stats-ribbon">
