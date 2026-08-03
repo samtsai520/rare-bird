@@ -580,6 +580,21 @@ export default function App() {
     setExpandedSpecies(nextExpanded);
   };
 
+  // Extract county name for a sighting
+  const getSightingCounty = (sighting) => {
+    if (!sighting) return '';
+    if (sighting.subnational1Code && TW_REGION_MAP[sighting.subnational1Code]) {
+      return TW_REGION_MAP[sighting.subnational1Code];
+    }
+    const loc = sighting.locName || '';
+    for (const r of TW_REGIONS) {
+      if (loc.includes(r.code) || loc.includes(r.name)) return r.name;
+      if (r.name.startsWith('台') && loc.includes(r.name.replace('台', '臺'))) return r.name;
+      if (r.name.startsWith('臺') && loc.includes(r.name.replace('臺', '台'))) return r.name;
+    }
+    return cleanLocationName(loc) || loc;
+  };
+
   // Group observations by species
   const getGroupedSpeciesList = (observations, tab = activeTab) => {
     const grouped = {};
@@ -604,10 +619,22 @@ export default function App() {
     });
 
     if (tab === 'recent') {
-      // 最近觀察: primary = observation count ascending (fewest first), secondary = latest date descending
+      // 最近觀察:
+      // 1st Priority Key = 觀測點位次數 (ascending / 由少到多)
+      // 2nd Priority Key = 縣市名稱 (ascending / 字典序)
+      // 3rd Priority Key = 最新觀測時間 (descending / 由新到舊)
       groupedArray.sort((a, b) => {
+        // 1st Key: Sightings count ascending
         const countDiff = a.sightings.length - b.sightings.length;
         if (countDiff !== 0) return countDiff;
+
+        // 2nd Key: County name ascending
+        const aCounty = getSightingCounty(a.sightings[0]);
+        const bCounty = getSightingCounty(b.sightings[0]);
+        const countyComp = aCounty.localeCompare(bCounty, 'zh-Hant');
+        if (countyComp !== 0) return countyComp;
+
+        // 3rd Key: Latest date (obsDt) descending
         const aLatest = new Date(a.sightings[0].obsDt);
         const bLatest = new Date(b.sightings[0].obsDt);
         return bLatest - aLatest;
