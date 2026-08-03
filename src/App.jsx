@@ -280,12 +280,21 @@ export default function App() {
     }
   }, [apiKey]);
 
-  // Main API Fetch function — works for both tabs
+  // Main API Fetch function — works for both tabs with AbortController & 2.5s safe delay
+  const abortControllerRef = useRef(null);
+
   const fetchObservations = useCallback(async (tab, selectedDays, activeKey = apiKey) => {
     if (!activeKey) {
       updateTab(tab, { error: "請先設定您的 eBird API Key。", loading: false });
       return;
     }
+
+    // Cancel previous in-flight requests to prevent rate limit collisions
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort();
+    }
+    const controller = new AbortController();
+    abortControllerRef.current = controller;
 
     updateTab(tab, { loading: true, error: null });
 
@@ -303,8 +312,8 @@ export default function App() {
         const urlZh = `${basePath}?back=${selectedDays}&detail=simple&includeProvisional=true&sppLocale=zh`;
 
         const [resEn, resZh] = await Promise.all([
-          fetch(urlEn, { headers }),
-          fetch(urlZh, { headers })
+          fetch(urlEn, { headers, signal: controller.signal }),
+          fetch(urlZh, { headers, signal: controller.signal })
         ]);
 
         if (!resEn.ok || !resZh.ok) {
@@ -314,26 +323,26 @@ export default function App() {
         dataEn = await resEn.json();
         dataZh = await resZh.json();
       } else {
-        // Recent: fetch only user-selected regions (max 6) to reduce API calls.
-        // eBird API rate limit is ~1 req/sec, so we fetch sequentially with 1.5s delay.
-        // Chinese names come from taxonomy cache (locale=zh).
+        // Recent: fetch user-selected regions with 2.5s delay & 4s/8s/12s 429 backoff
         const regionsToFetch = selectedRegions.length > 0
           ? selectedRegions
-          : TW_REGIONS.map(r => r.code); // fallback to all if none selected
+          : TW_REGIONS.map(r => r.code);
 
         const fetchWithRetry = async (url, maxRetries = 3) => {
           for (let attempt = 0; attempt <= maxRetries; attempt++) {
+            if (controller.signal.aborted) return [];
             try {
-              const res = await fetch(url, { headers });
+              const res = await fetch(url, { headers, signal: controller.signal });
               if (res.status === 429) {
-                await new Promise(r => setTimeout(r, 3000 * (attempt + 1)));
+                await new Promise(r => setTimeout(r, 4000 * (attempt + 1)));
                 continue;
               }
               if (!res.ok) return [];
               return await res.json();
-            } catch {
+            } catch (e) {
+              if (e.name === 'AbortError') return [];
               if (attempt < maxRetries) {
-                await new Promise(r => setTimeout(r, 2000 * (attempt + 1)));
+                await new Promise(r => setTimeout(r, 3000 * (attempt + 1)));
                 continue;
               }
               return [];
@@ -342,16 +351,19 @@ export default function App() {
           return [];
         };
 
-        // Fetch with sppLocale=zh for selected regions sequentially (1.5s delay)
+        // Fetch with sppLocale=zh sequentially (2.5s delay to safely prevent 429 rate limits)
         dataEn = [];
         for (const r of regionsToFetch) {
+          if (controller.signal.aborted) break;
           const url = `https://api.ebird.org/v2/data/obs/${r}/recent?back=${selectedDays}&detail=simple&includeProvisional=true&sppLocale=zh`;
           const result = await fetchWithRetry(url);
           dataEn = dataEn.concat(result);
-          await new Promise(r => setTimeout(r, 1500));
+          await new Promise(r => setTimeout(r, 2500));
         }
         dataZh = [];
       }
+
+      if (controller.signal.aborted) return;
 
       // Build zh name map from zh data
       const zhNamesMap = {};
@@ -372,7 +384,6 @@ export default function App() {
       } catch { /* ignore */ }
       const mergedList = dataEn.map(item => {
         let zhName = zhNamesMap[item.speciesCode];
-        // If eBird API returned Chinese comName directly (contains Chinese characters), use it!
         if (!zhName && item.comName && /[\u4e00-\u9fa5]/.test(item.comName)) {
           zhName = item.comName;
         }
@@ -402,10 +413,22 @@ export default function App() {
       localStorage.setItem(keys.days, selectedDays.toString());
 
     } catch (err) {
+      if (err.name === 'AbortError') return;
       console.error(`Fetch ${tab} failed:`, err);
-      updateTab(tab, {
-        loading: false,
-        error: "無法取得觀測資料，請確認您的 eBird API Key 是否正確且有效。",
+
+      // Graceful Fallback: keep existing observations if present
+      setTabState(prev => {
+        const existingObs = prev[tab].observations;
+        if (existingObs && existingObs.length > 0) {
+          return {
+            ...prev,
+            [tab]: { ...prev[tab], loading: false, error: null }
+          };
+        }
+        return {
+          ...prev,
+          [tab]: { ...prev[tab], loading: false, error: "無法取得最新線上觀測資料，請點擊設定重試。" }
+        };
       });
     }
   }, [apiKey, selectedRegions]);
@@ -448,7 +471,9 @@ export default function App() {
     }
   }, []);
 
-  // Auto-load: check 3-hour cache limit. If fresh (< 3h), use cache; if stale (>= 3h) or missing, show hourglass loading and fetch live from API using key
+  // Auto-load: 1. Instant static JSON hydration (< 50ms)
+  // 2. Check localStorage cache (< 3 hours)
+  // 3. Background live API fetch with 2.5s safe delay
   useEffect(() => {
     if (!apiKey) return; // Require API key before loading any data
 
@@ -459,7 +484,7 @@ export default function App() {
       const current = tabState[tab];
       const keys = TAB_KEYS[tab];
 
-      // Check localStorage cache age (3 hours limit = 3 * 3600 * 1000 ms)
+      // Check localStorage cache age (3 hours limit)
       const cachedObs = localStorage.getItem(keys.obs);
       const cachedTime = localStorage.getItem(keys.time);
       const cachedDays = localStorage.getItem(keys.days);
@@ -477,16 +502,15 @@ export default function App() {
               loading: false,
             });
             return;
-          } catch { /* ignore error and fallback to fetch */ }
+          } catch { /* ignore error and fallback */ }
         }
       }
 
-      // If cache is missing or >= 3 hours old, try static JSON if fresh, otherwise fetch live API
+      // Instant hydration: try Vercel static JSON first for zero-delay rendering
       const staticData = await loadStaticData(tab, current.days);
       if (cancelled) return;
 
-      // Check static data fallback on initial visit when no cache exists
-      if (staticData && !cachedTime) {
+      if (staticData && staticData.length > 0) {
         updateTab(tab, {
           observations: staticData,
           loading: false,
@@ -494,11 +518,11 @@ export default function App() {
           lastUpdated: new Date().toISOString(),
           loaded: true,
         });
-        return;
+      } else {
+        updateTab(tab, { loading: true, error: null });
       }
 
-      // Cache is expired (>= 3 hours) or missing: show hourglass loading animation and fetch live from API
-      updateTab(tab, { loading: true, error: null });
+      // Background live API fetch with 2.5s safe delay
       await fetchTaxonomy(apiKey);
       if (cancelled) return;
       await fetchObservations(tab, current.days, apiKey);
