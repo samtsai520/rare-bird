@@ -945,55 +945,45 @@ export default function App() {
 
               {isExpanded && (
                 <div className="species-accordion-content">
-                  <div className="sightings-table-container">
-                    <table className="sightings-table">
-                      <thead>
-                        <tr>
-                          <th>觀測時間 / 鳥種</th>
-                          <th>發現地點</th>
-                          <th style={{ textAlign: 'right' }}>數量</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {c.speciesList.map((sp) => {
-                          return sp.sightings.map((sighting, sIdx) => {
-                            const mapUrl = `https://www.google.com/maps/search/?api=1&query=${sighting.lat},${sighting.lng}`;
-                            return (
-                              <tr key={`${sighting.subId}-${sp.speciesCode}-${sIdx}`}>
-                                <td className="td-date">
-                                  <div style={{ fontWeight: '600', color: 'var(--text-primary)', marginBottom: '0.15rem' }}>
-                                    <span style={{ color: 'var(--accent-primary)', marginRight: '0.4rem' }}>{sp.comNameZh}</span>
-                                    {sp.comNameEn && sp.comNameEn !== sp.comNameZh && (
-                                      <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)', fontWeight: '400' }}>({sp.comNameEn})</span>
-                                    )}
-                                  </div>
-                                  <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>
-                                    <Calendar size={13} style={{ marginRight: '0.3rem', verticalAlign: 'middle', color: 'var(--text-muted)' }} />
-                                    <span>{sighting.obsDt}</span>
-                                  </div>
-                                </td>
-                                <td className="td-location" title={sighting.locName}>
-                                  <a
-                                    href={mapUrl}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="location-link"
-                                  >
-                                    <MapPin size={14} className="location-nav-icon" />
-                                    <span className="location-name-text">{sighting.locName}</span>
-                                  </a>
-                                </td>
-                                <td className="td-count" style={{ textAlign: 'right' }}>
-                                  <span className="count-tag">
-                                    {sighting.howMany ? `${sighting.howMany} 隻` : '出現'}
-                                  </span>
-                                </td>
-                              </tr>
-                            );
-                          });
-                        })}
-                      </tbody>
-                    </table>
+                  <div className="sightings-list-container">
+                    {c.speciesList.map((sp) => {
+                      return sp.sightings.map((sighting, sIdx) => {
+                        const mapUrl = `https://www.google.com/maps/search/?api=1&query=${sighting.lat},${sighting.lng}`;
+                        const hasEnName = sp.comNameEn && sp.comNameEn !== sp.comNameZh;
+                        return (
+                          <div key={`${sighting.subId}-${sp.speciesCode}-${sIdx}`} className="sighting-row-card">
+                            {/* Line 1: 中文名 · 英文俗名 · 數量 · 時間 */}
+                            <div className="sighting-line1">
+                              <span className="sighting-name-zh">{sp.comNameZh}</span>
+                              {hasEnName && (
+                                <span className="sighting-name-en">{sp.comNameEn}</span>
+                              )}
+                              <span className="sighting-count-badge">
+                                {sighting.howMany ? `${sighting.howMany} 隻` : '出現'}
+                              </span>
+                              <span className="sighting-time">
+                                <Calendar size={13} style={{ marginRight: '0.2rem', verticalAlign: 'middle', color: 'var(--text-muted)' }} />
+                                {sighting.obsDt}
+                              </span>
+                            </div>
+
+                            {/* Line 2: 地點 */}
+                            <div className="sighting-line2">
+                              <a
+                                href={mapUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="location-link"
+                                title={sighting.locName}
+                              >
+                                <MapPin size={14} className="location-nav-icon" />
+                                <span className="location-name-text">{sighting.locName}</span>
+                              </a>
+                            </div>
+                          </div>
+                        );
+                      });
+                    })}
                   </div>
                 </div>
               )}

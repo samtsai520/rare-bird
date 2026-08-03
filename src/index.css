@@ -893,7 +893,93 @@ body {
   to { opacity: 1; }
 }
 
-/* Nested Observations Table */
+/* Sighting Row Card (2-Line Headerless Layout) */
+.sightings-list-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.sighting-row-card {
+  padding: 0.85rem 1.25rem;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  transition: var(--transition-smooth);
+}
+
+.sighting-row-card:last-child {
+  border-bottom: none;
+}
+
+.sighting-row-card:hover {
+  background-color: rgba(148, 163, 184, 0.03);
+}
+
+.sighting-line1 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  line-height: 1.3;
+}
+
+.sighting-name-zh {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--accent-primary);
+}
+
+.sighting-name-en {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.sighting-count-badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--accent-secondary);
+  background: rgba(14, 165, 233, 0.08);
+  border: 1px solid rgba(14, 165, 233, 0.18);
+  padding: 0.1rem 0.4rem;
+  border-radius: var(--radius-sm);
+  white-space: nowrap;
+}
+
+.sighting-time {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+.sighting-line2 {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 600px) {
+  .sighting-row-card {
+    padding: 0.7rem 0.85rem;
+    gap: 0.25rem;
+  }
+  .sighting-line1 {
+    gap: 0.35rem;
+  }
+  .sighting-name-zh {
+    font-size: 0.95rem;
+  }
+  .sighting-name-en {
+    font-size: 0.8rem;
+  }
+  .sighting-time {
+    font-size: 0.75rem;
+  }
+}
+
+/* Nested Observations Table (legacy/notable) */
 .sightings-table-container {
   overflow-x: auto;
   width: 100%;
