@@ -120,6 +120,7 @@ body {
   .custom-select {
     padding: 0.55rem 0.75rem;
     font-size: 0.85rem;
+    height: 42px;
   }
   .btn-primary {
     padding: 0.55rem 0.9rem;
@@ -132,6 +133,9 @@ body {
   }
   .select-label {
     font-size: 0.8rem;
+  }
+  .last-update-text {
+    font-size: 0.65rem;
   }
 }
 
@@ -282,14 +286,28 @@ body {
   flex-wrap: nowrap;
 }
 
-/* Last update inline (inside control panel) */
-.last-update-inline {
-  display: flex;
+/* Last update text inline with label */
+.last-update-text {
+  display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  font-size: 0.78rem;
+  gap: 0.3rem;
+  font-size: 0.75rem;
+  font-weight: 400;
   color: var(--text-muted);
-  margin-top: 0.5rem;
+  margin-left: 0.75rem;
+  white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+  .last-update-text {
+    margin-left: 0.4rem;
+    font-size: 0.68rem;
+    gap: 0.2rem;
+  }
+  .last-update-text .pulse-dot {
+    width: 6px;
+    height: 6px;
+  }
 }
 
 /* Tab Bar */
@@ -355,6 +373,10 @@ body {
   font-size: 0.9rem;
   font-weight: 500;
   color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  white-space: nowrap;
 }
 
 .custom-select {
@@ -370,6 +392,8 @@ body {
   cursor: pointer;
   transition: var(--transition-smooth);
   width: 100%;
+  height: 48px;
+  box-sizing: border-box;
 }
 
 .custom-select:hover {
@@ -657,6 +681,44 @@ body {
 .species-accordion-item.is-open {
   border-color: var(--accent-secondary);
   box-shadow: var(--glass-shadow);
+}
+
+/* Unreviewed observation — yellow highlight */
+.species-accordion-item.unreviewed {
+  border-color: var(--accent-warning);
+  background: rgba(245, 158, 11, 0.04);
+}
+
+[data-theme="dark"] .species-accordion-item.unreviewed {
+  background: rgba(251, 191, 36, 0.06);
+}
+
+.unreviewed-row {
+  background: rgba(245, 158, 11, 0.06);
+}
+
+[data-theme="dark"] .unreviewed-row {
+  background: rgba(251, 191, 36, 0.08);
+}
+
+.unreviewed-badge {
+  display: inline-block;
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: #b45309;
+  background: rgba(245, 158, 11, 0.15);
+  border: 1px solid rgba(245, 158, 11, 0.3);
+  padding: 0.05rem 0.35rem;
+  border-radius: var(--radius-sm);
+  margin-left: 0.4rem;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+[data-theme="dark"] .unreviewed-badge {
+  color: #fbbf24;
+  background: rgba(251, 191, 36, 0.15);
+  border-color: rgba(251, 191, 36, 0.3);
 }
 
 /* Accordion Header */
@@ -1034,4 +1096,233 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--text-muted);
+}
+
+/* Settings popup overlay */
+.settings-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: var(--bg-primary);
+  overflow-y: auto;
+}
+
+.settings-popup {
+  max-width: 650px;
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.settings-popup-header {
+  padding: 1.5rem 1.5rem 0.75rem;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 1rem;
+}
+
+.settings-popup-header h2 {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.settings-popup-body {
+  flex: 1;
+  padding: 1rem 1.5rem;
+}
+
+.settings-popup-footer {
+  padding: 1.5rem;
+  text-align: center;
+  border-top: 1px solid var(--border-color);
+  background: var(--bg-secondary);
+  position: sticky;
+  bottom: 0;
+}
+
+/* Settings Accordion Cards */
+.settings-accordion-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  margin-bottom: 1rem;
+  overflow: hidden;
+  transition: var(--transition-smooth);
+}
+
+.settings-accordion-card.is-open {
+  border-color: var(--accent-secondary);
+  box-shadow: var(--glass-shadow);
+}
+
+.settings-accordion-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  cursor: pointer;
+  user-select: none;
+  background: var(--bg-secondary);
+  transition: var(--transition-smooth);
+}
+
+.settings-accordion-header:hover {
+  background: var(--badge-bg);
+}
+
+.settings-accordion-title {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.settings-accordion-title h3 {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.settings-accordion-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.settings-badge {
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.2rem 0.65rem;
+  border-radius: 12px;
+  background: var(--badge-bg);
+  color: var(--badge-text);
+  border: 1px solid var(--glass-border);
+}
+
+.settings-badge.badge-active {
+  background: rgba(16, 185, 129, 0.15);
+  color: var(--accent-primary);
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+.settings-badge.badge-warning {
+  background: rgba(245, 158, 11, 0.15);
+  color: var(--accent-warning);
+  border-color: rgba(245, 158, 11, 0.3);
+}
+
+.settings-accordion-body {
+  padding: 1.25rem;
+  border-top: 1px solid var(--border-color);
+  background: var(--bg-primary);
+  animation: slide-down 0.3s ease-out;
+}
+
+/* Region selection in settings */
+.region-select-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.region-chip {
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  border: 1px solid var(--border-light);
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.region-chip:hover:not(:disabled) {
+  border-color: var(--accent-primary);
+}
+
+.region-chip-selected {
+  background: var(--accent-primary);
+  color: #fff;
+  border-color: var(--accent-primary);
+}
+
+.region-chip:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Region capsules in UI */
+.region-capsules-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  padding: 0.5rem 0;
+}
+
+.region-capsule {
+  padding: 0.25rem 0.7rem;
+  border-radius: 16px;
+  background: #3a8a5a;
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 500;
+}
+
+/* Modal dialog */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-dialog {
+  background: #ffffff;
+  color: #1a1a1a;
+  border-radius: 12px;
+  padding: 1.5rem;
+  max-width: 400px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.modal-dialog h3 {
+  margin: 0;
+  color: #1a1a1a;
+}
+
+.modal-dialog p {
+  font-size: 0.9rem;
+  color: #444;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.modal-dialog-buttons {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.btn-cancel {
+  padding: 0.5rem 1.2rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background: #f5f5f5;
+  color: #333;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.btn-cancel:hover {
+  border-color: #999;
 }
