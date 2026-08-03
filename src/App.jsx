@@ -120,9 +120,9 @@ export default function App() {
 
   // Settings Accordion Sections Open/Closed state
   const [openSettingsSections, setOpenSettingsSections] = useState({
-    key: true,
-    region: true,
-    update: true,
+    key: false,
+    region: false,
+    update: false,
   });
 
   const toggleSettingsSection = (sectionKey) => {
@@ -866,7 +866,7 @@ export default function App() {
         </div>
 
         {/* Accordion List */}
-        {current.loading && current.observations.length === 0 ? (
+        {current.loading ? (
           <div className="loading-state">
             <div className="hourglass-loader" style={{ padding: '1rem 0' }}>
               <Hourglass size={48} className="pulse-hourglass" style={{ color: 'var(--accent-secondary)' }} />
