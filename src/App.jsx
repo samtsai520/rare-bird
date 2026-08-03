@@ -402,21 +402,27 @@ export default function App() {
         if (taxonomyZhMap && taxonomyZhMap[item.speciesCode]) {
           const tax = taxonomyZhMap[item.speciesCode];
           if (tax.comNameZh) zhName = tax.comNameZh;
-          if (tax.comNameEn) enName = tax.comNameEn;
+          if (tax.comNameEn && tax.comNameEn !== tax.comNameZh && tax.comNameEn !== item.sciName) {
+            enName = tax.comNameEn;
+          }
         }
 
         if (!zhName && item.comName && /[\u4e00-\u9fa5]/.test(item.comName)) {
           zhName = item.comName;
         }
 
-        if (!enName || enName === zhName) {
-          enName = (!/[\u4e00-\u9fa5]/.test(item.comName) ? item.comName : item.sciName) || '';
+        if (!enName && item.comName && !/[\u4e00-\u9fa5]/.test(item.comName) && item.comName !== item.sciName) {
+          enName = item.comName;
+        }
+
+        if (enName === item.sciName) {
+          enName = null;
         }
 
         return {
           ...item,
           comNameZh: zhName || item.comName,
-          comNameEn: enName !== zhName ? enName : '',
+          comNameEn: (enName && enName !== zhName) ? enName : '',
         };
       });
 
@@ -705,6 +711,21 @@ export default function App() {
     return `${date.getMonth() + 1}/${date.getDate()} ${String(date.getHours()).padStart(2, '0')}:${String(date.getMinutes()).padStart(2, '0')}`;
   };
 
+  const formatMonthDay = (dateStr) => {
+    if (!dateStr) return '';
+    const match = String(dateStr).match(/\d{4}-(\d{2}-\d{2})/);
+    if (match && match[1]) {
+      return match[1];
+    }
+    const date = new Date(dateStr);
+    if (!isNaN(date.getTime())) {
+      const mm = String(date.getMonth() + 1).padStart(2, '0');
+      const dd = String(date.getDate()).padStart(2, '0');
+      return `${mm}-${dd}`;
+    }
+    return String(dateStr);
+  };
+
   const cleanLocationName = (locName) => {
     if (!locName) return '';
     let clean = locName.replace(/\s*\([\d.-]+,\s*[\d.-]+\)/g, '');
@@ -928,7 +949,7 @@ export default function App() {
                   </div>
                   <div className="species-subtitle-row" style={{ marginTop: '0.25rem' }}>
                     <span className="species-latest-date">
-                      最新紀錄: {c.latestObsDt || '無'}
+                      最新紀錄: {formatMonthDay(c.latestObsDt) || '無'}
                     </span>
                     <span className="species-latest-separator">·</span>
                     <span className="species-latest-loc">
@@ -963,7 +984,7 @@ export default function App() {
                               </span>
                               <span className="sighting-time">
                                 <Calendar size={13} style={{ marginRight: '0.2rem', verticalAlign: 'middle', color: 'var(--text-muted)' }} />
-                                {sighting.obsDt}
+                                {formatMonthDay(sighting.obsDt)}
                               </span>
                             </div>
 
