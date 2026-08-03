@@ -116,6 +116,7 @@ export default function App() {
 
   // Accordion state
   const [expandedSpecies, setExpandedSpecies] = useState(new Set());
+  const [expandedCounty, setExpandedCounty] = useState(null);
   const [showSettings, setShowSettings] = useState(false);
 
   // Settings Accordion Sections Open/Closed state
@@ -782,6 +783,178 @@ export default function App() {
     );
   };
 
+  const toggleCounty = (countyName) => {
+    setExpandedCounty(prev => (prev === countyName ? null : countyName));
+  };
+
+  // Group observations by county/region for Recent tab
+  const getGroupedCountyList = (observations) => {
+    const countyMap = {};
+
+    observations.forEach(obs => {
+      const county = getSightingCounty(obs);
+      if (!countyMap[county]) {
+        countyMap[county] = {
+          countyName: county,
+          speciesSet: new Set(),
+          sightings: []
+        };
+      }
+      countyMap[county].speciesSet.add(obs.speciesCode);
+      countyMap[county].sightings.push(obs);
+    });
+
+    const countyList = Object.values(countyMap).map(c => {
+      // Sort sightings inside each county by obsDt descending (most recent first)
+      const sortedSightings = [...c.sightings].sort((a, b) => new Date(b.obsDt) - new Date(a.obsDt));
+
+      // Group by species inside county, sorting species by their latest obsDt descending
+      const speciesMap = {};
+      sortedSightings.forEach(s => {
+        const code = s.speciesCode;
+        if (!speciesMap[code]) {
+          speciesMap[code] = {
+            speciesCode: s.speciesCode,
+            comNameZh: s.comNameZh,
+            comNameEn: s.comNameEn,
+            sciName: s.sciName,
+            sightings: []
+          };
+        }
+        speciesMap[code].sightings.push(s);
+      });
+
+      const speciesList = Object.values(speciesMap).sort((a, b) => {
+        const aLatest = new Date(a.sightings[0].obsDt);
+        const bLatest = new Date(b.sightings[0].obsDt);
+        return bLatest - aLatest;
+      });
+
+      return {
+        countyName: c.countyName,
+        totalSpecies: c.speciesSet.size,
+        totalSightings: c.sightings.length,
+        latestObsDt: sortedSightings[0] ? sortedSightings[0].obsDt : '',
+        speciesList,
+      };
+    });
+
+    // Sort county list alphabetically / by TW_REGIONS order
+    countyList.sort((a, b) => a.countyName.localeCompare(b.countyName, 'zh-Hant'));
+
+    return countyList;
+  };
+
+  const renderCountyAccordionList = (observations) => {
+    const countyList = getGroupedCountyList(observations);
+
+    if (countyList.length === 0) {
+      return (
+        <div className="empty-state">
+          <Compass size={48} style={{ color: 'var(--text-muted)' }} />
+          <h3>查無觀測紀錄</h3>
+          <p>在過去 {tabState[activeTab].days} 天內，尚未在您選擇的縣市登錄任何觀測紀錄。</p>
+        </div>
+      );
+    }
+
+    return (
+      <main className="species-list-container">
+        {countyList.map((c) => {
+          const isExpanded = expandedCounty === c.countyName;
+          return (
+            <div
+              className={`species-accordion-item ${isExpanded ? 'is-open' : ''}`}
+              key={c.countyName}
+            >
+              <div
+                className="species-accordion-header"
+                onClick={() => toggleCounty(c.countyName)}
+              >
+                <div className="species-primary-info">
+                  <div className="species-name-row" style={{ alignItems: 'center' }}>
+                    <MapPin size={18} style={{ color: 'var(--accent-secondary)', marginRight: '0.2rem', flexShrink: 0 }} />
+                    <span className="species-chinese" style={{ fontSize: '1.2rem', fontWeight: '700' }}>{c.countyName}</span>
+                    <span className="sightings-counter-pill" style={{ marginLeft: '0.6rem' }}>
+                      共 {c.totalSpecies} 種鳥類
+                    </span>
+                  </div>
+                  <div className="species-subtitle-row" style={{ marginTop: '0.25rem' }}>
+                    <span className="species-latest-date">
+                      最新紀錄: {c.latestObsDt || '無'}
+                    </span>
+                    <span className="species-latest-separator">·</span>
+                    <span className="species-latest-loc">
+                      {c.totalSightings} 個觀測點位
+                    </span>
+                  </div>
+                </div>
+                <div className="species-meta-info">
+                  <button className="accordion-arrow-btn">
+                    {isExpanded ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+                  </button>
+                </div>
+              </div>
+
+              {isExpanded && (
+                <div className="species-accordion-content">
+                  <div className="sightings-table-container">
+                    <table className="sightings-table">
+                      <thead>
+                        <tr>
+                          <th>觀測時間 / 鳥種</th>
+                          <th>發現地點</th>
+                          <th style={{ textAlign: 'right' }}>數量</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {c.speciesList.map((sp) => {
+                          return sp.sightings.map((sighting, sIdx) => {
+                            const mapUrl = `https://www.google.com/maps/search/?api=1&query=${sighting.lat},${sighting.lng}`;
+                            return (
+                              <tr key={`${sighting.subId}-${sp.speciesCode}-${sIdx}`}>
+                                <td className="td-date">
+                                  <div style={{ fontWeight: '600', color: 'var(--text-primary)', marginBottom: '0.15rem' }}>
+                                    <span style={{ color: 'var(--accent-primary)', marginRight: '0.4rem' }}>{sp.comNameZh}</span>
+                                    <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)', fontWeight: '400' }}>({sp.comNameEn})</span>
+                                  </div>
+                                  <div style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>
+                                    <Calendar size={13} style={{ marginRight: '0.3rem', verticalAlign: 'middle', color: 'var(--text-muted)' }} />
+                                    <span>{sighting.obsDt}</span>
+                                  </div>
+                                </td>
+                                <td className="td-location" title={sighting.locName}>
+                                  <a
+                                    href={mapUrl}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="location-link"
+                                  >
+                                    <MapPin size={14} className="location-nav-icon" />
+                                    <span className="location-name-text">{sighting.locName}</span>
+                                  </a>
+                                </td>
+                                <td className="td-count" style={{ textAlign: 'right' }}>
+                                  <span className="count-tag">
+                                    {sighting.howMany ? `${sighting.howMany} 隻` : '出現'}
+                                  </span>
+                                </td>
+                              </tr>
+                            );
+                          });
+                        })}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </main>
+    );
+  };
+
   const renderTabContent = () => {
     const current = tabState[activeTab];
 
@@ -910,8 +1083,10 @@ export default function App() {
             <p>{current.error}</p>
             <button className="btn-primary" onClick={handleSearchClick}>重試</button>
           </div>
-        ) : (
+        ) : isNotable ? (
           renderAccordionList(observationsToDisplay)
+        ) : (
+          renderCountyAccordionList(observationsToDisplay)
         )}
       </>
     );
