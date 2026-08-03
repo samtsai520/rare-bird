@@ -11,7 +11,8 @@ import {
   ChevronDown,
   ChevronUp,
   Settings,
-  Key
+  Key,
+  Hourglass
 } from 'lucide-react';
 
 const STORAGE_API_KEY_KEY = "taiwan_birds_ebird_api_key";
@@ -795,7 +796,6 @@ export default function App() {
     }
 
     const groupedSpecies = getGroupedSpeciesList(observationsToDisplay);
-    const statsLabel = isNotable ? '罕見鳥類' : '鳥種';
 
     return (
       <>
@@ -816,17 +816,18 @@ export default function App() {
                 onChange={(e) => updateTab(activeTab, { days: Number(e.target.value) })}
                 className="custom-select"
               >
-                <option value={1}>過去 1 天{!isNotable ? ' (預設)' : ''}</option>
-                <option value={2}>過去 2 天</option>
-                <option value={3}>過去 3 天{isNotable ? ' (預設)' : ''}</option>
-                {!isNotable && <option value={30}>累積 30 天</option>}
-                {isNotable && (
+                {!isNotable ? (
                   <>
-                    <option value={5}>過去 5 天</option>
+                    <option value={1}>過去 1 天 (預設)</option>
+                    <option value={2}>過去 2 天</option>
+                    <option value={3}>過去 3 天</option>
+                    <option value={30}>累積 30 天</option>
+                  </>
+                ) : (
+                  <>
+                    <option value={3}>過去 3 天 (預設)</option>
                     <option value={7}>過去 7 天</option>
-                    <option value={10}>過去 10 天</option>
                     <option value={14}>過去 14 天</option>
-                    <option value={21}>過去 21 天</option>
                     <option value={30}>過去 30 天</option>
                   </>
                 )}
@@ -849,13 +850,16 @@ export default function App() {
         {/* Info Section */}
         <div className="stats-ribbon">
           <div className="stats-text">
-            在過去 <span className="stats-count">{current.days}</span> 天內，觀測到
-            <span className="stats-count">{groupedSpecies.length}</span> 種{statsLabel}
-            {isNotable ? null : (
+            {isNotable ? (
               <>
+                在過去 <span className="stats-count">{current.days}</span> 天內，觀測到
+                <span className="stats-count">{groupedSpecies.length}</span> 種罕見鳥類
+              </>
+            ) : (
+              <>
+                在過去 <span className="stats-count">{current.days}</span> 天內，您選擇的縣市觀測到 <span className="stats-count">{groupedSpecies.length}</span> 種鳥
                 <br />
-                {new Date().getMonth() + 1}月共計觀察 <span className="stats-count">{monthSpeciesCount ?? '—'}</span> 種
-                {activeTab === 'recent' && ' (未標示是否審核)'}
+                {new Date().getMonth() + 1}月全台共計觀察 <span className="stats-count">{monthSpeciesCount ?? '—'}</span>種鳥
               </>
             )}
           </div>
@@ -864,13 +868,10 @@ export default function App() {
         {/* Accordion List */}
         {current.loading && current.observations.length === 0 ? (
           <div className="loading-state">
-            <div className="radar-loader">
-              <div className="radar-circle"></div>
-              <div className="radar-circle"></div>
-              <div className="radar-circle"></div>
-              <div className="radar-center"></div>
+            <div className="hourglass-loader" style={{ padding: '1rem 0' }}>
+              <Hourglass size={48} className="pulse-hourglass" style={{ color: 'var(--accent-secondary)' }} />
             </div>
-            <p>正在搜尋並整合台灣各縣市鳥況紀錄，請稍候...</p>
+            <p>正在搜尋與整合觀測紀錄，請稍候...</p>
           </div>
         ) : current.error ? (
           <div className="error-state">

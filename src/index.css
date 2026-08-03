@@ -1079,6 +1079,19 @@ body {
   }
 }
 
+/* Hourglass loading animation */
+.pulse-hourglass {
+  animation: hourglass-rotate 2.4s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes hourglass-rotate {
+  0% { transform: rotate(0deg) scale(1); opacity: 0.85; }
+  45% { transform: rotate(180deg) scale(1.1); opacity: 1; }
+  50% { transform: rotate(180deg) scale(1.1); opacity: 1; }
+  95% { transform: rotate(360deg) scale(1); opacity: 0.85; }
+  100% { transform: rotate(360deg) scale(1); opacity: 0.85; }
+}
+
 /* Scrollbar customizations */
 ::-webkit-scrollbar {
   width: 8px;
