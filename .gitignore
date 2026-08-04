@@ -5,3 +5,5 @@ deploy.js
 config.json
 enable_pages.js
 .vercel
+__pycache__/
+*.pyc

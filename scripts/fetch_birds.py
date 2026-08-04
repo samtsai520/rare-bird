@@ -23,9 +23,29 @@ import time
 import urllib.request
 from pathlib import Path
 
-API_KEY = "b9vdcl0h5951"
-BASE_URL = "https://api.ebird.org/v2"
+# eBird API key 安全讀取：優先環境變數 EBIRD_API_KEY，其次 gitignored config.json。
+# 兩者皆無 → 直接失敗，不提供預設值。切勿把 key 寫死在這裡。
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
+
+def _load_api_key():
+    key = os.environ.get("EBIRD_API_KEY", "").strip()
+    if key:
+        return key
+    cfg = PROJECT_ROOT / "config.json"
+    if cfg.exists():
+        try:
+            with open(cfg, "r", encoding="utf-8") as f:
+                key = json.load(f).get("ebird_api_key", "").strip()
+        except Exception:
+            key = ""
+    if key:
+        return key
+    raise RuntimeError(
+        "找不到 eBird API key。請設定環境變數 EBIRD_API_KEY，或建立 gitignored 的 config.json（內容 {\"ebird_api_key\":\"...\"}）。"
+    )
+
+API_KEY = _load_api_key()
+BASE_URL = "https://api.ebird.org/v2"
 DATA_DIR = PROJECT_ROOT / "public" / "data"
 TAXONOMY_FILE = DATA_DIR / "taxonomy-zh.json"
 TAXONOMY_TIME_FILE = DATA_DIR / "taxonomy-zh.time"
