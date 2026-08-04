@@ -17,8 +17,6 @@ import {
 
 const STORAGE_API_KEY_KEY = "taiwan_birds_ebird_api_key";
 const STORAGE_THEME_KEY = "taiwan_birds_theme";
-const STORAGE_REGION_STATS_KEY = "taiwan_birds_region_stats";
-const STORAGE_REGION_STATS_TIME_KEY = "taiwan_birds_region_stats_time";
 
 // Cache keys — notable: per-days; worth: fixed (yesterday+today), same-day TTL
 const CACHE_KEYS = {
@@ -107,9 +105,6 @@ export default function App() {
   const birdNamesRef = useRef(birdNames);
   useEffect(() => { birdNamesRef.current = birdNames; }, [birdNames]);
 
-  // Month species count
-  const [monthSpeciesCount, setMonthSpeciesCount] = useState(null);
-
   const [theme, setTheme] = useState(() => {
     return localStorage.getItem(STORAGE_THEME_KEY) || 'dark';
   });
@@ -137,25 +132,6 @@ export default function App() {
       });
     }
   }, []);
-
-  // Fetch this month's unique species count
-  const fetchMonthSpecies = useCallback(async (activeKey = apiKey) => {
-    if (!activeKey) return;
-    try {
-      const headers = { 'x-ebirdapitoken': activeKey };
-      const now = new Date();
-      const backDays = Math.min(now.getDate(), 30);
-      const url = `https://api.ebird.org/v2/data/obs/TW/recent?back=${backDays}&detail=simple`;
-      const res = await throttleApiCall(() => fetch(url, { headers }));
-      const data = res.ok ? await res.json() : [];
-      const count = Array.isArray(data) ? data.length : 0;
-      setMonthSpeciesCount(count);
-      localStorage.setItem(STORAGE_REGION_STATS_KEY, JSON.stringify({ monthSpecies: count }));
-      localStorage.setItem(STORAGE_REGION_STATS_TIME_KEY, new Date().toISOString());
-    } catch (err) {
-      console.error("Fetch month species failed:", err);
-    }
-  }, [apiKey]);
 
   // AbortController for cancelling stale fetches
   const abortRef = useRef(null);
@@ -431,29 +407,6 @@ export default function App() {
     }
   }, [apiKey, worthList.length, birdNames]);
 
-  // Auto-fetch month species count (once per day cache)
-  useEffect(() => {
-    if (!apiKey) return;
-    const cachedStats = localStorage.getItem(STORAGE_REGION_STATS_KEY);
-    const cachedTime = localStorage.getItem(STORAGE_REGION_STATS_TIME_KEY);
-    if (cachedStats && cachedTime) {
-      const parsedTime = new Date(cachedTime);
-      const today = new Date();
-      if (
-        parsedTime.getFullYear() === today.getFullYear() &&
-        parsedTime.getMonth() === today.getMonth() &&
-        parsedTime.getDate() === today.getDate()
-      ) {
-        try {
-          const obj = JSON.parse(cachedStats);
-          setMonthSpeciesCount(obj.monthSpecies ?? null);
-          return;
-        } catch { /* fall through */ }
-      }
-    }
-    fetchMonthSpecies(apiKey);
-  }, [apiKey]); // eslint-disable-line react-hooks/exhaustive-deps
-
   // Auto-load: notable check cache first, then fetch
   useEffect(() => {
     if (!apiKey) return;
@@ -582,7 +535,6 @@ export default function App() {
       } else {
         fetchObservations(days, trimmed);
       }
-      fetchMonthSpecies(trimmed);
     }
   };
 
@@ -598,10 +550,7 @@ export default function App() {
     setWorthError(null);
     setLastUpdated(null);
     setWorthLastUpdated(null);
-    setMonthSpeciesCount(null);
     localStorage.removeItem(STORAGE_API_KEY_KEY);
-    localStorage.removeItem(STORAGE_REGION_STATS_KEY);
-    localStorage.removeItem(STORAGE_REGION_STATS_TIME_KEY);
     [1, 3, 5, 7, 10, 14, 21, 30].forEach(d => {
       localStorage.removeItem(`taiwan_birds_notable_obs_${d}d`);
       localStorage.removeItem(`taiwan_birds_notable_time_${d}d`);
@@ -839,8 +788,7 @@ export default function App() {
         <div className="stats-ribbon">
           <div className="stats-text">
             過去{days}天，全台灣觀測到
-            <span className="stats-count">{groupedSpecies.length}</span> 種罕見鳥類，本月總計
-            <span className="stats-count">{monthSpeciesCount ?? '—'}</span> 種
+            <span className="stats-count">{groupedSpecies.length}</span> 種罕見鳥類
           </div>
         </div>
 
