@@ -890,11 +890,11 @@ export default function App() {
                 {meta
                   ? `${meta.twoDaysAgo} ~ ${meta.targetDate}`
                   : '前天 ~ 今天'}
-                <span className="last-update-text">
-                  <span className="pulse-dot"></span>
-                  最後更新: {formatTime(worthLastUpdated)}
-                </span>
               </label>
+              <span className="last-update-text">
+                <span className="pulse-dot"></span>
+                最後更新: {formatTime(worthLastUpdated)}
+              </span>
             </div>
 
             <button
