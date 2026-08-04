@@ -1,0 +1,3890 @@
+{
+  "lastUpdated": "2026-08-04",
+  "species": {
+    "lewduc1": {
+      "comNameZh": "樹鴨",
+      "comNameEn": "Lesser Whistling-Duck",
+      "sciName": "Dendrocygna javanica"
+    },
+    "bahgoo": {
+      "comNameZh": "斑頭雁",
+      "comNameEn": "Bar-headed Goose",
+      "sciName": "Anser indicus"
+    },
+    "gragoo": {
+      "comNameZh": "灰雁",
+      "comNameEn": "Graylag Goose",
+      "sciName": "Anser anser"
+    },
+    "swagoo1": {
+      "comNameZh": "鴻雁",
+      "comNameEn": "Swan Goose",
+      "sciName": "Anser cygnoides"
+    },
+    "x00776": {
+      "comNameZh": "灰雁x鴻雁(雜交)",
+      "comNameEn": "Graylag x Swan Goose (hybrid)",
+      "sciName": "Anser anser x cygnoides"
+    },
+    "gwfgoo": {
+      "comNameZh": "白額雁",
+      "comNameEn": "Greater White-fronted Goose",
+      "sciName": "Anser albifrons"
+    },
+    "lwfgoo": {
+      "comNameZh": "小白額雁",
+      "comNameEn": "Lesser White-fronted Goose",
+      "sciName": "Anser erythropus"
+    },
+    "taibeg1": {
+      "comNameZh": "寒林豆雁",
+      "comNameEn": "Taiga Bean-Goose",
+      "sciName": "Anser fabalis"
+    },
+    "tunbeg1": {
+      "comNameZh": "凍原豆雁",
+      "comNameEn": "Tundra Bean-Goose",
+      "sciName": "Anser serrirostris"
+    },
+    "x00759": {
+      "comNameZh": "Domestic goose sp. x Canada Goose (hybrid)",
+      "comNameEn": "Domestic goose sp. x Canada Goose (hybrid)",
+      "sciName": "Anser sp. (Domestic type) x Branta canadensis"
+    },
+    "mutswa": {
+      "comNameZh": "疣鼻天鵝",
+      "comNameEn": "Mute Swan",
+      "sciName": "Cygnus olor"
+    },
+    "blkswa": {
+      "comNameZh": "黑天鵝",
+      "comNameEn": "Black Swan",
+      "sciName": "Cygnus atratus"
+    },
+    "tunswa": {
+      "comNameZh": "小天鵝",
+      "comNameEn": "Tundra Swan",
+      "sciName": "Cygnus columbianus"
+    },
+    "whoswa": {
+      "comNameZh": "黃嘴天鵝",
+      "comNameEn": "Whooper Swan",
+      "sciName": "Cygnus cygnus"
+    },
+    "egygoo": {
+      "comNameZh": "埃及雁",
+      "comNameEn": "Egyptian Goose",
+      "sciName": "Alopochen aegyptiaca"
+    },
+    "rudshe": {
+      "comNameZh": "瀆鳧",
+      "comNameEn": "Ruddy Shelduck",
+      "sciName": "Tadorna ferruginea"
+    },
+    "comshe": {
+      "comNameZh": "花鳧",
+      "comNameEn": "Common Shelduck",
+      "sciName": "Tadorna tadorna"
+    },
+    "musduc": {
+      "comNameZh": "疣鼻棲鴨",
+      "comNameEn": "Muscovy Duck",
+      "sciName": "Cairina moschata"
+    },
+    "copgoo1": {
+      "comNameZh": "棉鴨",
+      "comNameEn": "Cotton Pygmy-Goose",
+      "sciName": "Nettapus coromandelianus"
+    },
+    "wooduc": {
+      "comNameZh": "美洲鴛鴦",
+      "comNameEn": "Wood Duck",
+      "sciName": "Aix sponsa"
+    },
+    "manduc": {
+      "comNameZh": "鴛鴦",
+      "comNameEn": "Mandarin Duck",
+      "sciName": "Aix galericulata"
+    },
+    "baitea": {
+      "comNameZh": "巴鴨",
+      "comNameEn": "Baikal Teal",
+      "sciName": "Sibirionetta formosa"
+    },
+    "gargan": {
+      "comNameZh": "白眉鴨",
+      "comNameEn": "Garganey",
+      "sciName": "Spatula querquedula"
+    },
+    "norsho": {
+      "comNameZh": "琵嘴鴨",
+      "comNameEn": "Northern Shoveler",
+      "sciName": "Spatula clypeata"
+    },
+    "x00629": {
+      "comNameZh": "Blue-winged Teal x Northern Shoveler (hybrid)",
+      "comNameEn": "Blue-winged Teal x Northern Shoveler (hybrid)",
+      "sciName": "Spatula discors x clypeata"
+    },
+    "gadwal": {
+      "comNameZh": "赤膀鴨",
+      "comNameEn": "Gadwall",
+      "sciName": "Mareca strepera"
+    },
+    "x00457": {
+      "comNameZh": "琵嘴鴨x赤膀鴨(雜交)",
+      "comNameEn": "Northern Shoveler x Gadwall (hybrid)",
+      "sciName": "Spatula clypeata x Mareca strepera"
+    },
+    "falduc": {
+      "comNameZh": "羅文鴨",
+      "comNameEn": "Falcated Duck",
+      "sciName": "Mareca falcata"
+    },
+    "eurwig": {
+      "comNameZh": "赤頸鴨",
+      "comNameEn": "Eurasian Wigeon",
+      "sciName": "Mareca penelope"
+    },
+    "amewig": {
+      "comNameZh": "葡萄胸鴨",
+      "comNameEn": "American Wigeon",
+      "sciName": "Mareca americana"
+    },
+    "x00421": {
+      "comNameZh": "赤頸鴨x葡萄胸鴨(雜交)",
+      "comNameEn": "Eurasian x American Wigeon (hybrid)",
+      "sciName": "Mareca penelope x americana"
+    },
+    "phiduc1": {
+      "comNameZh": "呂宋鴨",
+      "comNameEn": "Philippine Duck",
+      "sciName": "Anas luzonica"
+    },
+    "spbduc": {
+      "comNameZh": "花嘴鴨",
+      "comNameEn": "Eastern Spot-billed Duck",
+      "sciName": "Anas zonorhyncha"
+    },
+    "mallar3": {
+      "comNameZh": "綠頭鴨",
+      "comNameEn": "Mallard",
+      "sciName": "Anas platyrhynchos"
+    },
+    "mdxmal1": {
+      "comNameZh": "疣鼻棲鴨x綠頭鴨(雜交)",
+      "comNameEn": "Muscovy Duck x Mallard (hybrid)",
+      "sciName": "Cairina moschata x Anas platyrhynchos"
+    },
+    "x00835": {
+      "comNameZh": "花嘴鴨x綠頭鴨(雜交)",
+      "comNameEn": "Eastern Spot-billed Duck x Mallard (hybrid)",
+      "sciName": "Anas zonorhyncha x platyrhynchos"
+    },
+    "norpin": {
+      "comNameZh": "尖尾鴨",
+      "comNameEn": "Northern Pintail",
+      "sciName": "Anas acuta"
+    },
+    "gnwtea": {
+      "comNameZh": "小水鴨",
+      "comNameEn": "Green-winged Teal",
+      "sciName": "Anas crecca"
+    },
+    "recpoc": {
+      "comNameZh": "赤嘴潛鴨",
+      "comNameEn": "Red-crested Pochard",
+      "sciName": "Netta rufina"
+    },
+    "compoc": {
+      "comNameZh": "紅頭潛鴨",
+      "comNameEn": "Common Pochard",
+      "sciName": "Aythya ferina"
+    },
+    "rinduc": {
+      "comNameZh": "環頸潛鴨",
+      "comNameEn": "Ring-necked Duck",
+      "sciName": "Aythya collaris"
+    },
+    "ferduc": {
+      "comNameZh": "白眼潛鴨",
+      "comNameEn": "Ferruginous Duck",
+      "sciName": "Aythya nyroca"
+    },
+    "x00764": {
+      "comNameZh": "紅頭潛鴨x白眼潛鴨(雜交)",
+      "comNameEn": "Common Pochard x Ferruginous Duck (hybrid)",
+      "sciName": "Aythya ferina x nyroca"
+    },
+    "baepoc1": {
+      "comNameZh": "青頭潛鴨",
+      "comNameEn": "Baer's Pochard",
+      "sciName": "Aythya baeri"
+    },
+    "x00838": {
+      "comNameZh": "白眼潛鴨x青頭潛鴨(雜交)",
+      "comNameEn": "Ferruginous Duck x Baer's Pochard (hybrid)",
+      "sciName": "Aythya nyroca x baeri"
+    },
+    "tufduc": {
+      "comNameZh": "鳳頭潛鴨",
+      "comNameEn": "Tufted Duck",
+      "sciName": "Aythya fuligula"
+    },
+    "x00839": {
+      "comNameZh": "白眼潛鴨x鳳頭潛鴨(雜交)",
+      "comNameEn": "Ferruginous x Tufted Duck (hybrid)",
+      "sciName": "Aythya nyroca x fuligula"
+    },
+    "gresca": {
+      "comNameZh": "斑背潛鴨",
+      "comNameEn": "Greater Scaup",
+      "sciName": "Aythya marila"
+    },
+    "x00654": {
+      "comNameZh": "鳳頭潛鴨x斑背潛鴨(雜交)",
+      "comNameEn": "Tufted Duck x Greater Scaup (hybrid)",
+      "sciName": "Aythya fuligula x marila"
+    },
+    "lessca": {
+      "comNameZh": "小斑背潛鴨",
+      "comNameEn": "Lesser Scaup",
+      "sciName": "Aythya affinis"
+    },
+    "whwsco1": {
+      "comNameZh": "Stejneger's Scoter",
+      "comNameEn": "Stejneger's Scoter",
+      "sciName": "Melanitta stejnegeri"
+    },
+    "lotduc": {
+      "comNameZh": "長尾鴨",
+      "comNameEn": "Long-tailed Duck",
+      "sciName": "Clangula hyemalis"
+    },
+    "comgol": {
+      "comNameZh": "鵲鴨",
+      "comNameEn": "Common Goldeneye",
+      "sciName": "Bucephala clangula"
+    },
+    "smew": {
+      "comNameZh": "白秋沙",
+      "comNameEn": "Smew",
+      "sciName": "Mergellus albellus"
+    },
+    "commer": {
+      "comNameZh": "川秋沙",
+      "comNameEn": "Common Merganser",
+      "sciName": "Mergus merganser"
+    },
+    "rebmer": {
+      "comNameZh": "紅胸秋沙",
+      "comNameEn": "Red-breasted Merganser",
+      "sciName": "Mergus serrator"
+    },
+    "scsmer1": {
+      "comNameZh": "唐秋沙",
+      "comNameEn": "Scaly-sided Merganser",
+      "sciName": "Mergus squamatus"
+    },
+    "helgui": {
+      "comNameZh": "普通珠雞",
+      "comNameEn": "Helmeted Guineafowl",
+      "sciName": "Numida meleagris"
+    },
+    "taipar1": {
+      "comNameZh": "臺灣山鷓鴣",
+      "comNameEn": "Taiwan Partridge",
+      "sciName": "Arborophila crudigularis"
+    },
+    "wiltur": {
+      "comNameZh": "火雞",
+      "comNameEn": "Wild Turkey",
+      "sciName": "Meleagris gallopavo"
+    },
+    "mikphe1": {
+      "comNameZh": "黑長尾雉",
+      "comNameEn": "Mikado Pheasant",
+      "sciName": "Syrmaticus mikado"
+    },
+    "golphe": {
+      "comNameZh": "紅腹錦雞",
+      "comNameEn": "Golden Pheasant",
+      "sciName": "Chrysolophus pictus"
+    },
+    "rinphe1": {
+      "comNameZh": "環頸雉",
+      "comNameEn": "Ring-necked Pheasant",
+      "sciName": "Phasianus colchicus"
+    },
+    "swiphe1": {
+      "comNameZh": "藍腹鷴",
+      "comNameEn": "Swinhoe's Pheasant",
+      "sciName": "Lophura swinhoii"
+    },
+    "silphe": {
+      "comNameZh": "白鷴",
+      "comNameEn": "Silver Pheasant",
+      "sciName": "Lophura nycthemera"
+    },
+    "compea": {
+      "comNameZh": "藍孔雀",
+      "comNameEn": "Indian Peafowl",
+      "sciName": "Pavo cristatus"
+    },
+    "taibap1": {
+      "comNameZh": "臺灣竹雞",
+      "comNameEn": "Taiwan Bamboo-Partridge",
+      "sciName": "Bambusicola sonorivox"
+    },
+    "redjun": {
+      "comNameZh": "紅原雞",
+      "comNameEn": "Red Junglefowl",
+      "sciName": "Gallus gallus"
+    },
+    "blbqua1": {
+      "comNameZh": "小鵪鶉",
+      "comNameEn": "Blue-breasted Quail",
+      "sciName": "Synoicus chinensis"
+    },
+    "japqua": {
+      "comNameZh": "鵪鶉",
+      "comNameEn": "Japanese Quail",
+      "sciName": "Coturnix japonica"
+    },
+    "rocpig": {
+      "comNameZh": "原鴿",
+      "comNameEn": "Rock Pigeon",
+      "sciName": "Columba livia"
+    },
+    "aswpig1": {
+      "comNameZh": "灰林鴿",
+      "comNameEn": "Ashy Wood-Pigeon",
+      "sciName": "Columba pulchricollis"
+    },
+    "jawpig1": {
+      "comNameZh": "黑林鴿",
+      "comNameEn": "Black Wood-Pigeon",
+      "sciName": "Columba janthina"
+    },
+    "metpig1": {
+      "comNameZh": "白喉林鴿",
+      "comNameEn": "Metallic Pigeon",
+      "sciName": "Columba vitiensis"
+    },
+    "ortdov": {
+      "comNameZh": "金背鳩",
+      "comNameEn": "Oriental Turtle-Dove",
+      "sciName": "Streptopelia orientalis"
+    },
+    "eucdov": {
+      "comNameZh": "灰斑鳩",
+      "comNameEn": "Eurasian Collared-Dove",
+      "sciName": "Streptopelia decaocto"
+    },
+    "recdov1": {
+      "comNameZh": "紅鳩",
+      "comNameEn": "Red Collared-Dove",
+      "sciName": "Streptopelia tranquebarica"
+    },
+    "spodov": {
+      "comNameZh": "珠頸斑鳩",
+      "comNameEn": "Spotted Dove",
+      "sciName": "Spilopelia chinensis"
+    },
+    "bacdov1": {
+      "comNameZh": "斑尾鵑鳩",
+      "comNameEn": "Barred Cuckoo-Dove",
+      "sciName": "Macropygia unchall"
+    },
+    "phcdov1": {
+      "comNameZh": "長尾鳩",
+      "comNameEn": "Philippine Cuckoo-Dove",
+      "sciName": "Macropygia tenuirostris"
+    },
+    "emedov2": {
+      "comNameZh": "翠翼鳩",
+      "comNameEn": "Asian Emerald Dove",
+      "sciName": "Chalcophaps indica"
+    },
+    "diadov1": {
+      "comNameZh": "雪花姬地鳩",
+      "comNameEn": "Diamond Dove",
+      "sciName": "Geopelia cuneata"
+    },
+    "zebdov": {
+      "comNameZh": "斑馬鳩",
+      "comNameEn": "Zebra Dove",
+      "sciName": "Geopelia striata"
+    },
+    "orbpig1": {
+      "comNameZh": "橙胸綠鳩",
+      "comNameEn": "Orange-breasted Green-Pigeon",
+      "sciName": "Treron bicinctus"
+    },
+    "whbpig1": {
+      "comNameZh": "綠鳩",
+      "comNameEn": "White-bellied Green-Pigeon",
+      "sciName": "Treron sieboldii"
+    },
+    "whgpig1": {
+      "comNameZh": "紅頭綠鳩",
+      "comNameEn": "Whistling Green-Pigeon",
+      "sciName": "Treron formosae"
+    },
+    "bcfdov1": {
+      "comNameZh": "小綠鳩",
+      "comNameEn": "Black-chinned Fruit-Dove",
+      "sciName": "Ramphiculus leclancheri"
+    },
+    "grecou1": {
+      "comNameZh": "褐翅鴉鵑",
+      "comNameEn": "Greater Coucal",
+      "sciName": "Centropus sinensis"
+    },
+    "lescou1": {
+      "comNameZh": "番鵑",
+      "comNameEn": "Lesser Coucal",
+      "sciName": "Centropus bengalensis"
+    },
+    "chwcuc1": {
+      "comNameZh": "冠郭公",
+      "comNameEn": "Chestnut-winged Cuckoo",
+      "sciName": "Clamator coromandus"
+    },
+    "piecuc1": {
+      "comNameZh": "斑翅鳳頭鵑",
+      "comNameEn": "Pied Cuckoo",
+      "sciName": "Clamator jacobinus"
+    },
+    "asikoe2": {
+      "comNameZh": "噪鵑",
+      "comNameEn": "Asian Koel",
+      "sciName": "Eudynamys scolopaceus"
+    },
+    "placuc1": {
+      "comNameZh": "八聲杜鵑",
+      "comNameEn": "Plaintive Cuckoo",
+      "sciName": "Cacomantis merulinus"
+    },
+    "asidrc3": {
+      "comNameZh": "方尾烏鵑",
+      "comNameEn": "Square-tailed Drongo-Cuckoo",
+      "sciName": "Surniculus lugubris"
+    },
+    "larhac2": {
+      "comNameZh": "鷹鵑",
+      "comNameEn": "Large Hawk-Cuckoo",
+      "sciName": "Hierococcyx sparverioides"
+    },
+    "nohcuc1": {
+      "comNameZh": "北方鷹鵑",
+      "comNameEn": "Northern Hawk-Cuckoo",
+      "sciName": "Hierococcyx hyperythrus"
+    },
+    "hodhac1": {
+      "comNameZh": "棕腹鷹鵑",
+      "comNameEn": "Hodgson's Hawk-Cuckoo",
+      "sciName": "Hierococcyx nisicolor"
+    },
+    "lescuc1": {
+      "comNameZh": "小杜鵑",
+      "comNameEn": "Lesser Cuckoo",
+      "sciName": "Cuculus poliocephalus"
+    },
+    "indcuc1": {
+      "comNameZh": "四聲杜鵑",
+      "comNameEn": "Indian Cuckoo",
+      "sciName": "Cuculus micropterus"
+    },
+    "comcuc": {
+      "comNameZh": "大杜鵑",
+      "comNameEn": "Common Cuckoo",
+      "sciName": "Cuculus canorus"
+    },
+    "oricuc2": {
+      "comNameZh": "北方中杜鵑",
+      "comNameEn": "Oriental Cuckoo",
+      "sciName": "Cuculus optatus"
+    },
+    "grynig1": {
+      "comNameZh": "普通夜鷹",
+      "comNameEn": "Gray Nightjar",
+      "sciName": "Caprimulgus jotaka"
+    },
+    "savnig1": {
+      "comNameZh": "南亞夜鷹",
+      "comNameEn": "Savanna Nightjar",
+      "sciName": "Caprimulgus affinis"
+    },
+    "whtnee": {
+      "comNameZh": "白喉針尾雨燕",
+      "comNameEn": "White-throated Needletail",
+      "sciName": "Hirundapus caudacutus"
+    },
+    "sibnee1": {
+      "comNameZh": "灰喉針尾雨燕",
+      "comNameEn": "Silver-backed Needletail",
+      "sciName": "Hirundapus cochinchinensis"
+    },
+    "purnee1": {
+      "comNameZh": "紫針尾雨燕",
+      "comNameEn": "Purple Needletail",
+      "sciName": "Hirundapus celebensis"
+    },
+    "y00731": {
+      "comNameZh": "白燕窩金絲燕",
+      "comNameEn": "White-nest Swiftlet",
+      "sciName": "Aerodramus fuciphagus"
+    },
+    "fotswi": {
+      "comNameZh": "叉尾雨燕",
+      "comNameEn": "Pacific Swift",
+      "sciName": "Apus pacificus"
+    },
+    "houswi1": {
+      "comNameZh": "小雨燕",
+      "comNameEn": "House Swift",
+      "sciName": "Apus nipalensis"
+    },
+    "watrai1": {
+      "comNameZh": "西方秧雞",
+      "comNameEn": "Water Rail",
+      "sciName": "Rallus aquaticus"
+    },
+    "bncrai1": {
+      "comNameZh": "東亞秧雞",
+      "comNameEn": "Brown-cheeked Rail",
+      "sciName": "Rallus indicus"
+    },
+    "slbrai1": {
+      "comNameZh": "灰胸秧雞",
+      "comNameEn": "Slaty-breasted Rail",
+      "sciName": "Lewinia striata"
+    },
+    "spocra1": {
+      "comNameZh": "斑胸秧雞",
+      "comNameEn": "Spotted Crake",
+      "sciName": "Porzana porzana"
+    },
+    "commoo3": {
+      "comNameZh": "紅冠水雞",
+      "comNameEn": "Eurasian Moorhen",
+      "sciName": "Gallinula chloropus"
+    },
+    "eurcoo": {
+      "comNameZh": "白冠雞",
+      "comNameEn": "Eurasian Coot",
+      "sciName": "Fulica atra"
+    },
+    "purswa3": {
+      "comNameZh": "灰頭紫水雞",
+      "comNameEn": "Gray-headed Swamphen",
+      "sciName": "Porphyrio poliocephalus"
+    },
+    "whbcra1": {
+      "comNameZh": "白眉秧雞",
+      "comNameEn": "White-browed Crake",
+      "sciName": "Poliolimnas cinereus"
+    },
+    "waterc1": {
+      "comNameZh": "董雞",
+      "comNameEn": "Watercock",
+      "sciName": "Gallicrex cinerea"
+    },
+    "plabuh1": {
+      "comNameZh": "Plain Bush-hen",
+      "comNameEn": "Plain Bush-hen",
+      "sciName": "Amaurornis olivacea"
+    },
+    "whbwat1": {
+      "comNameZh": "白腹秧雞",
+      "comNameEn": "White-breasted Waterhen",
+      "sciName": "Amaurornis phoenicurus"
+    },
+    "sllcra1": {
+      "comNameZh": "灰腳秧雞",
+      "comNameEn": "Slaty-legged Crake",
+      "sciName": "Rallina eurizonoides"
+    },
+    "rubcra1": {
+      "comNameZh": "緋秧雞",
+      "comNameEn": "Ruddy-breasted Crake",
+      "sciName": "Zapornia fusca"
+    },
+    "babcra1": {
+      "comNameZh": "斑脇秧雞",
+      "comNameEn": "Band-bellied Crake",
+      "sciName": "Zapornia paykullii"
+    },
+    "brocra1": {
+      "comNameZh": "紅腳苦惡鳥",
+      "comNameEn": "Brown Crake",
+      "sciName": "Zapornia akool"
+    },
+    "baicra1": {
+      "comNameZh": "小秧雞",
+      "comNameEn": "Baillon's Crake",
+      "sciName": "Zapornia pusilla"
+    },
+    "sibcra1": {
+      "comNameZh": "白鶴",
+      "comNameEn": "Siberian Crane",
+      "sciName": "Leucogeranus leucogeranus"
+    },
+    "sancra": {
+      "comNameZh": "沙丘鶴",
+      "comNameEn": "Sandhill Crane",
+      "sciName": "Antigone canadensis"
+    },
+    "whncra1": {
+      "comNameZh": "白枕鶴",
+      "comNameEn": "White-naped Crane",
+      "sciName": "Antigone vipio"
+    },
+    "demcra1": {
+      "comNameZh": "簑羽鶴",
+      "comNameEn": "Demoiselle Crane",
+      "sciName": "Grus virgo"
+    },
+    "reccra1": {
+      "comNameZh": "丹頂鶴",
+      "comNameEn": "Red-crowned Crane",
+      "sciName": "Grus japonensis"
+    },
+    "comcra": {
+      "comNameZh": "灰鶴",
+      "comNameEn": "Common Crane",
+      "sciName": "Grus grus"
+    },
+    "hoocra1": {
+      "comNameZh": "白頭鶴",
+      "comNameEn": "Hooded Crane",
+      "sciName": "Grus monacha"
+    },
+    "bkwsti": {
+      "comNameZh": "高蹺鴴",
+      "comNameEn": "Black-winged Stilt",
+      "sciName": "Himantopus himantopus"
+    },
+    "piesti1": {
+      "comNameZh": "黑領高蹺鴴",
+      "comNameEn": "Pied Stilt",
+      "sciName": "Himantopus leucocephalus"
+    },
+    "pieavo1": {
+      "comNameZh": "反嘴鴴",
+      "comNameEn": "Pied Avocet",
+      "sciName": "Recurvirostra avosetta"
+    },
+    "euroys1": {
+      "comNameZh": "蠣鴴",
+      "comNameEn": "Eurasian Oystercatcher",
+      "sciName": "Haematopus ostralegus"
+    },
+    "bkbplo": {
+      "comNameZh": "灰斑鴴",
+      "comNameEn": "Black-bellied Plover",
+      "sciName": "Pluvialis squatarola"
+    },
+    "eugplo": {
+      "comNameZh": "European Golden-Plover",
+      "comNameEn": "European Golden-Plover",
+      "sciName": "Pluvialis apricaria"
+    },
+    "pagplo": {
+      "comNameZh": "太平洋金斑鴴",
+      "comNameEn": "Pacific Golden-Plover",
+      "sciName": "Pluvialis fulva"
+    },
+    "corplo": {
+      "comNameZh": "環頸鴴",
+      "comNameEn": "Common Ringed Plover",
+      "sciName": "Charadrius hiaticula"
+    },
+    "lirplo": {
+      "comNameZh": "小環頸鴴",
+      "comNameEn": "Little Ringed Plover",
+      "sciName": "Thinornis dubius"
+    },
+    "lobplo1": {
+      "comNameZh": "劍鴴",
+      "comNameEn": "Long-billed Plover",
+      "sciName": "Thinornis placidus"
+    },
+    "norlap": {
+      "comNameZh": "小辮鴴",
+      "comNameEn": "Northern Lapwing",
+      "sciName": "Vanellus vanellus"
+    },
+    "gyhlap1": {
+      "comNameZh": "跳鴴",
+      "comNameEn": "Gray-headed Lapwing",
+      "sciName": "Vanellus cinereus"
+    },
+    "oriplo1": {
+      "comNameZh": "東方紅胸鴴",
+      "comNameEn": "Oriental Plover",
+      "sciName": "Anarhynchus veredus"
+    },
+    "lessap2": {
+      "comNameZh": "蒙古鴴",
+      "comNameEn": "Siberian Sand-Plover",
+      "sciName": "Anarhynchus mongolus"
+    },
+    "lessap1": {
+      "comNameZh": "青藏鴴",
+      "comNameEn": "Tibetan Sand-Plover",
+      "sciName": "Anarhynchus atrifrons"
+    },
+    "grsplo": {
+      "comNameZh": "鐵嘴鴴",
+      "comNameEn": "Greater Sand-Plover",
+      "sciName": "Anarhynchus leschenaultii"
+    },
+    "kenplo1": {
+      "comNameZh": "東方環頸鴴",
+      "comNameEn": "Kentish Plover",
+      "sciName": "Anarhynchus alexandrinus"
+    },
+    "whfplo2": {
+      "comNameZh": "白臉鴴",
+      "comNameEn": "White-faced Plover",
+      "sciName": "Anarhynchus dealbatus"
+    },
+    "grpsni1": {
+      "comNameZh": "彩鷸",
+      "comNameEn": "Greater Painted-Snipe",
+      "sciName": "Rostratula benghalensis"
+    },
+    "phtjac1": {
+      "comNameZh": "水雉",
+      "comNameEn": "Pheasant-tailed Jacana",
+      "sciName": "Hydrophasianus chirurgus"
+    },
+    "whimbr3": {
+      "comNameZh": "美洲中杓鷸",
+      "comNameEn": "Hudsonian Whimbrel",
+      "sciName": "Numenius hudsonicus"
+    },
+    "whimbr5": {
+      "comNameZh": "中杓鷸",
+      "comNameEn": "Eurasian Whimbrel",
+      "sciName": "Numenius phaeopus"
+    },
+    "litcur": {
+      "comNameZh": "小杓鷸",
+      "comNameEn": "Little Curlew",
+      "sciName": "Numenius minutus"
+    },
+    "faecur": {
+      "comNameZh": "黦鷸",
+      "comNameEn": "Far Eastern Curlew",
+      "sciName": "Numenius madagascariensis"
+    },
+    "eurcur": {
+      "comNameZh": "大杓鷸",
+      "comNameEn": "Eurasian Curlew",
+      "sciName": "Numenius arquata"
+    },
+    "batgod": {
+      "comNameZh": "斑尾鷸",
+      "comNameEn": "Bar-tailed Godwit",
+      "sciName": "Limosa lapponica"
+    },
+    "bktgod": {
+      "comNameZh": "黑尾鷸",
+      "comNameEn": "Black-tailed Godwit",
+      "sciName": "Limosa limosa"
+    },
+    "asidow1": {
+      "comNameZh": "半蹼鷸",
+      "comNameEn": "Asian Dowitcher",
+      "sciName": "Limnodromus semipalmatus"
+    },
+    "shbdow": {
+      "comNameZh": "短嘴半蹼鷸",
+      "comNameEn": "Short-billed Dowitcher",
+      "sciName": "Limnodromus griseus"
+    },
+    "lobdow": {
+      "comNameZh": "長嘴半蹼鷸",
+      "comNameEn": "Long-billed Dowitcher",
+      "sciName": "Limnodromus scolopaceus"
+    },
+    "jacsni": {
+      "comNameZh": "小鷸",
+      "comNameEn": "Jack Snipe",
+      "sciName": "Lymnocryptes minimus"
+    },
+    "eurwoo": {
+      "comNameZh": "山鷸",
+      "comNameEn": "Eurasian Woodcock",
+      "sciName": "Scolopax rusticola"
+    },
+    "solsni1": {
+      "comNameZh": "孤田鷸",
+      "comNameEn": "Solitary Snipe",
+      "sciName": "Gallinago solitaria"
+    },
+    "swisni1": {
+      "comNameZh": "中地鷸",
+      "comNameEn": "Swinhoe's Snipe",
+      "sciName": "Gallinago megala"
+    },
+    "pitsni": {
+      "comNameZh": "針尾鷸",
+      "comNameEn": "Pin-tailed Snipe",
+      "sciName": "Gallinago stenura"
+    },
+    "comsni": {
+      "comNameZh": "田鷸",
+      "comNameEn": "Common Snipe",
+      "sciName": "Gallinago gallinago"
+    },
+    "redpha1": {
+      "comNameZh": "灰瓣足鷸",
+      "comNameEn": "Red Phalarope",
+      "sciName": "Phalaropus fulicarius"
+    },
+    "renpha": {
+      "comNameZh": "紅領瓣足鷸",
+      "comNameEn": "Red-necked Phalarope",
+      "sciName": "Phalaropus lobatus"
+    },
+    "tersan": {
+      "comNameZh": "反嘴鷸",
+      "comNameEn": "Terek Sandpiper",
+      "sciName": "Xenus cinereus"
+    },
+    "comsan": {
+      "comNameZh": "磯鷸",
+      "comNameEn": "Common Sandpiper",
+      "sciName": "Actitis hypoleucos"
+    },
+    "grnsan": {
+      "comNameZh": "白腰草鷸",
+      "comNameEn": "Green Sandpiper",
+      "sciName": "Tringa ochropus"
+    },
+    "gyttat1": {
+      "comNameZh": "黃足鷸",
+      "comNameEn": "Gray-tailed Tattler",
+      "sciName": "Tringa brevipes"
+    },
+    "wantat1": {
+      "comNameZh": "美洲黃足鷸",
+      "comNameEn": "Wandering Tattler",
+      "sciName": "Tringa incana"
+    },
+    "marsan": {
+      "comNameZh": "小青足鷸",
+      "comNameEn": "Marsh Sandpiper",
+      "sciName": "Tringa stagnatilis"
+    },
+    "woosan": {
+      "comNameZh": "鷹斑鷸",
+      "comNameEn": "Wood Sandpiper",
+      "sciName": "Tringa glareola"
+    },
+    "comred1": {
+      "comNameZh": "赤足鷸",
+      "comNameEn": "Common Redshank",
+      "sciName": "Tringa totanus"
+    },
+    "norgre1": {
+      "comNameZh": "諾氏鷸",
+      "comNameEn": "Nordmann's Greenshank",
+      "sciName": "Tringa guttifer"
+    },
+    "spored": {
+      "comNameZh": "鶴鷸",
+      "comNameEn": "Spotted Redshank",
+      "sciName": "Tringa erythropus"
+    },
+    "comgre": {
+      "comNameZh": "青足鷸",
+      "comNameEn": "Common Greenshank",
+      "sciName": "Tringa nebularia"
+    },
+    "rudtur": {
+      "comNameZh": "翻石鷸",
+      "comNameEn": "Ruddy Turnstone",
+      "sciName": "Arenaria interpres"
+    },
+    "grekno": {
+      "comNameZh": "大濱鷸",
+      "comNameEn": "Great Knot",
+      "sciName": "Calidris tenuirostris"
+    },
+    "redkno": {
+      "comNameZh": "紅腹濱鷸",
+      "comNameEn": "Red Knot",
+      "sciName": "Calidris canutus"
+    },
+    "ruff": {
+      "comNameZh": "流蘇鷸",
+      "comNameEn": "Ruff",
+      "sciName": "Calidris pugnax"
+    },
+    "brbsan": {
+      "comNameZh": "寬嘴鷸",
+      "comNameEn": "Broad-billed Sandpiper",
+      "sciName": "Calidris falcinellus"
+    },
+    "shtsan": {
+      "comNameZh": "尖尾濱鷸",
+      "comNameEn": "Sharp-tailed Sandpiper",
+      "sciName": "Calidris acuminata"
+    },
+    "cursan": {
+      "comNameZh": "彎嘴濱鷸",
+      "comNameEn": "Curlew Sandpiper",
+      "sciName": "Calidris ferruginea"
+    },
+    "temsti": {
+      "comNameZh": "丹氏濱鷸",
+      "comNameEn": "Temminck's Stint",
+      "sciName": "Calidris temminckii"
+    },
+    "lotsti": {
+      "comNameZh": "長趾濱鷸",
+      "comNameEn": "Long-toed Stint",
+      "sciName": "Calidris subminuta"
+    },
+    "rensti": {
+      "comNameZh": "紅胸濱鷸",
+      "comNameEn": "Red-necked Stint",
+      "sciName": "Calidris ruficollis"
+    },
+    "spbsan1": {
+      "comNameZh": "琵嘴鷸",
+      "comNameEn": "Spoon-billed Sandpiper",
+      "sciName": "Calidris pygmaea"
+    },
+    "bubsan": {
+      "comNameZh": "黃胸鷸",
+      "comNameEn": "Buff-breasted Sandpiper",
+      "sciName": "Calidris subruficollis"
+    },
+    "sander": {
+      "comNameZh": "三趾濱鷸",
+      "comNameEn": "Sanderling",
+      "sciName": "Calidris alba"
+    },
+    "dunlin": {
+      "comNameZh": "黑腹濱鷸",
+      "comNameEn": "Dunlin",
+      "sciName": "Calidris alpina"
+    },
+    "litsti": {
+      "comNameZh": "小濱鷸",
+      "comNameEn": "Little Stint",
+      "sciName": "Calidris minuta"
+    },
+    "pecsan": {
+      "comNameZh": "美洲尖尾濱鷸",
+      "comNameEn": "Pectoral Sandpiper",
+      "sciName": "Calidris melanotos"
+    },
+    "yelbut1": {
+      "comNameZh": "黃腳三趾鶉",
+      "comNameEn": "Yellow-legged Buttonquail",
+      "sciName": "Turnix tanki"
+    },
+    "barbut1": {
+      "comNameZh": "棕三趾鶉",
+      "comNameEn": "Barred Buttonquail",
+      "sciName": "Turnix suscitator"
+    },
+    "oripra": {
+      "comNameZh": "燕鴴",
+      "comNameEn": "Oriental Pratincole",
+      "sciName": "Glareola maldivarum"
+    },
+    "lotjae": {
+      "comNameZh": "長尾賊鷗",
+      "comNameEn": "Long-tailed Jaeger",
+      "sciName": "Stercorarius longicaudus"
+    },
+    "parjae": {
+      "comNameZh": "短尾賊鷗",
+      "comNameEn": "Parasitic Jaeger",
+      "sciName": "Stercorarius parasiticus"
+    },
+    "pomjae": {
+      "comNameZh": "中賊鷗",
+      "comNameEn": "Pomarine Jaeger",
+      "sciName": "Stercorarius pomarinus"
+    },
+    "sopsku1": {
+      "comNameZh": "灰賊鷗",
+      "comNameEn": "South Polar Skua",
+      "sciName": "Stercorarius maccormicki"
+    },
+    "commur": {
+      "comNameZh": "崖海鴉",
+      "comNameEn": "Common Murre",
+      "sciName": "Uria aalge"
+    },
+    "ancmur": {
+      "comNameZh": "扁嘴海雀",
+      "comNameEn": "Ancient Murrelet",
+      "sciName": "Synthliboramphus antiquus"
+    },
+    "japmur1": {
+      "comNameZh": "冠海雀",
+      "comNameEn": "Japanese Murrelet",
+      "sciName": "Synthliboramphus wumizusume"
+    },
+    "litgul": {
+      "comNameZh": "小鷗",
+      "comNameEn": "Little Gull",
+      "sciName": "Hydrocoloeus minutus"
+    },
+    "rosgul": {
+      "comNameZh": "楔尾鷗",
+      "comNameEn": "Ross's Gull",
+      "sciName": "Rhodostethia rosea"
+    },
+    "bklkit": {
+      "comNameZh": "三趾鷗",
+      "comNameEn": "Black-legged Kittiwake",
+      "sciName": "Rissa tridactyla"
+    },
+    "sabgul": {
+      "comNameZh": "叉尾鷗",
+      "comNameEn": "Sabine's Gull",
+      "sciName": "Xema sabini"
+    },
+    "saugul2": {
+      "comNameZh": "黑嘴鷗",
+      "comNameEn": "Saunders's Gull",
+      "sciName": "Saundersilarus saundersi"
+    },
+    "slbgul1": {
+      "comNameZh": "細嘴鷗",
+      "comNameEn": "Slender-billed Gull",
+      "sciName": "Chroicocephalus genei"
+    },
+    "silgul2": {
+      "comNameZh": "紐澳紅嘴鷗",
+      "comNameEn": "Silver Gull",
+      "sciName": "Chroicocephalus novaehollandiae"
+    },
+    "bkhgul": {
+      "comNameZh": "紅嘴鷗",
+      "comNameEn": "Black-headed Gull",
+      "sciName": "Chroicocephalus ridibundus"
+    },
+    "bnhgul1": {
+      "comNameZh": "棕頭鷗",
+      "comNameEn": "Brown-headed Gull",
+      "sciName": "Chroicocephalus brunnicephalus"
+    },
+    "laugul": {
+      "comNameZh": "笑鷗",
+      "comNameEn": "Laughing Gull",
+      "sciName": "Leucophaeus atricilla"
+    },
+    "fragul": {
+      "comNameZh": "弗氏鷗",
+      "comNameEn": "Franklin's Gull",
+      "sciName": "Leucophaeus pipixcan"
+    },
+    "gbhgul2": {
+      "comNameZh": "漁鷗",
+      "comNameEn": "Pallas's Gull",
+      "sciName": "Ichthyaetus ichthyaetus"
+    },
+    "relgul2": {
+      "comNameZh": "遺鷗",
+      "comNameEn": "Relict Gull",
+      "sciName": "Ichthyaetus relictus"
+    },
+    "bktgul": {
+      "comNameZh": "黑尾鷗",
+      "comNameEn": "Black-tailed Gull",
+      "sciName": "Larus crassirostris"
+    },
+    "mewgul": {
+      "comNameZh": "歐亞海鷗",
+      "comNameEn": "Common Gull",
+      "sciName": "Larus canus"
+    },
+    "veggul1": {
+      "comNameZh": "西伯利亞銀鷗",
+      "comNameEn": "Vega Gull",
+      "sciName": "Larus vegae"
+    },
+    "casgul4": {
+      "comNameZh": "蒙古銀鷗",
+      "comNameEn": "Mongolian Gull",
+      "sciName": "Larus mongolicus"
+    },
+    "glagul": {
+      "comNameZh": "北極鷗",
+      "comNameEn": "Glaucous Gull",
+      "sciName": "Larus hyperboreus"
+    },
+    "lbbgul": {
+      "comNameZh": "小黑背鷗",
+      "comNameEn": "Lesser Black-backed Gull",
+      "sciName": "Larus fuscus"
+    },
+    "slbgul": {
+      "comNameZh": "灰背鷗",
+      "comNameEn": "Slaty-backed Gull",
+      "sciName": "Larus schistisagus"
+    },
+    "whiter4": {
+      "comNameZh": "白燕鷗",
+      "comNameEn": "Blue-billed White-Tern",
+      "sciName": "Gygis candida"
+    },
+    "brnnod": {
+      "comNameZh": "玄燕鷗",
+      "comNameEn": "Brown Noddy",
+      "sciName": "Anous stolidus"
+    },
+    "blknod": {
+      "comNameZh": "黑玄燕鷗",
+      "comNameEn": "Black Noddy",
+      "sciName": "Anous minutus"
+    },
+    "aleter1": {
+      "comNameZh": "白腰燕鷗",
+      "comNameEn": "Aleutian Tern",
+      "sciName": "Onychoprion aleuticus"
+    },
+    "sooter1": {
+      "comNameZh": "烏領燕鷗",
+      "comNameEn": "Sooty Tern",
+      "sciName": "Onychoprion fuscatus"
+    },
+    "briter1": {
+      "comNameZh": "白眉燕鷗",
+      "comNameEn": "Bridled Tern",
+      "sciName": "Onychoprion anaethetus"
+    },
+    "litter1": {
+      "comNameZh": "小燕鷗",
+      "comNameEn": "Little Tern",
+      "sciName": "Sternula albifrons"
+    },
+    "gubter2": {
+      "comNameZh": "鷗嘴燕鷗",
+      "comNameEn": "Gull-billed Tern",
+      "sciName": "Gelochelidon nilotica"
+    },
+    "caster1": {
+      "comNameZh": "裏海燕鷗",
+      "comNameEn": "Caspian Tern",
+      "sciName": "Hydroprogne caspia"
+    },
+    "whiter2": {
+      "comNameZh": "黑腹燕鷗",
+      "comNameEn": "Whiskered Tern",
+      "sciName": "Chlidonias hybrida"
+    },
+    "blkter": {
+      "comNameZh": "黑浮鷗",
+      "comNameEn": "Black Tern",
+      "sciName": "Chlidonias niger"
+    },
+    "whwter": {
+      "comNameZh": "白翅黑燕鷗",
+      "comNameEn": "White-winged Tern",
+      "sciName": "Chlidonias leucopterus"
+    },
+    "comter": {
+      "comNameZh": "燕鷗",
+      "comNameEn": "Common Tern",
+      "sciName": "Sterna hirundo"
+    },
+    "blnter1": {
+      "comNameZh": "蒼燕鷗",
+      "comNameEn": "Black-naped Tern",
+      "sciName": "Sterna sumatrana"
+    },
+    "roster": {
+      "comNameZh": "紅燕鷗",
+      "comNameEn": "Roseate Tern",
+      "sciName": "Sterna dougallii"
+    },
+    "santer1": {
+      "comNameZh": "白嘴端燕鷗",
+      "comNameEn": "Sandwich Tern",
+      "sciName": "Thalasseus sandvicensis"
+    },
+    "lecter2": {
+      "comNameZh": "小鳳頭燕鷗",
+      "comNameEn": "Lesser Crested Tern",
+      "sciName": "Thalasseus bengalensis"
+    },
+    "grcter1": {
+      "comNameZh": "鳳頭燕鷗",
+      "comNameEn": "Great Crested Tern",
+      "sciName": "Thalasseus bergii"
+    },
+    "chcter2": {
+      "comNameZh": "黑嘴端鳳頭燕鷗",
+      "comNameEn": "Chinese Crested Tern",
+      "sciName": "Thalasseus bernsteini"
+    },
+    "x00848": {
+      "comNameZh": "鳳頭燕鷗x黑嘴端鳳頭燕鷗(雜交)",
+      "comNameEn": "Great x Chinese Crested Tern (hybrid)",
+      "sciName": "Thalasseus bergii x bernsteini"
+    },
+    "grefla3": {
+      "comNameZh": "大紅鸛",
+      "comNameEn": "Greater Flamingo",
+      "sciName": "Phoenicopterus roseus"
+    },
+    "litgre1": {
+      "comNameZh": "小鸊鷉",
+      "comNameEn": "Little Grebe",
+      "sciName": "Tachybaptus ruficollis"
+    },
+    "horgre": {
+      "comNameZh": "角鸊鷉",
+      "comNameEn": "Horned Grebe",
+      "sciName": "Podiceps auritus"
+    },
+    "rengre": {
+      "comNameZh": "赤頸鸊鷉",
+      "comNameEn": "Red-necked Grebe",
+      "sciName": "Podiceps grisegena"
+    },
+    "grcgre1": {
+      "comNameZh": "冠鸊鷉",
+      "comNameEn": "Great Crested Grebe",
+      "sciName": "Podiceps cristatus"
+    },
+    "eargre": {
+      "comNameZh": "黑頸鸊鷉",
+      "comNameEn": "Eared Grebe",
+      "sciName": "Podiceps nigricollis"
+    },
+    "whttro": {
+      "comNameZh": "白尾熱帶鳥",
+      "comNameEn": "White-tailed Tropicbird",
+      "sciName": "Phaethon lepturus"
+    },
+    "rebtro": {
+      "comNameZh": "紅嘴熱帶鳥",
+      "comNameEn": "Red-billed Tropicbird",
+      "sciName": "Phaethon aethereus"
+    },
+    "rettro": {
+      "comNameZh": "紅尾熱帶鳥",
+      "comNameEn": "Red-tailed Tropicbird",
+      "sciName": "Phaethon rubricauda"
+    },
+    "retloo": {
+      "comNameZh": "紅喉潛鳥",
+      "comNameEn": "Red-throated Loon",
+      "sciName": "Gavia stellata"
+    },
+    "arcloo": {
+      "comNameZh": "黑喉潛鳥",
+      "comNameEn": "Arctic Loon",
+      "sciName": "Gavia arctica"
+    },
+    "layalb": {
+      "comNameZh": "黑背信天翁",
+      "comNameEn": "Laysan Albatross",
+      "sciName": "Phoebastria immutabilis"
+    },
+    "bkfalb": {
+      "comNameZh": "黑腳信天翁",
+      "comNameEn": "Black-footed Albatross",
+      "sciName": "Phoebastria nigripes"
+    },
+    "shtalb": {
+      "comNameZh": "短尾信天翁",
+      "comNameEn": "Short-tailed Albatross",
+      "sciName": "Phoebastria albatrus"
+    },
+    "wispet": {
+      "comNameZh": "黃蹼洋海燕",
+      "comNameEn": "Wilson's Storm-Petrel",
+      "sciName": "Oceanites oceanicus"
+    },
+    "lcspet": {
+      "comNameZh": "白腰叉尾海燕",
+      "comNameEn": "Leach's Storm-Petrel",
+      "sciName": "Hydrobates leucorhous"
+    },
+    "swspet": {
+      "comNameZh": "黑叉尾海燕",
+      "comNameEn": "Swinhoe's Storm-Petrel",
+      "sciName": "Hydrobates monorhis"
+    },
+    "trspet": {
+      "comNameZh": "褐翅叉尾海燕",
+      "comNameEn": "Tristram's Storm-Petrel",
+      "sciName": "Hydrobates tristrami"
+    },
+    "norful": {
+      "comNameZh": "暴風鸌",
+      "comNameEn": "Northern Fulmar",
+      "sciName": "Fulmarus glacialis"
+    },
+    "kerpet": {
+      "comNameZh": "克島圓尾鸌",
+      "comNameEn": "Kermadec Petrel",
+      "sciName": "Pterodroma neglecta"
+    },
+    "solpet1": {
+      "comNameZh": "索氏圓尾鸌",
+      "comNameEn": "Providence Petrel",
+      "sciName": "Pterodroma solandri"
+    },
+    "bonpet": {
+      "comNameZh": "白腹穴鳥",
+      "comNameEn": "Bonin Petrel",
+      "sciName": "Pterodroma hypoleuca"
+    },
+    "bulpet": {
+      "comNameZh": "穴鳥",
+      "comNameEn": "Bulwer's Petrel",
+      "sciName": "Bulweria bulwerii"
+    },
+    "tahpet1": {
+      "comNameZh": "黑背白腹穴鳥",
+      "comNameEn": "Tahiti Petrel",
+      "sciName": "Pseudobulweria rostrata"
+    },
+    "strshe": {
+      "comNameZh": "大水薙鳥",
+      "comNameEn": "Streaked Shearwater",
+      "sciName": "Calonectris leucomelas"
+    },
+    "flfshe": {
+      "comNameZh": "肉足水薙鳥",
+      "comNameEn": "Flesh-footed Shearwater",
+      "sciName": "Ardenna carneipes"
+    },
+    "wetshe": {
+      "comNameZh": "長尾水薙鳥",
+      "comNameEn": "Wedge-tailed Shearwater",
+      "sciName": "Ardenna pacifica"
+    },
+    "sooshe": {
+      "comNameZh": "灰水薙鳥",
+      "comNameEn": "Sooty Shearwater",
+      "sciName": "Ardenna grisea"
+    },
+    "shtshe": {
+      "comNameZh": "短尾水薙鳥",
+      "comNameEn": "Short-tailed Shearwater",
+      "sciName": "Ardenna tenuirostris"
+    },
+    "chrshe": {
+      "comNameZh": "黑細鸌",
+      "comNameEn": "Christmas Shearwater",
+      "sciName": "Puffinus nativitatis"
+    },
+    "troshe5": {
+      "comNameZh": "熱帶細鸌",
+      "comNameEn": "Tropical Shearwater",
+      "sciName": "Puffinus bailloni"
+    },
+    "blasto1": {
+      "comNameZh": "黑鸛",
+      "comNameEn": "Black Stork",
+      "sciName": "Ciconia nigra"
+    },
+    "oristo1": {
+      "comNameZh": "東方白鸛",
+      "comNameEn": "Oriental Stork",
+      "sciName": "Ciconia boyciana"
+    },
+    "lesfri": {
+      "comNameZh": "白斑軍艦鳥",
+      "comNameEn": "Lesser Frigatebird",
+      "sciName": "Fregata ariel"
+    },
+    "grefri": {
+      "comNameZh": "軍艦鳥",
+      "comNameEn": "Great Frigatebird",
+      "sciName": "Fregata minor"
+    },
+    "chifri1": {
+      "comNameZh": "聖誕島軍艦鳥",
+      "comNameEn": "Christmas Island Frigatebird",
+      "sciName": "Fregata andrewsi"
+    },
+    "refboo": {
+      "comNameZh": "紅腳鰹鳥",
+      "comNameEn": "Red-footed Booby",
+      "sciName": "Sula sula"
+    },
+    "brnboo": {
+      "comNameZh": "白腹鰹鳥",
+      "comNameEn": "Brown Booby",
+      "sciName": "Sula leucogaster"
+    },
+    "masboo": {
+      "comNameZh": "藍臉鰹鳥",
+      "comNameEn": "Masked Booby",
+      "sciName": "Sula dactylatra"
+    },
+    "nazboo1": {
+      "comNameZh": "Nazca Booby",
+      "comNameEn": "Nazca Booby",
+      "sciName": "Sula granti"
+    },
+    "pelcor": {
+      "comNameZh": "海鸕鷀",
+      "comNameEn": "Pelagic Cormorant",
+      "sciName": "Urile pelagicus"
+    },
+    "grecor": {
+      "comNameZh": "鸕鷀",
+      "comNameEn": "Great Cormorant",
+      "sciName": "Phalacrocorax carbo"
+    },
+    "japcor1": {
+      "comNameZh": "丹氏鸕鷀",
+      "comNameEn": "Japanese Cormorant",
+      "sciName": "Phalacrocorax capillatus"
+    },
+    "gloibi": {
+      "comNameZh": "彩䴉",
+      "comNameEn": "Glossy Ibis",
+      "sciName": "Plegadis falcinellus"
+    },
+    "sacibi2": {
+      "comNameZh": "埃及聖䴉",
+      "comNameEn": "African Sacred Ibis",
+      "sciName": "Threskiornis aethiopicus"
+    },
+    "blhibi1": {
+      "comNameZh": "黑頭白䴉",
+      "comNameEn": "Black-headed Ibis",
+      "sciName": "Threskiornis melanocephalus"
+    },
+    "eurspo1": {
+      "comNameZh": "白琵鷺",
+      "comNameEn": "Eurasian Spoonbill",
+      "sciName": "Platalea leucorodia"
+    },
+    "blfspo1": {
+      "comNameZh": "黑面琵鷺",
+      "comNameEn": "Black-faced Spoonbill",
+      "sciName": "Platalea minor"
+    },
+    "x00883": {
+      "comNameZh": "白琵鷺x黑面琵鷺(雜交)",
+      "comNameEn": "Eurasian x Black-faced Spoonbill (hybrid)",
+      "sciName": "Platalea leucorodia x minor"
+    },
+    "grebit1": {
+      "comNameZh": "大麻鷺",
+      "comNameEn": "Eurasian Bittern",
+      "sciName": "Botaurus stellaris"
+    },
+    "blabit1": {
+      "comNameZh": "黃頸黑鷺",
+      "comNameEn": "Black Bittern",
+      "sciName": "Botaurus flavicollis"
+    },
+    "cinbit1": {
+      "comNameZh": "栗小鷺",
+      "comNameEn": "Cinnamon Bittern",
+      "sciName": "Botaurus cinnamomeus"
+    },
+    "schbit1": {
+      "comNameZh": "秋小鷺",
+      "comNameEn": "Schrenck's Bittern",
+      "sciName": "Botaurus eurhythmus"
+    },
+    "yelbit": {
+      "comNameZh": "黃小鷺",
+      "comNameEn": "Yellow Bittern",
+      "sciName": "Botaurus sinensis"
+    },
+    "bcnher": {
+      "comNameZh": "夜鷺",
+      "comNameEn": "Black-crowned Night Heron",
+      "sciName": "Nycticorax nycticorax"
+    },
+    "runher1": {
+      "comNameZh": "棕夜鷺",
+      "comNameEn": "Nankeen Night Heron",
+      "sciName": "Nycticorax caledonicus"
+    },
+    "x01041": {
+      "comNameZh": "夜鷺x棕夜鷺(雜交)",
+      "comNameEn": "Black-crowned x Nankeen Night Heron (hybrid)",
+      "sciName": "Nycticorax nycticorax x caledonicus"
+    },
+    "manher1": {
+      "comNameZh": "黑冠麻鷺",
+      "comNameEn": "Malayan Night Heron",
+      "sciName": "Gorsachius melanolophus"
+    },
+    "janher1": {
+      "comNameZh": "麻鷺",
+      "comNameEn": "Japanese Night Heron",
+      "sciName": "Gorsachius goisagi"
+    },
+    "pacreh1": {
+      "comNameZh": "岩鷺",
+      "comNameEn": "Pacific Reef-Heron",
+      "sciName": "Egretta sacra"
+    },
+    "chiegr": {
+      "comNameZh": "唐白鷺",
+      "comNameEn": "Chinese Egret",
+      "sciName": "Egretta eulophotes"
+    },
+    "litegr": {
+      "comNameZh": "小白鷺",
+      "comNameEn": "Little Egret",
+      "sciName": "Egretta garzetta"
+    },
+    "pieher2": {
+      "comNameZh": "白頸黑鷺",
+      "comNameEn": "Pied Heron",
+      "sciName": "Egretta picata"
+    },
+    "strher1": {
+      "comNameZh": "綠簑鷺",
+      "comNameEn": "Little Heron",
+      "sciName": "Butorides atricapilla"
+    },
+    "inpher1": {
+      "comNameZh": "印度池鷺",
+      "comNameEn": "Indian Pond-Heron",
+      "sciName": "Ardeola grayii"
+    },
+    "chpher1": {
+      "comNameZh": "池鷺",
+      "comNameEn": "Chinese Pond-Heron",
+      "sciName": "Ardeola bacchus"
+    },
+    "japher1": {
+      "comNameZh": "爪哇池鷺",
+      "comNameEn": "Javan Pond-Heron",
+      "sciName": "Ardeola speciosa"
+    },
+    "categr2": {
+      "comNameZh": "黃頭鷺",
+      "comNameEn": "Eastern Cattle-Egret",
+      "sciName": "Ardea coromanda"
+    },
+    "greegr": {
+      "comNameZh": "大白鷺",
+      "comNameEn": "Great Egret",
+      "sciName": "Ardea alba"
+    },
+    "integr1": {
+      "comNameZh": "中白鷺",
+      "comNameEn": "Medium Egret",
+      "sciName": "Ardea intermedia"
+    },
+    "graher1": {
+      "comNameZh": "蒼鷺",
+      "comNameEn": "Gray Heron",
+      "sciName": "Ardea cinerea"
+    },
+    "purher1": {
+      "comNameZh": "紫鷺",
+      "comNameEn": "Purple Heron",
+      "sciName": "Ardea purpurea"
+    },
+    "grwpel1": {
+      "comNameZh": "白鵜鶘",
+      "comNameEn": "Great White Pelican",
+      "sciName": "Pelecanus onocrotalus"
+    },
+    "dalpel1": {
+      "comNameZh": "卷羽鵜鶘",
+      "comNameEn": "Dalmatian Pelican",
+      "sciName": "Pelecanus crispus"
+    },
+    "osprey": {
+      "comNameZh": "魚鷹",
+      "comNameEn": "Osprey",
+      "sciName": "Pandion haliaetus"
+    },
+    "bkskit1": {
+      "comNameZh": "黑翅鳶",
+      "comNameEn": "Black-winged Kite",
+      "sciName": "Elanus caeruleus"
+    },
+    "blabaz1": {
+      "comNameZh": "黑冠鵑隼",
+      "comNameEn": "Black Baza",
+      "sciName": "Aviceda leuphotes"
+    },
+    "orihob2": {
+      "comNameZh": "東方蜂鷹",
+      "comNameEn": "Oriental Honey-buzzard",
+      "sciName": "Pernis ptilorhynchus"
+    },
+    "cinvul1": {
+      "comNameZh": "禿鷲",
+      "comNameEn": "Cinereous Vulture",
+      "sciName": "Aegypius monachus"
+    },
+    "crseag1": {
+      "comNameZh": "大冠鷲",
+      "comNameEn": "Crested Serpent-Eagle",
+      "sciName": "Spilornis cheela"
+    },
+    "mouhae1": {
+      "comNameZh": "熊鷹",
+      "comNameEn": "Mountain Hawk-Eagle",
+      "sciName": "Nisaetus nipalensis"
+    },
+    "blaeag1": {
+      "comNameZh": "林鵰",
+      "comNameEn": "Black Eagle",
+      "sciName": "Ictinaetus malaiensis"
+    },
+    "grseag1": {
+      "comNameZh": "花鵰",
+      "comNameEn": "Greater Spotted Eagle",
+      "sciName": "Clanga clanga"
+    },
+    "booeag1": {
+      "comNameZh": "靴隼鵰",
+      "comNameEn": "Booted Eagle",
+      "sciName": "Hieraaetus pennatus"
+    },
+    "impeag1": {
+      "comNameZh": "白肩鵰",
+      "comNameEn": "Imperial Eagle",
+      "sciName": "Aquila heliaca"
+    },
+    "goleag": {
+      "comNameZh": "金鵰",
+      "comNameEn": "Golden Eagle",
+      "sciName": "Aquila chrysaetos"
+    },
+    "boneag2": {
+      "comNameZh": "白腹鵰",
+      "comNameEn": "Bonelli's Eagle",
+      "sciName": "Aquila fasciata"
+    },
+    "cregos1": {
+      "comNameZh": "鳳頭蒼鷹",
+      "comNameEn": "Crested Goshawk",
+      "sciName": "Lophospiza trivirgata"
+    },
+    "besra1": {
+      "comNameZh": "松雀鷹",
+      "comNameEn": "Besra",
+      "sciName": "Tachyspiza virgata"
+    },
+    "japspa1": {
+      "comNameZh": "日本松雀鷹",
+      "comNameEn": "Japanese Sparrowhawk",
+      "sciName": "Tachyspiza gularis"
+    },
+    "shikra1": {
+      "comNameZh": "褐耳鷹",
+      "comNameEn": "Shikra",
+      "sciName": "Tachyspiza badia"
+    },
+    "grfhaw1": {
+      "comNameZh": "赤腹鷹",
+      "comNameEn": "Chinese Sparrowhawk",
+      "sciName": "Tachyspiza soloensis"
+    },
+    "eurspa1": {
+      "comNameZh": "北雀鷹",
+      "comNameEn": "Eurasian Sparrowhawk",
+      "sciName": "Accipiter nisus"
+    },
+    "norgos1": {
+      "comNameZh": "蒼鷹",
+      "comNameEn": "Eurasian Goshawk",
+      "sciName": "Astur gentilis"
+    },
+    "wemhar1": {
+      "comNameZh": "西方澤鵟",
+      "comNameEn": "Western Marsh Harrier",
+      "sciName": "Circus aeruginosus"
+    },
+    "easmah1": {
+      "comNameZh": "東方澤鵟",
+      "comNameEn": "Eastern Marsh Harrier",
+      "sciName": "Circus spilonotus"
+    },
+    "norhar1": {
+      "comNameZh": "灰澤鵟",
+      "comNameEn": "Hen Harrier",
+      "sciName": "Circus cyaneus"
+    },
+    "piehar1": {
+      "comNameZh": "花澤鵟",
+      "comNameEn": "Pied Harrier",
+      "sciName": "Circus melanoleucos"
+    },
+    "blakit1": {
+      "comNameZh": "黑鳶",
+      "comNameEn": "Black Kite",
+      "sciName": "Milvus migrans"
+    },
+    "brakit1": {
+      "comNameZh": "栗鳶",
+      "comNameEn": "Brahminy Kite",
+      "sciName": "Haliastur indus"
+    },
+    "whteag": {
+      "comNameZh": "白尾海鵰",
+      "comNameEn": "White-tailed Eagle",
+      "sciName": "Haliaeetus albicilla"
+    },
+    "wbseag1": {
+      "comNameZh": "白腹海鵰",
+      "comNameEn": "White-bellied Sea-Eagle",
+      "sciName": "Icthyophaga leucogaster"
+    },
+    "gyfbuz1": {
+      "comNameZh": "灰面鵟鷹",
+      "comNameEn": "Gray-faced Buzzard",
+      "sciName": "Butastur indicus"
+    },
+    "hrshaw": {
+      "comNameZh": "栗翅鷹",
+      "comNameEn": "Harris's Hawk",
+      "sciName": "Parabuteo unicinctus"
+    },
+    "rolhaw": {
+      "comNameZh": "毛足鵟",
+      "comNameEn": "Rough-legged Hawk",
+      "sciName": "Buteo lagopus"
+    },
+    "uplbuz1": {
+      "comNameZh": "大鵟",
+      "comNameEn": "Upland Buzzard",
+      "sciName": "Buteo hemilasius"
+    },
+    "combuz6": {
+      "comNameZh": "東方鵟",
+      "comNameEn": "Eastern Buzzard",
+      "sciName": "Buteo japonicus"
+    },
+    "ausgro1": {
+      "comNameZh": "草鴞",
+      "comNameEn": "Australasian Grass-Owl",
+      "sciName": "Tyto longimembris"
+    },
+    "mosowl2": {
+      "comNameZh": "黃嘴角鴞",
+      "comNameEn": "Mountain Scops-Owl",
+      "sciName": "Otus spilocephalus"
+    },
+    "cosowl1": {
+      "comNameZh": "領角鴞",
+      "comNameEn": "Collared Scops-Owl",
+      "sciName": "Otus lettia"
+    },
+    "ryusco1": {
+      "comNameZh": "蘭嶼角鴞",
+      "comNameEn": "Ryukyu Scops-Owl",
+      "sciName": "Otus elegans"
+    },
+    "orsowl": {
+      "comNameZh": "東方角鴞",
+      "comNameEn": "Oriental Scops-Owl",
+      "sciName": "Otus sunia"
+    },
+    "eueowl1": {
+      "comNameZh": "鵰鴞",
+      "comNameEn": "Eurasian Eagle-Owl",
+      "sciName": "Bubo bubo"
+    },
+    "tafowl1": {
+      "comNameZh": "黃魚鴞",
+      "comNameEn": "Tawny Fish-Owl",
+      "sciName": "Ketupa flavipes"
+    },
+    "colowl1": {
+      "comNameZh": "鵂鶹",
+      "comNameEn": "Collared Owlet",
+      "sciName": "Taenioptynx brodiei"
+    },
+    "brwowl1": {
+      "comNameZh": "褐林鴞",
+      "comNameEn": "Brown Wood-Owl",
+      "sciName": "Strix leptogrammica"
+    },
+    "himowl1": {
+      "comNameZh": "東方灰林鴞",
+      "comNameEn": "Himalayan Owl",
+      "sciName": "Strix nivicolum"
+    },
+    "loeowl": {
+      "comNameZh": "長耳鴞",
+      "comNameEn": "Long-eared Owl",
+      "sciName": "Asio otus"
+    },
+    "sheowl": {
+      "comNameZh": "短耳鴞",
+      "comNameEn": "Short-eared Owl",
+      "sciName": "Asio flammeus"
+    },
+    "norboo1": {
+      "comNameZh": "褐鷹鴞",
+      "comNameEn": "Northern Boobook",
+      "sciName": "Ninox japonica"
+    },
+    "hoopoe": {
+      "comNameZh": "戴勝",
+      "comNameEn": "Common Hoopoe",
+      "sciName": "Upupa epops"
+    },
+    "truhor1": {
+      "comNameZh": "Trumpeter Hornbill",
+      "comNameEn": "Trumpeter Hornbill",
+      "sciName": "Bycanistes bucinator"
+    },
+    "grnbee3": {
+      "comNameZh": "Asian Green Bee-eater",
+      "comNameEn": "Asian Green Bee-eater",
+      "sciName": "Merops orientalis"
+    },
+    "btbeat2": {
+      "comNameZh": "藍喉蜂虎",
+      "comNameEn": "Blue-throated Bee-eater",
+      "sciName": "Merops viridis"
+    },
+    "bcbeat1": {
+      "comNameZh": "藍頰蜂虎",
+      "comNameEn": "Blue-cheeked Bee-eater",
+      "sciName": "Merops persicus"
+    },
+    "btbeat1": {
+      "comNameZh": "栗喉蜂虎",
+      "comNameEn": "Blue-tailed Bee-eater",
+      "sciName": "Merops philippinus"
+    },
+    "rabeat1": {
+      "comNameZh": "彩虹蜂虎",
+      "comNameEn": "Rainbow Bee-eater",
+      "sciName": "Merops ornatus"
+    },
+    "comkin1": {
+      "comNameZh": "翠鳥",
+      "comNameEn": "Common Kingfisher",
+      "sciName": "Alcedo atthis"
+    },
+    "bkbkin1": {
+      "comNameZh": "黑背三趾翠鳥",
+      "comNameEn": "Black-backed Dwarf-Kingfisher",
+      "sciName": "Ceyx erithaca"
+    },
+    "laukoo1": {
+      "comNameZh": "Laughing Kookaburra",
+      "comNameEn": "Laughing Kookaburra",
+      "sciName": "Dacelo novaeguineae"
+    },
+    "rudkin1": {
+      "comNameZh": "赤翡翠",
+      "comNameEn": "Ruddy Kingfisher",
+      "sciName": "Halcyon coromanda"
+    },
+    "whtkin2": {
+      "comNameZh": "蒼翡翠",
+      "comNameEn": "White-throated Kingfisher",
+      "sciName": "Halcyon smyrnensis"
+    },
+    "blckin1": {
+      "comNameZh": "黑頭翡翠",
+      "comNameEn": "Black-capped Kingfisher",
+      "sciName": "Halcyon pileata"
+    },
+    "colkin1": {
+      "comNameZh": "白領翡翠",
+      "comNameEn": "Collared Kingfisher",
+      "sciName": "Todiramphus chloris"
+    },
+    "piekin1": {
+      "comNameZh": "斑翡翠",
+      "comNameEn": "Pied Kingfisher",
+      "sciName": "Ceryle rudis"
+    },
+    "dollar1": {
+      "comNameZh": "佛法僧",
+      "comNameEn": "Dollarbird",
+      "sciName": "Eurystomus orientalis"
+    },
+    "taibar2": {
+      "comNameZh": "五色鳥",
+      "comNameEn": "Taiwan Barbet",
+      "sciName": "Psilopogon nuchalis"
+    },
+    "eurwry": {
+      "comNameZh": "地啄木",
+      "comNameEn": "Eurasian Wryneck",
+      "sciName": "Jynx torquilla"
+    },
+    "gycwoo1": {
+      "comNameZh": "小啄木",
+      "comNameEn": "Gray-capped Pygmy Woodpecker",
+      "sciName": "Yungipicus canicapillus"
+    },
+    "rubwoo1": {
+      "comNameZh": "棕腹啄木",
+      "comNameEn": "Rufous-bellied Woodpecker",
+      "sciName": "Dendrocopos hyperythrus"
+    },
+    "whbwoo1": {
+      "comNameZh": "大赤啄木",
+      "comNameEn": "White-backed Woodpecker",
+      "sciName": "Dendrocopos leucotos"
+    },
+    "gyfwoo1": {
+      "comNameZh": "綠啄木",
+      "comNameEn": "Gray-headed Woodpecker",
+      "sciName": "Picus canus"
+    },
+    "eurkes": {
+      "comNameZh": "紅隼",
+      "comNameEn": "Eurasian Kestrel",
+      "sciName": "Falco tinnunculus"
+    },
+    "amufal1": {
+      "comNameZh": "紅腳隼",
+      "comNameEn": "Amur Falcon",
+      "sciName": "Falco amurensis"
+    },
+    "merlin": {
+      "comNameZh": "灰背隼",
+      "comNameEn": "Merlin",
+      "sciName": "Falco columbarius"
+    },
+    "eurhob": {
+      "comNameZh": "燕隼",
+      "comNameEn": "Eurasian Hobby",
+      "sciName": "Falco subbuteo"
+    },
+    "perfal": {
+      "comNameZh": "遊隼",
+      "comNameEn": "Peregrine Falcon",
+      "sciName": "Falco peregrinus"
+    },
+    "cockat": {
+      "comNameZh": "雞尾鸚鵡",
+      "comNameEn": "Cockatiel",
+      "sciName": "Nymphicus hollandicus"
+    },
+    "tancoc1": {
+      "comNameZh": "戈芬氏鳳頭鸚鵡",
+      "comNameEn": "Tanimbar Corella",
+      "sciName": "Cacatua goffiniana"
+    },
+    "duccoc1": {
+      "comNameZh": "Solomons Corella",
+      "comNameEn": "Solomons Corella",
+      "sciName": "Cacatua ducorpsii"
+    },
+    "whicoc1": {
+      "comNameZh": "白鳳頭鸚鵡",
+      "comNameEn": "White Cockatoo",
+      "sciName": "Cacatua alba"
+    },
+    "succoc": {
+      "comNameZh": "葵花鳳頭鸚鵡",
+      "comNameEn": "Sulphur-crested Cockatoo",
+      "sciName": "Cacatua galerita"
+    },
+    "alepar2": {
+      "comNameZh": "亞歷山大鸚鵡",
+      "comNameEn": "Alexandrine Parakeet",
+      "sciName": "Psittacula eupatria"
+    },
+    "rorpar": {
+      "comNameZh": "紅領綠鸚鵡",
+      "comNameEn": "Rose-ringed Parakeet",
+      "sciName": "Psittacula krameri"
+    },
+    "budger": {
+      "comNameZh": "虎皮鸚鵡",
+      "comNameEn": "Budgerigar",
+      "sciName": "Melopsittacus undulatus"
+    },
+    "redlor1": {
+      "comNameZh": "紅色吸蜜鸚鵡",
+      "comNameEn": "Red Lory",
+      "sciName": "Trichoglossus borneus"
+    },
+    "railor4": {
+      "comNameZh": "新幾內亞彩虹吸蜜鸚鵡",
+      "comNameEn": "Coconut Lorikeet",
+      "sciName": "Trichoglossus haematodus"
+    },
+    "railor5": {
+      "comNameZh": "彩虹吸蜜鸚鵡",
+      "comNameEn": "Rainbow Lorikeet",
+      "sciName": "Trichoglossus moluccanus"
+    },
+    "railor7": {
+      "comNameZh": "紅領吸蜜鸚鵡",
+      "comNameEn": "Red-collared Lorikeet",
+      "sciName": "Trichoglossus rubritorquis"
+    },
+    "peflov": {
+      "comNameZh": "桃臉愛情鳥",
+      "comNameEn": "Rosy-faced Lovebird",
+      "sciName": "Agapornis roseicollis"
+    },
+    "fislov1": {
+      "comNameZh": "費氏愛情鳥",
+      "comNameEn": "Fischer's Lovebird",
+      "sciName": "Agapornis fischeri"
+    },
+    "yeclov": {
+      "comNameZh": "黃領愛情鳥",
+      "comNameEn": "Yellow-collared Lovebird",
+      "sciName": "Agapornis personatus"
+    },
+    "grepar": {
+      "comNameZh": "灰鸚鵡",
+      "comNameEn": "Gray Parrot",
+      "sciName": "Psittacus erithacus"
+    },
+    "senpar": {
+      "comNameZh": "塞內加爾鸚鵡",
+      "comNameEn": "Senegal Parrot",
+      "sciName": "Poicephalus senegalus"
+    },
+    "monpar": {
+      "comNameZh": "和尚鸚鵡",
+      "comNameEn": "Monk Parakeet",
+      "sciName": "Myiopsitta monachus"
+    },
+    "sunpar1": {
+      "comNameZh": "太陽鸚鵡",
+      "comNameEn": "Sun Parakeet",
+      "sciName": "Aratinga solstitialis"
+    },
+    "yecmac": {
+      "comNameZh": "黃領金剛鸚鵡",
+      "comNameEn": "Yellow-collared Macaw",
+      "sciName": "Primolius auricollis"
+    },
+    "baymac": {
+      "comNameZh": "藍黃金剛鸚鵡",
+      "comNameEn": "Blue-and-yellow Macaw",
+      "sciName": "Ara ararauna"
+    },
+    "scamac1": {
+      "comNameZh": "緋紅金剛鸚鵡",
+      "comNameEn": "Scarlet Macaw",
+      "sciName": "Ara macao"
+    },
+    "ragmac1": {
+      "comNameZh": "紅綠金剛鸚鵡",
+      "comNameEn": "Red-and-green Macaw",
+      "sciName": "Ara chloropterus"
+    },
+    "resmac2": {
+      "comNameZh": "紅肩金剛鸚鵡",
+      "comNameEn": "Red-shouldered Macaw",
+      "sciName": "Diopsittaca nobilis"
+    },
+    "rempar": {
+      "comNameZh": "紅臉鸚鵡",
+      "comNameEn": "Red-masked Parakeet",
+      "sciName": "Psittacara erythrogenys"
+    },
+    "blwpit1": {
+      "comNameZh": "藍翅八色鳥",
+      "comNameEn": "Blue-winged Pitta",
+      "sciName": "Pitta moluccensis"
+    },
+    "faipit1": {
+      "comNameZh": "八色鳥",
+      "comNameEn": "Fairy Pitta",
+      "sciName": "Pitta nympha"
+    },
+    "wehpit1": {
+      "comNameZh": "綠胸八色鳥",
+      "comNameEn": "Western Hooded Pitta",
+      "sciName": "Pitta sordida"
+    },
+    "gycmin1": {
+      "comNameZh": "灰喉山椒鳥",
+      "comNameEn": "Gray-chinned Minivet",
+      "sciName": "Pericrocotus solaris"
+    },
+    "scamin1": {
+      "comNameZh": "赤紅山椒鳥",
+      "comNameEn": "Scarlet Minivet",
+      "sciName": "Pericrocotus speciosus"
+    },
+    "ryumin1": {
+      "comNameZh": "琉球山椒鳥",
+      "comNameEn": "Ryukyu Minivet",
+      "sciName": "Pericrocotus tegimae"
+    },
+    "ashmin1": {
+      "comNameZh": "灰山椒鳥",
+      "comNameEn": "Ashy Minivet",
+      "sciName": "Pericrocotus divaricatus"
+    },
+    "brrmin1": {
+      "comNameZh": "小灰山椒鳥",
+      "comNameEn": "Brown-rumped Minivet",
+      "sciName": "Pericrocotus cantonensis"
+    },
+    "rosmin1": {
+      "comNameZh": "粉紅山椒鳥",
+      "comNameEn": "Rosy Minivet",
+      "sciName": "Pericrocotus roseus"
+    },
+    "larcuc11": {
+      "comNameZh": "花翅山椒鳥",
+      "comNameEn": "Oriental Cuckooshrike",
+      "sciName": "Coracina javensis"
+    },
+    "bkwcus1": {
+      "comNameZh": "黑翅山椒鳥",
+      "comNameEn": "Black-winged Cuckooshrike",
+      "sciName": "Lalage melaschistos"
+    },
+    "whbyuh1": {
+      "comNameZh": "綠畫眉",
+      "comNameEn": "White-bellied Erpornis",
+      "sciName": "Erpornis zantholeuca"
+    },
+    "blnori1": {
+      "comNameZh": "黃鸝",
+      "comNameEn": "Black-naped Oriole",
+      "sciName": "Oriolus chinensis"
+    },
+    "marori2": {
+      "comNameZh": "朱鸝",
+      "comNameEn": "Maroon Oriole",
+      "sciName": "Oriolus traillii"
+    },
+    "phipif1": {
+      "comNameZh": "菲律賓扇尾鶲",
+      "comNameEn": "Philippine Pied-Fantail",
+      "sciName": "Rhipidura nigritorquis"
+    },
+    "bladro1": {
+      "comNameZh": "大卷尾",
+      "comNameEn": "Black Drongo",
+      "sciName": "Dicrurus macrocercus"
+    },
+    "ashdro1": {
+      "comNameZh": "灰卷尾",
+      "comNameEn": "Ashy Drongo",
+      "sciName": "Dicrurus leucophaeus"
+    },
+    "brodro1": {
+      "comNameZh": "小卷尾",
+      "comNameEn": "Bronzed Drongo",
+      "sciName": "Dicrurus aeneus"
+    },
+    "hacdro1": {
+      "comNameZh": "髮冠卷尾",
+      "comNameEn": "Hair-crested Drongo",
+      "sciName": "Dicrurus hottentottus"
+    },
+    "blnmon1": {
+      "comNameZh": "黑枕藍鶲",
+      "comNameEn": "Black-naped Monarch",
+      "sciName": "Hypothymis azurea"
+    },
+    "japfly1": {
+      "comNameZh": "紫綬帶",
+      "comNameEn": "Black Paradise-Flycatcher",
+      "sciName": "Terpsiphone atrocaudata"
+    },
+    "amupaf1": {
+      "comNameZh": "阿穆爾綬帶",
+      "comNameEn": "Amur Paradise-Flycatcher",
+      "sciName": "Terpsiphone incei"
+    },
+    "tigshr1": {
+      "comNameZh": "虎紋伯勞",
+      "comNameEn": "Tiger Shrike",
+      "sciName": "Lanius tigrinus"
+    },
+    "buhshr1": {
+      "comNameZh": "紅頭伯勞",
+      "comNameEn": "Bull-headed Shrike",
+      "sciName": "Lanius bucephalus"
+    },
+    "rebshr1": {
+      "comNameZh": "紅背伯勞",
+      "comNameEn": "Red-backed Shrike",
+      "sciName": "Lanius collurio"
+    },
+    "isashr1": {
+      "comNameZh": "荒漠伯勞",
+      "comNameEn": "Isabelline Shrike",
+      "sciName": "Lanius isabellinus"
+    },
+    "brnshr": {
+      "comNameZh": "紅尾伯勞",
+      "comNameEn": "Brown Shrike",
+      "sciName": "Lanius cristatus"
+    },
+    "burshr1": {
+      "comNameZh": "栗背伯勞",
+      "comNameEn": "Burmese Shrike",
+      "sciName": "Lanius collurioides"
+    },
+    "lotshr1": {
+      "comNameZh": "棕背伯勞",
+      "comNameEn": "Long-tailed Shrike",
+      "sciName": "Lanius schach"
+    },
+    "gybshr1": {
+      "comNameZh": "灰背伯勞",
+      "comNameEn": "Gray-backed Shrike",
+      "sciName": "Lanius tephronotus"
+    },
+    "norshr1": {
+      "comNameZh": "西方灰伯勞",
+      "comNameEn": "Great Gray Shrike",
+      "sciName": "Lanius excubitor"
+    },
+    "chgshr1": {
+      "comNameZh": "楔尾伯勞",
+      "comNameEn": "Chinese Gray Shrike",
+      "sciName": "Lanius sphenocercus"
+    },
+    "eurjay1": {
+      "comNameZh": "松鴉",
+      "comNameEn": "Eurasian Jay",
+      "sciName": "Garrulus glandarius"
+    },
+    "azwmag2": {
+      "comNameZh": "灰喜鵲",
+      "comNameEn": "Azure-winged Magpie",
+      "sciName": "Cyanopica cyanus"
+    },
+    "formag1": {
+      "comNameZh": "臺灣藍鵲",
+      "comNameEn": "Taiwan Blue-Magpie",
+      "sciName": "Urocissa caerulea"
+    },
+    "rbbmag": {
+      "comNameZh": "紅嘴藍鵲",
+      "comNameEn": "Red-billed Blue-Magpie",
+      "sciName": "Urocissa erythroryncha"
+    },
+    "grytre1": {
+      "comNameZh": "樹鵲",
+      "comNameEn": "Gray Treepie",
+      "sciName": "Dendrocitta formosae"
+    },
+    "orimag1": {
+      "comNameZh": "喜鵲",
+      "comNameEn": "Oriental Magpie",
+      "sciName": "Pica serica"
+    },
+    "eurnut4": {
+      "comNameZh": "星鴉",
+      "comNameEn": "Southern Nutcracker",
+      "sciName": "Nucifraga hemispila"
+    },
+    "rebcho1": {
+      "comNameZh": "紅嘴山鴉",
+      "comNameEn": "Red-billed Chough",
+      "sciName": "Pyrrhocorax pyrrhocorax"
+    },
+    "daujac1": {
+      "comNameZh": "東方寒鴉",
+      "comNameEn": "Daurian Jackdaw",
+      "sciName": "Coloeus dauuricus"
+    },
+    "houcro1": {
+      "comNameZh": "家烏鴉",
+      "comNameEn": "House Crow",
+      "sciName": "Corvus splendens"
+    },
+    "rook1": {
+      "comNameZh": "禿鼻鴉",
+      "comNameEn": "Rook",
+      "sciName": "Corvus frugilegus"
+    },
+    "carcro1": {
+      "comNameZh": "小嘴烏鴉",
+      "comNameEn": "Carrion Crow",
+      "sciName": "Corvus corone"
+    },
+    "labcro1": {
+      "comNameZh": "巨嘴鴉",
+      "comNameEn": "Large-billed Crow",
+      "sciName": "Corvus macrorhynchos"
+    },
+    "colcro1": {
+      "comNameZh": "玉頸鴉",
+      "comNameEn": "Collared Crow",
+      "sciName": "Corvus torquatus"
+    },
+    "gyhcaf1": {
+      "comNameZh": "方尾鶲",
+      "comNameEn": "Gray-headed Canary-Flycatcher",
+      "sciName": "Culicicapa ceylonensis"
+    },
+    "coatit2": {
+      "comNameZh": "煤山雀",
+      "comNameEn": "Coal Tit",
+      "sciName": "Periparus ater"
+    },
+    "yebtit4": {
+      "comNameZh": "黃腹山雀",
+      "comNameEn": "Yellow-bellied Tit",
+      "sciName": "Periparus venustulus"
+    },
+    "vartit3": {
+      "comNameZh": "赤腹山雀",
+      "comNameEn": "Chestnut-bellied Tit",
+      "sciName": "Sittiparus castaneoventris"
+    },
+    "vartit1": {
+      "comNameZh": "雜色山雀",
+      "comNameEn": "Varied Tit",
+      "sciName": "Sittiparus varius"
+    },
+    "grbtit1": {
+      "comNameZh": "青背山雀",
+      "comNameEn": "Green-backed Tit",
+      "sciName": "Parus monticolus"
+    },
+    "cintit13": {
+      "comNameZh": "白頰山雀",
+      "comNameEn": "Asian Tit",
+      "sciName": "Parus cinereus"
+    },
+    "yeltit2": {
+      "comNameZh": "黃山雀",
+      "comNameEn": "Taiwan Yellow Tit",
+      "sciName": "Machlolophus holsti"
+    },
+    "yectit1": {
+      "comNameZh": "Yellow-cheeked Tit",
+      "comNameEn": "Yellow-cheeked Tit",
+      "sciName": "Machlolophus spilonotus"
+    },
+    "chptit1": {
+      "comNameZh": "攀雀",
+      "comNameEn": "Chinese Penduline-Tit",
+      "sciName": "Remiz consobrinus"
+    },
+    "skylar": {
+      "comNameZh": "歐亞雲雀",
+      "comNameEn": "Eurasian Skylark",
+      "sciName": "Alauda arvensis"
+    },
+    "orisky1": {
+      "comNameZh": "小雲雀",
+      "comNameEn": "Oriental Skylark",
+      "sciName": "Alauda gulgula"
+    },
+    "lstlar2": {
+      "comNameZh": "亞洲短趾百靈",
+      "comNameEn": "Asian Short-toed Lark",
+      "sciName": "Alaudala cheleensis"
+    },
+    "comtai1": {
+      "comNameZh": "長尾縫葉鶯",
+      "comNameEn": "Common Tailorbird",
+      "sciName": "Orthotomus sutorius"
+    },
+    "strpri8": {
+      "comNameZh": "斑紋鷦鶯",
+      "comNameEn": "Striped Prinia",
+      "sciName": "Prinia striata"
+    },
+    "yebpri1": {
+      "comNameZh": "灰頭鷦鶯",
+      "comNameEn": "Yellow-bellied Prinia",
+      "sciName": "Prinia flaviventris"
+    },
+    "plapri1": {
+      "comNameZh": "褐頭鷦鶯",
+      "comNameEn": "Plain Prinia",
+      "sciName": "Prinia inornata"
+    },
+    "zitcis1": {
+      "comNameZh": "棕扇尾鶯",
+      "comNameEn": "Zitting Cisticola",
+      "sciName": "Cisticola juncidis"
+    },
+    "gohcis1": {
+      "comNameZh": "黃頭扇尾鶯",
+      "comNameEn": "Golden-headed Cisticola",
+      "sciName": "Cisticola exilis"
+    },
+    "thbwar1": {
+      "comNameZh": "厚嘴葦鶯",
+      "comNameEn": "Thick-billed Warbler",
+      "sciName": "Arundinax aedon"
+    },
+    "boowar1": {
+      "comNameZh": "靴籬鶯",
+      "comNameEn": "Booted Warbler",
+      "sciName": "Iduna caligata"
+    },
+    "bbrwar1": {
+      "comNameZh": "雙眉葦鶯",
+      "comNameEn": "Black-browed Reed Warbler",
+      "sciName": "Acrocephalus bistrigiceps"
+    },
+    "strwar1": {
+      "comNameZh": "細紋葦鶯",
+      "comNameEn": "Streaked Reed Warbler",
+      "sciName": "Acrocephalus sorghophilus"
+    },
+    "blwwar1": {
+      "comNameZh": "鈍翅葦鶯",
+      "comNameEn": "Blunt-winged Warbler",
+      "sciName": "Acrocephalus concinens"
+    },
+    "manrew1": {
+      "comNameZh": "遠東葦鶯",
+      "comNameEn": "Manchurian Reed Warbler",
+      "sciName": "Acrocephalus tangorum"
+    },
+    "blrwar1": {
+      "comNameZh": "布氏葦鶯",
+      "comNameEn": "Blyth's Reed Warbler",
+      "sciName": "Acrocephalus dumetorum"
+    },
+    "orrwar1": {
+      "comNameZh": "東方大葦鶯",
+      "comNameEn": "Oriental Reed Warbler",
+      "sciName": "Acrocephalus orientalis"
+    },
+    "grgwar1": {
+      "comNameZh": "蒼眉蝗鶯",
+      "comNameEn": "Gray's Grasshopper Warbler",
+      "sciName": "Helopsaltes fasciolatus"
+    },
+    "pagwar1": {
+      "comNameZh": "小蝗鶯",
+      "comNameEn": "Pallas's Grasshopper Warbler",
+      "sciName": "Helopsaltes certhiola"
+    },
+    "migwar": {
+      "comNameZh": "北蝗鶯",
+      "comNameEn": "Middendorff's Grasshopper Warbler",
+      "sciName": "Helopsaltes ochotensis"
+    },
+    "lanwar": {
+      "comNameZh": "矛斑蝗鶯",
+      "comNameEn": "Lanceolated Warbler",
+      "sciName": "Locustella lanceolata"
+    },
+    "taibuw1": {
+      "comNameZh": "臺灣叢樹鶯",
+      "comNameEn": "Taiwan Bush Warbler",
+      "sciName": "Locustella alishanensis"
+    },
+    "rubwar1": {
+      "comNameZh": "赤褐蝗鶯",
+      "comNameEn": "Russet Bush Warbler",
+      "sciName": "Locustella mandelli"
+    },
+    "taiwrb1": {
+      "comNameZh": "臺灣鷦眉",
+      "comNameEn": "Taiwan Cupwing",
+      "sciName": "Pnoepyga formosana"
+    },
+    "pywbab1": {
+      "comNameZh": "小鷦眉",
+      "comNameEn": "Pygmy Cupwing",
+      "sciName": "Pnoepyga pusilla"
+    },
+    "gytmar1": {
+      "comNameZh": "棕沙燕",
+      "comNameEn": "Gray-throated Martin",
+      "sciName": "Riparia chinensis"
+    },
+    "banswa": {
+      "comNameZh": "灰沙燕",
+      "comNameEn": "Bank Swallow",
+      "sciName": "Riparia riparia"
+    },
+    "eurcrm1": {
+      "comNameZh": "岩燕",
+      "comNameEn": "Eurasian Crag-Martin",
+      "sciName": "Ptyonoprogne rupestris"
+    },
+    "pacswa1": {
+      "comNameZh": "洋燕",
+      "comNameEn": "Pacific Swallow",
+      "sciName": "Hirundo javanica"
+    },
+    "barswa": {
+      "comNameZh": "家燕",
+      "comNameEn": "Barn Swallow",
+      "sciName": "Hirundo rustica"
+    },
+    "comhom2": {
+      "comNameZh": "白腹毛腳燕",
+      "comNameEn": "Siberian House-Martin",
+      "sciName": "Delichon lagopodum"
+    },
+    "ashmar1": {
+      "comNameZh": "東方毛腳燕",
+      "comNameEn": "Asian House-Martin",
+      "sciName": "Delichon dasypus"
+    },
+    "y00621": {
+      "comNameZh": "東方金腰燕",
+      "comNameEn": "Eastern Red-rumped Swallow",
+      "sciName": "Cecropis daurica"
+    },
+    "chebul1": {
+      "comNameZh": "栗背短腳鵯",
+      "comNameEn": "Chestnut Bulbul",
+      "sciName": "Hemixos castanonotus"
+    },
+    "brebul1": {
+      "comNameZh": "棕耳鵯",
+      "comNameEn": "Brown-eared Bulbul",
+      "sciName": "Hypsipetes amaurotis"
+    },
+    "blabul1": {
+      "comNameZh": "紅嘴黑鵯",
+      "comNameEn": "Black Bulbul",
+      "sciName": "Hypsipetes leucocephalus"
+    },
+    "colfin1": {
+      "comNameZh": "白環鸚嘴鵯",
+      "comNameEn": "Collared Finchbill",
+      "sciName": "Spizixos semitorques"
+    },
+    "livbul1": {
+      "comNameZh": "白頭翁",
+      "comNameEn": "Light-vented Bulbul",
+      "sciName": "Pycnonotus sinensis"
+    },
+    "stybul1": {
+      "comNameZh": "烏頭翁",
+      "comNameEn": "Styan's Bulbul",
+      "sciName": "Pycnonotus taivanus"
+    },
+    "x00744": {
+      "comNameZh": "白頭翁x烏頭翁(雜交)",
+      "comNameEn": "Light-vented x Styan's Bulbul (hybrid)",
+      "sciName": "Pycnonotus sinensis x taivanus"
+    },
+    "rewbul": {
+      "comNameZh": "紅耳鵯",
+      "comNameEn": "Red-whiskered Bulbul",
+      "sciName": "Pycnonotus jocosus"
+    },
+    "sohbul1": {
+      "comNameZh": "白喉紅臀鵯",
+      "comNameEn": "Sooty-headed Bulbul",
+      "sciName": "Pycnonotus aurigaster"
+    },
+    "woowar": {
+      "comNameZh": "林柳鶯",
+      "comNameEn": "Wood Warbler",
+      "sciName": "Phylloscopus sibilatrix"
+    },
+    "yebwar3": {
+      "comNameZh": "黃眉柳鶯",
+      "comNameEn": "Yellow-browed Warbler",
+      "sciName": "Phylloscopus inornatus"
+    },
+    "humwar1": {
+      "comNameZh": "淡眉柳鶯",
+      "comNameEn": "Hume's Warbler",
+      "sciName": "Phylloscopus humei"
+    },
+    "chilew1": {
+      "comNameZh": "雲南柳鶯",
+      "comNameEn": "Chinese Leaf Warbler",
+      "sciName": "Phylloscopus yunnanensis"
+    },
+    "palwar5": {
+      "comNameZh": "黃腰柳鶯",
+      "comNameEn": "Pallas's Leaf Warbler",
+      "sciName": "Phylloscopus proregulus"
+    },
+    "radwar1": {
+      "comNameZh": "巨嘴柳鶯",
+      "comNameEn": "Radde's Warbler",
+      "sciName": "Phylloscopus schwarzi"
+    },
+    "y00989": {
+      "comNameZh": "黃腹柳鶯",
+      "comNameEn": "Tickell's Leaf Warbler",
+      "sciName": "Phylloscopus affinis"
+    },
+    "duswar": {
+      "comNameZh": "褐色柳鶯",
+      "comNameEn": "Dusky Warbler",
+      "sciName": "Phylloscopus fuscatus"
+    },
+    "wlwwar": {
+      "comNameZh": "歐亞柳鶯",
+      "comNameEn": "Willow Warbler",
+      "sciName": "Phylloscopus trochilus"
+    },
+    "comchi1": {
+      "comNameZh": "嘰喳柳鶯",
+      "comNameEn": "Common Chiffchaff",
+      "sciName": "Phylloscopus collybita"
+    },
+    "eacwar1": {
+      "comNameZh": "冠羽柳鶯",
+      "comNameEn": "Eastern Crowned Warbler",
+      "sciName": "Phylloscopus coronatus"
+    },
+    "ijlwar1": {
+      "comNameZh": "飯島柳鶯",
+      "comNameEn": "Ijima's Leaf Warbler",
+      "sciName": "Phylloscopus ijimae"
+    },
+    "whswar1": {
+      "comNameZh": "白眶鶲鶯",
+      "comNameEn": "White-spectacled Warbler",
+      "sciName": "Phylloscopus intermedius"
+    },
+    "biawar1": {
+      "comNameZh": "比氏鶲鶯",
+      "comNameEn": "Bianchi's Warbler",
+      "sciName": "Phylloscopus valentini"
+    },
+    "marwar4": {
+      "comNameZh": "峨眉鶲鶯",
+      "comNameEn": "Martens's Warbler",
+      "sciName": "Phylloscopus omeiensis"
+    },
+    "pltwar1": {
+      "comNameZh": "淡尾鶲鶯",
+      "comNameEn": "Alström's Warbler",
+      "sciName": "Phylloscopus soror"
+    },
+    "grewar3": {
+      "comNameZh": "暗綠柳鶯",
+      "comNameEn": "Greenish Warbler",
+      "sciName": "Phylloscopus trochiloides"
+    },
+    "grewar2": {
+      "comNameZh": "雙斑綠柳鶯",
+      "comNameEn": "Two-barred Warbler",
+      "sciName": "Phylloscopus plumbeitarsus"
+    },
+    "pllwar1": {
+      "comNameZh": "淡腳柳鶯",
+      "comNameEn": "Pale-legged Leaf Warbler",
+      "sciName": "Phylloscopus tenellipes"
+    },
+    "salwar1": {
+      "comNameZh": "庫頁島柳鶯",
+      "comNameEn": "Sakhalin Leaf Warbler",
+      "sciName": "Phylloscopus borealoides"
+    },
+    "arcwar3": {
+      "comNameZh": "日本柳鶯",
+      "comNameEn": "Japanese Leaf Warbler",
+      "sciName": "Phylloscopus xanthodryas"
+    },
+    "arcwar1": {
+      "comNameZh": "極北柳鶯",
+      "comNameEn": "Arctic Warbler",
+      "sciName": "Phylloscopus borealis"
+    },
+    "arcwar2": {
+      "comNameZh": "勘察加柳鶯",
+      "comNameEn": "Kamchatka Leaf Warbler",
+      "sciName": "Phylloscopus examinandus"
+    },
+    "chcwar2": {
+      "comNameZh": "栗頭鶲鶯",
+      "comNameEn": "Chestnut-crowned Warbler",
+      "sciName": "Phylloscopus castaniceps"
+    },
+    "subwar3": {
+      "comNameZh": "黑眉柳鶯",
+      "comNameEn": "Sulphur-breasted Warbler",
+      "sciName": "Phylloscopus ricketti"
+    },
+    "harlew1": {
+      "comNameZh": "哈氏冠紋柳鶯",
+      "comNameEn": "Hartert's Leaf Warbler",
+      "sciName": "Phylloscopus goodsoni"
+    },
+    "asistu1": {
+      "comNameZh": "短尾鶯",
+      "comNameEn": "Asian Stubtail",
+      "sciName": "Urosphena squameiceps"
+    },
+    "rufwar1": {
+      "comNameZh": "棕面鶯",
+      "comNameEn": "Rufous-faced Warbler",
+      "sciName": "Abroscopus albogularis"
+    },
+    "jabwar": {
+      "comNameZh": "日本樹鶯",
+      "comNameEn": "Japanese Bush Warbler",
+      "sciName": "Horornis diphone"
+    },
+    "manbuw1": {
+      "comNameZh": "遠東樹鶯",
+      "comNameEn": "Manchurian Bush Warbler",
+      "sciName": "Horornis canturians"
+    },
+    "bfbwar1": {
+      "comNameZh": "小鶯",
+      "comNameEn": "Brownish-flanked Bush Warbler",
+      "sciName": "Horornis fortipes"
+    },
+    "ybbwar1": {
+      "comNameZh": "深山鶯",
+      "comNameEn": "Yellowish-bellied Bush Warbler",
+      "sciName": "Horornis acanthizoides"
+    },
+    "blttit2": {
+      "comNameZh": "紅頭山雀",
+      "comNameEn": "Black-throated Tit",
+      "sciName": "Aegithalos concinnus"
+    },
+    "leswhi4": {
+      "comNameZh": "白喉林鶯",
+      "comNameEn": "Lesser Whitethroat",
+      "sciName": "Curruca curruca"
+    },
+    "asdwar1": {
+      "comNameZh": "漠地林鶯",
+      "comNameEn": "Asian Desert Warbler",
+      "sciName": "Curruca nana"
+    },
+    "taiful1": {
+      "comNameZh": "褐頭花翼",
+      "comNameEn": "Taiwan Fulvetta",
+      "sciName": "Fulvetta formosana"
+    },
+    "golpar2": {
+      "comNameZh": "黃羽鸚嘴",
+      "comNameEn": "Golden Parrotbill",
+      "sciName": "Suthora verreauxi"
+    },
+    "vitpar1": {
+      "comNameZh": "粉紅鸚嘴",
+      "comNameEn": "Vinous-throated Parrotbill",
+      "sciName": "Suthora webbiana"
+    },
+    "indyuh1": {
+      "comNameZh": "栗耳鳳眉",
+      "comNameEn": "Indochinese Yuhina",
+      "sciName": "Staphida torqueola"
+    },
+    "taiyuh1": {
+      "comNameZh": "冠羽畫眉",
+      "comNameEn": "Taiwan Yuhina",
+      "sciName": "Yuhina brunneiceps"
+    },
+    "cfweye1": {
+      "comNameZh": "紅脇繡眼",
+      "comNameEn": "Chestnut-flanked White-eye",
+      "sciName": "Zosterops erythropleurus"
+    },
+    "swiwhe1": {
+      "comNameZh": "斯氏繡眼(綠繡眼)",
+      "comNameEn": "Swinhoe's White-eye",
+      "sciName": "Zosterops simplex"
+    },
+    "warwhe1": {
+      "comNameZh": "日菲繡眼",
+      "comNameEn": "Warbling White-eye",
+      "sciName": "Zosterops japonicus"
+    },
+    "loweye2": {
+      "comNameZh": "低地繡眼",
+      "comNameEn": "Lowland White-eye",
+      "sciName": "Zosterops meyeni"
+    },
+    "rucbab1": {
+      "comNameZh": "山紅頭",
+      "comNameEn": "Rufous-capped Babbler",
+      "sciName": "Cyanoderma ruficeps"
+    },
+    "taiscb1": {
+      "comNameZh": "小彎嘴",
+      "comNameEn": "Taiwan Scimitar-Babbler",
+      "sciName": "Pomatorhinus musicus"
+    },
+    "sbsbab2": {
+      "comNameZh": "大彎嘴",
+      "comNameEn": "Black-necklaced Scimitar-Babbler",
+      "sciName": "Erythrogenys erythrocnemis"
+    },
+    "dusful1": {
+      "comNameZh": "頭烏線",
+      "comNameEn": "Dusky Fulvetta",
+      "sciName": "Schoeniparus brunneus"
+    },
+    "gycful1": {
+      "comNameZh": "繡眼畫眉",
+      "comNameEn": "Morrison's Fulvetta",
+      "sciName": "Alcippe morrisonia"
+    },
+    "whwlau1": {
+      "comNameZh": "臺灣噪眉",
+      "comNameEn": "White-whiskered Laughingthrush",
+      "sciName": "Trochalopteron morrisonianum"
+    },
+    "rewlau1": {
+      "comNameZh": "Red-winged Laughingthrush",
+      "comNameEn": "Red-winged Laughingthrush",
+      "sciName": "Trochalopteron formosum"
+    },
+    "whesib1": {
+      "comNameZh": "白耳畫眉",
+      "comNameEn": "White-eared Sibia",
+      "sciName": "Heterophasia auricularis"
+    },
+    "taibar1": {
+      "comNameZh": "紋翼畫眉",
+      "comNameEn": "Taiwan Barwing",
+      "sciName": "Actinodura morrisoniana"
+    },
+    "reblei": {
+      "comNameZh": "紅嘴相思鳥",
+      "comNameEn": "Red-billed Leiothrix",
+      "sciName": "Leiothrix lutea"
+    },
+    "siemes1": {
+      "comNameZh": "Silver-eared Mesia",
+      "comNameEn": "Silver-eared Mesia",
+      "sciName": "Leiothrix argentauris"
+    },
+    "stelio1": {
+      "comNameZh": "黃胸藪眉",
+      "comNameEn": "Taiwan Liocichla",
+      "sciName": "Liocichla steerii"
+    },
+    "melthr": {
+      "comNameZh": "大陸畫眉",
+      "comNameEn": "Chinese Hwamei",
+      "sciName": "Garrulax canorus"
+    },
+    "taihwa1": {
+      "comNameZh": "臺灣畫眉",
+      "comNameEn": "Taiwan Hwamei",
+      "sciName": "Garrulax taewanus"
+    },
+    "x00816": {
+      "comNameZh": "大陸畫眉x臺灣畫眉(雜交)",
+      "comNameEn": "Chinese x Taiwan Hwamei (hybrid)",
+      "sciName": "Garrulax canorus x taewanus"
+    },
+    "bltlau1": {
+      "comNameZh": "黑喉噪眉",
+      "comNameEn": "Black-throated Laughingthrush",
+      "sciName": "Pterorhinus chinensis"
+    },
+    "whblau1": {
+      "comNameZh": "白頰噪眉",
+      "comNameEn": "White-browed Laughingthrush",
+      "sciName": "Pterorhinus sannio"
+    },
+    "ruclau2": {
+      "comNameZh": "臺灣白喉噪眉",
+      "comNameEn": "Rufous-crowned Laughingthrush",
+      "sciName": "Pterorhinus ruficeps"
+    },
+    "ruslau1": {
+      "comNameZh": "棕噪眉",
+      "comNameEn": "Rusty Laughingthrush",
+      "sciName": "Pterorhinus poecilorhynchus"
+    },
+    "goldcr1": {
+      "comNameZh": "戴菊鳥",
+      "comNameEn": "Goldcrest",
+      "sciName": "Regulus regulus"
+    },
+    "flamec1": {
+      "comNameZh": "火冠戴菊鳥",
+      "comNameEn": "Flamecrest",
+      "sciName": "Regulus goodfellowi"
+    },
+    "eurnut2": {
+      "comNameZh": "茶腹鳾",
+      "comNameEn": "Eurasian Nuthatch",
+      "sciName": "Sitta europaea"
+    },
+    "winwre4": {
+      "comNameZh": "鷦鷯",
+      "comNameEn": "Eurasian Wren",
+      "sciName": "Troglodytes troglodytes"
+    },
+    "brodip1": {
+      "comNameZh": "河烏",
+      "comNameEn": "Brown Dipper",
+      "sciName": "Cinclus pallasii"
+    },
+    "asgsta1": {
+      "comNameZh": "亞洲輝椋鳥",
+      "comNameEn": "Asian Glossy Starling",
+      "sciName": "Aplonis panayensis"
+    },
+    "hilmyn": {
+      "comNameZh": "九官鳥",
+      "comNameEn": "Common Hill Myna",
+      "sciName": "Gracula religiosa"
+    },
+    "eursta": {
+      "comNameZh": "歐洲椋鳥",
+      "comNameEn": "European Starling",
+      "sciName": "Sturnus vulgaris"
+    },
+    "rossta2": {
+      "comNameZh": "粉紅椋鳥",
+      "comNameEn": "Rosy Starling",
+      "sciName": "Pastor roseus"
+    },
+    "dausta1": {
+      "comNameZh": "北椋鳥",
+      "comNameEn": "Daurian Starling",
+      "sciName": "Agropsar sturninus"
+    },
+    "chcsta1": {
+      "comNameZh": "小椋鳥",
+      "comNameEn": "Chestnut-cheeked Starling",
+      "sciName": "Agropsar philippensis"
+    },
+    "bkcsta1": {
+      "comNameZh": "黑領椋鳥",
+      "comNameEn": "Black-collared Starling",
+      "sciName": "Gracupica nigricollis"
+    },
+    "aspsta2": {
+      "comNameZh": "印度鵲椋鳥",
+      "comNameEn": "Indian Pied Starling",
+      "sciName": "Gracupica contra"
+    },
+    "whssta2": {
+      "comNameZh": "灰背椋鳥",
+      "comNameEn": "White-shouldered Starling",
+      "sciName": "Sturnia sinensis"
+    },
+    "brasta1": {
+      "comNameZh": "黑冠椋鳥",
+      "comNameEn": "Brahminy Starling",
+      "sciName": "Sturnia pagodarum"
+    },
+    "chtsta2": {
+      "comNameZh": "灰頭椋鳥",
+      "comNameEn": "Chestnut-tailed Starling",
+      "sciName": "Sturnia malabarica"
+    },
+    "rebsta1": {
+      "comNameZh": "絲光椋鳥",
+      "comNameEn": "Red-billed Starling",
+      "sciName": "Spodiopsar sericeus"
+    },
+    "whcsta1": {
+      "comNameZh": "灰椋鳥",
+      "comNameEn": "White-cheeked Starling",
+      "sciName": "Spodiopsar cineraceus"
+    },
+    "commyn": {
+      "comNameZh": "家八哥",
+      "comNameEn": "Common Myna",
+      "sciName": "Acridotheres tristis"
+    },
+    "banmyn1": {
+      "comNameZh": "岸八哥",
+      "comNameEn": "Bank Myna",
+      "sciName": "Acridotheres ginginianus"
+    },
+    "vibsta4": {
+      "comNameZh": "葡萄胸椋鳥",
+      "comNameEn": "Vinous-breasted Myna",
+      "sciName": "Acridotheres leucocephalus"
+    },
+    "bkwsta1": {
+      "comNameZh": "Black-winged Myna",
+      "comNameEn": "Black-winged Myna",
+      "sciName": "Acridotheres melanopterus"
+    },
+    "junmyn1": {
+      "comNameZh": "林八哥",
+      "comNameEn": "Jungle Myna",
+      "sciName": "Acridotheres fuscus"
+    },
+    "whvmyn": {
+      "comNameZh": "白尾八哥",
+      "comNameEn": "Javan Myna",
+      "sciName": "Acridotheres javanicus"
+    },
+    "whvmyn1": {
+      "comNameZh": "大八哥(叢八哥)",
+      "comNameEn": "Great Myna",
+      "sciName": "Acridotheres grandis"
+    },
+    "cremyn": {
+      "comNameZh": "八哥(冠八哥)",
+      "comNameEn": "Crested Myna",
+      "sciName": "Acridotheres cristatellus"
+    },
+    "ltgsta1": {
+      "comNameZh": "長尾麗椋鳥",
+      "comNameEn": "Long-tailed Glossy Starling",
+      "sciName": "Lamprotornis caudatus"
+    },
+    "supsta1": {
+      "comNameZh": "栗頭麗椋鳥",
+      "comNameEn": "Superb Starling",
+      "sciName": "Lamprotornis superbus"
+    },
+    "scathr2": {
+      "comNameZh": "白氏地鶇",
+      "comNameEn": "White's Thrush",
+      "sciName": "Zoothera aurea"
+    },
+    "scathr8": {
+      "comNameZh": "虎斑地鶇",
+      "comNameEn": "Scaly Thrush",
+      "sciName": "Zoothera dauma"
+    },
+    "sibthr1": {
+      "comNameZh": "白眉地鶇",
+      "comNameEn": "Siberian Thrush",
+      "sciName": "Geokichla sibirica"
+    },
+    "chbthr1": {
+      "comNameZh": "Chestnut-backed Thrush",
+      "comNameEn": "Chestnut-backed Thrush",
+      "sciName": "Geokichla dohertyi"
+    },
+    "orhthr1": {
+      "comNameZh": "橙頭地鶇",
+      "comNameEn": "Orange-headed Thrush",
+      "sciName": "Geokichla citrina"
+    },
+    "chithr2": {
+      "comNameZh": "寶興歌鶇",
+      "comNameEn": "Chinese Thrush",
+      "sciName": "Turdus mupinensis"
+    },
+    "misthr1": {
+      "comNameZh": "槲鶇",
+      "comNameEn": "Mistle Thrush",
+      "sciName": "Turdus viscivorus"
+    },
+    "chibla1": {
+      "comNameZh": "中國黑鶇",
+      "comNameEn": "Chinese Blackbird",
+      "sciName": "Turdus mandarinus"
+    },
+    "islthr24": {
+      "comNameZh": "白頭鶇",
+      "comNameEn": "Taiwan Thrush",
+      "sciName": "Turdus niveiceps"
+    },
+    "gybthr1": {
+      "comNameZh": "灰背鶇",
+      "comNameEn": "Gray-backed Thrush",
+      "sciName": "Turdus hortulorum"
+    },
+    "japthr1": {
+      "comNameZh": "烏灰鶇",
+      "comNameEn": "Japanese Thrush",
+      "sciName": "Turdus cardis"
+    },
+    "palthr1": {
+      "comNameZh": "白腹鶇",
+      "comNameEn": "Pale Thrush",
+      "sciName": "Turdus pallidus"
+    },
+    "eyethr": {
+      "comNameZh": "白眉鶇",
+      "comNameEn": "Eyebrowed Thrush",
+      "sciName": "Turdus obscurus"
+    },
+    "brhthr1": {
+      "comNameZh": "赤腹鶇",
+      "comNameEn": "Brown-headed Thrush",
+      "sciName": "Turdus chrysolaus"
+    },
+    "retthr1": {
+      "comNameZh": "赤頸鶇",
+      "comNameEn": "Red-throated Thrush",
+      "sciName": "Turdus ruficollis"
+    },
+    "x00644": {
+      "comNameZh": "黑頸鶇x赤頸鶇(雜交)",
+      "comNameEn": "Black-throated x Red-throated Thrush (hybrid)",
+      "sciName": "Turdus atrogularis x ruficollis"
+    },
+    "dusthr2": {
+      "comNameZh": "斑點鶇",
+      "comNameEn": "Dusky Thrush",
+      "sciName": "Turdus eunomus"
+    },
+    "dusthr1": {
+      "comNameZh": "紅尾鶇",
+      "comNameEn": "Naumann's Thrush",
+      "sciName": "Turdus naumanni"
+    },
+    "x00973": {
+      "comNameZh": "斑點鶇x紅尾鶇(雜交)",
+      "comNameEn": "Dusky x Naumann's Thrush (hybrid)",
+      "sciName": "Turdus eunomus x naumanni"
+    },
+    "gysfly1": {
+      "comNameZh": "灰斑鶲",
+      "comNameEn": "Gray-streaked Flycatcher",
+      "sciName": "Muscicapa griseisticta"
+    },
+    "dasfly": {
+      "comNameZh": "烏鶲",
+      "comNameEn": "Dark-sided Flycatcher",
+      "sciName": "Muscicapa sibirica"
+    },
+    "ferfly1": {
+      "comNameZh": "紅尾鶲",
+      "comNameEn": "Ferruginous Flycatcher",
+      "sciName": "Muscicapa ferruginea"
+    },
+    "asbfly": {
+      "comNameZh": "寬嘴鶲",
+      "comNameEn": "Asian Brown Flycatcher",
+      "sciName": "Muscicapa dauurica"
+    },
+    "brbfly2": {
+      "comNameZh": "褐胸鶲",
+      "comNameEn": "Brown-breasted Flycatcher",
+      "sciName": "Muscicapa muttui"
+    },
+    "spofly1": {
+      "comNameZh": "斑鶲",
+      "comNameEn": "Spotted Flycatcher",
+      "sciName": "Muscicapa striata"
+    },
+    "magrob": {
+      "comNameZh": "鵲鴝",
+      "comNameEn": "Oriental Magpie-Robin",
+      "sciName": "Copsychus saularis"
+    },
+    "whrsha": {
+      "comNameZh": "白腰鵲鴝",
+      "comNameEn": "White-rumped Shama",
+      "sciName": "Copsychus malabaricus"
+    },
+    "fujnil1": {
+      "comNameZh": "棕腹大仙鶲",
+      "comNameEn": "Fujian Niltava",
+      "sciName": "Niltava davidi"
+    },
+    "rubnil1": {
+      "comNameZh": "棕腹仙鶲",
+      "comNameEn": "Rufous-bellied Niltava",
+      "sciName": "Niltava sundara"
+    },
+    "vivnil3": {
+      "comNameZh": "黃腹琉璃",
+      "comNameEn": "Taiwan Vivid Niltava",
+      "sciName": "Niltava vivida"
+    },
+    "bawfly2": {
+      "comNameZh": "白腹琉璃",
+      "comNameEn": "Blue-and-white Flycatcher",
+      "sciName": "Cyanoptila cyanomelana"
+    },
+    "verfly4": {
+      "comNameZh": "銅藍鶲",
+      "comNameEn": "Verditer Flycatcher",
+      "sciName": "Eumyias thalassinus"
+    },
+    "habfly1": {
+      "comNameZh": "海南藍仙鶲",
+      "comNameEn": "Hainan Blue Flycatcher",
+      "sciName": "Cyornis hainanus"
+    },
+    "butfly2": {
+      "comNameZh": "中華藍仙鶲",
+      "comNameEn": "Chinese Blue Flycatcher",
+      "sciName": "Cyornis glaucicomans"
+    },
+    "hibfly1": {
+      "comNameZh": "山藍仙鶲",
+      "comNameEn": "Hill Blue Flycatcher",
+      "sciName": "Cyornis whitei"
+    },
+    "bncjuf1": {
+      "comNameZh": "白喉林鶲",
+      "comNameEn": "Brown-chested Jungle Flycatcher",
+      "sciName": "Cyornis brunneatus"
+    },
+    "lessho1": {
+      "comNameZh": "白喉短翅鶇",
+      "comNameEn": "Lesser Shortwing",
+      "sciName": "Brachypteryx leucophris"
+    },
+    "whbsho6": {
+      "comNameZh": "小翼鶇",
+      "comNameEn": "Taiwan Shortwing",
+      "sciName": "Brachypteryx goodfellowi"
+    },
+    "rutrob1": {
+      "comNameZh": "紅尾歌鴝",
+      "comNameEn": "Rufous-tailed Robin",
+      "sciName": "Larvivora sibilans"
+    },
+    "japrob2": {
+      "comNameZh": "日本歌鴝",
+      "comNameEn": "Japanese Robin",
+      "sciName": "Larvivora akahige"
+    },
+    "ryurob2": {
+      "comNameZh": "琉球歌鴝",
+      "comNameEn": "Ryukyu Robin",
+      "sciName": "Larvivora komadori"
+    },
+    "sibrob": {
+      "comNameZh": "藍歌鴝",
+      "comNameEn": "Siberian Blue Robin",
+      "sciName": "Larvivora cyane"
+    },
+    "blueth": {
+      "comNameZh": "藍喉鴝",
+      "comNameEn": "Bluethroat",
+      "sciName": "Luscinia svecica"
+    },
+    "fowthr1": {
+      "comNameZh": "臺灣紫嘯鶇",
+      "comNameEn": "Taiwan Whistling-Thrush",
+      "sciName": "Myophonus insularis"
+    },
+    "blwthr1": {
+      "comNameZh": "白斑紫嘯鶇",
+      "comNameEn": "Blue Whistling-Thrush",
+      "sciName": "Myophonus caeruleus"
+    },
+    "litfor1": {
+      "comNameZh": "小剪尾",
+      "comNameEn": "Little Forktail",
+      "sciName": "Enicurus scouleri"
+    },
+    "sibrub": {
+      "comNameZh": "野鴝",
+      "comNameEn": "Siberian Rubythroat",
+      "sciName": "Calliope calliope"
+    },
+    "whtrob2": {
+      "comNameZh": "白尾鴝",
+      "comNameEn": "White-tailed Robin",
+      "sciName": "Myiomela leucura"
+    },
+    "refblu1": {
+      "comNameZh": "藍尾鴝",
+      "comNameEn": "Red-flanked Bluetail",
+      "sciName": "Tarsiger cyanurus"
+    },
+    "whbbur3": {
+      "comNameZh": "臺灣白眉林鴝",
+      "comNameEn": "Taiwan Bush-Robin",
+      "sciName": "Tarsiger formosanus"
+    },
+    "cobrob1": {
+      "comNameZh": "栗背林鴝",
+      "comNameEn": "Collared Bush-Robin",
+      "sciName": "Tarsiger johnstoniae"
+    },
+    "korfly1": {
+      "comNameZh": "白眉鶲",
+      "comNameEn": "Yellow-rumped Flycatcher",
+      "sciName": "Ficedula zanthopygia"
+    },
+    "narfly1": {
+      "comNameZh": "綠背姬鶲",
+      "comNameEn": "Green-backed Flycatcher",
+      "sciName": "Ficedula elisae"
+    },
+    "narfly2": {
+      "comNameZh": "黃眉黃鶲",
+      "comNameEn": "Narcissus Flycatcher",
+      "sciName": "Ficedula narcissina"
+    },
+    "narfly3": {
+      "comNameZh": "琉球姬鶲",
+      "comNameEn": "Ryukyu Flycatcher",
+      "sciName": "Ficedula owstoni"
+    },
+    "mugfly": {
+      "comNameZh": "白眉黃鶲",
+      "comNameEn": "Mugimaki Flycatcher",
+      "sciName": "Ficedula mugimaki"
+    },
+    "snbfly1": {
+      "comNameZh": "黃胸青鶲",
+      "comNameEn": "Snowy-browed Flycatcher",
+      "sciName": "Ficedula hyperythra"
+    },
+    "rugfly1": {
+      "comNameZh": "橙胸姬鶲",
+      "comNameEn": "Rufous-gorgeted Flycatcher",
+      "sciName": "Ficedula strophiata"
+    },
+    "taifly1": {
+      "comNameZh": "紅喉鶲",
+      "comNameEn": "Taiga Flycatcher",
+      "sciName": "Ficedula albicilla"
+    },
+    "rebfly": {
+      "comNameZh": "紅胸鶲",
+      "comNameEn": "Red-breasted Flycatcher",
+      "sciName": "Ficedula parva"
+    },
+    "blfred1": {
+      "comNameZh": "藍額紅尾鴝",
+      "comNameEn": "Blue-fronted Redstart",
+      "sciName": "Phoenicurus frontalis"
+    },
+    "plured1": {
+      "comNameZh": "鉛色水鶇",
+      "comNameEn": "Plumbeous Redstart",
+      "sciName": "Phoenicurus fuliginosus"
+    },
+    "whcred1": {
+      "comNameZh": "白頂溪鴝",
+      "comNameEn": "White-capped Redstart",
+      "sciName": "Phoenicurus leucocephalus"
+    },
+    "blared1": {
+      "comNameZh": "赭紅尾鴝",
+      "comNameEn": "Black Redstart",
+      "sciName": "Phoenicurus ochruros"
+    },
+    "daured1": {
+      "comNameZh": "黃尾鴝",
+      "comNameEn": "Daurian Redstart",
+      "sciName": "Phoenicurus auroreus"
+    },
+    "wtrthr1": {
+      "comNameZh": "白喉磯鶇",
+      "comNameEn": "White-throated Rock-Thrush",
+      "sciName": "Monticola gularis"
+    },
+    "burthr": {
+      "comNameZh": "藍磯鶇",
+      "comNameEn": "Blue Rock-Thrush",
+      "sciName": "Monticola solitarius"
+    },
+    "stonec7": {
+      "comNameZh": "黑喉鴝",
+      "comNameEn": "Amur Stonechat",
+      "sciName": "Saxicola stejnegeri"
+    },
+    "piebus1": {
+      "comNameZh": "白斑黑石䳭",
+      "comNameEn": "Pied Bushchat",
+      "sciName": "Saxicola caprata"
+    },
+    "grybus1": {
+      "comNameZh": "灰叢鴝",
+      "comNameEn": "Gray Bushchat",
+      "sciName": "Saxicola ferreus"
+    },
+    "norwhe": {
+      "comNameZh": "穗䳭",
+      "comNameEn": "Northern Wheatear",
+      "sciName": "Oenanthe oenanthe"
+    },
+    "isawhe1": {
+      "comNameZh": "沙䳭",
+      "comNameEn": "Isabelline Wheatear",
+      "sciName": "Oenanthe isabellina"
+    },
+    "deswhe1": {
+      "comNameZh": "漠䳭",
+      "comNameEn": "Desert Wheatear",
+      "sciName": "Oenanthe deserti"
+    },
+    "piewhe1": {
+      "comNameZh": "白頂䳭",
+      "comNameEn": "Pied Wheatear",
+      "sciName": "Oenanthe pleschanka"
+    },
+    "bohwax": {
+      "comNameZh": "黃連雀",
+      "comNameEn": "Bohemian Waxwing",
+      "sciName": "Bombycilla garrulus"
+    },
+    "japwax1": {
+      "comNameZh": "朱連雀",
+      "comNameEn": "Japanese Waxwing",
+      "sciName": "Bombycilla japonica"
+    },
+    "plaflo2": {
+      "comNameZh": "綠啄花",
+      "comNameEn": "Plain Flowerpecker",
+      "sciName": "Dicaeum minullum"
+    },
+    "fibflo1": {
+      "comNameZh": "紅胸啄花",
+      "comNameEn": "Fire-breasted Flowerpecker",
+      "sciName": "Dicaeum ignipectus"
+    },
+    "olbsun4": {
+      "comNameZh": "黃腹花蜜鳥",
+      "comNameEn": "Ornate Sunbird",
+      "sciName": "Cinnyris ornatus"
+    },
+    "gousun1": {
+      "comNameZh": "藍喉太陽鳥",
+      "comNameEn": "Mrs. Gould's Sunbird",
+      "sciName": "Aethopyga gouldiae"
+    },
+    "fotsun1": {
+      "comNameZh": "叉尾太陽鳥",
+      "comNameEn": "Fork-tailed Sunbird",
+      "sciName": "Aethopyga christinae"
+    },
+    "blwlea1": {
+      "comNameZh": "Blue-winged Leafbird",
+      "comNameEn": "Blue-winged Leafbird",
+      "sciName": "Chloropsis moluccensis"
+    },
+    "orblea1": {
+      "comNameZh": "橙腹葉鵯",
+      "comNameEn": "Orange-bellied Leafbird",
+      "sciName": "Chloropsis hardwickii"
+    },
+    "vilwea1": {
+      "comNameZh": "黑頭織雀",
+      "comNameEn": "Village Weaver",
+      "sciName": "Ploceus cucullatus"
+    },
+    "gobwea1": {
+      "comNameZh": "Golden-backed Weaver",
+      "comNameEn": "Golden-backed Weaver",
+      "sciName": "Ploceus jacksoni"
+    },
+    "redbis": {
+      "comNameZh": "Southern Red Bishop",
+      "comNameEn": "Southern Red Bishop",
+      "sciName": "Euplectes orix"
+    },
+    "zebfin2": {
+      "comNameZh": "Zebra Finch",
+      "comNameEn": "Zebra Finch",
+      "sciName": "Taeniopygia guttata"
+    },
+    "indsil": {
+      "comNameZh": "白喉文鳥",
+      "comNameEn": "Indian Silverbill",
+      "sciName": "Euodice malabarica"
+    },
+    "javspa": {
+      "comNameZh": "爪哇雀",
+      "comNameEn": "Java Sparrow",
+      "sciName": "Padda oryzivora"
+    },
+    "nutman": {
+      "comNameZh": "斑文鳥",
+      "comNameEn": "Scaly-breasted Munia",
+      "sciName": "Lonchura punctulata"
+    },
+    "whrmun": {
+      "comNameZh": "白腰文鳥",
+      "comNameEn": "White-rumped Munia",
+      "sciName": "Lonchura striata"
+    },
+    "chemun": {
+      "comNameZh": "黑頭文鳥",
+      "comNameEn": "Chestnut Munia",
+      "sciName": "Lonchura atricapilla"
+    },
+    "whhmun1": {
+      "comNameZh": "白頭文鳥",
+      "comNameEn": "White-headed Munia",
+      "sciName": "Lonchura maja"
+    },
+    "orcwax": {
+      "comNameZh": "橙頰梅花雀",
+      "comNameEn": "Orange-cheeked Waxbill",
+      "sciName": "Estrilda melpoda"
+    },
+    "comwax": {
+      "comNameZh": "橫斑梅花雀",
+      "comNameEn": "Common Waxbill",
+      "sciName": "Estrilda astrild"
+    },
+    "zebwax2": {
+      "comNameZh": "Zebra Waxbill",
+      "comNameEn": "Zebra Waxbill",
+      "sciName": "Amandava subflava"
+    },
+    "redava": {
+      "comNameZh": "Red Avadavat",
+      "comNameEn": "Red Avadavat",
+      "sciName": "Amandava amandava"
+    },
+    "pitwhy": {
+      "comNameZh": "針尾維達雀",
+      "comNameEn": "Pin-tailed Whydah",
+      "sciName": "Vidua macroura"
+    },
+    "btpwhy1": {
+      "comNameZh": "Broad-tailed Paradise-Whydah",
+      "comNameEn": "Broad-tailed Paradise-Whydah",
+      "sciName": "Vidua obtusa"
+    },
+    "vilind": {
+      "comNameZh": "靛藍維達雀",
+      "comNameEn": "Village Indigobird",
+      "sciName": "Vidua chalybeata"
+    },
+    "alpacc1": {
+      "comNameZh": "岩鷚",
+      "comNameEn": "Alpine Accentor",
+      "sciName": "Prunella collaris"
+    },
+    "sibacc": {
+      "comNameZh": "棕眉山岩鷚",
+      "comNameEn": "Siberian Accentor",
+      "sciName": "Prunella montanella"
+    },
+    "houspa": {
+      "comNameZh": "家麻雀",
+      "comNameEn": "House Sparrow",
+      "sciName": "Passer domesticus"
+    },
+    "russpa2": {
+      "comNameZh": "山麻雀",
+      "comNameEn": "Russet Sparrow",
+      "sciName": "Passer cinnamomeus"
+    },
+    "eutspa": {
+      "comNameZh": "麻雀",
+      "comNameEn": "Eurasian Tree Sparrow",
+      "sciName": "Passer montanus"
+    },
+    "forwag1": {
+      "comNameZh": "山鶺鴒",
+      "comNameEn": "Forest Wagtail",
+      "sciName": "Dendronanthus indicus"
+    },
+    "grywag": {
+      "comNameZh": "灰鶺鴒",
+      "comNameEn": "Gray Wagtail",
+      "sciName": "Motacilla cinerea"
+    },
+    "eaywag": {
+      "comNameZh": "東方黃鶺鴒",
+      "comNameEn": "Eastern Yellow Wagtail",
+      "sciName": "Motacilla tschutschensis"
+    },
+    "citwag": {
+      "comNameZh": "黃頭鶺鴒",
+      "comNameEn": "Citrine Wagtail",
+      "sciName": "Motacilla citreola"
+    },
+    "japwag1": {
+      "comNameZh": "日本鶺鴒",
+      "comNameEn": "Japanese Wagtail",
+      "sciName": "Motacilla grandis"
+    },
+    "whiwag": {
+      "comNameZh": "白鶺鴒",
+      "comNameEn": "White Wagtail",
+      "sciName": "Motacilla alba"
+    },
+    "ricpip1": {
+      "comNameZh": "大花鷚",
+      "comNameEn": "Richard's Pipit",
+      "sciName": "Anthus richardi"
+    },
+    "oripip1": {
+      "comNameZh": "稻田鷚",
+      "comNameEn": "Paddyfield Pipit",
+      "sciName": "Anthus rufulus"
+    },
+    "blypip1": {
+      "comNameZh": "布萊氏鷚",
+      "comNameEn": "Blyth's Pipit",
+      "sciName": "Anthus godlewskii"
+    },
+    "meapip1": {
+      "comNameZh": "草地鷚",
+      "comNameEn": "Meadow Pipit",
+      "sciName": "Anthus pratensis"
+    },
+    "rospip1": {
+      "comNameZh": "粉紅胸鷚",
+      "comNameEn": "Rosy Pipit",
+      "sciName": "Anthus roseatus"
+    },
+    "trepip": {
+      "comNameZh": "林鷚",
+      "comNameEn": "Tree Pipit",
+      "sciName": "Anthus trivialis"
+    },
+    "olbpip": {
+      "comNameZh": "樹鷚",
+      "comNameEn": "Olive-backed Pipit",
+      "sciName": "Anthus hodgsoni"
+    },
+    "pecpip": {
+      "comNameZh": "白背鷚",
+      "comNameEn": "Pechora Pipit",
+      "sciName": "Anthus gustavi"
+    },
+    "retpip": {
+      "comNameZh": "赤喉鷚",
+      "comNameEn": "Red-throated Pipit",
+      "sciName": "Anthus cervinus"
+    },
+    "sibpip1": {
+      "comNameZh": "黃腹鷚",
+      "comNameEn": "Siberian Pipit",
+      "sciName": "Anthus japonicus"
+    },
+    "brambl": {
+      "comNameZh": "花雀",
+      "comNameEn": "Brambling",
+      "sciName": "Fringilla montifringilla"
+    },
+    "hawfin": {
+      "comNameZh": "臘嘴雀",
+      "comNameEn": "Hawfinch",
+      "sciName": "Coccothraustes coccothraustes"
+    },
+    "yebgro1": {
+      "comNameZh": "小桑鳲",
+      "comNameEn": "Yellow-billed Grosbeak",
+      "sciName": "Eophona migratoria"
+    },
+    "japgro1": {
+      "comNameZh": "桑鳲",
+      "comNameEn": "Japanese Grosbeak",
+      "sciName": "Eophona personata"
+    },
+    "comros": {
+      "comNameZh": "普通朱雀",
+      "comNameEn": "Common Rosefinch",
+      "sciName": "Carpodacus erythrinus"
+    },
+    "vinros2": {
+      "comNameZh": "酒紅朱雀",
+      "comNameEn": "Vinaceous Rosefinch",
+      "sciName": "Carpodacus vinaceus"
+    },
+    "vinros3": {
+      "comNameZh": "臺灣朱雀",
+      "comNameEn": "Taiwan Rosefinch",
+      "sciName": "Carpodacus formosanus"
+    },
+    "palros2": {
+      "comNameZh": "北朱雀",
+      "comNameEn": "Pallas's Rosefinch",
+      "sciName": "Carpodacus roseus"
+    },
+    "brobul1": {
+      "comNameZh": "褐鷽",
+      "comNameEn": "Brown Bullfinch",
+      "sciName": "Pyrrhula nipalensis"
+    },
+    "gyhbul5": {
+      "comNameZh": "灰鷽",
+      "comNameEn": "Taiwan Bullfinch",
+      "sciName": "Pyrrhula owstoni"
+    },
+    "eurbul": {
+      "comNameZh": "歐亞鷽",
+      "comNameEn": "Eurasian Bullfinch",
+      "sciName": "Pyrrhula pyrrhula"
+    },
+    "origre": {
+      "comNameZh": "金翅雀",
+      "comNameEn": "Oriental Greenfinch",
+      "sciName": "Chloris sinica"
+    },
+    "yefcan": {
+      "comNameZh": "黃額絲雀",
+      "comNameEn": "Yellow-fronted Canary",
+      "sciName": "Crithagra mozambica"
+    },
+    "lebsee1": {
+      "comNameZh": "Lemon-breasted Seedeater",
+      "comNameEn": "Lemon-breasted Seedeater",
+      "sciName": "Crithagra citrinipectus"
+    },
+    "eurlin1": {
+      "comNameZh": "赤胸朱頂雀",
+      "comNameEn": "Eurasian Linnet",
+      "sciName": "Linaria cannabina"
+    },
+    "redpol1": {
+      "comNameZh": "普通朱頂雀",
+      "comNameEn": "Redpoll",
+      "sciName": "Acanthis flammea"
+    },
+    "redcro": {
+      "comNameZh": "紅交嘴雀",
+      "comNameEn": "Red Crossbill",
+      "sciName": "Loxia curvirostra"
+    },
+    "eursis": {
+      "comNameZh": "黃雀",
+      "comNameEn": "Eurasian Siskin",
+      "sciName": "Spinus spinus"
+    },
+    "laplon": {
+      "comNameZh": "鐵爪鵐",
+      "comNameEn": "Lapland Longspur",
+      "sciName": "Calcarius lapponicus"
+    },
+    "crebun1": {
+      "comNameZh": "冠鵐",
+      "comNameEn": "Crested Bunting",
+      "sciName": "Emberiza lathami"
+    },
+    "blhbun1": {
+      "comNameZh": "黑頭鵐",
+      "comNameEn": "Black-headed Bunting",
+      "sciName": "Emberiza melanocephala"
+    },
+    "rehbun1": {
+      "comNameZh": "褐頭鵐",
+      "comNameEn": "Red-headed Bunting",
+      "sciName": "Emberiza bruniceps"
+    },
+    "chebun2": {
+      "comNameZh": "赤胸鵐",
+      "comNameEn": "Chestnut-eared Bunting",
+      "sciName": "Emberiza fucata"
+    },
+    "meabun1": {
+      "comNameZh": "草鵐",
+      "comNameEn": "Meadow Bunting",
+      "sciName": "Emberiza cioides"
+    },
+    "chbbun1": {
+      "comNameZh": "白頂鵐",
+      "comNameEn": "White-capped Bunting",
+      "sciName": "Emberiza stewarti"
+    },
+    "pinbun": {
+      "comNameZh": "白頭鵐",
+      "comNameEn": "Pine Bunting",
+      "sciName": "Emberiza leucocephalos"
+    },
+    "gyhbun1": {
+      "comNameZh": "灰頸鵐",
+      "comNameEn": "Gray-necked Bunting",
+      "sciName": "Emberiza buchanani"
+    },
+    "ortbun1": {
+      "comNameZh": "圃鵐",
+      "comNameEn": "Ortolan Bunting",
+      "sciName": "Emberiza hortulana"
+    },
+    "yetbun1": {
+      "comNameZh": "黃喉鵐",
+      "comNameEn": "Yellow-throated Bunting",
+      "sciName": "Emberiza elegans"
+    },
+    "ocrbun1": {
+      "comNameZh": "紅頸葦鵐",
+      "comNameEn": "Ochre-rumped Bunting",
+      "sciName": "Emberiza yessoensis"
+    },
+    "palbun": {
+      "comNameZh": "葦鵐",
+      "comNameEn": "Pallas's Bunting",
+      "sciName": "Emberiza pallasi"
+    },
+    "reebun": {
+      "comNameZh": "蘆鵐",
+      "comNameEn": "Reed Bunting",
+      "sciName": "Emberiza schoeniclus"
+    },
+    "yebbun": {
+      "comNameZh": "金鵐",
+      "comNameEn": "Yellow-breasted Bunting",
+      "sciName": "Emberiza aureola"
+    },
+    "litbun": {
+      "comNameZh": "小鵐",
+      "comNameEn": "Little Bunting",
+      "sciName": "Emberiza pusilla"
+    },
+    "rusbun": {
+      "comNameZh": "田鵐",
+      "comNameEn": "Rustic Bunting",
+      "sciName": "Emberiza rustica"
+    },
+    "yelbun1": {
+      "comNameZh": "野鵐",
+      "comNameEn": "Yellow Bunting",
+      "sciName": "Emberiza sulphurata"
+    },
+    "bkfbun1": {
+      "comNameZh": "灰頭黑臉鵐",
+      "comNameEn": "Black-faced Bunting",
+      "sciName": "Emberiza spodocephala"
+    },
+    "bkfbun2": {
+      "comNameZh": "黃喉黑臉鵐",
+      "comNameEn": "Masked Bunting",
+      "sciName": "Emberiza personata"
+    },
+    "chebun1": {
+      "comNameZh": "鏽鵐",
+      "comNameEn": "Chestnut Bunting",
+      "sciName": "Emberiza rutila"
+    },
+    "yebbun1": {
+      "comNameZh": "黃眉鵐",
+      "comNameEn": "Yellow-browed Bunting",
+      "sciName": "Emberiza chrysophrys"
+    },
+    "tribun1": {
+      "comNameZh": "白眉鵐",
+      "comNameEn": "Tristram's Bunting",
+      "sciName": "Emberiza tristrami"
+    },
+    "grybun": {
+      "comNameZh": "灰鵐",
+      "comNameEn": "Gray Bunting",
+      "sciName": "Emberiza variabilis"
+    },
+    "savspa": {
+      "comNameZh": "稀樹草鵐",
+      "comNameEn": "Savannah Sparrow",
+      "sciName": "Passerculus sandwichensis"
+    },
+    "whbbla2": {
+      "comNameZh": "White-browed Meadowlark",
+      "comNameEn": "White-browed Meadowlark",
+      "sciName": "Leistes superciliaris"
+    },
+    "reccar": {
+      "comNameZh": "紅冠唐納雀",
+      "comNameEn": "Red-crested Cardinal",
+      "sciName": "Paroaria coronata"
+    },
+    "reccar4": {
+      "comNameZh": "紅頂唐納雀",
+      "comNameEn": "Red-capped Cardinal",
+      "sciName": "Paroaria gularis"
+    },
+    "ofyfin1": {
+      "comNameZh": "橙額黃雀鵐",
+      "comNameEn": "Orange-fronted Yellow-Finch",
+      "sciName": "Sicalis columbiana"
+    },
+    "saffin": {
+      "comNameZh": "橙黃雀鵐",
+      "comNameEn": "Saffron Finch",
+      "sciName": "Sicalis flaveola"
+    }
+  }
+}

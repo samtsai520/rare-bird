@@ -99,9 +99,12 @@ export default function App() {
   const [firstSeenError, setFirstSeenError] = useState(null);
   const [firstSeenView, setFirstSeenView] = useState('month'); // 'month' | 'recent'
 
-  // Static taxonomy (code -> {comNameZh}) for zero-API Chinese names
+  // Static Taiwan-bird names (code -> {comNameZh}) for zero-API Chinese names
   const [taxonomy, setTaxonomy] = useState({});
   const [taxonomyLoaded, setTaxonomyLoaded] = useState(false);
+  // ref mirror so fetchWorth always reads latest taxonomy (avoids closure race)
+  const taxonomyRef = useRef(taxonomy);
+  useEffect(() => { taxonomyRef.current = taxonomy; }, [taxonomy]);
 
   // Month species count
   const [monthSpeciesCount, setMonthSpeciesCount] = useState(null);
@@ -266,6 +269,15 @@ export default function App() {
     setWorthLoading(true);
     setWorthError(null);
 
+    // 等 taxonomy（中文名檔，~100KB）載入完成，確保取名稱不落空
+    // 最多等 3 秒；若仍未就緒則用目前已載入的（缺中文就顯示英文名）
+    if (!taxonomyRef.current || Object.keys(taxonomyRef.current).length === 0) {
+      for (let i = 0; i < 15; i++) {
+        if (taxonomyRef.current && Object.keys(taxonomyRef.current).length > 0) break;
+        await new Promise(r => setTimeout(r, 200));
+      }
+    }
+
     // Target window = calendar 前天 + 昨天 + today (3 days)
     const now = new Date();
     const fmtD = (d) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
@@ -299,12 +311,15 @@ export default function App() {
         }
         if (controller.signal.aborted) return;
 
-        // Merge zh names from static taxonomy; fallback to EN name
-        const allRecords = enRecords.map(item => ({
-          ...item,
-          comNameZh: (taxonomy[item.speciesCode] && taxonomy[item.speciesCode].comNameZh) || item.comName,
-          comNameEn: item.comName,
-        }));
+        // Merge zh names from static Taiwan-bird taxonomy; fallback to EN name
+        const allRecords = enRecords.map(item => {
+          const t = taxonomyRef.current && taxonomyRef.current[item.speciesCode];
+          return {
+            ...item,
+            comNameZh: (t && t.comNameZh) || item.comName,
+            comNameEn: item.comName,
+          };
+        });
 
         // Classify
         const baseline = new Set();   // species present before 前天 (within 30d)
@@ -521,10 +536,11 @@ export default function App() {
       }
     };
     loadFirstSeen();
-    // Load static taxonomy (zh names) — zero API requests
-    fetch('/data/taxonomy-zh.json')
+    // Load static Taiwan-bird names (777 species, ~100KB) — zero API requests.
+    // Much smaller + faster than the old 1.5MB global taxonomy.
+    fetch('/data/taiwan-birds.json')
       .then(r => r.ok ? r.json() : Promise.reject())
-      .then(data => { if (!cancelled) { setTaxonomy(data || {}); setTaxonomyLoaded(true); } })
+      .then(data => { if (!cancelled) { setTaxonomy((data && data.species) || {}); setTaxonomyLoaded(true); } })
       .catch(() => { if (!cancelled) setTaxonomyLoaded(true); });
     return () => { cancelled = true; };
   }, []);
