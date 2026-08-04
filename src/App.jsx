@@ -39,6 +39,7 @@ const TW_REGION_BATCHES = [
 const WORTH_BACK_DAYS = 30; // baseline window (fixed, not user-selectable)
 const WORTH_MIN_STRICT = 3; // fallback triggers when strict rare count < this
 const WORTH_FALLBACK_COUNT = 8; // how many species to show in fallback mode
+const WORTH_MAX_LOCATIONS = 10; // 觀測點數超過此值 = 常見鳥，排除（綠繡眼/白頭翁等）
 
 // Outer-island regions: Kinmen, Matsu, Penghu. Anything else counts as mainland (本島).
 const ISLAND_KEYWORDS = ['金門', '馬祖', '澎湖'];
@@ -325,11 +326,14 @@ export default function App() {
         const baseline = new Set();   // species present before 前天 (within 30d)
         const targetByCode = {};      // code -> { records, count }
         const countPerCode = {};      // rarity score = total records in window
+        const locPerCode = {};        // code -> Set(unique locId) 觀測點數
         for (const rec of allRecords) {
           const d = (rec.obsDt || '').slice(0, 10);
           if (!d) continue;
           const code = rec.speciesCode;
           countPerCode[code] = (countPerCode[code] || 0) + 1;
+          if (!locPerCode[code]) locPerCode[code] = new Set();
+          if (rec.locId) locPerCode[code].add(rec.locId);
           if (targetDates.has(d)) {
             if (!targetByCode[code]) {
               targetByCode[code] = { records: [] };
@@ -340,8 +344,12 @@ export default function App() {
           }
         }
 
-        // Strict rare: in target, not in baseline
-        const rareCodes = Object.keys(targetByCode).filter(code => !baseline.has(code));
+        // 排除常見鳥：觀測點數 ≥ 門檻(10) = 全台普遍出現，非「值得一看」稀有鳥
+        const isCommonBird = (code) => (locPerCode[code] ? locPerCode[code].size : 0) >= WORTH_MAX_LOCATIONS;
+
+        // Strict rare: in target, not in baseline, 且非常見鳥
+        const rareCodes = Object.keys(targetByCode)
+          .filter(code => !baseline.has(code) && !isCommonBird(code));
 
         // Fallback: if too few strict rare, rank target species by rarity score (fewer records = rarer)
         let selectedCodes;
@@ -350,6 +358,7 @@ export default function App() {
           selectedCodes = rareCodes;
         } else {
           selectedCodes = Object.keys(targetByCode)
+            .filter(code => !isCommonBird(code))
             .sort((a, b) => (countPerCode[a] || 0) - (countPerCode[b] || 0))
             .slice(0, WORTH_FALLBACK_COUNT);
         }
