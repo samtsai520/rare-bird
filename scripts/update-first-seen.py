@@ -54,6 +54,26 @@ def _load_api_key():
 
 BASE_URL = "https://api.ebird.org/v2"
 
+# 官方 taxonomy 分類對照（code -> category: species/hybrid/issf/form/domestic...）
+_CATEGORY_MAP = None
+
+
+def _load_category_map():
+    """載入官方 eBird taxonomy 分類對照表（一次載入，供過濾雜交種）。"""
+    global _CATEGORY_MAP
+    if _CATEGORY_MAP is not None:
+        return _CATEGORY_MAP
+    p = PROJECT_ROOT / "public" / "data" / "ebird-category-map.json"
+    if p.exists():
+        try:
+            with open(p, "r", encoding="utf-8") as f:
+                _CATEGORY_MAP = json.load(f)
+        except Exception:
+            _CATEGORY_MAP = {}
+    else:
+        _CATEGORY_MAP = {}
+    return _CATEGORY_MAP
+
 
 def api_fetch(url, key, dry_run=False):
     if dry_run:
@@ -131,7 +151,13 @@ def _load_bird_names():
 
 
 def fetch_day(y, m, d, key, dry_run=False):
-    """Fetch all species for a single day, return dict code->{firstSeen, comNameEn}."""
+    """Fetch all species for a single day, return dict code->{firstSeen, comNameEn}.
+
+    過濾規則（決策 2026-08-04）：
+    - 排除非有效觀察：只保留 obsValid=true 的記錄。
+    - 排除雜交種：官方 taxonomy 分類為 hybrid 的鳥種不予累積。
+    注意：`obsValid` 欄位需 `detail=simple` 即回傳（已實測確認）。
+    """
     url = (
         f"{BASE_URL}/data/obs/TW/historic/{y}/{m}/{d}"
         f"?includeProvisional=true&detail=simple"
@@ -139,14 +165,27 @@ def fetch_day(y, m, d, key, dry_run=False):
     data = api_fetch(url, key, dry_run=dry_run)
     if data is None:
         return None
+    cat_map = _load_category_map()
     day_str = f"{y:04d}-{m:02d}-{d:02d}"
     out = {}
+    skipped_invalid = 0
+    skipped_hybrid = 0
     for x in data:
         code = x.get("speciesCode")
         if not code:
             continue
+        # 過濾 1: 非有效觀察
+        if not x.get("obsValid"):
+            skipped_invalid += 1
+            continue
+        # 過濾 2: 雜交種（官方分類）
+        if cat_map.get(code) == "hybrid":
+            skipped_hybrid += 1
+            continue
         # English common name from historic response; zh filled later from bird_names
         out[code] = {"firstSeen": day_str, "comNameEn": x.get("comName", "")}
+    if skipped_invalid or skipped_hybrid:
+        print(f"    (過濾 非有效={skipped_invalid}, 雜交={skipped_hybrid})", flush=True)
     return out
 
 

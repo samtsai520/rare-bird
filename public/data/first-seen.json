@@ -2,335 +2,1150 @@
   "year": 2026,
   "lastUpdated": "2026-08-03",
   "species": {
-    "savnig1": {
+    "sander": {
       "firstSeen": "2026-01-01",
-      "comNameZh": "南亞夜鷹",
-      "comNameEn": "Savanna Nightjar"
+      "comNameZh": "三趾濱鷸",
+      "comNameEn": "Sanderling"
     },
-    "bcnher": {
+    "chibla1": {
       "firstSeen": "2026-01-01",
-      "comNameZh": "夜鷺",
-      "comNameEn": "Black-crowned Night Heron"
+      "comNameZh": "中國黑鶇",
+      "comNameEn": "Chinese Blackbird"
     },
-    "mosowl2": {
+    "integr1": {
       "firstSeen": "2026-01-01",
-      "comNameZh": "黃嘴角鴞",
-      "comNameEn": "Mountain Scops-Owl"
+      "comNameZh": "中白鷺",
+      "comNameEn": "Medium Egret"
     },
-    "litegr": {
+    "temsti": {
       "firstSeen": "2026-01-01",
-      "comNameZh": "小白鷺",
-      "comNameEn": "Little Egret"
+      "comNameZh": "丹氏濱鷸",
+      "comNameEn": "Temminck's Stint"
     },
-    "manher1": {
+    "taibar2": {
       "firstSeen": "2026-01-01",
-      "comNameZh": "黑冠麻鷺",
-      "comNameEn": "Malayan Night Heron"
-    },
-    "bkwsti": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "高蹺鴴",
-      "comNameEn": "Black-winged Stilt"
-    },
-    "comgre": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "青足鷸",
-      "comNameEn": "Common Greenshank"
-    },
-    "grpsni1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "彩鷸",
-      "comNameEn": "Greater Painted-Snipe"
-    },
-    "spbduc": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "花嘴鴨",
-      "comNameEn": "Eastern Spot-billed Duck"
-    },
-    "houswi1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "小雨燕",
-      "comNameEn": "House Swift"
-    },
-    "commoo3": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "紅冠水雞",
-      "comNameEn": "Eurasian Moorhen"
-    },
-    "whbwat1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "白腹秧雞",
-      "comNameEn": "White-breasted Waterhen"
-    },
-    "graher1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "蒼鷺",
-      "comNameEn": "Gray Heron"
-    },
-    "comkin1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "翠鳥",
-      "comNameEn": "Common Kingfisher"
-    },
-    "yebpri1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "灰頭鷦鶯",
-      "comNameEn": "Yellow-bellied Prinia"
-    },
-    "barswa": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "家燕",
-      "comNameEn": "Barn Swallow"
-    },
-    "y00621": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "東方金腰燕",
-      "comNameEn": "Eastern Red-rumped Swallow"
-    },
-    "brhthr1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "赤腹鶇",
-      "comNameEn": "Brown-headed Thrush"
-    },
-    "whrsha": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "白腰鵲鴝",
-      "comNameEn": "White-rumped Shama"
-    },
-    "eutspa": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "麻雀",
-      "comNameEn": "Eurasian Tree Sparrow"
-    },
-    "rocpig": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "原鴿",
-      "comNameEn": "Rock Pigeon"
-    },
-    "recdov1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "紅鳩",
-      "comNameEn": "Red Collared-Dove"
-    },
-    "categr2": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "黃頭鷺",
-      "comNameEn": "Eastern Cattle-Egret"
-    },
-    "greegr": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "大白鷺",
-      "comNameEn": "Great Egret"
-    },
-    "perfal": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "遊隼",
-      "comNameEn": "Peregrine Falcon"
-    },
-    "bladro1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "大卷尾",
-      "comNameEn": "Black Drongo"
-    },
-    "orimag1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "喜鵲",
-      "comNameEn": "Oriental Magpie"
-    },
-    "plapri1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "褐頭鷦鶯",
-      "comNameEn": "Plain Prinia"
-    },
-    "pacswa1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "洋燕",
-      "comNameEn": "Pacific Swallow"
-    },
-    "livbul1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "白頭翁",
-      "comNameEn": "Light-vented Bulbul"
-    },
-    "chtsta2": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "灰頭椋鳥",
-      "comNameEn": "Chestnut-tailed Starling"
-    },
-    "commyn": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "家八哥",
-      "comNameEn": "Common Myna"
-    },
-    "whvmyn": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "白尾八哥",
-      "comNameEn": "Javan Myna"
-    },
-    "nutman": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "斑文鳥",
-      "comNameEn": "Scaly-breasted Munia"
-    },
-    "whiwag": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "白鶺鴒",
-      "comNameEn": "White Wagtail"
+      "comNameZh": "五色鳥",
+      "comNameEn": "Taiwan Barbet"
     },
     "asgsta1": {
       "firstSeen": "2026-01-01",
       "comNameZh": "亞洲輝椋鳥",
       "comNameEn": "Asian Glossy Starling"
     },
-    "comsan": {
+    "cremyn": {
       "firstSeen": "2026-01-01",
-      "comNameZh": "磯鷸",
-      "comNameEn": "Common Sandpiper"
+      "comNameZh": "八哥(冠八哥)",
+      "comNameEn": "Crested Myna"
     },
-    "strher1": {
+    "taiyuh1": {
       "firstSeen": "2026-01-01",
-      "comNameZh": "綠簑鷺",
-      "comNameEn": "Little Heron"
+      "comNameZh": "冠羽畫眉",
+      "comNameEn": "Taiwan Yuhina"
     },
-    "norsho": {
+    "grcgre1": {
       "firstSeen": "2026-01-01",
-      "comNameZh": "琵嘴鴨",
-      "comNameEn": "Northern Shoveler"
+      "comNameZh": "冠鸊鷉",
+      "comNameEn": "Great Crested Grebe"
     },
-    "eurwig": {
+    "tunbeg1": {
       "firstSeen": "2026-01-01",
-      "comNameZh": "赤頸鴨",
-      "comNameEn": "Eurasian Wigeon"
+      "comNameZh": "凍原豆雁",
+      "comNameEn": "Tundra Bean-Goose"
     },
-    "tufduc": {
+    "lobplo1": {
       "firstSeen": "2026-01-01",
-      "comNameZh": "鳳頭潛鴨",
-      "comNameEn": "Tufted Duck"
+      "comNameZh": "劍鴴",
+      "comNameEn": "Long-billed Plover"
     },
-    "eurcoo": {
+    "migwar": {
       "firstSeen": "2026-01-01",
-      "comNameZh": "白冠雞",
-      "comNameEn": "Eurasian Coot"
+      "comNameZh": "北蝗鶯",
+      "comNameEn": "Middendorff's Grasshopper Warbler"
     },
-    "lirplo": {
+    "eurspa1": {
       "firstSeen": "2026-01-01",
-      "comNameZh": "小環頸鴴",
-      "comNameEn": "Little Ringed Plover"
+      "comNameZh": "北雀鷹",
+      "comNameEn": "Eurasian Sparrowhawk"
     },
-    "grnsan": {
+    "savnig1": {
       "firstSeen": "2026-01-01",
-      "comNameZh": "白腰草鷸",
-      "comNameEn": "Green Sandpiper"
+      "comNameZh": "南亞夜鷹",
+      "comNameEn": "Savanna Nightjar"
     },
-    "litgre1": {
+    "rocpig": {
       "firstSeen": "2026-01-01",
-      "comNameZh": "小鸊鷉",
-      "comNameEn": "Little Grebe"
+      "comNameZh": "原鴿",
+      "comNameEn": "Rock Pigeon"
     },
-    "gycwoo1": {
+    "fotsun1": {
       "firstSeen": "2026-01-01",
-      "comNameZh": "小啄木",
-      "comNameEn": "Gray-capped Pygmy Woodpecker"
+      "comNameZh": "叉尾太陽鳥",
+      "comNameEn": "Fork-tailed Sunbird"
     },
-    "gytmar1": {
+    "fotswi": {
       "firstSeen": "2026-01-01",
-      "comNameZh": "棕沙燕",
-      "comNameEn": "Gray-throated Martin"
+      "comNameZh": "叉尾雨燕",
+      "comNameEn": "Pacific Swift"
     },
-    "grywag": {
+    "pieavo1": {
       "firstSeen": "2026-01-01",
-      "comNameZh": "灰鶺鴒",
-      "comNameEn": "Gray Wagtail"
+      "comNameZh": "反嘴鴴",
+      "comNameEn": "Pied Avocet"
     },
-    "bkfbun1": {
+    "tersan": {
       "firstSeen": "2026-01-01",
-      "comNameZh": "灰頭黑臉鵐",
-      "comNameEn": "Black-faced Bunting"
+      "comNameZh": "反嘴鷸",
+      "comNameEn": "Terek Sandpiper"
     },
-    "gnwtea": {
+    "chiegr": {
       "firstSeen": "2026-01-01",
-      "comNameZh": "小水鴨",
-      "comNameEn": "Green-winged Teal"
+      "comNameZh": "唐白鷺",
+      "comNameEn": "Chinese Egret"
     },
-    "ortdov": {
+    "scsmer1": {
       "firstSeen": "2026-01-01",
-      "comNameZh": "金背鳩",
-      "comNameEn": "Oriental Turtle-Dove"
+      "comNameZh": "唐秋沙",
+      "comNameEn": "Scaly-sided Merganser"
     },
-    "spodov": {
+    "orimag1": {
       "firstSeen": "2026-01-01",
-      "comNameZh": "珠頸斑鳩",
-      "comNameEn": "Spotted Dove"
+      "comNameZh": "喜鵲",
+      "comNameEn": "Oriental Magpie"
     },
-    "rubcra1": {
+    "eurwry": {
       "firstSeen": "2026-01-01",
-      "comNameZh": "緋秧雞",
-      "comNameEn": "Ruddy-breasted Crake"
+      "comNameZh": "地啄木",
+      "comNameEn": "Eurasian Wryneck"
+    },
+    "sacibi2": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "埃及聖䴉",
+      "comNameEn": "African Sacred Ibis"
+    },
+    "bcnher": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "夜鷺",
+      "comNameEn": "Black-crowned Night Heron"
+    },
+    "crseag1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "大冠鷲",
+      "comNameEn": "Crested Serpent-Eagle"
+    },
+    "bladro1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "大卷尾",
+      "comNameEn": "Black Drongo"
+    },
+    "sbsbab2": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "大彎嘴",
+      "comNameEn": "Black-necklaced Scimitar-Babbler"
+    },
+    "eurcur": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "大杓鷸",
+      "comNameEn": "Eurasian Curlew"
+    },
+    "grekno": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "大濱鷸",
+      "comNameEn": "Great Knot"
+    },
+    "greegr": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "大白鷺",
+      "comNameEn": "Great Egret"
+    },
+    "ricpip1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "大花鷚",
+      "comNameEn": "Richard's Pipit"
+    },
+    "whbwoo1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "大赤啄木",
+      "comNameEn": "White-backed Woodpecker"
+    },
+    "melthr": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "大陸畫眉",
+      "comNameEn": "Chinese Hwamei"
+    },
+    "grebit1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "大麻鷺",
+      "comNameEn": "Eurasian Bittern"
     },
     "pagplo": {
       "firstSeen": "2026-01-01",
       "comNameZh": "太平洋金斑鴴",
       "comNameEn": "Pacific Golden-Plover"
     },
+    "commyn": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "家八哥",
+      "comNameEn": "Common Myna"
+    },
+    "barswa": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "家燕",
+      "comNameEn": "Barn Swallow"
+    },
+    "taibeg1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "寒林豆雁",
+      "comNameEn": "Taiga Bean-Goose"
+    },
+    "asbfly": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "寬嘴鶲",
+      "comNameEn": "Asian Brown Flycatcher"
+    },
+    "litfor1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "小剪尾",
+      "comNameEn": "Little Forktail"
+    },
+    "brodro1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "小卷尾",
+      "comNameEn": "Bronzed Drongo"
+    },
+    "gycwoo1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "小啄木",
+      "comNameEn": "Gray-capped Pygmy Woodpecker"
+    },
+    "taiscb1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "小彎嘴",
+      "comNameEn": "Taiwan Scimitar-Babbler"
+    },
+    "yebgro1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "小桑鳲",
+      "comNameEn": "Yellow-billed Grosbeak"
+    },
+    "gnwtea": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "小水鴨",
+      "comNameEn": "Green-winged Teal"
+    },
+    "litsti": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "小濱鷸",
+      "comNameEn": "Little Stint"
+    },
+    "litter1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "小燕鷗",
+      "comNameEn": "Little Tern"
+    },
+    "lirplo": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "小環頸鴴",
+      "comNameEn": "Little Ringed Plover"
+    },
+    "lwfgoo": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "小白額雁",
+      "comNameEn": "Lesser White-fronted Goose"
+    },
+    "litegr": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "小白鷺",
+      "comNameEn": "Little Egret"
+    },
     "norlap": {
       "firstSeen": "2026-01-01",
       "comNameZh": "小辮鴴",
       "comNameEn": "Northern Lapwing"
     },
-    "kenplo1": {
+    "houswi1": {
       "firstSeen": "2026-01-01",
-      "comNameZh": "東方環頸鴴",
-      "comNameEn": "Kentish Plover"
+      "comNameZh": "小雨燕",
+      "comNameEn": "House Swift"
     },
-    "comsni": {
+    "orisky1": {
       "firstSeen": "2026-01-01",
-      "comNameZh": "田鷸",
-      "comNameEn": "Common Snipe"
+      "comNameZh": "小雲雀",
+      "comNameEn": "Oriental Skylark"
     },
-    "grecor": {
+    "marsan": {
       "firstSeen": "2026-01-01",
-      "comNameZh": "鸕鷀",
-      "comNameEn": "Great Cormorant"
+      "comNameZh": "小青足鷸",
+      "comNameEn": "Marsh Sandpiper"
     },
-    "blfspo1": {
+    "litbun": {
       "firstSeen": "2026-01-01",
-      "comNameZh": "黑面琵鷺",
-      "comNameEn": "Black-faced Spoonbill"
+      "comNameZh": "小鵐",
+      "comNameEn": "Little Bunting"
     },
-    "purher1": {
+    "bfbwar1": {
       "firstSeen": "2026-01-01",
-      "comNameZh": "紫鷺",
-      "comNameEn": "Purple Heron"
+      "comNameZh": "小鶯",
+      "comNameEn": "Brownish-flanked Bush Warbler"
     },
-    "osprey": {
+    "litgre1": {
       "firstSeen": "2026-01-01",
-      "comNameZh": "魚鷹",
-      "comNameEn": "Osprey"
+      "comNameZh": "小鸊鷉",
+      "comNameEn": "Little Grebe"
     },
-    "bkskit1": {
+    "lbbgul": {
       "firstSeen": "2026-01-01",
-      "comNameZh": "黑翅鳶",
-      "comNameEn": "Black-winged Kite"
+      "comNameZh": "小黑背鷗",
+      "comNameEn": "Lesser Black-backed Gull"
+    },
+    "shtsan": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "尖尾濱鷸",
+      "comNameEn": "Sharp-tailed Sandpiper"
+    },
+    "norpin": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "尖尾鴨",
+      "comNameEn": "Northern Pintail"
+    },
+    "rucbab1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "山紅頭",
+      "comNameEn": "Rufous-capped Babbler"
+    },
+    "russpa2": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "山麻雀",
+      "comNameEn": "Russet Sparrow"
+    },
+    "pacreh1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "岩鷺",
+      "comNameEn": "Pacific Reef-Heron"
+    },
+    "labcro1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "巨嘴鴉",
+      "comNameEn": "Large-billed Crow"
+    },
+    "cursan": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "彎嘴濱鷸",
+      "comNameEn": "Curlew Sandpiper"
+    },
+    "grpsni1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "彩鷸",
+      "comNameEn": "Greater Painted-Snipe"
+    },
+    "hoopoe": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "戴勝",
+      "comNameEn": "Common Hoopoe"
+    },
+    "batgod": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "斑尾鷸",
+      "comNameEn": "Bar-tailed Godwit"
+    },
+    "nutman": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "斑文鳥",
+      "comNameEn": "Scaly-breasted Munia"
+    },
+    "piekin1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "斑翡翠",
+      "comNameEn": "Pied Kingfisher"
+    },
+    "gresca": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "斑背潛鴨",
+      "comNameEn": "Greater Scaup"
+    },
+    "zebdov": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "斑馬鳩",
+      "comNameEn": "Zebra Dove"
+    },
+    "dusthr2": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "斑點鶇",
+      "comNameEn": "Dusky Thrush"
+    },
+    "swiwhe1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "斯氏繡眼(綠繡眼)",
+      "comNameEn": "Swinhoe's White-eye"
+    },
+    "japspa1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "日本松雀鷹",
+      "comNameEn": "Japanese Sparrowhawk"
+    },
+    "eurnut4": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "星鴉",
+      "comNameEn": "Southern Nutcracker"
+    },
+    "marori2": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "朱鸝",
+      "comNameEn": "Maroon Oriole"
+    },
+    "orrwar1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "東方大葦鶯",
+      "comNameEn": "Oriental Reed Warbler"
+    },
+    "ashmar1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "東方毛腳燕",
+      "comNameEn": "Asian House-Martin"
     },
     "easmah1": {
       "firstSeen": "2026-01-01",
       "comNameZh": "東方澤鵟",
       "comNameEn": "Eastern Marsh Harrier"
     },
+    "kenplo1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "東方環頸鴴",
+      "comNameEn": "Kentish Plover"
+    },
+    "oristo1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "東方白鸛",
+      "comNameEn": "Oriental Stork"
+    },
+    "orihob2": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "東方蜂鷹",
+      "comNameEn": "Oriental Honey-buzzard"
+    },
+    "y00621": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "東方金腰燕",
+      "comNameEn": "Eastern Red-rumped Swallow"
+    },
+    "combuz6": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "東方鵟",
+      "comNameEn": "Eastern Buzzard"
+    },
+    "eaywag": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "東方黃鶺鴒",
+      "comNameEn": "Eastern Yellow Wagtail"
+    },
+    "besra1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "松雀鷹",
+      "comNameEn": "Besra"
+    },
+    "eurjay1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "松鴉",
+      "comNameEn": "Eurasian Jay"
+    },
+    "blaeag1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "林鵰",
+      "comNameEn": "Black Eagle"
+    },
+    "cinbit1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "栗小鷺",
+      "comNameEn": "Cinnamon Bittern"
+    },
+    "burshr1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "栗背伯勞",
+      "comNameEn": "Burmese Shrike"
+    },
+    "cobrob1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "栗背林鴝",
+      "comNameEn": "Collared Bush-Robin"
+    },
+    "chebul1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "栗背短腳鵯",
+      "comNameEn": "Chestnut Bulbul"
+    },
+    "barbut1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "棕三趾鶉",
+      "comNameEn": "Barred Buttonquail"
+    },
+    "ruslau1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "棕噪眉",
+      "comNameEn": "Rusty Laughingthrush"
+    },
+    "zitcis1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "棕扇尾鶯",
+      "comNameEn": "Zitting Cisticola"
+    },
+    "gytmar1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "棕沙燕",
+      "comNameEn": "Gray-throated Martin"
+    },
+    "lotshr1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "棕背伯勞",
+      "comNameEn": "Long-tailed Shrike"
+    },
+    "rufwar1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "棕面鶯",
+      "comNameEn": "Rufous-faced Warbler"
+    },
+    "arcwar1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "極北柳鶯",
+      "comNameEn": "Arctic Warbler"
+    },
+    "grytre1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "樹鵲",
+      "comNameEn": "Gray Treepie"
+    },
+    "olbpip": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "樹鷚",
+      "comNameEn": "Olive-backed Pipit"
+    },
+    "orcwax": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "橙頰梅花雀",
+      "comNameEn": "Orange-cheeked Waxbill"
+    },
+    "comwax": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "橫斑梅花雀",
+      "comNameEn": "Common Waxbill"
+    },
+    "mewgul": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "歐亞海鷗",
+      "comNameEn": "Common Gull"
+    },
+    "skylar": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "歐亞雲雀",
+      "comNameEn": "Eurasian Skylark"
+    },
+    "eursta": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "歐洲椋鳥",
+      "comNameEn": "European Starling"
+    },
+    "phtjac1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "水雉",
+      "comNameEn": "Pheasant-tailed Jacana"
+    },
+    "chpher1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "池鷺",
+      "comNameEn": "Chinese Pond-Heron"
+    },
+    "brodip1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "河烏",
+      "comNameEn": "Brown Dipper"
+    },
+    "pacswa1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "洋燕",
+      "comNameEn": "Pacific Swallow"
+    },
+    "ybbwar1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "深山鶯",
+      "comNameEn": "Yellowish-bellied Bush Warbler"
+    },
+    "flamec1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "火冠戴菊鳥",
+      "comNameEn": "Flamecrest"
+    },
+    "grybus1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "灰叢鴝",
+      "comNameEn": "Gray Bushchat"
+    },
+    "gycmin1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "灰喉山椒鳥",
+      "comNameEn": "Gray-chinned Minivet"
+    },
+    "azwmag2": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "灰喜鵲",
+      "comNameEn": "Azure-winged Magpie"
+    },
+    "ashmin1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "灰山椒鳥",
+      "comNameEn": "Ashy Minivet"
+    },
+    "bkbplo": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "灰斑鴴",
+      "comNameEn": "Black-bellied Plover"
+    },
+    "aswpig1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "灰林鴿",
+      "comNameEn": "Ashy Wood-Pigeon"
+    },
     "norhar1": {
       "firstSeen": "2026-01-01",
       "comNameZh": "灰澤鵟",
       "comNameEn": "Hen Harrier"
+    },
+    "whssta2": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "灰背椋鳥",
+      "comNameEn": "White-shouldered Starling"
+    },
+    "gybthr1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "灰背鶇",
+      "comNameEn": "Gray-backed Thrush"
+    },
+    "slbrai1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "灰胸秧雞",
+      "comNameEn": "Slaty-breasted Rail"
+    },
+    "gragoo": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "灰雁",
+      "comNameEn": "Graylag Goose"
+    },
+    "chtsta2": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "灰頭椋鳥",
+      "comNameEn": "Chestnut-tailed Starling"
+    },
+    "yebpri1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "灰頭鷦鶯",
+      "comNameEn": "Yellow-bellied Prinia"
+    },
+    "bkfbun1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "灰頭黑臉鵐",
+      "comNameEn": "Black-faced Bunting"
+    },
+    "grywag": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "灰鶺鴒",
+      "comNameEn": "Gray Wagtail"
+    },
+    "stybul1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "烏頭翁",
+      "comNameEn": "Styan's Bulbul"
+    },
+    "coatit2": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "煤山雀",
+      "comNameEn": "Coal Tit"
+    },
+    "mouhae1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "熊鷹",
+      "comNameEn": "Mountain Hawk-Eagle"
+    },
+    "colcro1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "玉頸鴉",
+      "comNameEn": "Collared Crow"
+    },
+    "spodov": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "珠頸斑鳩",
+      "comNameEn": "Spotted Dove"
+    },
+    "norsho": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "琵嘴鴨",
+      "comNameEn": "Northern Shoveler"
+    },
+    "rinphe1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "環頸雉",
+      "comNameEn": "Ring-necked Pheasant"
+    },
+    "corplo": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "環頸鴴",
+      "comNameEn": "Common Ringed Plover"
+    },
+    "rusbun": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "田鵐",
+      "comNameEn": "Rustic Bunting"
+    },
+    "comsni": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "田鷸",
+      "comNameEn": "Common Snipe"
+    },
+    "lescou1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "番鵑",
+      "comNameEn": "Lesser Coucal"
+    },
+    "musduc": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "疣鼻棲鴨",
+      "comNameEn": "Muscovy Duck"
+    },
+    "eurcoo": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "白冠雞",
+      "comNameEn": "Eurasian Coot"
+    },
+    "indsil": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "白喉文鳥",
+      "comNameEn": "Indian Silverbill"
+    },
+    "whvmyn": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "白尾八哥",
+      "comNameEn": "Javan Myna"
+    },
+    "whtrob2": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "白尾鴝",
+      "comNameEn": "White-tailed Robin"
+    },
+    "blwthr1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "白斑紫嘯鶇",
+      "comNameEn": "Blue Whistling-Thrush"
+    },
+    "eurspo1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "白琵鷺",
+      "comNameEn": "Eurasian Spoonbill"
+    },
+    "colfin1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "白環鸚嘴鵯",
+      "comNameEn": "Collared Finchbill"
+    },
+    "gargan": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "白眉鴨",
+      "comNameEn": "Garganey"
+    },
+    "whesib1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "白耳畫眉",
+      "comNameEn": "White-eared Sibia"
+    },
+    "whrmun": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "白腰文鳥",
+      "comNameEn": "White-rumped Munia"
+    },
+    "grnsan": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "白腰草鷸",
+      "comNameEn": "Green Sandpiper"
+    },
+    "whrsha": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "白腰鵲鴝",
+      "comNameEn": "White-rumped Shama"
+    },
+    "whbwat1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "白腹秧雞",
+      "comNameEn": "White-breasted Waterhen"
+    },
+    "palthr1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "白腹鶇",
+      "comNameEn": "Pale Thrush"
+    },
+    "livbul1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "白頭翁",
+      "comNameEn": "Light-vented Bulbul"
+    },
+    "islthr24": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "白頭鶇",
+      "comNameEn": "Taiwan Thrush"
+    },
+    "whblau1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "白頰噪眉",
+      "comNameEn": "White-browed Laughingthrush"
+    },
+    "gwfgoo": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "白額雁",
+      "comNameEn": "Greater White-fronted Goose"
+    },
+    "whiwag": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "白鶺鴒",
+      "comNameEn": "White Wagtail"
+    },
+    "comsan": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "磯鷸",
+      "comNameEn": "Common Sandpiper"
+    },
+    "vitpar1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "粉紅鸚嘴",
+      "comNameEn": "Vinous-throated Parrotbill"
+    },
+    "commoo3": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "紅冠水雞",
+      "comNameEn": "Eurasian Moorhen"
+    },
+    "bkhgul": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "紅嘴鷗",
+      "comNameEn": "Black-headed Gull"
+    },
+    "blabul1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "紅嘴黑鵯",
+      "comNameEn": "Black Bulbul"
+    },
+    "brnshr": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "紅尾伯勞",
+      "comNameEn": "Brown Shrike"
+    },
+    "fibflo1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "紅胸啄花",
+      "comNameEn": "Fire-breasted Flowerpecker"
+    },
+    "rensti": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "紅胸濱鷸",
+      "comNameEn": "Red-necked Stint"
+    },
+    "rebmer": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "紅胸秋沙",
+      "comNameEn": "Red-breasted Merganser"
+    },
+    "redkno": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "紅腹濱鷸",
+      "comNameEn": "Red Knot"
+    },
+    "eurkes": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "紅隼",
+      "comNameEn": "Eurasian Kestrel"
+    },
+    "buhshr1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "紅頭伯勞",
+      "comNameEn": "Bull-headed Shrike"
+    },
+    "blttit2": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "紅頭山雀",
+      "comNameEn": "Black-throated Tit"
+    },
+    "compoc": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "紅頭潛鴨",
+      "comNameEn": "Common Pochard"
+    },
+    "whgpig1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "紅頭綠鳩",
+      "comNameEn": "Whistling Green-Pigeon"
+    },
+    "recdov1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "紅鳩",
+      "comNameEn": "Red Collared-Dove"
+    },
+    "taibar1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "紋翼畫眉",
+      "comNameEn": "Taiwan Barwing"
+    },
+    "purher1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "紫鷺",
+      "comNameEn": "Purple Heron"
+    },
+    "rebsta1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "絲光椋鳥",
+      "comNameEn": "Red-billed Starling"
+    },
+    "gyfwoo1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "綠啄木",
+      "comNameEn": "Gray-headed Woodpecker"
+    },
+    "plaflo2": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "綠啄花",
+      "comNameEn": "Plain Flowerpecker"
+    },
+    "whbyuh1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "綠畫眉",
+      "comNameEn": "White-bellied Erpornis"
+    },
+    "mallar3": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "綠頭鴨",
+      "comNameEn": "Mallard"
+    },
+    "whbpig1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "綠鳩",
+      "comNameEn": "White-bellied Green-Pigeon"
+    },
+    "rubcra1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "緋秧雞",
+      "comNameEn": "Ruddy-breasted Crake"
+    },
+    "gycful1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "繡眼畫眉",
+      "comNameEn": "Morrison's Fulvetta"
+    },
+    "falduc": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "羅文鴨",
+      "comNameEn": "Falcated Duck"
+    },
+    "emedov2": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "翠翼鳩",
+      "comNameEn": "Asian Emerald Dove"
+    },
+    "comkin1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "翠鳥",
+      "comNameEn": "Common Kingfisher"
+    },
+    "rudtur": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "翻石鷸",
+      "comNameEn": "Ruddy Turnstone"
+    },
+    "whwlau1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "臺灣噪眉",
+      "comNameEn": "White-whiskered Laughingthrush"
+    },
+    "taipar1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "臺灣山鷓鴣",
+      "comNameEn": "Taiwan Partridge"
+    },
+    "vinros3": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "臺灣朱雀",
+      "comNameEn": "Taiwan Rosefinch"
+    },
+    "taihwa1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "臺灣畫眉",
+      "comNameEn": "Taiwan Hwamei"
+    },
+    "ruclau2": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "臺灣白喉噪眉",
+      "comNameEn": "Rufous-crowned Laughingthrush"
+    },
+    "whbbur3": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "臺灣白眉林鴝",
+      "comNameEn": "Taiwan Bush-Robin"
+    },
+    "taibap1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "臺灣竹雞",
+      "comNameEn": "Taiwan Bamboo-Partridge"
+    },
+    "fowthr1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "臺灣紫嘯鶇",
+      "comNameEn": "Taiwan Whistling-Thrush"
+    },
+    "formag1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "臺灣藍鵲",
+      "comNameEn": "Taiwan Blue-Magpie"
+    },
+    "taiwrb1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "臺灣鷦眉",
+      "comNameEn": "Taiwan Cupwing"
+    },
+    "spbduc": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "花嘴鴨",
+      "comNameEn": "Eastern Spot-billed Duck"
     },
     "piehar1": {
       "firstSeen": "2026-01-01",
       "comNameZh": "花澤鵟",
       "comNameEn": "Pied Harrier"
     },
-    "lotshr1": {
+    "brambl": {
       "firstSeen": "2026-01-01",
-      "comNameZh": "棕背伯勞",
-      "comNameEn": "Long-tailed Shrike"
+      "comNameZh": "花雀",
+      "comNameEn": "Brambling"
+    },
+    "comshe": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "花鳧",
+      "comNameEn": "Common Shelduck"
+    },
+    "eurnut2": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "茶腹鳾",
+      "comNameEn": "Eurasian Nuthatch"
+    },
+    "casgul4": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "蒙古銀鷗",
+      "comNameEn": "Mongolian Gull"
+    },
+    "lessap2": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "蒙古鴴",
+      "comNameEn": "Siberian Sand-Plover"
+    },
+    "whtkin2": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "蒼翡翠",
+      "comNameEn": "White-throated Kingfisher"
+    },
+    "graher1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "蒼鷺",
+      "comNameEn": "Gray Heron"
+    },
+    "compea": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "藍孔雀",
+      "comNameEn": "Indian Peafowl"
+    },
+    "refblu1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "藍尾鴝",
+      "comNameEn": "Red-flanked Bluetail"
+    },
+    "burthr": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "藍磯鶇",
+      "comNameEn": "Blue Rock-Thrush"
+    },
+    "swiphe1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "藍腹鷴",
+      "comNameEn": "Swinhoe's Pheasant"
+    },
+    "euroys1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "蠣鴴",
+      "comNameEn": "Eurasian Oystercatcher"
+    },
+    "caster1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "裏海燕鷗",
+      "comNameEn": "Caspian Tern"
+    },
+    "grecou1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "褐翅鴉鵑",
+      "comNameEn": "Greater Coucal"
+    },
+    "duswar": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "褐色柳鶯",
+      "comNameEn": "Dusky Warbler"
+    },
+    "taiful1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "褐頭花翼",
+      "comNameEn": "Taiwan Fulvetta"
+    },
+    "plapri1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "褐頭鷦鶯",
+      "comNameEn": "Plain Prinia"
+    },
+    "veggul1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "西伯利亞銀鷗",
+      "comNameEn": "Vega Gull"
+    },
+    "norgre1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "諾氏鷸",
+      "comNameEn": "Nordmann's Greenshank"
+    },
+    "retpip": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "赤喉鷚",
+      "comNameEn": "Red-throated Pipit"
+    },
+    "chebun2": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "赤胸鵐",
+      "comNameEn": "Chestnut-eared Bunting"
+    },
+    "vartit3": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "赤腹山雀",
+      "comNameEn": "Chestnut-bellied Tit"
+    },
+    "brhthr1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "赤腹鶇",
+      "comNameEn": "Brown-headed Thrush"
+    },
+    "gadwal": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "赤膀鴨",
+      "comNameEn": "Gadwall"
+    },
+    "comred1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "赤足鷸",
+      "comNameEn": "Common Redshank"
+    },
+    "eurwig": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "赤頸鴨",
+      "comNameEn": "Eurasian Wigeon"
+    },
+    "perfal": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "遊隼",
+      "comNameEn": "Peregrine Falcon"
     },
     "manbuw1": {
       "firstSeen": "2026-01-01",
@@ -342,1230 +1157,315 @@
       "comNameZh": "野鴝",
       "comNameEn": "Siberian Rubythroat"
     },
-    "chemun": {
+    "origre": {
       "firstSeen": "2026-01-01",
-      "comNameZh": "黑頭文鳥",
-      "comNameEn": "Chestnut Munia"
+      "comNameZh": "金翅雀",
+      "comNameEn": "Oriental Greenfinch"
     },
-    "eaywag": {
+    "ortdov": {
       "firstSeen": "2026-01-01",
-      "comNameZh": "東方黃鶺鴒",
-      "comNameEn": "Eastern Yellow Wagtail"
-    },
-    "retpip": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "赤喉鷚",
-      "comNameEn": "Red-throated Pipit"
-    },
-    "swiwhe1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "斯氏繡眼(綠繡眼)",
-      "comNameEn": "Swinhoe's White-eye"
-    },
-    "blabul1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "紅嘴黑鵯",
-      "comNameEn": "Black Bulbul"
-    },
-    "swiphe1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "藍腹鷴",
-      "comNameEn": "Swinhoe's Pheasant"
-    },
-    "rufwar1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "棕面鶯",
-      "comNameEn": "Rufous-faced Warbler"
-    },
-    "taiyuh1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "冠羽畫眉",
-      "comNameEn": "Taiwan Yuhina"
-    },
-    "rucbab1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "山紅頭",
-      "comNameEn": "Rufous-capped Babbler"
-    },
-    "gycful1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "繡眼畫眉",
-      "comNameEn": "Morrison's Fulvetta"
-    },
-    "whesib1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "白耳畫眉",
-      "comNameEn": "White-eared Sibia"
-    },
-    "whtrob2": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "白尾鴝",
-      "comNameEn": "White-tailed Robin"
-    },
-    "coatit2": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "煤山雀",
-      "comNameEn": "Coal Tit"
-    },
-    "cobrob1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "栗背林鴝",
-      "comNameEn": "Collared Bush-Robin"
-    },
-    "pieavo1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "反嘴鴴",
-      "comNameEn": "Pied Avocet"
-    },
-    "caster1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "裏海燕鷗",
-      "comNameEn": "Caspian Tern"
-    },
-    "integr1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "中白鷺",
-      "comNameEn": "Medium Egret"
-    },
-    "combuz6": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "東方鵟",
-      "comNameEn": "Eastern Buzzard"
-    },
-    "eurkes": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "紅隼",
-      "comNameEn": "Eurasian Kestrel"
-    },
-    "colcro1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "玉頸鴉",
-      "comNameEn": "Collared Crow"
-    },
-    "skylar": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "歐亞雲雀",
-      "comNameEn": "Eurasian Skylark"
-    },
-    "stonec7": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "黑喉鴝",
-      "comNameEn": "Amur Stonechat"
-    },
-    "ricpip1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "大花鷚",
-      "comNameEn": "Richard's Pipit"
-    },
-    "taibar2": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "五色鳥",
-      "comNameEn": "Taiwan Barbet"
-    },
-    "blnmon1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "黑枕藍鶲",
-      "comNameEn": "Black-naped Monarch"
-    },
-    "taiscb1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "小彎嘴",
-      "comNameEn": "Taiwan Scimitar-Babbler"
+      "comNameZh": "金背鳩",
+      "comNameEn": "Oriental Turtle-Dove"
     },
     "plured1": {
       "firstSeen": "2026-01-01",
       "comNameZh": "鉛色水鶇",
       "comNameEn": "Plumbeous Redstart"
     },
-    "japspa1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "日本松雀鷹",
-      "comNameEn": "Japanese Sparrowhawk"
-    },
-    "whssta2": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "灰背椋鳥",
-      "comNameEn": "White-shouldered Starling"
-    },
-    "falduc": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "羅文鴨",
-      "comNameEn": "Falcated Duck"
-    },
-    "norpin": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "尖尾鴨",
-      "comNameEn": "Northern Pintail"
-    },
-    "grecou1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "褐翅鴉鵑",
-      "comNameEn": "Greater Coucal"
-    },
-    "grcgre1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "冠鸊鷉",
-      "comNameEn": "Great Crested Grebe"
-    },
-    "hoopoe": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "戴勝",
-      "comNameEn": "Common Hoopoe"
-    },
-    "whtkin2": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "蒼翡翠",
-      "comNameEn": "White-throated Kingfisher"
-    },
-    "piekin1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "斑翡翠",
-      "comNameEn": "Pied Kingfisher"
-    },
-    "duswar": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "褐色柳鶯",
-      "comNameEn": "Dusky Warbler"
-    },
-    "bkcsta1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "黑領椋鳥",
-      "comNameEn": "Black-collared Starling"
-    },
-    "cremyn": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "八哥(冠八哥)",
-      "comNameEn": "Crested Myna"
-    },
-    "taipar1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "臺灣山鷓鴣",
-      "comNameEn": "Taiwan Partridge"
-    },
-    "mikphe1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "黑長尾雉",
-      "comNameEn": "Mikado Pheasant"
-    },
-    "cinbit1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "栗小鷺",
-      "comNameEn": "Cinnamon Bittern"
-    },
-    "rebsta1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "絲光椋鳥",
-      "comNameEn": "Red-billed Starling"
-    },
-    "eargre": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "黑頸鸊鷉",
-      "comNameEn": "Eared Grebe"
-    },
-    "grytre1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "樹鵲",
-      "comNameEn": "Gray Treepie"
-    },
-    "brodro1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "小卷尾",
-      "comNameEn": "Bronzed Drongo"
-    },
-    "magrob": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "鵲鴝",
-      "comNameEn": "Oriental Magpie-Robin"
-    },
-    "taibap1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "臺灣竹雞",
-      "comNameEn": "Taiwan Bamboo-Partridge"
-    },
-    "cregos1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "鳳頭蒼鷹",
-      "comNameEn": "Crested Goshawk"
-    },
-    "arcwar1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "極北柳鶯",
-      "comNameEn": "Arctic Warbler"
-    },
-    "vitpar1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "粉紅鸚嘴",
-      "comNameEn": "Vinous-throated Parrotbill"
-    },
-    "taihwa1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "臺灣畫眉",
-      "comNameEn": "Taiwan Hwamei"
-    },
-    "dunlin": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "黑腹濱鷸",
-      "comNameEn": "Dunlin"
-    },
-    "veggul1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "西伯利亞銀鷗",
-      "comNameEn": "Vega Gull"
-    },
-    "lbbgul": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "小黑背鷗",
-      "comNameEn": "Lesser Black-backed Gull"
-    },
-    "whiter2": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "黑腹燕鷗",
-      "comNameEn": "Whiskered Tern"
-    },
-    "brnshr": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "紅尾伯勞",
-      "comNameEn": "Brown Shrike"
-    },
-    "whblau1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "白頰噪眉",
-      "comNameEn": "White-browed Laughingthrush"
-    },
-    "bkbplo": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "灰斑鴴",
-      "comNameEn": "Black-bellied Plover"
-    },
-    "eurcur": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "大杓鷸",
-      "comNameEn": "Eurasian Curlew"
-    },
-    "rensti": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "紅胸濱鷸",
-      "comNameEn": "Red-necked Stint"
-    },
-    "bkhgul": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "紅嘴鷗",
-      "comNameEn": "Black-headed Gull"
-    },
-    "gubter2": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "鷗嘴燕鷗",
-      "comNameEn": "Gull-billed Tern"
-    },
-    "eurspo1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "白琵鷺",
-      "comNameEn": "Eurasian Spoonbill"
-    },
-    "gwfgoo": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "白額雁",
-      "comNameEn": "Greater White-fronted Goose"
-    },
-    "lwfgoo": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "小白額雁",
-      "comNameEn": "Lesser White-fronted Goose"
-    },
-    "taibeg1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "寒林豆雁",
-      "comNameEn": "Taiga Bean-Goose"
-    },
-    "tunbeg1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "凍原豆雁",
-      "comNameEn": "Tundra Bean-Goose"
-    },
-    "stybul1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "烏頭翁",
-      "comNameEn": "Styan's Bulbul"
-    },
-    "batgod": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "斑尾鷸",
-      "comNameEn": "Bar-tailed Godwit"
-    },
-    "bktgod": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "黑尾鷸",
-      "comNameEn": "Black-tailed Godwit"
-    },
-    "marsan": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "小青足鷸",
-      "comNameEn": "Marsh Sandpiper"
-    },
-    "bktgul": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "黑尾鷗",
-      "comNameEn": "Black-tailed Gull"
-    },
-    "compea": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "藍孔雀",
-      "comNameEn": "Indian Peafowl"
-    },
-    "woosan": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "鷹斑鷸",
-      "comNameEn": "Wood Sandpiper"
-    },
-    "indsil": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "白喉文鳥",
-      "comNameEn": "Indian Silverbill"
-    },
-    "labcro1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "巨嘴鴉",
-      "comNameEn": "Large-billed Crow"
-    },
-    "grbtit1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "青背山雀",
-      "comNameEn": "Green-backed Tit"
-    },
-    "yeltit2": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "黃山雀",
-      "comNameEn": "Taiwan Yellow Tit"
-    },
-    "blttit2": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "紅頭山雀",
-      "comNameEn": "Black-throated Tit"
-    },
-    "eurnut2": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "茶腹鳾",
-      "comNameEn": "Eurasian Nuthatch"
-    },
-    "fibflo1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "紅胸啄花",
-      "comNameEn": "Fire-breasted Flowerpecker"
-    },
-    "whrmun": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "白腰文鳥",
-      "comNameEn": "White-rumped Munia"
-    },
-    "lessap2": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "蒙古鴴",
-      "comNameEn": "Siberian Sand-Plover"
-    },
-    "comred1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "赤足鷸",
-      "comNameEn": "Common Redshank"
-    },
-    "yebwar3": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "黃眉柳鶯",
-      "comNameEn": "Yellow-browed Warbler"
-    },
-    "taibar1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "紋翼畫眉",
-      "comNameEn": "Taiwan Barwing"
-    },
-    "fowthr1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "臺灣紫嘯鶇",
-      "comNameEn": "Taiwan Whistling-Thrush"
-    },
-    "emedov2": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "翠翼鳩",
-      "comNameEn": "Asian Emerald Dove"
-    },
-    "temsti": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "丹氏濱鷸",
-      "comNameEn": "Temminck's Stint"
-    },
-    "lotsti": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "長趾濱鷸",
-      "comNameEn": "Long-toed Stint"
-    },
-    "rinphe1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "環頸雉",
-      "comNameEn": "Ring-necked Pheasant"
-    },
-    "x00744": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "白頭翁x烏頭翁(雜交)",
-      "comNameEn": "Light-vented x Styan's Bulbul (hybrid)"
-    },
-    "daured1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "黃尾鴝",
-      "comNameEn": "Daurian Redstart"
-    },
-    "burthr": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "藍磯鶇",
-      "comNameEn": "Blue Rock-Thrush"
-    },
-    "brodip1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "河烏",
-      "comNameEn": "Brown Dipper"
-    },
-    "litfor1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "小剪尾",
-      "comNameEn": "Little Forktail"
-    },
-    "barbut1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "棕三趾鶉",
-      "comNameEn": "Barred Buttonquail"
-    },
-    "blakit1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "黑鳶",
-      "comNameEn": "Black Kite"
-    },
-    "russpa2": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "山麻雀",
-      "comNameEn": "Russet Sparrow"
-    },
-    "formag1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "臺灣藍鵲",
-      "comNameEn": "Taiwan Blue-Magpie"
-    },
-    "crseag1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "大冠鷲",
-      "comNameEn": "Crested Serpent-Eagle"
-    },
-    "sbsbab2": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "大彎嘴",
-      "comNameEn": "Black-necklaced Scimitar-Babbler"
-    },
-    "whbyuh1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "綠畫眉",
-      "comNameEn": "White-bellied Erpornis"
-    },
-    "gycmin1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "灰喉山椒鳥",
-      "comNameEn": "Gray-chinned Minivet"
-    },
-    "casgul4": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "蒙古銀鷗",
-      "comNameEn": "Mongolian Gull"
-    },
-    "asbfly": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "寬嘴鶲",
-      "comNameEn": "Asian Brown Flycatcher"
-    },
-    "olbpip": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "樹鷚",
-      "comNameEn": "Olive-backed Pipit"
-    },
-    "orisky1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "小雲雀",
-      "comNameEn": "Oriental Skylark"
-    },
-    "zitcis1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "棕扇尾鶯",
-      "comNameEn": "Zitting Cisticola"
-    },
-    "litbun": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "小鵐",
-      "comNameEn": "Little Bunting"
-    },
-    "zebdov": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "斑馬鳩",
-      "comNameEn": "Zebra Dove"
-    },
-    "cosowl1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "領角鴞",
-      "comNameEn": "Collared Scops-Owl"
-    },
-    "palthr1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "白腹鶇",
-      "comNameEn": "Pale Thrush"
-    },
-    "mallar3": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "綠頭鴨",
-      "comNameEn": "Mallard"
-    },
-    "blnori1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "黃鸝",
-      "comNameEn": "Black-naped Oriole"
-    },
-    "azwmag2": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "灰喜鵲",
-      "comNameEn": "Azure-winged Magpie"
-    },
-    "besra1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "松雀鷹",
-      "comNameEn": "Besra"
-    },
-    "eurspa1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "北雀鷹",
-      "comNameEn": "Eurasian Sparrowhawk"
-    },
-    "aswpig1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "灰林鴿",
-      "comNameEn": "Ashy Wood-Pigeon"
-    },
-    "mouhae1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "熊鷹",
-      "comNameEn": "Mountain Hawk-Eagle"
-    },
-    "eurnut4": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "星鴉",
-      "comNameEn": "Southern Nutcracker"
-    },
-    "ruclau2": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "臺灣白喉噪眉",
-      "comNameEn": "Rufous-crowned Laughingthrush"
-    },
-    "vivnil3": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "黃腹琉璃",
-      "comNameEn": "Taiwan Vivid Niltava"
-    },
-    "gresca": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "斑背潛鴨",
-      "comNameEn": "Greater Scaup"
-    },
-    "gyfwoo1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "綠啄木",
-      "comNameEn": "Gray-headed Woodpecker"
-    },
-    "stelio1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "黃胸藪眉",
-      "comNameEn": "Taiwan Liocichla"
-    },
-    "comshe": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "花鳧",
-      "comNameEn": "Common Shelduck"
-    },
-    "faecur": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "黦鷸",
-      "comNameEn": "Far Eastern Curlew"
-    },
-    "rudtur": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "翻石鷸",
-      "comNameEn": "Ruddy Turnstone"
-    },
-    "vartit3": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "赤腹山雀",
-      "comNameEn": "Chestnut-bellied Tit"
-    },
-    "ashmin1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "灰山椒鳥",
-      "comNameEn": "Ashy Minivet"
-    },
-    "ashmar1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "東方毛腳燕",
-      "comNameEn": "Asian House-Martin"
-    },
-    "ruslau1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "棕噪眉",
-      "comNameEn": "Rusty Laughingthrush"
-    },
-    "snbfly1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "黃胸青鶲",
-      "comNameEn": "Snowy-browed Flycatcher"
-    },
-    "plaflo2": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "綠啄花",
-      "comNameEn": "Plain Flowerpecker"
-    },
-    "blwthr1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "白斑紫嘯鶇",
-      "comNameEn": "Blue Whistling-Thrush"
-    },
-    "blkswa": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "黑天鵝",
-      "comNameEn": "Black Swan"
-    },
-    "musduc": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "疣鼻棲鴨",
-      "comNameEn": "Muscovy Duck"
-    },
-    "melthr": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "大陸畫眉",
-      "comNameEn": "Chinese Hwamei"
-    },
-    "orihob2": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "東方蜂鷹",
-      "comNameEn": "Oriental Honey-buzzard"
-    },
-    "colfin1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "白環鸚嘴鵯",
-      "comNameEn": "Collared Finchbill"
-    },
-    "whwlau1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "臺灣噪眉",
-      "comNameEn": "White-whiskered Laughingthrush"
-    },
-    "whimbr5": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "中杓鷸",
-      "comNameEn": "Eurasian Whimbrel"
-    },
-    "spored": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "鶴鷸",
-      "comNameEn": "Spotted Redshank"
-    },
-    "yelbit": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "黃小鷺",
-      "comNameEn": "Yellow Bittern"
-    },
-    "lescou1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "番鵑",
-      "comNameEn": "Lesser Coucal"
-    },
-    "brambl": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "花雀",
-      "comNameEn": "Brambling"
-    },
-    "rusbun": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "田鵐",
-      "comNameEn": "Rustic Bunting"
-    },
-    "yetbun1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "黃喉鵐",
-      "comNameEn": "Yellow-throated Bunting"
-    },
-    "chibla1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "中國黑鶇",
-      "comNameEn": "Chinese Blackbird"
-    },
-    "fotsun1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "叉尾太陽鳥",
-      "comNameEn": "Fork-tailed Sunbird"
-    },
-    "mewgul": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "歐亞海鷗",
-      "comNameEn": "Common Gull"
-    },
-    "yebgro1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "小桑鳲",
-      "comNameEn": "Yellow-billed Grosbeak"
-    },
-    "dusful1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "頭烏線",
-      "comNameEn": "Dusky Fulvetta"
-    },
-    "whbpig1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "綠鳩",
-      "comNameEn": "White-bellied Green-Pigeon"
-    },
-    "eurjay1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "松鴉",
-      "comNameEn": "Eurasian Jay"
-    },
-    "palwar5": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "黃腰柳鶯",
-      "comNameEn": "Pallas's Leaf Warbler"
-    },
-    "flamec1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "火冠戴菊鳥",
-      "comNameEn": "Flamecrest"
-    },
-    "blasto1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "黑鸛",
-      "comNameEn": "Black Stork"
-    },
-    "whbwoo1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "大赤啄木",
-      "comNameEn": "White-backed Woodpecker"
-    },
-    "sander": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "三趾濱鷸",
-      "comNameEn": "Sanderling"
-    },
-    "litter1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "小燕鷗",
-      "comNameEn": "Little Tern"
-    },
-    "rebmer": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "紅胸秋沙",
-      "comNameEn": "Red-breasted Merganser"
-    },
-    "scsmer1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "唐秋沙",
-      "comNameEn": "Scaly-sided Merganser"
-    },
-    "saugul2": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "黑嘴鷗",
-      "comNameEn": "Saunders's Gull"
-    },
-    "refblu1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "藍尾鴝",
-      "comNameEn": "Red-flanked Bluetail"
-    },
-    "compoc": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "紅頭潛鴨",
-      "comNameEn": "Common Pochard"
-    },
-    "slbrai1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "灰胸秧雞",
-      "comNameEn": "Slaty-breasted Rail"
-    },
-    "blaeag1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "林鵰",
-      "comNameEn": "Black Eagle"
-    },
-    "cursan": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "彎嘴濱鷸",
-      "comNameEn": "Curlew Sandpiper"
-    },
-    "gadwal": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "赤膀鴨",
-      "comNameEn": "Gadwall"
-    },
-    "phtjac1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "水雉",
-      "comNameEn": "Pheasant-tailed Jacana"
-    },
-    "litsti": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "小濱鷸",
-      "comNameEn": "Little Stint"
-    },
-    "buhshr1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "紅頭伯勞",
-      "comNameEn": "Bull-headed Shrike"
-    },
-    "taiwrb1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "臺灣鷦眉",
-      "comNameEn": "Taiwan Cupwing"
-    },
-    "ybbwar1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "深山鶯",
-      "comNameEn": "Yellowish-bellied Bush Warbler"
-    },
-    "taiful1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "褐頭花翼",
-      "comNameEn": "Taiwan Fulvetta"
-    },
-    "chpher1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "池鷺",
-      "comNameEn": "Chinese Pond-Heron"
-    },
-    "gybthr1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "灰背鶇",
-      "comNameEn": "Gray-backed Thrush"
-    },
-    "gohcis1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "黃頭扇尾鶯",
-      "comNameEn": "Golden-headed Cisticola"
-    },
-    "sibpip1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "黃腹鷚",
-      "comNameEn": "Siberian Pipit"
-    },
-    "mdxmal1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "疣鼻棲鴨x綠頭鴨(雜交)",
-      "comNameEn": "Muscovy Duck x Mallard (hybrid)"
-    },
-    "grybus1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "灰叢鴝",
-      "comNameEn": "Gray Bushchat"
-    },
-    "whbbur3": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "臺灣白眉林鴝",
-      "comNameEn": "Taiwan Bush-Robin"
-    },
-    "tersan": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "反嘴鷸",
-      "comNameEn": "Terek Sandpiper"
-    },
-    "chebul1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "栗背短腳鵯",
-      "comNameEn": "Chestnut Bulbul"
-    },
-    "fotswi": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "叉尾雨燕",
-      "comNameEn": "Pacific Swift"
-    },
-    "marori2": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "朱鸝",
-      "comNameEn": "Maroon Oriole"
-    },
     "grsplo": {
       "firstSeen": "2026-01-01",
       "comNameZh": "鐵嘴鴴",
       "comNameEn": "Greater Sand-Plover"
-    },
-    "grebit1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "大麻鷺",
-      "comNameEn": "Eurasian Bittern"
-    },
-    "chebun2": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "赤胸鵐",
-      "comNameEn": "Chestnut-eared Bunting"
-    },
-    "migwar": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "北蝗鶯",
-      "comNameEn": "Middendorff's Grasshopper Warbler"
-    },
-    "gargan": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "白眉鴨",
-      "comNameEn": "Garganey"
-    },
-    "euroys1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "蠣鴴",
-      "comNameEn": "Eurasian Oystercatcher"
-    },
-    "pacreh1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "岩鷺",
-      "comNameEn": "Pacific Reef-Heron"
-    },
-    "chiegr": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "唐白鷺",
-      "comNameEn": "Chinese Egret"
-    },
-    "eurwry": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "地啄木",
-      "comNameEn": "Eurasian Wryneck"
-    },
-    "origre": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "金翅雀",
-      "comNameEn": "Oriental Greenfinch"
-    },
-    "comwax": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "橫斑梅花雀",
-      "comNameEn": "Common Waxbill"
-    },
-    "vinros3": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "臺灣朱雀",
-      "comNameEn": "Taiwan Rosefinch"
-    },
-    "dusthr2": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "斑點鶇",
-      "comNameEn": "Dusky Thrush"
-    },
-    "norgre1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "諾氏鷸",
-      "comNameEn": "Nordmann's Greenshank"
-    },
-    "grekno": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "大濱鷸",
-      "comNameEn": "Great Knot"
-    },
-    "redkno": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "紅腹濱鷸",
-      "comNameEn": "Red Knot"
-    },
-    "shtsan": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "尖尾濱鷸",
-      "comNameEn": "Sharp-tailed Sandpiper"
-    },
-    "swagoo1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "鴻雁",
-      "comNameEn": "Swan Goose"
-    },
-    "orcwax": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "橙頰梅花雀",
-      "comNameEn": "Orange-cheeked Waxbill"
-    },
-    "grcter1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "鳳頭燕鷗",
-      "comNameEn": "Great Crested Tern"
-    },
-    "islthr24": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "白頭鶇",
-      "comNameEn": "Taiwan Thrush"
-    },
-    "corplo": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "環頸鴴",
-      "comNameEn": "Common Ringed Plover"
     },
     "lobdow": {
       "firstSeen": "2026-01-01",
       "comNameZh": "長嘴半蹼鷸",
       "comNameEn": "Long-billed Dowitcher"
     },
-    "yebbun1": {
+    "lotsti": {
       "firstSeen": "2026-01-01",
-      "comNameZh": "黃眉鵐",
-      "comNameEn": "Yellow-browed Bunting"
-    },
-    "bkwcus1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "黑翅山椒鳥",
-      "comNameEn": "Black-winged Cuckooshrike"
-    },
-    "lobplo1": {
-      "firstSeen": "2026-01-01",
-      "comNameZh": "劍鴴",
-      "comNameEn": "Long-billed Plover"
+      "comNameZh": "長趾濱鷸",
+      "comNameEn": "Long-toed Stint"
     },
     "bbrwar1": {
       "firstSeen": "2026-01-01",
       "comNameZh": "雙眉葦鶯",
       "comNameEn": "Black-browed Reed Warbler"
     },
-    "eursta": {
+    "grbtit1": {
       "firstSeen": "2026-01-01",
-      "comNameZh": "歐洲椋鳥",
-      "comNameEn": "European Starling"
+      "comNameZh": "青背山雀",
+      "comNameEn": "Green-backed Tit"
     },
-    "orrwar1": {
+    "comgre": {
       "firstSeen": "2026-01-01",
-      "comNameZh": "東方大葦鶯",
-      "comNameEn": "Oriental Reed Warbler"
+      "comNameZh": "青足鷸",
+      "comNameEn": "Common Greenshank"
     },
-    "sacibi2": {
+    "cosowl1": {
       "firstSeen": "2026-01-01",
-      "comNameZh": "埃及聖䴉",
-      "comNameEn": "African Sacred Ibis"
+      "comNameZh": "領角鴞",
+      "comNameEn": "Collared Scops-Owl"
     },
-    "whgpig1": {
+    "dusful1": {
       "firstSeen": "2026-01-01",
-      "comNameZh": "紅頭綠鳩",
-      "comNameEn": "Whistling Green-Pigeon"
+      "comNameZh": "頭烏線",
+      "comNameEn": "Dusky Fulvetta"
     },
-    "burshr1": {
+    "bkwsti": {
       "firstSeen": "2026-01-01",
-      "comNameZh": "栗背伯勞",
-      "comNameEn": "Burmese Shrike"
+      "comNameZh": "高蹺鴴",
+      "comNameEn": "Black-winged Stilt"
     },
-    "gragoo": {
+    "osprey": {
       "firstSeen": "2026-01-01",
-      "comNameZh": "灰雁",
-      "comNameEn": "Graylag Goose"
+      "comNameZh": "魚鷹",
+      "comNameEn": "Osprey"
     },
-    "oristo1": {
+    "tufduc": {
       "firstSeen": "2026-01-01",
-      "comNameZh": "東方白鸛",
-      "comNameEn": "Oriental Stork"
+      "comNameZh": "鳳頭潛鴨",
+      "comNameEn": "Tufted Duck"
     },
-    "combuz1": {
+    "grcter1": {
       "firstSeen": "2026-01-01",
-      "comNameZh": "歐亞鵟",
-      "comNameEn": "Common Buzzard"
+      "comNameZh": "鳳頭燕鷗",
+      "comNameEn": "Great Crested Tern"
     },
-    "bfbwar1": {
+    "cregos1": {
       "firstSeen": "2026-01-01",
-      "comNameZh": "小鶯",
-      "comNameEn": "Brownish-flanked Bush Warbler"
+      "comNameZh": "鳳頭蒼鷹",
+      "comNameEn": "Crested Goshawk"
     },
-    "eurwoo": {
-      "firstSeen": "2026-01-02",
-      "comNameZh": "山鷸",
-      "comNameEn": "Eurasian Woodcock"
+    "swagoo1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "鴻雁",
+      "comNameEn": "Swan Goose"
     },
-    "ferduc": {
-      "firstSeen": "2026-01-02",
-      "comNameZh": "白眼潛鴨",
-      "comNameEn": "Ferruginous Duck"
+    "magrob": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "鵲鴝",
+      "comNameEn": "Oriental Magpie-Robin"
     },
-    "commer": {
-      "firstSeen": "2026-01-02",
-      "comNameZh": "川秋沙",
-      "comNameEn": "Common Merganser"
+    "spored": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "鶴鷸",
+      "comNameEn": "Spotted Redshank"
     },
-    "pagwar1": {
-      "firstSeen": "2026-01-02",
-      "comNameZh": "小蝗鶯",
-      "comNameEn": "Pallas's Grasshopper Warbler"
+    "gubter2": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "鷗嘴燕鷗",
+      "comNameEn": "Gull-billed Tern"
     },
-    "vibsta4": {
-      "firstSeen": "2026-01-02",
-      "comNameZh": "葡萄胸椋鳥",
-      "comNameEn": "Vinous-breasted Myna"
+    "woosan": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "鷹斑鷸",
+      "comNameEn": "Wood Sandpiper"
     },
-    "gyttat1": {
-      "firstSeen": "2026-01-02",
-      "comNameZh": "黃足鷸",
-      "comNameEn": "Gray-tailed Tattler"
+    "grecor": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "鸕鷀",
+      "comNameEn": "Great Cormorant"
     },
-    "ruff": {
-      "firstSeen": "2026-01-02",
-      "comNameZh": "流蘇鷸",
-      "comNameEn": "Ruff"
+    "eutspa": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "麻雀",
+      "comNameEn": "Eurasian Tree Sparrow"
+    },
+    "yetbun1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "黃喉鵐",
+      "comNameEn": "Yellow-throated Bunting"
+    },
+    "mosowl2": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "黃嘴角鴞",
+      "comNameEn": "Mountain Scops-Owl"
+    },
+    "yelbit": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "黃小鷺",
+      "comNameEn": "Yellow Bittern"
+    },
+    "daured1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "黃尾鴝",
+      "comNameEn": "Daurian Redstart"
+    },
+    "yeltit2": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "黃山雀",
+      "comNameEn": "Taiwan Yellow Tit"
+    },
+    "yebwar3": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "黃眉柳鶯",
+      "comNameEn": "Yellow-browed Warbler"
+    },
+    "yebbun1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "黃眉鵐",
+      "comNameEn": "Yellow-browed Bunting"
+    },
+    "stelio1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "黃胸藪眉",
+      "comNameEn": "Taiwan Liocichla"
+    },
+    "snbfly1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "黃胸青鶲",
+      "comNameEn": "Snowy-browed Flycatcher"
+    },
+    "palwar5": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "黃腰柳鶯",
+      "comNameEn": "Pallas's Leaf Warbler"
+    },
+    "vivnil3": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "黃腹琉璃",
+      "comNameEn": "Taiwan Vivid Niltava"
+    },
+    "sibpip1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "黃腹鷚",
+      "comNameEn": "Siberian Pipit"
+    },
+    "gohcis1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "黃頭扇尾鶯",
+      "comNameEn": "Golden-headed Cisticola"
+    },
+    "categr2": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "黃頭鷺",
+      "comNameEn": "Eastern Cattle-Egret"
+    },
+    "blnori1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "黃鸝",
+      "comNameEn": "Black-naped Oriole"
+    },
+    "manher1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "黑冠麻鷺",
+      "comNameEn": "Malayan Night Heron"
+    },
+    "stonec7": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "黑喉鴝",
+      "comNameEn": "Amur Stonechat"
+    },
+    "saugul2": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "黑嘴鷗",
+      "comNameEn": "Saunders's Gull"
+    },
+    "blkswa": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "黑天鵝",
+      "comNameEn": "Black Swan"
+    },
+    "bktgul": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "黑尾鷗",
+      "comNameEn": "Black-tailed Gull"
+    },
+    "bktgod": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "黑尾鷸",
+      "comNameEn": "Black-tailed Godwit"
+    },
+    "blnmon1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "黑枕藍鶲",
+      "comNameEn": "Black-naped Monarch"
+    },
+    "bkwcus1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "黑翅山椒鳥",
+      "comNameEn": "Black-winged Cuckooshrike"
+    },
+    "bkskit1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "黑翅鳶",
+      "comNameEn": "Black-winged Kite"
+    },
+    "dunlin": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "黑腹濱鷸",
+      "comNameEn": "Dunlin"
+    },
+    "whiter2": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "黑腹燕鷗",
+      "comNameEn": "Whiskered Tern"
+    },
+    "mikphe1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "黑長尾雉",
+      "comNameEn": "Mikado Pheasant"
+    },
+    "blfspo1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "黑面琵鷺",
+      "comNameEn": "Black-faced Spoonbill"
+    },
+    "bkcsta1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "黑領椋鳥",
+      "comNameEn": "Black-collared Starling"
+    },
+    "chemun": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "黑頭文鳥",
+      "comNameEn": "Chestnut Munia"
+    },
+    "eargre": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "黑頸鸊鷉",
+      "comNameEn": "Eared Grebe"
+    },
+    "blakit1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "黑鳶",
+      "comNameEn": "Black Kite"
+    },
+    "blasto1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "黑鸛",
+      "comNameEn": "Black Stork"
+    },
+    "faecur": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "黦鷸",
+      "comNameEn": "Far Eastern Curlew"
     },
     "japcor1": {
       "firstSeen": "2026-01-02",
       "comNameZh": "丹氏鸕鷀",
       "comNameEn": "Japanese Cormorant"
     },
-    "larcuc11": {
+    "harlew1": {
       "firstSeen": "2026-01-02",
-      "comNameZh": "花翅山椒鳥",
-      "comNameEn": "Oriental Cuckooshrike"
+      "comNameZh": "哈氏冠紋柳鶯",
+      "comNameEn": "Hartert's Leaf Warbler"
     },
-    "sibnee1": {
+    "pagwar1": {
       "firstSeen": "2026-01-02",
-      "comNameZh": "灰喉針尾雨燕",
-      "comNameEn": "Silver-backed Needletail"
+      "comNameZh": "小蝗鶯",
+      "comNameEn": "Pallas's Grasshopper Warbler"
     },
-    "grewar2": {
+    "eurwoo": {
       "firstSeen": "2026-01-02",
-      "comNameZh": "雙斑綠柳鶯",
-      "comNameEn": "Two-barred Warbler"
+      "comNameZh": "山鷸",
+      "comNameEn": "Eurasian Woodcock"
     },
-    "taifly1": {
+    "commer": {
       "firstSeen": "2026-01-02",
-      "comNameZh": "紅喉鶲",
-      "comNameEn": "Taiga Flycatcher"
-    },
-    "yelbun1": {
-      "firstSeen": "2026-01-02",
-      "comNameZh": "野鵐",
-      "comNameEn": "Yellow Bunting"
-    },
-    "brobul1": {
-      "firstSeen": "2026-01-02",
-      "comNameZh": "褐鷽",
-      "comNameEn": "Brown Bullfinch"
-    },
-    "sohbul1": {
-      "firstSeen": "2026-01-02",
-      "comNameZh": "白喉紅臀鵯",
-      "comNameEn": "Sooty-headed Bulbul"
-    },
-    "lessap1": {
-      "firstSeen": "2026-01-02",
-      "comNameZh": "青藏鴴",
-      "comNameEn": "Tibetan Sand-Plover"
-    },
-    "eyethr": {
-      "firstSeen": "2026-01-02",
-      "comNameZh": "白眉鶇",
-      "comNameEn": "Eyebrowed Thrush"
-    },
-    "eursis": {
-      "firstSeen": "2026-01-02",
-      "comNameZh": "黃雀",
-      "comNameEn": "Eurasian Siskin"
-    },
-    "whcsta1": {
-      "firstSeen": "2026-01-02",
-      "comNameZh": "灰椋鳥",
-      "comNameEn": "White-cheeked Starling"
-    },
-    "redpha1": {
-      "firstSeen": "2026-01-02",
-      "comNameZh": "灰瓣足鷸",
-      "comNameEn": "Red Phalarope"
+      "comNameZh": "川秋沙",
+      "comNameEn": "Common Merganser"
     },
     "baitea": {
       "firstSeen": "2026-01-02",
@@ -1577,55 +1477,130 @@
       "comNameZh": "東亞秧雞",
       "comNameEn": "Brown-cheeked Rail"
     },
-    "rubwar1": {
+    "ruff": {
       "firstSeen": "2026-01-02",
-      "comNameZh": "赤褐蝗鶯",
-      "comNameEn": "Russet Bush Warbler"
+      "comNameZh": "流蘇鷸",
+      "comNameEn": "Ruff"
     },
-    "harlew1": {
+    "sibnee1": {
       "firstSeen": "2026-01-02",
-      "comNameZh": "哈氏冠紋柳鶯",
-      "comNameEn": "Hartert's Leaf Warbler"
+      "comNameZh": "灰喉針尾雨燕",
+      "comNameEn": "Silver-backed Needletail"
+    },
+    "whcsta1": {
+      "firstSeen": "2026-01-02",
+      "comNameZh": "灰椋鳥",
+      "comNameEn": "White-cheeked Starling"
+    },
+    "redpha1": {
+      "firstSeen": "2026-01-02",
+      "comNameZh": "灰瓣足鷸",
+      "comNameEn": "Red Phalarope"
+    },
+    "sohbul1": {
+      "firstSeen": "2026-01-02",
+      "comNameZh": "白喉紅臀鵯",
+      "comNameEn": "Sooty-headed Bulbul"
+    },
+    "eyethr": {
+      "firstSeen": "2026-01-02",
+      "comNameZh": "白眉鶇",
+      "comNameEn": "Eyebrowed Thrush"
+    },
+    "ferduc": {
+      "firstSeen": "2026-01-02",
+      "comNameZh": "白眼潛鴨",
+      "comNameEn": "Ferruginous Duck"
     },
     "asistu1": {
       "firstSeen": "2026-01-02",
       "comNameZh": "短尾鶯",
       "comNameEn": "Asian Stubtail"
     },
-    "japqua": {
-      "firstSeen": "2026-01-03",
-      "comNameZh": "鵪鶉",
-      "comNameEn": "Japanese Quail"
+    "taifly1": {
+      "firstSeen": "2026-01-02",
+      "comNameZh": "紅喉鶲",
+      "comNameEn": "Taiga Flycatcher"
+    },
+    "larcuc11": {
+      "firstSeen": "2026-01-02",
+      "comNameZh": "花翅山椒鳥",
+      "comNameEn": "Oriental Cuckooshrike"
+    },
+    "vibsta4": {
+      "firstSeen": "2026-01-02",
+      "comNameZh": "葡萄胸椋鳥",
+      "comNameEn": "Vinous-breasted Myna"
+    },
+    "brobul1": {
+      "firstSeen": "2026-01-02",
+      "comNameZh": "褐鷽",
+      "comNameEn": "Brown Bullfinch"
+    },
+    "rubwar1": {
+      "firstSeen": "2026-01-02",
+      "comNameZh": "赤褐蝗鶯",
+      "comNameEn": "Russet Bush Warbler"
+    },
+    "yelbun1": {
+      "firstSeen": "2026-01-02",
+      "comNameZh": "野鵐",
+      "comNameEn": "Yellow Bunting"
+    },
+    "grewar2": {
+      "firstSeen": "2026-01-02",
+      "comNameZh": "雙斑綠柳鶯",
+      "comNameEn": "Two-barred Warbler"
+    },
+    "lessap1": {
+      "firstSeen": "2026-01-02",
+      "comNameZh": "青藏鴴",
+      "comNameEn": "Tibetan Sand-Plover"
+    },
+    "gyttat1": {
+      "firstSeen": "2026-01-02",
+      "comNameZh": "黃足鷸",
+      "comNameEn": "Gray-tailed Tattler"
+    },
+    "eursis": {
+      "firstSeen": "2026-01-02",
+      "comNameZh": "黃雀",
+      "comNameEn": "Eurasian Siskin"
     },
     "grefla3": {
       "firstSeen": "2026-01-03",
       "comNameZh": "大紅鸛",
       "comNameEn": "Greater Flamingo"
     },
-    "bltlau1": {
+    "houcro1": {
       "firstSeen": "2026-01-03",
-      "comNameZh": "黑喉噪眉",
-      "comNameEn": "Black-throated Laughingthrush"
+      "comNameZh": "家烏鴉",
+      "comNameEn": "House Crow"
     },
-    "gyfbuz1": {
+    "brbsan": {
       "firstSeen": "2026-01-03",
-      "comNameZh": "灰面鵟鷹",
-      "comNameEn": "Gray-faced Buzzard"
+      "comNameZh": "寬嘴鷸",
+      "comNameEn": "Broad-billed Sandpiper"
     },
-    "golpar2": {
+    "forwag1": {
       "firstSeen": "2026-01-03",
-      "comNameZh": "黃羽鸚嘴",
-      "comNameEn": "Golden Parrotbill"
+      "comNameZh": "山鶺鴒",
+      "comNameEn": "Forest Wagtail"
+    },
+    "strpri8": {
+      "firstSeen": "2026-01-03",
+      "comNameZh": "斑紋鷦鶯",
+      "comNameEn": "Striped Prinia"
     },
     "japrob2": {
       "firstSeen": "2026-01-03",
       "comNameZh": "日本歌鴝",
       "comNameEn": "Japanese Robin"
     },
-    "baepoc1": {
+    "gyfbuz1": {
       "firstSeen": "2026-01-03",
-      "comNameZh": "青頭潛鴨",
-      "comNameEn": "Baer's Pochard"
+      "comNameZh": "灰面鵟鷹",
+      "comNameEn": "Gray-faced Buzzard"
     },
     "japthr1": {
       "firstSeen": "2026-01-03",
@@ -1637,75 +1612,30 @@
       "comNameZh": "白腹毛腳燕",
       "comNameEn": "Siberian House-Martin"
     },
-    "forwag1": {
+    "norboo1": {
       "firstSeen": "2026-01-03",
-      "comNameZh": "山鶺鴒",
-      "comNameEn": "Forest Wagtail"
+      "comNameZh": "褐鷹鴞",
+      "comNameEn": "Northern Boobook"
+    },
+    "japqua": {
+      "firstSeen": "2026-01-03",
+      "comNameZh": "鵪鶉",
+      "comNameEn": "Japanese Quail"
     },
     "winwre4": {
       "firstSeen": "2026-01-03",
       "comNameZh": "鷦鷯",
       "comNameEn": "Eurasian Wren"
     },
-    "brbsan": {
+    "golpar2": {
       "firstSeen": "2026-01-03",
-      "comNameZh": "寬嘴鷸",
-      "comNameEn": "Broad-billed Sandpiper"
+      "comNameZh": "黃羽鸚嘴",
+      "comNameEn": "Golden Parrotbill"
     },
-    "strpri8": {
+    "bltlau1": {
       "firstSeen": "2026-01-03",
-      "comNameZh": "斑紋鷦鶯",
-      "comNameEn": "Striped Prinia"
-    },
-    "houcro1": {
-      "firstSeen": "2026-01-03",
-      "comNameZh": "家烏鴉",
-      "comNameEn": "House Crow"
-    },
-    "norboo1": {
-      "firstSeen": "2026-01-03",
-      "comNameZh": "褐鷹鴞",
-      "comNameEn": "Northern Boobook"
-    },
-    "vilwea1": {
-      "firstSeen": "2026-01-04",
-      "comNameZh": "黑頭織雀",
-      "comNameEn": "Village Weaver"
-    },
-    "blueth": {
-      "firstSeen": "2026-01-04",
-      "comNameZh": "藍喉鴝",
-      "comNameEn": "Bluethroat"
-    },
-    "scathr2": {
-      "firstSeen": "2026-01-04",
-      "comNameZh": "白氏地鶇",
-      "comNameEn": "White's Thrush"
-    },
-    "hacdro1": {
-      "firstSeen": "2026-01-04",
-      "comNameZh": "髮冠卷尾",
-      "comNameEn": "Hair-crested Drongo"
-    },
-    "gysfly1": {
-      "firstSeen": "2026-01-04",
-      "comNameZh": "灰斑鶲",
-      "comNameEn": "Gray-streaked Flycatcher"
-    },
-    "rebfly": {
-      "firstSeen": "2026-01-04",
-      "comNameZh": "紅胸鶲",
-      "comNameEn": "Red-breasted Flycatcher"
-    },
-    "whtnee": {
-      "firstSeen": "2026-01-04",
-      "comNameZh": "白喉針尾雨燕",
-      "comNameEn": "White-throated Needletail"
-    },
-    "gyhbul5": {
-      "firstSeen": "2026-01-04",
-      "comNameZh": "灰鷽",
-      "comNameEn": "Taiwan Bullfinch"
+      "comNameZh": "黑喉噪眉",
+      "comNameEn": "Black-throated Laughingthrush"
     },
     "radwar1": {
       "firstSeen": "2026-01-04",
@@ -1717,10 +1647,55 @@
       "comNameZh": "毛足鵟",
       "comNameEn": "Rough-legged Hawk"
     },
-    "manduc": {
+    "gysfly1": {
+      "firstSeen": "2026-01-04",
+      "comNameZh": "灰斑鶲",
+      "comNameEn": "Gray-streaked Flycatcher"
+    },
+    "gyhbul5": {
+      "firstSeen": "2026-01-04",
+      "comNameZh": "灰鷽",
+      "comNameEn": "Taiwan Bullfinch"
+    },
+    "whtnee": {
+      "firstSeen": "2026-01-04",
+      "comNameZh": "白喉針尾雨燕",
+      "comNameEn": "White-throated Needletail"
+    },
+    "scathr2": {
+      "firstSeen": "2026-01-04",
+      "comNameZh": "白氏地鶇",
+      "comNameEn": "White's Thrush"
+    },
+    "rebfly": {
+      "firstSeen": "2026-01-04",
+      "comNameZh": "紅胸鶲",
+      "comNameEn": "Red-breasted Flycatcher"
+    },
+    "blueth": {
+      "firstSeen": "2026-01-04",
+      "comNameZh": "藍喉鴝",
+      "comNameEn": "Bluethroat"
+    },
+    "hacdro1": {
+      "firstSeen": "2026-01-04",
+      "comNameZh": "髮冠卷尾",
+      "comNameEn": "Hair-crested Drongo"
+    },
+    "vilwea1": {
+      "firstSeen": "2026-01-04",
+      "comNameZh": "黑頭織雀",
+      "comNameEn": "Village Weaver"
+    },
+    "whbsho6": {
       "firstSeen": "2026-01-05",
-      "comNameZh": "鴛鴦",
-      "comNameEn": "Mandarin Duck"
+      "comNameZh": "小翼鶇",
+      "comNameEn": "Taiwan Shortwing"
+    },
+    "chptit1": {
+      "firstSeen": "2026-01-05",
+      "comNameZh": "攀雀",
+      "comNameEn": "Chinese Penduline-Tit"
     },
     "japwax1": {
       "firstSeen": "2026-01-05",
@@ -1737,65 +1712,35 @@
       "comNameZh": "臺灣叢樹鶯",
       "comNameEn": "Taiwan Bush Warbler"
     },
-    "whbsho6": {
+    "manduc": {
       "firstSeen": "2026-01-05",
-      "comNameZh": "小翼鶇",
-      "comNameEn": "Taiwan Shortwing"
-    },
-    "chptit1": {
-      "firstSeen": "2026-01-05",
-      "comNameZh": "攀雀",
-      "comNameEn": "Chinese Penduline-Tit"
-    },
-    "dusthr1": {
-      "firstSeen": "2026-01-06",
-      "comNameZh": "紅尾鶇",
-      "comNameEn": "Naumann's Thrush"
-    },
-    "narfly2": {
-      "firstSeen": "2026-01-06",
-      "comNameZh": "黃眉黃鶲",
-      "comNameEn": "Narcissus Flycatcher"
-    },
-    "scathr8": {
-      "firstSeen": "2026-01-06",
-      "comNameZh": "虎斑地鶇",
-      "comNameEn": "Scaly Thrush"
+      "comNameZh": "鴛鴦",
+      "comNameEn": "Mandarin Duck"
     },
     "alpacc1": {
       "firstSeen": "2026-01-06",
       "comNameZh": "岩鷚",
       "comNameEn": "Alpine Accentor"
     },
-    "orsowl": {
-      "firstSeen": "2026-01-07",
-      "comNameZh": "東方角鴞",
-      "comNameEn": "Oriental Scops-Owl"
+    "dusthr1": {
+      "firstSeen": "2026-01-06",
+      "comNameZh": "紅尾鶇",
+      "comNameEn": "Naumann's Thrush"
+    },
+    "scathr8": {
+      "firstSeen": "2026-01-06",
+      "comNameZh": "虎斑地鶇",
+      "comNameEn": "Scaly Thrush"
+    },
+    "narfly2": {
+      "firstSeen": "2026-01-06",
+      "comNameZh": "黃眉黃鶲",
+      "comNameEn": "Narcissus Flycatcher"
     },
     "swisni1": {
       "firstSeen": "2026-01-07",
       "comNameZh": "中地鷸",
       "comNameEn": "Swinhoe's Snipe"
-    },
-    "datthr1": {
-      "firstSeen": "2026-01-07",
-      "comNameZh": "黑頸鶇",
-      "comNameEn": "Black-throated Thrush"
-    },
-    "relgul2": {
-      "firstSeen": "2026-01-07",
-      "comNameZh": "遺鷗",
-      "comNameEn": "Relict Gull"
-    },
-    "schbit1": {
-      "firstSeen": "2026-01-07",
-      "comNameZh": "秋小鷺",
-      "comNameEn": "Schrenck's Bittern"
-    },
-    "blhbun1": {
-      "firstSeen": "2026-01-07",
-      "comNameZh": "黑頭鵐",
-      "comNameEn": "Black-headed Bunting"
     },
     "placuc1": {
       "firstSeen": "2026-01-07",
@@ -1807,30 +1752,40 @@
       "comNameZh": "半蹼鷸",
       "comNameEn": "Asian Dowitcher"
     },
-    "ashdro1": {
-      "firstSeen": "2026-01-07",
-      "comNameZh": "灰卷尾",
-      "comNameEn": "Ashy Drongo"
-    },
     "uplbuz1": {
       "firstSeen": "2026-01-07",
       "comNameZh": "大鵟",
       "comNameEn": "Upland Buzzard"
     },
+    "orsowl": {
+      "firstSeen": "2026-01-07",
+      "comNameZh": "東方角鴞",
+      "comNameEn": "Oriental Scops-Owl"
+    },
+    "ashdro1": {
+      "firstSeen": "2026-01-07",
+      "comNameZh": "灰卷尾",
+      "comNameEn": "Ashy Drongo"
+    },
+    "schbit1": {
+      "firstSeen": "2026-01-07",
+      "comNameZh": "秋小鷺",
+      "comNameEn": "Schrenck's Bittern"
+    },
+    "relgul2": {
+      "firstSeen": "2026-01-07",
+      "comNameZh": "遺鷗",
+      "comNameEn": "Relict Gull"
+    },
+    "blhbun1": {
+      "firstSeen": "2026-01-07",
+      "comNameZh": "黑頭鵐",
+      "comNameEn": "Black-headed Bunting"
+    },
     "lessho1": {
       "firstSeen": "2026-01-08",
       "comNameZh": "白喉短翅鶇",
       "comNameEn": "Lesser Shortwing"
-    },
-    "x00654": {
-      "firstSeen": "2026-01-09",
-      "comNameZh": "鳳頭潛鴨x斑背潛鴨(雜交)",
-      "comNameEn": "Tufted Duck x Greater Scaup (hybrid)"
-    },
-    "spbsan1": {
-      "firstSeen": "2026-01-09",
-      "comNameZh": "琵嘴鷸",
-      "comNameEn": "Spoon-billed Sandpiper"
     },
     "bcfdov1": {
       "firstSeen": "2026-01-09",
@@ -1842,6 +1797,16 @@
       "comNameZh": "日本樹鶯",
       "comNameEn": "Japanese Bush Warbler"
     },
+    "spbsan1": {
+      "firstSeen": "2026-01-09",
+      "comNameZh": "琵嘴鷸",
+      "comNameEn": "Spoon-billed Sandpiper"
+    },
+    "strshe": {
+      "firstSeen": "2026-01-10",
+      "comNameZh": "大水薙鳥",
+      "comNameEn": "Streaked Shearwater"
+    },
     "brebul1": {
       "firstSeen": "2026-01-10",
       "comNameZh": "棕耳鵯",
@@ -1852,130 +1817,110 @@
       "comNameZh": "白秋沙",
       "comNameEn": "Smew"
     },
-    "comgol": {
-      "firstSeen": "2026-01-10",
-      "comNameZh": "鵲鴨",
-      "comNameEn": "Common Goldeneye"
-    },
-    "strshe": {
-      "firstSeen": "2026-01-10",
-      "comNameZh": "大水薙鳥",
-      "comNameEn": "Streaked Shearwater"
-    },
-    "gyhlap1": {
-      "firstSeen": "2026-01-10",
-      "comNameZh": "跳鴴",
-      "comNameEn": "Gray-headed Lapwing"
-    },
     "whwter": {
       "firstSeen": "2026-01-10",
       "comNameZh": "白翅黑燕鷗",
       "comNameEn": "White-winged Tern"
-    },
-    "cintit13": {
-      "firstSeen": "2026-01-10",
-      "comNameZh": "白頰山雀",
-      "comNameEn": "Asian Tit"
-    },
-    "blckin1": {
-      "firstSeen": "2026-01-10",
-      "comNameZh": "黑頭翡翠",
-      "comNameEn": "Black-capped Kingfisher"
     },
     "colkin1": {
       "firstSeen": "2026-01-10",
       "comNameZh": "白領翡翠",
       "comNameEn": "Collared Kingfisher"
     },
-    "eurhob": {
-      "firstSeen": "2026-01-11",
-      "comNameZh": "燕隼",
-      "comNameEn": "Eurasian Hobby"
+    "cintit13": {
+      "firstSeen": "2026-01-10",
+      "comNameZh": "白頰山雀",
+      "comNameEn": "Asian Tit"
+    },
+    "gyhlap1": {
+      "firstSeen": "2026-01-10",
+      "comNameZh": "跳鴴",
+      "comNameEn": "Gray-headed Lapwing"
+    },
+    "comgol": {
+      "firstSeen": "2026-01-10",
+      "comNameZh": "鵲鴨",
+      "comNameEn": "Common Goldeneye"
+    },
+    "blckin1": {
+      "firstSeen": "2026-01-10",
+      "comNameZh": "黑頭翡翠",
+      "comNameEn": "Black-capped Kingfisher"
     },
     "banswa": {
       "firstSeen": "2026-01-11",
       "comNameZh": "灰沙燕",
       "comNameEn": "Bank Swallow"
     },
-    "norgos1": {
+    "eurhob": {
       "firstSeen": "2026-01-11",
-      "comNameZh": "蒼鷹",
-      "comNameEn": "Eurasian Goshawk"
-    },
-    "grseag1": {
-      "firstSeen": "2026-01-11",
-      "comNameZh": "花鵰",
-      "comNameEn": "Greater Spotted Eagle"
-    },
-    "x00421": {
-      "firstSeen": "2026-01-11",
-      "comNameZh": "赤頸鴨x葡萄胸鴨(雜交)",
-      "comNameEn": "Eurasian x American Wigeon (hybrid)"
+      "comNameZh": "燕隼",
+      "comNameEn": "Eurasian Hobby"
     },
     "whteag": {
       "firstSeen": "2026-01-11",
       "comNameZh": "白尾海鵰",
       "comNameEn": "White-tailed Eagle"
     },
-    "bkfalb": {
-      "firstSeen": "2026-01-13",
-      "comNameZh": "黑腳信天翁",
-      "comNameEn": "Black-footed Albatross"
+    "grseag1": {
+      "firstSeen": "2026-01-11",
+      "comNameZh": "花鵰",
+      "comNameEn": "Greater Spotted Eagle"
     },
-    "layalb": {
-      "firstSeen": "2026-01-13",
-      "comNameZh": "黑背信天翁",
-      "comNameEn": "Laysan Albatross"
-    },
-    "x00835": {
-      "firstSeen": "2026-01-13",
-      "comNameZh": "花嘴鴨x綠頭鴨(雜交)",
-      "comNameEn": "Eastern Spot-billed Duck x Mallard (hybrid)"
+    "norgos1": {
+      "firstSeen": "2026-01-11",
+      "comNameZh": "蒼鷹",
+      "comNameEn": "Eurasian Goshawk"
     },
     "rorpar": {
       "firstSeen": "2026-01-13",
       "comNameZh": "紅領綠鸚鵡",
       "comNameEn": "Rose-ringed Parakeet"
     },
-    "succoc": {
-      "firstSeen": "2026-01-14",
-      "comNameZh": "葵花鳳頭鸚鵡",
-      "comNameEn": "Sulphur-crested Cockatoo"
+    "layalb": {
+      "firstSeen": "2026-01-13",
+      "comNameZh": "黑背信天翁",
+      "comNameEn": "Laysan Albatross"
     },
-    "shtalb": {
-      "firstSeen": "2026-01-14",
-      "comNameZh": "短尾信天翁",
-      "comNameEn": "Short-tailed Albatross"
-    },
-    "masboo": {
-      "firstSeen": "2026-01-14",
-      "comNameZh": "藍臉鰹鳥",
-      "comNameEn": "Masked Booby"
+    "bkfalb": {
+      "firstSeen": "2026-01-13",
+      "comNameZh": "黑腳信天翁",
+      "comNameEn": "Black-footed Albatross"
     },
     "brnboo": {
       "firstSeen": "2026-01-14",
       "comNameZh": "白腹鰹鳥",
       "comNameEn": "Brown Booby"
     },
-    "budger": {
-      "firstSeen": "2026-01-15",
-      "comNameZh": "虎皮鸚鵡",
-      "comNameEn": "Budgerigar"
+    "shtalb": {
+      "firstSeen": "2026-01-14",
+      "comNameZh": "短尾信天翁",
+      "comNameEn": "Short-tailed Albatross"
+    },
+    "succoc": {
+      "firstSeen": "2026-01-14",
+      "comNameZh": "葵花鳳頭鸚鵡",
+      "comNameEn": "Sulphur-crested Cockatoo"
+    },
+    "masboo": {
+      "firstSeen": "2026-01-14",
+      "comNameZh": "藍臉鰹鳥",
+      "comNameEn": "Masked Booby"
     },
     "asikoe2": {
       "firstSeen": "2026-01-15",
       "comNameZh": "噪鵑",
       "comNameEn": "Asian Koel"
     },
+    "budger": {
+      "firstSeen": "2026-01-15",
+      "comNameZh": "虎皮鸚鵡",
+      "comNameEn": "Budgerigar"
+    },
     "chcter2": {
       "firstSeen": "2026-01-15",
       "comNameZh": "黑嘴端鳳頭燕鷗",
       "comNameEn": "Chinese Crested Tern"
-    },
-    "yebtit4": {
-      "firstSeen": "2026-01-16",
-      "comNameZh": "黃腹山雀",
-      "comNameEn": "Yellow-bellied Tit"
     },
     "kerpet": {
       "firstSeen": "2026-01-16",
@@ -1987,25 +1932,25 @@
       "comNameZh": "普通珠雞",
       "comNameEn": "Helmeted Guineafowl"
     },
-    "comter": {
-      "firstSeen": "2026-01-17",
-      "comNameZh": "燕鷗",
-      "comNameEn": "Common Tern"
+    "yebtit4": {
+      "firstSeen": "2026-01-16",
+      "comNameZh": "黃腹山雀",
+      "comNameEn": "Yellow-bellied Tit"
     },
     "tunswa": {
       "firstSeen": "2026-01-17",
       "comNameZh": "小天鵝",
       "comNameEn": "Tundra Swan"
     },
+    "comter": {
+      "firstSeen": "2026-01-17",
+      "comNameZh": "燕鷗",
+      "comNameEn": "Common Tern"
+    },
     "baicra1": {
       "firstSeen": "2026-01-18",
       "comNameZh": "小秧雞",
       "comNameEn": "Baillon's Crake"
-    },
-    "tancoc1": {
-      "firstSeen": "2026-01-18",
-      "comNameZh": "戈芬氏鳳頭鸚鵡",
-      "comNameEn": "Tanimbar Corella"
     },
     "yebbun": {
       "firstSeen": "2026-01-18",
@@ -2022,40 +1967,20 @@
       "comNameZh": "小椋鳥",
       "comNameEn": "Chestnut-cheeked Starling"
     },
-    "x00838": {
-      "firstSeen": "2026-01-22",
-      "comNameZh": "白眼潛鴨x青頭潛鴨(雜交)",
-      "comNameEn": "Ferruginous Duck x Baer's Pochard (hybrid)"
-    },
-    "x00776": {
-      "firstSeen": "2026-01-23",
-      "comNameZh": "灰雁x鴻雁(雜交)",
-      "comNameEn": "Graylag x Swan Goose (hybrid)"
-    },
     "rudshe": {
       "firstSeen": "2026-01-23",
       "comNameZh": "瀆鳧",
       "comNameEn": "Ruddy Shelduck"
-    },
-    "x00816": {
-      "firstSeen": "2026-01-25",
-      "comNameZh": "大陸畫眉x臺灣畫眉(雜交)",
-      "comNameEn": "Chinese x Taiwan Hwamei (hybrid)"
-    },
-    "bkfbun2": {
-      "firstSeen": "2026-01-25",
-      "comNameZh": "黃喉黑臉鵐",
-      "comNameEn": "Masked Bunting"
     },
     "oripip1": {
       "firstSeen": "2026-01-25",
       "comNameZh": "稻田鷚",
       "comNameEn": "Paddyfield Pipit"
     },
-    "merlin": {
-      "firstSeen": "2026-01-27",
-      "comNameZh": "灰背隼",
-      "comNameEn": "Merlin"
+    "bkfbun2": {
+      "firstSeen": "2026-01-25",
+      "comNameZh": "黃喉黑臉鵐",
+      "comNameEn": "Masked Bunting"
     },
     "slbgul": {
       "firstSeen": "2026-01-27",
@@ -2071,11 +1996,6 @@
       "firstSeen": "2026-01-29",
       "comNameZh": "大杜鵑",
       "comNameEn": "Common Cuckoo"
-    },
-    "peflov": {
-      "firstSeen": "2026-01-29",
-      "comNameZh": "桃臉愛情鳥",
-      "comNameEn": "Rosy-faced Lovebird"
     },
     "sllcra1": {
       "firstSeen": "2026-01-30",
@@ -2102,55 +2022,45 @@
       "comNameZh": "黃頭鶺鴒",
       "comNameEn": "Citrine Wagtail"
     },
-    "retthr1": {
+    "rutrob1": {
       "firstSeen": "2026-02-08",
-      "comNameZh": "赤頸鶇",
-      "comNameEn": "Red-throated Thrush"
+      "comNameZh": "紅尾歌鴝",
+      "comNameEn": "Rufous-tailed Robin"
     },
     "verfly4": {
       "firstSeen": "2026-02-08",
       "comNameZh": "銅藍鶲",
       "comNameEn": "Verditer Flycatcher"
     },
-    "rutrob1": {
-      "firstSeen": "2026-02-08",
-      "comNameZh": "紅尾歌鴝",
-      "comNameEn": "Rufous-tailed Robin"
-    },
-    "pitsni": {
+    "comros": {
       "firstSeen": "2026-02-09",
-      "comNameZh": "針尾鷸",
-      "comNameEn": "Pin-tailed Snipe"
+      "comNameZh": "普通朱雀",
+      "comNameEn": "Common Rosefinch"
     },
     "sooter1": {
       "firstSeen": "2026-02-09",
       "comNameZh": "烏領燕鷗",
       "comNameEn": "Sooty Tern"
     },
-    "comros": {
+    "pitsni": {
       "firstSeen": "2026-02-09",
-      "comNameZh": "普通朱雀",
-      "comNameEn": "Common Rosefinch"
+      "comNameZh": "針尾鷸",
+      "comNameEn": "Pin-tailed Snipe"
     },
     "briter1": {
       "firstSeen": "2026-02-10",
       "comNameZh": "白眉燕鷗",
       "comNameEn": "Bridled Tern"
     },
-    "pelcor": {
-      "firstSeen": "2026-02-11",
-      "comNameZh": "海鸕鷀",
-      "comNameEn": "Pelagic Cormorant"
+    "goldcr1": {
+      "firstSeen": "2026-02-13",
+      "comNameZh": "戴菊鳥",
+      "comNameEn": "Goldcrest"
     },
     "gybshr1": {
       "firstSeen": "2026-02-13",
       "comNameZh": "灰背伯勞",
       "comNameEn": "Gray-backed Shrike"
-    },
-    "goldcr1": {
-      "firstSeen": "2026-02-13",
-      "comNameZh": "戴菊鳥",
-      "comNameEn": "Goldcrest"
     },
     "carcro1": {
       "firstSeen": "2026-02-15",
@@ -2162,16 +2072,6 @@
       "comNameZh": "日菲繡眼",
       "comNameEn": "Warbling White-eye"
     },
-    "wbseag1": {
-      "firstSeen": "2026-02-15",
-      "comNameZh": "白腹海鵰",
-      "comNameEn": "White-bellied Sea-Eagle"
-    },
-    "diadov1": {
-      "firstSeen": "2026-02-17",
-      "comNameZh": "雪花姬地鳩",
-      "comNameEn": "Diamond Dove"
-    },
     "bnhgul1": {
       "firstSeen": "2026-02-20",
       "comNameZh": "棕頭鷗",
@@ -2181,11 +2081,6 @@
       "firstSeen": "2026-02-20",
       "comNameZh": "白眉黃鶲",
       "comNameEn": "Mugimaki Flycatcher"
-    },
-    "grewar3": {
-      "firstSeen": "2026-02-20",
-      "comNameZh": "暗綠柳鶯",
-      "comNameEn": "Greenish Warbler"
     },
     "flfshe": {
       "firstSeen": "2026-02-22",
@@ -2217,40 +2112,30 @@
       "comNameZh": "勘察加柳鶯",
       "comNameEn": "Kamchatka Leaf Warbler"
     },
-    "brnnod": {
+    "oricuc2": {
       "firstSeen": "2026-03-01",
-      "comNameZh": "玄燕鷗",
-      "comNameEn": "Brown Noddy"
+      "comNameZh": "北方中杜鵑",
+      "comNameEn": "Oriental Cuckoo"
     },
     "japgro1": {
       "firstSeen": "2026-03-01",
       "comNameZh": "桑鳲",
       "comNameEn": "Japanese Grosbeak"
     },
-    "oricuc2": {
+    "brnnod": {
       "firstSeen": "2026-03-01",
-      "comNameZh": "北方中杜鵑",
-      "comNameEn": "Oriental Cuckoo"
+      "comNameZh": "玄燕鷗",
+      "comNameEn": "Brown Noddy"
     },
     "bacdov1": {
       "firstSeen": "2026-03-02",
       "comNameZh": "斑尾鵑鳩",
       "comNameEn": "Barred Cuckoo-Dove"
     },
-    "x00883": {
-      "firstSeen": "2026-03-04",
-      "comNameZh": "白琵鷺x黑面琵鷺(雜交)",
-      "comNameEn": "Eurasian x Black-faced Spoonbill (hybrid)"
-    },
     "rook1": {
       "firstSeen": "2026-03-05",
       "comNameZh": "禿鼻鴉",
       "comNameEn": "Rook"
-    },
-    "whicoc1": {
-      "firstSeen": "2026-03-07",
-      "comNameZh": "白鳳頭鸚鵡",
-      "comNameEn": "White Cockatoo"
     },
     "laplon": {
       "firstSeen": "2026-03-08",
@@ -2262,35 +2147,35 @@
       "comNameZh": "臘嘴雀",
       "comNameEn": "Hawfinch"
     },
-    "renpha": {
+    "eacwar1": {
       "firstSeen": "2026-03-15",
-      "comNameZh": "紅領瓣足鷸",
-      "comNameEn": "Red-necked Phalarope"
+      "comNameZh": "冠羽柳鶯",
+      "comNameEn": "Eastern Crowned Warbler"
     },
     "hrshaw": {
       "firstSeen": "2026-03-15",
       "comNameZh": "栗翅鷹",
       "comNameEn": "Harris's Hawk"
     },
-    "eacwar1": {
-      "firstSeen": "2026-03-15",
-      "comNameZh": "冠羽柳鶯",
-      "comNameEn": "Eastern Crowned Warbler"
-    },
     "copgoo1": {
       "firstSeen": "2026-03-15",
       "comNameZh": "棉鴨",
       "comNameEn": "Cotton Pygmy-Goose"
     },
-    "lotjae": {
-      "firstSeen": "2026-03-16",
-      "comNameZh": "長尾賊鷗",
-      "comNameEn": "Long-tailed Jaeger"
+    "renpha": {
+      "firstSeen": "2026-03-15",
+      "comNameZh": "紅領瓣足鷸",
+      "comNameEn": "Red-necked Phalarope"
     },
     "lcspet": {
       "firstSeen": "2026-03-16",
       "comNameZh": "白腰叉尾海燕",
       "comNameEn": "Leach's Storm-Petrel"
+    },
+    "lotjae": {
+      "firstSeen": "2026-03-16",
+      "comNameZh": "長尾賊鷗",
+      "comNameEn": "Long-tailed Jaeger"
     },
     "bawfly2": {
       "firstSeen": "2026-03-17",
@@ -2312,25 +2197,20 @@
       "comNameZh": "東方紅胸鴴",
       "comNameEn": "Oriental Plover"
     },
-    "jawpig1": {
-      "firstSeen": "2026-03-21",
-      "comNameZh": "黑林鴿",
-      "comNameEn": "Black Wood-Pigeon"
-    },
     "phcdov1": {
       "firstSeen": "2026-03-21",
       "comNameZh": "長尾鳩",
       "comNameEn": "Philippine Cuckoo-Dove"
     },
+    "jawpig1": {
+      "firstSeen": "2026-03-21",
+      "comNameZh": "黑林鴿",
+      "comNameEn": "Black Wood-Pigeon"
+    },
     "loweye2": {
       "firstSeen": "2026-03-22",
       "comNameZh": "低地繡眼",
       "comNameEn": "Lowland White-eye"
-    },
-    "japfly1": {
-      "firstSeen": "2026-03-22",
-      "comNameZh": "紫綬帶",
-      "comNameEn": "Black Paradise-Flycatcher"
     },
     "gloibi": {
       "firstSeen": "2026-03-22",
@@ -2342,6 +2222,11 @@
       "comNameZh": "普通夜鷹",
       "comNameEn": "Gray Nightjar"
     },
+    "japfly1": {
+      "firstSeen": "2026-03-22",
+      "comNameZh": "紫綬帶",
+      "comNameEn": "Black Paradise-Flycatcher"
+    },
     "trspet": {
       "firstSeen": "2026-03-23",
       "comNameZh": "褐翅叉尾海燕",
@@ -2352,35 +2237,30 @@
       "comNameZh": "葦鵐",
       "comNameEn": "Pallas's Bunting"
     },
-    "wemhar1": {
+    "dollar1": {
       "firstSeen": "2026-03-27",
-      "comNameZh": "西方澤鵟",
-      "comNameEn": "Western Marsh Harrier"
+      "comNameZh": "佛法僧",
+      "comNameEn": "Dollarbird"
     },
     "ferfly1": {
       "firstSeen": "2026-03-27",
       "comNameZh": "紅尾鶲",
       "comNameEn": "Ferruginous Flycatcher"
     },
-    "dollar1": {
-      "firstSeen": "2026-03-27",
-      "comNameZh": "佛法僧",
-      "comNameEn": "Dollarbird"
-    },
     "faipit1": {
       "firstSeen": "2026-03-28",
       "comNameZh": "八色鳥",
       "comNameEn": "Fairy Pitta"
     },
-    "lesfri": {
-      "firstSeen": "2026-03-29",
-      "comNameZh": "白斑軍艦鳥",
-      "comNameEn": "Lesser Frigatebird"
-    },
     "brrmin1": {
       "firstSeen": "2026-03-29",
       "comNameZh": "小灰山椒鳥",
       "comNameEn": "Brown-rumped Minivet"
+    },
+    "lesfri": {
+      "firstSeen": "2026-03-29",
+      "comNameZh": "白斑軍艦鳥",
+      "comNameEn": "Lesser Frigatebird"
     },
     "whhmun1": {
       "firstSeen": "2026-03-29",
@@ -2407,85 +2287,85 @@
       "comNameZh": "栗喉蜂虎",
       "comNameEn": "Blue-tailed Bee-eater"
     },
-    "whfplo2": {
-      "firstSeen": "2026-04-01",
-      "comNameZh": "白臉鴴",
-      "comNameEn": "White-faced Plover"
-    },
     "indcuc1": {
       "firstSeen": "2026-04-01",
       "comNameZh": "四聲杜鵑",
       "comNameEn": "Indian Cuckoo"
     },
-    "bohwax": {
+    "whfplo2": {
       "firstSeen": "2026-04-01",
-      "comNameZh": "黃連雀",
-      "comNameEn": "Bohemian Waxwing"
+      "comNameZh": "白臉鴴",
+      "comNameEn": "White-faced Plover"
     },
     "rebshr1": {
       "firstSeen": "2026-04-01",
       "comNameZh": "紅背伯勞",
       "comNameEn": "Red-backed Shrike"
     },
+    "bohwax": {
+      "firstSeen": "2026-04-01",
+      "comNameZh": "黃連雀",
+      "comNameEn": "Bohemian Waxwing"
+    },
     "chebun1": {
       "firstSeen": "2026-04-02",
       "comNameZh": "鏽鵐",
       "comNameEn": "Chestnut Bunting"
-    },
-    "janher1": {
-      "firstSeen": "2026-04-03",
-      "comNameZh": "麻鷺",
-      "comNameEn": "Japanese Night Heron"
-    },
-    "reebun": {
-      "firstSeen": "2026-04-03",
-      "comNameZh": "蘆鵐",
-      "comNameEn": "Reed Bunting"
     },
     "roster": {
       "firstSeen": "2026-04-03",
       "comNameZh": "紅燕鷗",
       "comNameEn": "Roseate Tern"
     },
+    "reebun": {
+      "firstSeen": "2026-04-03",
+      "comNameZh": "蘆鵐",
+      "comNameEn": "Reed Bunting"
+    },
+    "janher1": {
+      "firstSeen": "2026-04-03",
+      "comNameZh": "麻鷺",
+      "comNameEn": "Japanese Night Heron"
+    },
     "pecsan": {
       "firstSeen": "2026-04-04",
       "comNameZh": "美洲尖尾濱鷸",
       "comNameEn": "Pectoral Sandpiper"
-    },
-    "bulpet": {
-      "firstSeen": "2026-04-05",
-      "comNameZh": "穴鳥",
-      "comNameEn": "Bulwer's Petrel"
-    },
-    "parjae": {
-      "firstSeen": "2026-04-05",
-      "comNameZh": "短尾賊鷗",
-      "comNameEn": "Parasitic Jaeger"
     },
     "pomjae": {
       "firstSeen": "2026-04-05",
       "comNameZh": "中賊鷗",
       "comNameEn": "Pomarine Jaeger"
     },
-    "pecpip": {
-      "firstSeen": "2026-04-06",
-      "comNameZh": "白背鷚",
-      "comNameEn": "Pechora Pipit"
+    "parjae": {
+      "firstSeen": "2026-04-05",
+      "comNameZh": "短尾賊鷗",
+      "comNameEn": "Parasitic Jaeger"
     },
-    "sheowl": {
-      "firstSeen": "2026-04-06",
-      "comNameZh": "短耳鴞",
-      "comNameEn": "Short-eared Owl"
+    "bulpet": {
+      "firstSeen": "2026-04-05",
+      "comNameZh": "穴鳥",
+      "comNameEn": "Bulwer's Petrel"
     },
     "salwar1": {
       "firstSeen": "2026-04-06",
       "comNameZh": "庫頁島柳鶯",
       "comNameEn": "Sakhalin Leaf Warbler"
     },
+    "pecpip": {
+      "firstSeen": "2026-04-06",
+      "comNameZh": "白背鷚",
+      "comNameEn": "Pechora Pipit"
+    },
     "aleter1": {
       "firstSeen": "2026-04-06",
       "comNameZh": "白腰燕鷗",
       "comNameEn": "Aleutian Tern"
+    },
+    "sheowl": {
+      "firstSeen": "2026-04-06",
+      "comNameZh": "短耳鴞",
+      "comNameEn": "Short-eared Owl"
     },
     "rettro": {
       "firstSeen": "2026-04-06",
@@ -2527,50 +2407,35 @@
       "comNameZh": "方尾烏鵑",
       "comNameEn": "Square-tailed Drongo-Cuckoo"
     },
-    "narfly3": {
-      "firstSeen": "2026-04-11",
-      "comNameZh": "琉球姬鶲",
-      "comNameEn": "Ryukyu Flycatcher"
-    },
-    "piesti1": {
-      "firstSeen": "2026-04-12",
-      "comNameZh": "黑領高蹺鴴",
-      "comNameEn": "Pied Stilt"
+    "gyhcaf1": {
+      "firstSeen": "2026-04-13",
+      "comNameZh": "方尾鶲",
+      "comNameEn": "Gray-headed Canary-Flycatcher"
     },
     "dasfly": {
       "firstSeen": "2026-04-13",
       "comNameZh": "烏鶲",
       "comNameEn": "Dark-sided Flycatcher"
     },
-    "subwar3": {
+    "blared1": {
       "firstSeen": "2026-04-13",
-      "comNameZh": "黑眉柳鶯",
-      "comNameEn": "Sulphur-breasted Warbler"
+      "comNameZh": "赭紅尾鴝",
+      "comNameEn": "Black Redstart"
     },
     "amupaf1": {
       "firstSeen": "2026-04-13",
       "comNameZh": "阿穆爾綬帶",
       "comNameEn": "Amur Paradise-Flycatcher"
     },
-    "gyhcaf1": {
+    "subwar3": {
       "firstSeen": "2026-04-13",
-      "comNameZh": "方尾鶲",
-      "comNameEn": "Gray-headed Canary-Flycatcher"
-    },
-    "blared1": {
-      "firstSeen": "2026-04-13",
-      "comNameZh": "赭紅尾鴝",
-      "comNameEn": "Black Redstart"
+      "comNameZh": "黑眉柳鶯",
+      "comNameEn": "Sulphur-breasted Warbler"
     },
     "ryumin1": {
       "firstSeen": "2026-04-14",
       "comNameZh": "琉球山椒鳥",
       "comNameEn": "Ryukyu Minivet"
-    },
-    "himswi2": {
-      "firstSeen": "2026-04-15",
-      "comNameZh": "短嘴金絲燕",
-      "comNameEn": "Himalayan Swiftlet"
     },
     "nohcuc1": {
       "firstSeen": "2026-04-15",
@@ -2592,16 +2457,6 @@
       "comNameZh": "海南藍仙鶲",
       "comNameEn": "Hainan Blue Flycatcher"
     },
-    "brbfly2": {
-      "firstSeen": "2026-04-18",
-      "comNameZh": "褐胸鶲",
-      "comNameEn": "Brown-breasted Flycatcher"
-    },
-    "latsni1": {
-      "firstSeen": "2026-04-18",
-      "comNameZh": "大地鷸",
-      "comNameEn": "Latham's Snipe"
-    },
     "rosmin1": {
       "firstSeen": "2026-04-18",
       "comNameZh": "粉紅山椒鳥",
@@ -2612,90 +2467,50 @@
       "comNameZh": "栗頭鶲鶯",
       "comNameEn": "Chestnut-crowned Warbler"
     },
-    "labcro15": {
-      "firstSeen": "2026-04-21",
-      "comNameZh": "Philippine Jungle Crow",
-      "comNameEn": "Philippine Jungle Crow"
-    },
     "boowar1": {
       "firstSeen": "2026-04-21",
       "comNameZh": "靴籬鶯",
       "comNameEn": "Booted Warbler"
-    },
-    "humwar1": {
-      "firstSeen": "2026-04-21",
-      "comNameZh": "淡眉柳鶯",
-      "comNameEn": "Hume's Warbler"
     },
     "trepip": {
       "firstSeen": "2026-04-22",
       "comNameZh": "林鷚",
       "comNameEn": "Tree Pipit"
     },
-    "whbwoo4": {
-      "firstSeen": "2026-04-22",
-      "comNameZh": "白胸燕鵙",
-      "comNameEn": "White-breasted Woodswallow"
-    },
-    "grefri": {
-      "firstSeen": "2026-04-24",
-      "comNameZh": "軍艦鳥",
-      "comNameEn": "Great Frigatebird"
+    "shtshe": {
+      "firstSeen": "2026-04-25",
+      "comNameZh": "短尾水薙鳥",
+      "comNameEn": "Short-tailed Shearwater"
     },
     "ocrbun1": {
       "firstSeen": "2026-04-25",
       "comNameZh": "紅頸葦鵐",
       "comNameEn": "Ochre-rumped Bunting"
     },
-    "shtshe": {
-      "firstSeen": "2026-04-25",
-      "comNameZh": "短尾水薙鳥",
-      "comNameEn": "Short-tailed Shearwater"
-    },
-    "y00731": {
-      "firstSeen": "2026-04-25",
-      "comNameZh": "白燕窩金絲燕",
-      "comNameEn": "White-nest Swiftlet"
-    },
     "olbsun4": {
       "firstSeen": "2026-04-26",
       "comNameZh": "黃腹花蜜鳥",
       "comNameEn": "Ornate Sunbird"
-    },
-    "y00989": {
-      "firstSeen": "2026-04-26",
-      "comNameZh": "黃腹柳鶯",
-      "comNameEn": "Tickell's Leaf Warbler"
-    },
-    "pitwhy": {
-      "firstSeen": "2026-04-26",
-      "comNameZh": "針尾維達雀",
-      "comNameEn": "Pin-tailed Whydah"
     },
     "cockat": {
       "firstSeen": "2026-04-29",
       "comNameZh": "雞尾鸚鵡",
       "comNameEn": "Cockatiel"
     },
-    "x01188": {
-      "firstSeen": "2026-04-30",
-      "comNameZh": "Little Egret x Western Cattle-Egret (hybrid)",
-      "comNameEn": "Little Egret x Western Cattle-Egret (hybrid)"
-    },
     "sooshe": {
       "firstSeen": "2026-05-02",
       "comNameZh": "灰水薙鳥",
       "comNameEn": "Sooty Shearwater"
     },
-    "tahpet1": {
-      "firstSeen": "2026-05-03",
-      "comNameZh": "黑背白腹穴鳥",
-      "comNameEn": "Tahiti Petrel"
-    },
     "arcwar3": {
       "firstSeen": "2026-05-03",
       "comNameZh": "日本柳鶯",
       "comNameEn": "Japanese Leaf Warbler"
+    },
+    "tahpet1": {
+      "firstSeen": "2026-05-03",
+      "comNameZh": "黑背白腹穴鳥",
+      "comNameEn": "Tahiti Petrel"
     },
     "grgwar1": {
       "firstSeen": "2026-05-09",
@@ -2737,30 +2552,16 @@
       "comNameZh": "黃蹼洋海燕",
       "comNameEn": "Wilson's Storm-Petrel"
     },
-    "whfter1": {
-      "firstSeen": "2026-06-19",
-      "comNameZh": "White-fronted Tern",
-      "comNameEn": "White-fronted Tern"
+    "whimbr5": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "中杓鷸",
+      "comNameEn": "Eurasian Whimbrel"
     },
-    "pasmar1": {
-      "firstSeen": "2026-06-29",
-      "comNameZh": "淺灰沙燕",
-      "comNameEn": "Pale Martin"
-    },
-    "blabaz1": {
-      "firstSeen": "2026-07-05",
-      "comNameZh": "黑冠鵑隼",
-      "comNameEn": "Black Baza"
-    },
-    "mutswa": {
-      "firstSeen": "2026-07-19",
-      "comNameZh": "疣鼻天鵝",
-      "comNameEn": "Mute Swan"
-    },
-    "grepar": {
-      "firstSeen": "2026-07-30",
-      "comNameZh": "灰鸚鵡",
-      "comNameEn": "Gray Parrot"
+    "strher1": {
+      "firstSeen": "2026-01-01",
+      "comNameZh": "綠簑鷺",
+      "comNameEn": "Little Heron"
     }
-  }
+  },
+  "note": "已過濾: 排除非有效觀察(obsValid=false)與雜交種(hybrid)"
 }
