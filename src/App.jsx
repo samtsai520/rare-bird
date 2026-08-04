@@ -967,7 +967,6 @@ export default function App() {
         <div className="stats-ribbon">
           <div className="stats-text">
             共 <span className="stats-count">{entries.length}</span> 種今年首見鳥類
-            <span className="static-hint">（純讀靜態資料，零 API 請求）</span>
           </div>
         </div>
 
