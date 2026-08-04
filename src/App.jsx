@@ -839,8 +839,7 @@ export default function App() {
         <div className="stats-ribbon">
           <div className="stats-text">
             過去{days}天，全台灣觀測到
-            <span className="stats-count">{groupedSpecies.length}</span> 種罕見鳥類，今年觀察鳥種總計
-            <span className="stats-count">{firstSeen?.species ? Object.keys(firstSeen.species).length : '—'}</span> 種，本月總計
+            <span className="stats-count">{groupedSpecies.length}</span> 種罕見鳥類，本月總計
             <span className="stats-count">{monthSpeciesCount ?? '—'}</span> 種
           </div>
         </div>
