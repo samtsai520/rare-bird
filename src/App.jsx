@@ -866,7 +866,7 @@ export default function App() {
             </div>
             <p>正在搜尋值得一看的鳥...</p>
           </div>
-        ) : worthError ? (
+        ) : worthError && worthList.length === 0 ? (
           <div className="error-state">
             <AlertTriangle size={48} style={{ color: '#ef4444' }} />
             <h3>載入失敗</h3>
