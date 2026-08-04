@@ -75,15 +75,15 @@ def main():
         sys.exit(1)
     print(f"  ✅ 台灣鳥種 {len(tw_codes)} 種", flush=True)
 
-    # 2. 英文 taxonomy
-    print("抓取英文 taxonomy ...", flush=True)
+    # 2. 英文名稱（eBird 官方 taxonomy 端點）
+    print("抓取英文名稱 ...", flush=True)
     tax_en = api_fetch(f"{BASE_URL}/ref/taxonomy/ebird?fmt=json", key)
     en_map = {t["speciesCode"]: t for t in tax_en} if tax_en else {}
     print(f"  ✅ 英文 {len(en_map)} 筆", flush=True)
     time.sleep(1.5)
 
-    # 3. 中文 taxonomy
-    print("抓取中文 taxonomy ...", flush=True)
+    # 3. 中文名稱（eBird 官方 taxonomy 端點）
+    print("抓取中文名稱 ...", flush=True)
     tax_zh = api_fetch(f"{BASE_URL}/ref/taxonomy/ebird?fmt=json&locale=zh", key)
     zh_map = {t["speciesCode"]: t.get("comName", "") for t in tax_zh} if tax_zh else {}
     print(f"  ✅ 中文 {len(zh_map)} 筆", flush=True)
