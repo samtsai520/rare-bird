@@ -949,7 +949,7 @@ export default function App() {
           <div className="controls-grid">
             <div className="select-container">
               <label className="select-label">
-                {firstSeenView === 'month' ? `本月今年首見（${year} 年 ${month} 月）` : recentLabel}
+                {firstSeenView === 'month' ? `${month}月份所觀察到的鳥種是今年以來首次見到：` : recentLabel}
                 <span className="last-update-text">
                   <span className="pulse-dot"></span>
                   資料更新至: {lastUpdated}（{dataYear} 年度）
@@ -960,7 +960,7 @@ export default function App() {
                 onChange={(e) => setFirstSeenView(e.target.value)}
                 className="custom-select"
               >
-                <option value="month">本月今年首見</option>
+                <option value="month">{month}月份今年首見</option>
                 <option value="recent">{recentLabel}</option>
               </select>
             </div>
