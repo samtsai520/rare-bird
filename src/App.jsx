@@ -335,9 +335,17 @@ export default function App() {
         }
         const list = Object.values(grouped);
 
-        // Sort by latest sighting date desc (user's choice B)
+        // Sort species groups by GPS location (north→south by lat of latest sighting),
+        // then by latest sighting date desc as secondary key (user's choice: GPS primary, date secondary)
         list.forEach(sp => sp.sightings.sort((a, b) => new Date(b.obsDt) - new Date(a.obsDt)));
-        list.sort((a, b) => new Date(b.sightings[0].obsDt) - new Date(a.sightings[0].obsDt));
+        list.sort((a, b) => {
+          const aLat = a.sightings[0].lat;
+          const bLat = b.sightings[0].lat;
+          if (typeof aLat === 'number' && typeof bLat === 'number' && aLat !== bLat) {
+            return bLat - aLat; // north first (higher latitude)
+          }
+          return new Date(b.sightings[0].obsDt) - new Date(a.sightings[0].obsDt);
+        });
 
         const nowStr = new Date().toISOString();
         setWorthList(list);
