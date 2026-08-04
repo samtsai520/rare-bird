@@ -10,10 +10,10 @@ Generates:
   public/data/notable-7d.json  — notable observations, past 7 days
   public/data/notable-14d.json — notable observations, past 14 days
   public/data/notable-30d.json — notable observations, past 30 days
-  public/data/taxonomy-zh.json — taxonomy with Chinese names (cached 30 days)
+  (bird names read from static public/data/taiwan-birds.json)
 
 Each recent/notable file contains a JSON array of observation records
-with comNameZh added from taxonomy.
+with comNameZh added from taiwan-birds.json.
 """
 
 import json
@@ -47,8 +47,7 @@ def _load_api_key():
 API_KEY = _load_api_key()
 BASE_URL = "https://api.ebird.org/v2"
 DATA_DIR = PROJECT_ROOT / "public" / "data"
-TAXONOMY_FILE = DATA_DIR / "taxonomy-zh.json"
-TAXONOMY_TIME_FILE = DATA_DIR / "taxonomy-zh.time"
+TAIWAN_BIRDS_FILE = DATA_DIR / "taiwan-birds.json"
 
 TW_REGIONS = [
     "TW-CHA", "TW-CYI", "TW-CYQ", "TW-HSZ", "TW-HSQ", "TW-HUA",
@@ -78,40 +77,30 @@ def api_fetch(url, retries=3):
     return None
 
 
-def fetch_taxonomy():
-    """Fetch taxonomy with Chinese names. Cache for 30 days."""
-    # Check cache
-    if TAXONOMY_FILE.exists() and TAXONOMY_TIME_FILE.exists():
-        cache_age = time.time() - TAXONOMY_TIME_FILE.stat().st_mtime
-        if cache_age < 30 * 24 * 3600:
-            print("Taxonomy cache still valid, skipping.", flush=True)
-            with open(TAXONOMY_FILE, "r", encoding="utf-8") as f:
-                return json.load(f)
+def load_taxonomy():
+    """Load Taiwan bird names from static taiwan-birds.json (777 species, ~100KB).
 
-    print("Fetching taxonomy (locale=zh)...", flush=True)
-    data = api_fetch(f"{BASE_URL}/ref/taxonomy/ebird?fmt=json&locale=zh")
-    if not data:
-        # Try to use existing cache as fallback
-        if TAXONOMY_FILE.exists():
-            print("Using existing taxonomy cache as fallback.", flush=True)
-            with open(TAXONOMY_FILE, "r", encoding="utf-8") as f:
-                return json.load(f)
+    Returns a flat map {speciesCode: {comNameZh, comNameEn, sciName}} for O(1) lookup.
+    No eBird API calls — reads the prebuilt static file.
+    """
+    if not TAIWAN_BIRDS_FILE.exists():
+        print("  ERROR: 找不到 taiwan-birds.json（請先執行 build_taiwan_birds.py）", flush=True)
         return {}
-
+    try:
+        with open(TAIWAN_BIRDS_FILE, "r", encoding="utf-8") as f:
+            data = json.load(f)
+    except Exception as e:
+        print(f"  ERROR 讀取 taiwan-birds.json: {e}", flush=True)
+        return {}
+    species = data.get("species", {})
     tax_map = {}
-    for item in data:
-        if item.get("speciesCode"):
-            tax_map[item["speciesCode"]] = {
-                "comNameZh": item.get("comName", ""),
-                "sciName": item.get("sciName", ""),
-            }
-
-    DATA_DIR.mkdir(parents=True, exist_ok=True)
-    with open(TAXONOMY_FILE, "w", encoding="utf-8") as f:
-        json.dump(tax_map, f, ensure_ascii=False)
-    with open(TAXONOMY_TIME_FILE, "w") as f:
-        f.write(str(time.time()))
-    print(f"Taxonomy saved: {len(tax_map)} species", flush=True)
+    for code, info in species.items():
+        tax_map[code] = {
+            "comNameZh": info.get("comNameZh", ""),
+            "comNameEn": info.get("comNameEn", ""),
+            "sciName": info.get("sciName", ""),
+        }
+    print(f"  已載入 taiwan-birds.json：{len(tax_map)} 種（台灣鳥類名稱）", flush=True)
     return tax_map
 
 
@@ -257,8 +246,8 @@ def save_cumulative(existing, new_obs, taxonomy):
 def main():
     print(f"=== Bird data fetch started at {time.strftime('%Y-%m-%d %H:%M:%S')} ===", flush=True)
 
-    # 1. Fetch taxonomy (cached 30 days)
-    taxonomy = fetch_taxonomy()
+    # 1. Load Taiwan bird names (static taiwan-birds.json, no API calls)
+    taxonomy = load_taxonomy()
     if not taxonomy:
         print("ERROR: No taxonomy data available. Aborting.", flush=True)
         sys.exit(1)

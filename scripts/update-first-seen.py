@@ -105,15 +105,29 @@ _ONE_DAY = __import__("datetime").timedelta(days=1)
 
 
 def _load_taxonomy():
-    """Load cached taxonomy-zh.json (code -> {comNameZh, sciName}) if present."""
-    tax = PROJECT_ROOT / "public" / "data" / "taxonomy-zh.json"
-    if tax.exists():
-        try:
-            with open(tax, "r", encoding="utf-8") as f:
-                return json.load(f)
-        except Exception:
-            pass
-    return {}
+    """Load Taiwan bird names from static taiwan-birds.json (777 species).
+
+    Returns flat map {speciesCode: {comNameZh, comNameEn, sciName}}.
+    """
+    tax = PROJECT_ROOT / "public" / "data" / "taiwan-birds.json"
+    if not tax.exists():
+        print("  ERROR: 找不到 taiwan-birds.json（請先執行 build_taiwan_birds.py）", flush=True)
+        return {}
+    try:
+        with open(tax, "r", encoding="utf-8") as f:
+            data = json.load(f)
+    except Exception as e:
+        print(f"  ERROR 讀取 taiwan-birds.json: {e}", flush=True)
+        return {}
+    species = data.get("species", {})
+    out = {}
+    for code, info in species.items():
+        out[code] = {
+            "comNameZh": info.get("comNameZh", ""),
+            "comNameEn": info.get("comNameEn", ""),
+            "sciName": info.get("sciName", ""),
+        }
+    return out
 
 
 def fetch_day(y, m, d, key, dry_run=False):
