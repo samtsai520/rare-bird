@@ -44,6 +44,26 @@ const WORTH_FALLBACK_COUNT = 8; // how many species to show in fallback mode
 const ISLAND_KEYWORDS = ['金門', '馬祖', '澎湖'];
 const isIslandLoc = (name) => ISLAND_KEYWORDS.some(k => (name || '').includes(k));
 
+// ---- 全域 eBird 請求節流器 ----
+// 所有 eBird API 呼叫共用同一把鎖，避免多個功能（稀有種/值得一看/月份統計）
+// 同時對 eBird 爆發請求而觸發 429 限速。每筆請求至少間隔 MIN_API_INTERVAL ms。
+const MIN_API_INTERVAL = 1400; // ms，eBird 約 1 req/sec
+let lastApiCallTime = 0;
+let apiQueue = Promise.resolve();
+
+async function throttleApiCall(fn) {
+  const run = async () => {
+    const wait = Math.max(0, MIN_API_INTERVAL - (Date.now() - lastApiCallTime));
+    if (wait > 0) await new Promise(r => setTimeout(r, wait));
+    lastApiCallTime = Date.now();
+    return fn();
+  };
+  const result = apiQueue.then(run, run); // 序列化，失敗也繼續排隊
+  apiQueue = result.then(() => {}, () => {});
+  return result;
+}
+
+
 export default function App() {
   // Load API Key from localStorage
   const [apiKey, setApiKey] = useState(() => {
@@ -118,7 +138,7 @@ export default function App() {
       const now = new Date();
       const backDays = Math.min(now.getDate(), 30);
       const url = `https://api.ebird.org/v2/data/obs/TW/recent?back=${backDays}&detail=simple`;
-      const res = await fetch(url, { headers });
+      const res = await throttleApiCall(() => fetch(url, { headers }));
       const data = res.ok ? await res.json() : [];
       const count = Array.isArray(data) ? data.length : 0;
       setMonthSpeciesCount(count);
@@ -159,8 +179,8 @@ export default function App() {
         const headers = { 'x-ebirdapitoken': activeKey };
 
         const [resEn, resZh] = await Promise.all([
-          fetch(urlEn, { headers, signal: controller.signal }),
-          fetch(urlZh, { headers, signal: controller.signal })
+          throttleApiCall(() => fetch(urlEn, { headers, signal: controller.signal })),
+          throttleApiCall(() => fetch(urlZh, { headers, signal: controller.signal }))
         ]);
 
         if (resEn.status === 429 || resZh.status === 429) {
@@ -263,8 +283,8 @@ export default function App() {
         for (const batch of TW_REGION_BATCHES) {
           const base = `https://api.ebird.org/v2/data/obs/TW/recent?back=${WORTH_BACK_DAYS}&detail=full&includeProvisional=true&r=${encodeURIComponent(batch)}`;
           const [resEn, resZh] = await Promise.all([
-            fetch(base, { headers, signal: controller.signal }),
-            fetch(`${base}&sppLocale=zh`, { headers, signal: controller.signal })
+            throttleApiCall(() => fetch(base, { headers, signal: controller.signal })),
+            throttleApiCall(() => fetch(`${base}&sppLocale=zh`, { headers, signal: controller.signal }))
           ]);
           if (resEn.status === 429 || resZh.status === 429) {
             throw new Error('RATE_LIMIT');
@@ -371,8 +391,20 @@ export default function App() {
         }
         console.error(`Worth fetch failed (attempt ${attempt + 1}):`, err);
         setWorthLoading(false);
+        // 若仍有資料（記憶體或 localStorage 快取），保留顯示並標示資料可能較舊，
+        // 避免切換 tab 時因一時限速而閃出「載入失敗」空畫面。
+        const cached = localStorage.getItem(WORTH_CACHE_KEYS.obs);
         if (worthList.length > 0) {
-          setWorthError(null);
+          setWorthError(null); // 已有資料，不顯示錯誤
+        } else if (cached) {
+          try {
+            const parsed = JSON.parse(cached);
+            setWorthList(parsed.list || []);
+            setWorthMeta(parsed.meta || null);
+            setWorthError(null);
+          } catch {
+            setWorthError("查詢逾時或網路不穩，請稍後再按「更新」重試。");
+          }
         } else {
           setWorthError("查詢逾時或網路不穩，請稍後再按「更新」重試。");
         }
@@ -460,7 +492,7 @@ export default function App() {
     if (needsFetch && !worthLoading) {
       fetchWorth(apiKey);
     }
-  }, [apiKey]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [apiKey, activeTab]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Load static first-seen.json (works even without API key — zero live requests)
   useEffect(() => {
