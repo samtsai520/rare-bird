@@ -99,6 +99,9 @@ export default function App() {
   const [firstSeenError, setFirstSeenError] = useState(null);
   const [firstSeenView, setFirstSeenView] = useState('month'); // 'month' | 'recent'
 
+  // Static taxonomy (code -> {comNameZh}) for zero-API Chinese names
+  const [taxonomy, setTaxonomy] = useState({});
+
   // Month species count
   const [monthSpeciesCount, setMonthSpeciesCount] = useState(null);
 
@@ -271,43 +274,35 @@ export default function App() {
     const yestStr = fmtD(yest);
     const targetDates = new Set([yestStr, todayStr]);
 
-    const maxRetries = 2;
+    const maxRetries = 3;
     for (let attempt = 0; attempt <= maxRetries; attempt++) {
       try {
         const headers = { 'x-ebirdapitoken': activeKey };
-        // Fetch each region-batch sequentially (eBird ~1 req/sec rate limit).
-        // Within a batch, EN + ZH run in parallel (max 2 concurrent) then a small delay
-        // before the next batch to avoid HTTP 429 spikes that a 6-way burst caused.
+        // Fetch each region-batch sequentially, ONE request per batch (EN only).
+        // Chinese names come from the static taxonomy (zero extra eBird API calls),
+        // which cuts request count from 6 → 3 and halves the chance of a 429/timeout.
         const enRecords = [];
-        const zhMap = {};
         for (const batch of TW_REGION_BATCHES) {
-          const base = `https://api.ebird.org/v2/data/obs/TW/recent?back=${WORTH_BACK_DAYS}&detail=full&includeProvisional=true&r=${encodeURIComponent(batch)}`;
-          const [resEn, resZh] = await Promise.all([
-            throttleApiCall(() => fetch(base, { headers, signal: controller.signal })),
-            throttleApiCall(() => fetch(`${base}&sppLocale=zh`, { headers, signal: controller.signal }))
-          ]);
-          if (resEn.status === 429 || resZh.status === 429) {
+          const url = `https://api.ebird.org/v2/data/obs/TW/recent?back=${WORTH_BACK_DAYS}&detail=full&includeProvisional=true&r=${encodeURIComponent(batch)}`;
+          const res = await throttleApiCall(() => fetch(url, { headers, signal: controller.signal }));
+          if (res.status === 429) {
             throw new Error('RATE_LIMIT');
           }
-          if (!resEn.ok || !resZh.ok) {
+          if (!res.ok) {
             throw new Error('eBird API error');
           }
-          const dataEn = await resEn.json();
-          const dataZh = await resZh.json();
+          const dataEn = await res.json();
           if (controller.signal.aborted) return;
           enRecords.push(...dataEn);
-          dataZh.forEach(item => {
-            if (item.speciesCode) zhMap[item.speciesCode] = item.comName;
-          });
-          // throttle between batches
-          await new Promise(r => setTimeout(r, 1200));
+          // small gap between batches
+          await new Promise(r => setTimeout(r, 900));
         }
         if (controller.signal.aborted) return;
 
-        // Merge zh names by speciesCode; collect all records
+        // Merge zh names from static taxonomy; fallback to EN name
         const allRecords = enRecords.map(item => ({
           ...item,
-          comNameZh: zhMap[item.speciesCode] || item.comName,
+          comNameZh: (taxonomy[item.speciesCode] && taxonomy[item.speciesCode].comNameZh) || item.comName,
           comNameEn: item.comName,
         }));
 
@@ -410,7 +405,7 @@ export default function App() {
         }
       }
     }
-  }, [apiKey, worthList.length]);
+  }, [apiKey, worthList.length, taxonomy]);
 
   // Auto-fetch month species count (once per day cache)
   useEffect(() => {
@@ -492,9 +487,9 @@ export default function App() {
     if (needsFetch && !worthLoading) {
       fetchWorth(apiKey);
     }
-  }, [apiKey, activeTab]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [apiKey, activeTab, taxonomy]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  // Load static first-seen.json (works even without API key — zero live requests)
+  // Load static first-seen.json + taxonomy (works even without API key — zero live requests)
   useEffect(() => {
     let cancelled = false;
     const loadFirstSeen = async () => {
@@ -515,6 +510,11 @@ export default function App() {
       }
     };
     loadFirstSeen();
+    // Load static taxonomy (zh names) — zero API requests
+    fetch('/data/taxonomy-zh.json')
+      .then(r => r.ok ? r.json() : Promise.reject())
+      .then(data => { if (!cancelled) setTaxonomy(data || {}); })
+      .catch(() => {});
     return () => { cancelled = true; };
   }, []);
 
