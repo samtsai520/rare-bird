@@ -101,6 +101,7 @@ export default function App() {
 
   // Static taxonomy (code -> {comNameZh}) for zero-API Chinese names
   const [taxonomy, setTaxonomy] = useState({});
+  const [taxonomyLoaded, setTaxonomyLoaded] = useState(false);
 
   // Month species count
   const [monthSpeciesCount, setMonthSpeciesCount] = useState(null);
@@ -466,6 +467,8 @@ export default function App() {
     const cached = localStorage.getItem(WORTH_CACHE_KEYS.obs);
     const cachedTime = localStorage.getItem(WORTH_CACHE_KEYS.time);
     let needsFetch = true;
+    let cacheHasData = false;
+    let cacheMissingZh = false;
     if (cached && cachedTime) {
       const parsedTime = new Date(cachedTime);
       const today = new Date();
@@ -479,14 +482,23 @@ export default function App() {
           setWorthList(parsed.list || []);
           setWorthMeta(parsed.meta || null);
           setWorthLastUpdated(cachedTime);
+          cacheHasData = true;
+          // 若快取裡有鳥種缺中文名（taxonomy 載入前抓的），taxonomy 就緒後需重抓補名
+          cacheMissingZh = (parsed.list || []).some(sp =>
+            sp.comNameZh && sp.comNameEn && sp.comNameZh === sp.comNameEn
+          );
           needsFetch = false;
         } catch { /* ignore */ }
       }
     }
+    // taxonomy 剛載入完成，且快取資料缺中文名 → 強制重抓，補上中文名
+    if (taxonomyLoaded && cacheHasData && cacheMissingZh) {
+      needsFetch = true;
+    }
     if (needsFetch && !worthLoading) {
       fetchWorth(apiKey);
     }
-  }, [apiKey, activeTab, taxonomy]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [apiKey, activeTab, taxonomy, taxonomyLoaded]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Load static first-seen.json + taxonomy (works even without API key — zero live requests)
   useEffect(() => {
@@ -512,8 +524,8 @@ export default function App() {
     // Load static taxonomy (zh names) — zero API requests
     fetch('/data/taxonomy-zh.json')
       .then(r => r.ok ? r.json() : Promise.reject())
-      .then(data => { if (!cancelled) setTaxonomy(data || {}); })
-      .catch(() => {});
+      .then(data => { if (!cancelled) { setTaxonomy(data || {}); setTaxonomyLoaded(true); } })
+      .catch(() => { if (!cancelled) setTaxonomyLoaded(true); });
     return () => { cancelled = true; };
   }, []);
 
