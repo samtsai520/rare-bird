@@ -292,6 +292,16 @@ body {
   margin-top: 0.5rem;
 }
 
+/* Last update on its own line — same size as the date label above */
+.last-update-text {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
 /* Tab Bar */
 .tab-bar {
   display: flex;
