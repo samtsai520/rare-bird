@@ -255,13 +255,14 @@ export default function App() {
       }
     }
 
-    // Target window = calendar 前天 + 昨天 + today (3 days)
+    // Target window = calendar 3天前 + 前天 + 昨天 + today (4 days)
     const now = new Date();
     const fmtD = (d) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
     const todayStr = fmtD(now);
     const yest = new Date(now); yest.setDate(yest.getDate() - 1);   const yestStr = fmtD(yest);
     const twoAgo = new Date(now); twoAgo.setDate(twoAgo.getDate() - 2); const twoAgoStr = fmtD(twoAgo);
-    const targetDates = new Set([twoAgoStr, yestStr, todayStr]);
+    const threeAgo = new Date(now); threeAgo.setDate(threeAgo.getDate() - 3); const threeAgoStr = fmtD(threeAgo);
+    const targetDates = new Set([threeAgoStr, twoAgoStr, yestStr, todayStr]);
 
     const maxRetries = 3;
     for (let attempt = 0; attempt <= maxRetries; attempt++) {
@@ -299,7 +300,7 @@ export default function App() {
         });
 
         // Classify
-        const baseline = new Set();   // species present before 前天 (within 30d)
+        const baseline = new Set();   // species present before 3天前 (within 30d)
         const targetByCode = {};      // code -> { records, count }
         const countPerCode = {};      // rarity score = total records in window
         const locPerCode = {};        // code -> Set(unique locId) 觀測點數
@@ -315,7 +316,7 @@ export default function App() {
               targetByCode[code] = { records: [] };
             }
             targetByCode[code].records.push(rec);
-          } else if (d < twoAgoStr) {
+          } else if (d < threeAgoStr) {
             baseline.add(code);
           }
         }
@@ -372,9 +373,9 @@ export default function App() {
         setWorthLoading(false);
         setWorthError(null);
         setWorthLastUpdated(nowStr);
-        setWorthMeta({ targetDate: todayStr, yesterday: yestStr, twoDaysAgo: twoAgoStr, count: list.length, strictUsed });
+        setWorthMeta({ targetDate: todayStr, yesterday: yestStr, twoDaysAgo: twoAgoStr, threeDaysAgo: threeAgoStr, count: list.length, strictUsed });
 
-        localStorage.setItem(WORTH_CACHE_KEYS.obs, JSON.stringify({ list, meta: { targetDate: todayStr, yesterday: yestStr, twoDaysAgo: twoAgoStr, count: list.length, strictUsed } }));
+        localStorage.setItem(WORTH_CACHE_KEYS.obs, JSON.stringify({ list, meta: { targetDate: todayStr, yesterday: yestStr, twoDaysAgo: twoAgoStr, threeDaysAgo: threeAgoStr, count: list.length, strictUsed } }));
         localStorage.setItem(WORTH_CACHE_KEYS.time, nowStr);
 
         return;
@@ -835,8 +836,8 @@ export default function App() {
             <div className="select-container">
               <label className="select-label">
                 {meta
-                  ? `${meta.twoDaysAgo} ~ ${meta.targetDate}`
-                  : '前天 ~ 今天'}
+                  ? `${meta.threeDaysAgo || meta.twoDaysAgo} ~ ${meta.targetDate}`
+                  : '3天前 ~ 今天'}
               </label>
               <span className="last-update-text">
                 <span className="pulse-dot"></span>
