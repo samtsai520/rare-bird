@@ -802,8 +802,9 @@ export default function App() {
 
         <div className="stats-ribbon">
           <div className="stats-text">
-            在過去 <span className="stats-count">{days}</span> 天內，觀測到
-            <span className="stats-count">{groupedSpecies.length}</span> 種罕見鳥類，本月全台觀察鳥種，到目前為止共計
+            過去{days}天，全台灣觀測到
+            <span className="stats-count">{groupedSpecies.length}</span> 種罕見鳥類，今年觀察鳥種總計
+            <span className="stats-count">{firstSeen?.species ? Object.keys(firstSeen.species).length : '—'}</span> 種，本月總計
             <span className="stats-count">{monthSpeciesCount ?? '—'}</span> 種
           </div>
         </div>
