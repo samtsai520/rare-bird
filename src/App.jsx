@@ -40,6 +40,10 @@ const WORTH_BACK_DAYS = 30; // baseline window (fixed, not user-selectable)
 const WORTH_MIN_STRICT = 3; // fallback triggers when strict rare count < this
 const WORTH_FALLBACK_COUNT = 8; // how many species to show in fallback mode
 
+// Outer-island regions: Kinmen, Matsu, Penghu. Anything else counts as mainland (本島).
+const ISLAND_KEYWORDS = ['金門', '馬祖', '澎湖'];
+const isIslandLoc = (name) => ISLAND_KEYWORDS.some(k => (name || '').includes(k));
+
 export default function App() {
   // Load API Key from localStorage
   const [apiKey, setApiKey] = useState(() => {
@@ -66,6 +70,8 @@ export default function App() {
   const [worthError, setWorthError] = useState(null);
   const [worthLastUpdated, setWorthLastUpdated] = useState(null);
   const [worthMeta, setWorthMeta] = useState(null); // { targetDate, count, strictUsed }
+  // Island section open state: mainland (本島) expanded by default, outer islands (外島) collapsed
+  const [islandOpen, setIslandOpen] = useState({ main: true, island: false });
 
   // Month species count
   const [monthSpeciesCount, setMonthSpeciesCount] = useState(null);
@@ -774,6 +780,15 @@ export default function App() {
   // WORTH tab content
   const renderWorthContent = () => {
     const meta = worthMeta;
+    // Split into mainland (本島) / outer islands (外島) by the latest sighting's location name
+    const mainList = [];
+    const islandList = [];
+    worthList.forEach(sp => {
+      const latestLoc = sp.sightings[0]?.locName || '';
+      if (isIslandLoc(latestLoc)) islandList.push(sp);
+      else mainList.push(sp);
+    });
+    const toggleIsland = (key) => setIslandOpen(prev => ({ ...prev, [key]: !prev[key] }));
     return (
       <>
         <section className="glass-panel">
@@ -788,7 +803,6 @@ export default function App() {
                   最後更新: {formatTime(worthLastUpdated)}
                 </span>
               </label>
-              <div className="static-hint">昨日與今日之通報，篩選近30天內無其他通報者</div>
             </div>
 
             <button
@@ -801,15 +815,6 @@ export default function App() {
             </button>
           </div>
         </section>
-
-        {meta && (
-          <div className="stats-ribbon">
-            <div className="stats-text">
-              昨日與今日共計 <span className="stats-count">{meta.count}</span> 種值得一看的鳥
-              {!meta.strictUsed && <span className="worth-fallback-note">（近30天首見者少，改以近30天紀錄數最少者呈現）</span>}
-            </div>
-          </div>
-        )}
 
         {worthLoading && worthList.length === 0 ? (
           <div className="loading-state">
@@ -829,7 +834,33 @@ export default function App() {
             <button className="btn-primary" onClick={handleWorthSearch}>重試</button>
           </div>
         ) : (
-          renderAccordionList(worthList, false)
+          <>
+            <div className="island-section">
+              <button
+                className={`island-header ${islandOpen.main ? 'is-open' : ''}`}
+                onClick={() => toggleIsland('main')}
+              >
+                <span className="island-title">本島</span>
+                <span className="sightings-counter-pill">{mainList.length} 種</span>
+                {islandOpen.main ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
+              </button>
+              {islandOpen.main && renderAccordionList(mainList, false)}
+            </div>
+
+            {islandList.length > 0 && (
+              <div className="island-section">
+                <button
+                  className={`island-header ${islandOpen.island ? 'is-open' : ''}`}
+                  onClick={() => toggleIsland('island')}
+                >
+                  <span className="island-title">外島</span>
+                  <span className="sightings-counter-pill">{islandList.length} 種</span>
+                  {islandOpen.island ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
+                </button>
+                {islandOpen.island && renderAccordionList(islandList, false)}
+              </div>
+            )}
+          </>
         )}
       </>
     );
