@@ -77,7 +77,7 @@ def api_fetch(url, retries=3):
     return None
 
 
-def load_taxonomy():
+def load_bird_names():
     """Load Taiwan bird names from static taiwan-birds.json (777 species, ~100KB).
 
     Returns a flat map {speciesCode: {comNameZh, comNameEn, sciName}} for O(1) lookup.
@@ -161,12 +161,12 @@ def fetch_notable(days):
     return data_en
 
 
-def add_zh_names(obs_list, taxonomy):
-    """Add comNameZh to each observation using taxonomy."""
+def add_zh_names(obs_list, bird_names):
+    """Add comNameZh to each observation using bird_names."""
     for item in obs_list:
         code = item.get("speciesCode", "")
         if not item.get("comNameZh"):
-            tax = taxonomy.get(code)
+            tax = bird_names.get(code)
             if tax:
                 item["comNameZh"] = tax.get("comNameZh", "")
         if not item.get("comNameZh"):
@@ -199,7 +199,7 @@ def load_cumulative():
     return []
 
 
-def save_cumulative(existing, new_obs, taxonomy):
+def save_cumulative(existing, new_obs, bird_names):
     """Merge new observations into cumulative data, trim to CUMULATIVE_DAYS."""
     # Build set of existing subId+speciesCode to avoid duplicates
     seen = set()
@@ -218,7 +218,7 @@ def save_cumulative(existing, new_obs, taxonomy):
     for item in existing:
         if not item.get("comNameZh"):
             code = item.get("speciesCode", "")
-            tax = taxonomy.get(code)
+            tax = bird_names.get(code)
             if tax:
                 item["comNameZh"] = tax.get("comNameZh", "")
             if not item.get("comNameZh"):
@@ -247,24 +247,24 @@ def main():
     print(f"=== Bird data fetch started at {time.strftime('%Y-%m-%d %H:%M:%S')} ===", flush=True)
 
     # 1. Load Taiwan bird names (static taiwan-birds.json, no API calls)
-    taxonomy = load_taxonomy()
-    if not taxonomy:
-        print("ERROR: No taxonomy data available. Aborting.", flush=True)
+    bird_names = load_bird_names()
+    if not bird_names:
+        print("ERROR: No bird_names data available. Aborting.", flush=True)
         sys.exit(1)
 
     # 2. Fetch recent observations for today (back=1) and merge into cumulative
     today_obs = fetch_recent(1)
-    today_obs = add_zh_names(today_obs, taxonomy)
+    today_obs = add_zh_names(today_obs, bird_names)
     existing = load_cumulative()
     print(f"  Existing cumulative: {len(existing)} records", flush=True)
     print(f"  New today: {len(today_obs)} records", flush=True)
-    cumulative = save_cumulative(existing, today_obs, taxonomy)
+    cumulative = save_cumulative(existing, today_obs, bird_names)
     print(f"  Cumulative after merge: {len(cumulative)} records", flush=True)
 
     # Also save recent-1d/2d/3d as before (for quick static loads)
     for days in [2, 3]:
         obs = fetch_recent(days)
-        obs = add_zh_names(obs, taxonomy)
+        obs = add_zh_names(obs, bird_names)
         save_json(DATA_DIR / f"recent-{days}d.json", obs)
     # recent-1d is just today_obs
     save_json(DATA_DIR / "recent-1d.json", today_obs)
@@ -272,11 +272,11 @@ def main():
     # 3. Fetch notable observations (7, 14, 30 days)
     for days in [7, 14, 30]:
         obs = fetch_notable(days)
-        # Fill any missing zh names from taxonomy
+        # Fill any missing zh names from bird_names
         for item in obs:
             if not item.get("comNameZh"):
                 code = item.get("speciesCode", "")
-                tax = taxonomy.get(code)
+                tax = bird_names.get(code)
                 if tax:
                     item["comNameZh"] = tax.get("comNameZh", item.get("comName", ""))
                 else:

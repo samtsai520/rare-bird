@@ -104,7 +104,7 @@ def iter_dates(start, end):
 _ONE_DAY = __import__("datetime").timedelta(days=1)
 
 
-def _load_taxonomy():
+def _load_bird_names():
     """Load Taiwan bird names from static taiwan-birds.json (777 species).
 
     Returns flat map {speciesCode: {comNameZh, comNameEn, sciName}}.
@@ -145,17 +145,17 @@ def fetch_day(y, m, d, key, dry_run=False):
         code = x.get("speciesCode")
         if not code:
             continue
-        # English common name from historic response; zh filled later from taxonomy
+        # English common name from historic response; zh filled later from bird_names
         out[code] = {"firstSeen": day_str, "comNameEn": x.get("comName", "")}
     return out
 
 
-def merge_day(species, day_map, day_str, taxonomy):
+def merge_day(species, day_map, day_str, bird_names):
     """Merge a day's species into table; firstSeen = min(existing, day)."""
     added = 0
     for code, info in day_map.items():
         if code not in species:
-            tax = taxonomy.get(code, {})
+            tax = bird_names.get(code, {})
             species[code] = {
                 "firstSeen": info["firstSeen"],
                 "comNameZh": tax.get("comNameZh", ""),
@@ -167,7 +167,7 @@ def merge_day(species, day_map, day_str, taxonomy):
             if not species[code].get("comNameEn") and info.get("comNameEn"):
                 species[code]["comNameEn"] = info["comNameEn"]
             if not species[code].get("comNameZh"):
-                tax = taxonomy.get(code, {})
+                tax = bird_names.get(code, {})
                 if tax.get("comNameZh"):
                     species[code]["comNameZh"] = tax["comNameZh"]
             if day_str < species[code]["firstSeen"]:
@@ -192,8 +192,8 @@ def main():
     data = load_first_seen()
     current_year = today.year
     species = data.get("species", {})
-    taxonomy = _load_taxonomy()
-    print(f"已載入 taxonomy：{len(taxonomy)} 種（用於中文名補齊）", flush=True)
+    bird_names = _load_bird_names()
+    print(f"已載入 bird_names：{len(bird_names)} 種（用於中文名補齊）", flush=True)
 
     # ---- 跨年重建（R3）：每年從頭開始 ----
     if data.get("year") is not None and data["year"] < current_year:
@@ -231,7 +231,7 @@ def main():
             print(f"  {d}  抓取失敗 ✗（保留為缺口，下次自癒補回）", flush=True)
             continue
         day_str = f"{d.year:04d}-{d.month:02d}-{d.day:02d}"
-        added = merge_day(species, day_map, day_str, taxonomy)
+        added = merge_day(species, day_map, day_str, bird_names)
         print(
             f"  [{i+1}/{len(dates)}] {day_str}  新增 {added:>3}  累積 {len(species):>3}",
             flush=True,

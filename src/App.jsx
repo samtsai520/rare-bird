@@ -100,11 +100,11 @@ export default function App() {
   const [firstSeenView, setFirstSeenView] = useState('month'); // 'month' | 'recent'
 
   // Static Taiwan-bird names (code -> {comNameZh}) for zero-API Chinese names
-  const [taxonomy, setTaxonomy] = useState({});
-  const [taxonomyLoaded, setTaxonomyLoaded] = useState(false);
-  // ref mirror so fetchWorth always reads latest taxonomy (avoids closure race)
-  const taxonomyRef = useRef(taxonomy);
-  useEffect(() => { taxonomyRef.current = taxonomy; }, [taxonomy]);
+  const [birdNames, setBirdNames] = useState({});
+  const [birdNamesLoaded, setBirdNamesLoaded] = useState(false);
+  // ref mirror so fetchWorth always reads latest birdNames (avoids closure race)
+  const birdNamesRef = useRef(birdNames);
+  useEffect(() => { birdNamesRef.current = birdNames; }, [birdNames]);
 
   // Month species count
   const [monthSpeciesCount, setMonthSpeciesCount] = useState(null);
@@ -269,11 +269,11 @@ export default function App() {
     setWorthLoading(true);
     setWorthError(null);
 
-    // 等 taxonomy（中文名檔，~100KB）載入完成，確保取名稱不落空
+    // 等 birdNames（中文名檔，~100KB）載入完成，確保取名稱不落空
     // 最多等 3 秒；若仍未就緒則用目前已載入的（缺中文就顯示英文名）
-    if (!taxonomyRef.current || Object.keys(taxonomyRef.current).length === 0) {
+    if (!birdNamesRef.current || Object.keys(birdNamesRef.current).length === 0) {
       for (let i = 0; i < 15; i++) {
-        if (taxonomyRef.current && Object.keys(taxonomyRef.current).length > 0) break;
+        if (birdNamesRef.current && Object.keys(birdNamesRef.current).length > 0) break;
         await new Promise(r => setTimeout(r, 200));
       }
     }
@@ -291,7 +291,7 @@ export default function App() {
       try {
         const headers = { 'x-ebirdapitoken': activeKey };
         // Fetch each region-batch sequentially, ONE request per batch (EN only).
-        // Chinese names come from the static taxonomy (zero extra eBird API calls),
+        // Chinese names come from the static birdNames (zero extra eBird API calls),
         // which cuts request count from 6 → 3 and halves the chance of a 429/timeout.
         const enRecords = [];
         for (const batch of TW_REGION_BATCHES) {
@@ -311,9 +311,9 @@ export default function App() {
         }
         if (controller.signal.aborted) return;
 
-        // Merge zh names from static Taiwan-bird taxonomy; fallback to EN name
+        // Merge zh names from static Taiwan-bird birdNames; fallback to EN name
         const allRecords = enRecords.map(item => {
-          const t = taxonomyRef.current && taxonomyRef.current[item.speciesCode];
+          const t = birdNamesRef.current && birdNamesRef.current[item.speciesCode];
           return {
             ...item,
             comNameZh: (t && t.comNameZh) || item.comName,
@@ -420,7 +420,7 @@ export default function App() {
         }
       }
     }
-  }, [apiKey, worthList.length, taxonomy]);
+  }, [apiKey, worthList.length, birdNames]);
 
   // Auto-fetch month species count (once per day cache)
   useEffect(() => {
@@ -498,7 +498,7 @@ export default function App() {
           setWorthMeta(parsed.meta || null);
           setWorthLastUpdated(cachedTime);
           cacheHasData = true;
-          // 若快取裡有鳥種缺中文名（taxonomy 載入前抓的），taxonomy 就緒後需重抓補名
+          // 若快取裡有鳥種缺中文名（birdNames 載入前抓的），birdNames 就緒後需重抓補名
           cacheMissingZh = (parsed.list || []).some(sp =>
             sp.comNameZh && sp.comNameEn && sp.comNameZh === sp.comNameEn
           );
@@ -506,16 +506,16 @@ export default function App() {
         } catch { /* ignore */ }
       }
     }
-    // taxonomy 剛載入完成，且快取資料缺中文名 → 強制重抓，補上中文名
-    if (taxonomyLoaded && cacheHasData && cacheMissingZh) {
+    // birdNames 剛載入完成，且快取資料缺中文名 → 強制重抓，補上中文名
+    if (birdNamesLoaded && cacheHasData && cacheMissingZh) {
       needsFetch = true;
     }
     if (needsFetch && !worthLoading) {
       fetchWorth(apiKey);
     }
-  }, [apiKey, activeTab, taxonomy, taxonomyLoaded]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [apiKey, activeTab, birdNames, birdNamesLoaded]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  // Load static first-seen.json + taxonomy (works even without API key — zero live requests)
+  // Load static first-seen.json + birdNames (works even without API key — zero live requests)
   useEffect(() => {
     let cancelled = false;
     const loadFirstSeen = async () => {
@@ -537,11 +537,11 @@ export default function App() {
     };
     loadFirstSeen();
     // Load static Taiwan-bird names (777 species, ~100KB) — zero API requests.
-    // Much smaller + faster than the old 1.5MB global taxonomy.
+    // Much smaller + faster than the old 1.5MB global birdNames.
     fetch('/data/taiwan-birds.json')
       .then(r => r.ok ? r.json() : Promise.reject())
-      .then(data => { if (!cancelled) { setTaxonomy((data && data.species) || {}); setTaxonomyLoaded(true); } })
-      .catch(() => { if (!cancelled) setTaxonomyLoaded(true); });
+      .then(data => { if (!cancelled) { setBirdNames((data && data.species) || {}); setBirdNamesLoaded(true); } })
+      .catch(() => { if (!cancelled) setBirdNamesLoaded(true); });
     return () => { cancelled = true; };
   }, []);
 
