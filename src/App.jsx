@@ -1141,13 +1141,13 @@ export default function App() {
           onClick={() => setActiveTab('worth')}
         >
           <Eye size={16} style={{ marginRight: '0.4rem', verticalAlign: 'middle' }} />
-          值得一看的鳥
+          值得一看
         </button>
         <button
           className={`tab-btn ${activeTab === 'firstSeen' ? 'tab-active' : ''}`}
           onClick={() => setActiveTab('firstSeen')}
         >
-          <Calendar size={16} style={{ marginRight: '0.4rem', verticalAlign: 'middle' }} />
+          <Eye size={16} style={{ marginRight: '0.4rem', verticalAlign: 'middle' }} />
           今年首見
         </button>
       </nav>
