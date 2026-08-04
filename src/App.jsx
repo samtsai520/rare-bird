@@ -265,14 +265,13 @@ export default function App() {
     setWorthLoading(true);
     setWorthError(null);
 
-    // Target window = calendar yesterday + today
+    // Target window = calendar 前天 + 昨天 + today (3 days)
     const now = new Date();
     const fmtD = (d) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
     const todayStr = fmtD(now);
-    const yest = new Date(now);
-    yest.setDate(yest.getDate() - 1);
-    const yestStr = fmtD(yest);
-    const targetDates = new Set([yestStr, todayStr]);
+    const yest = new Date(now); yest.setDate(yest.getDate() - 1);   const yestStr = fmtD(yest);
+    const twoAgo = new Date(now); twoAgo.setDate(twoAgo.getDate() - 2); const twoAgoStr = fmtD(twoAgo);
+    const targetDates = new Set([twoAgoStr, yestStr, todayStr]);
 
     const maxRetries = 3;
     for (let attempt = 0; attempt <= maxRetries; attempt++) {
@@ -307,7 +306,7 @@ export default function App() {
         }));
 
         // Classify
-        const baseline = new Set();   // species present before yesterday (within 30d)
+        const baseline = new Set();   // species present before 前天 (within 30d)
         const targetByCode = {};      // code -> { records, count }
         const countPerCode = {};      // rarity score = total records in window
         for (const rec of allRecords) {
@@ -320,7 +319,7 @@ export default function App() {
               targetByCode[code] = { records: [] };
             }
             targetByCode[code].records.push(rec);
-          } else if (d < yestStr) {
+          } else if (d < twoAgoStr) {
             baseline.add(code);
           }
         }
@@ -372,9 +371,9 @@ export default function App() {
         setWorthLoading(false);
         setWorthError(null);
         setWorthLastUpdated(nowStr);
-        setWorthMeta({ targetDate: todayStr, yesterday: yestStr, count: list.length, strictUsed });
+        setWorthMeta({ targetDate: todayStr, yesterday: yestStr, twoDaysAgo: twoAgoStr, count: list.length, strictUsed });
 
-        localStorage.setItem(WORTH_CACHE_KEYS.obs, JSON.stringify({ list, meta: { targetDate: todayStr, yesterday: yestStr, count: list.length, strictUsed } }));
+        localStorage.setItem(WORTH_CACHE_KEYS.obs, JSON.stringify({ list, meta: { targetDate: todayStr, yesterday: yestStr, twoDaysAgo: twoAgoStr, count: list.length, strictUsed } }));
         localStorage.setItem(WORTH_CACHE_KEYS.time, nowStr);
 
         return;
@@ -852,8 +851,8 @@ export default function App() {
             <div className="select-container">
               <label className="select-label">
                 {meta
-                  ? `${meta.yesterday} ~ ${meta.targetDate}`
-                  : '昨天 ~ 今天'}
+                  ? `${meta.twoDaysAgo} ~ ${meta.targetDate}`
+                  : '前天 ~ 今天'}
                 <span className="last-update-text">
                   <span className="pulse-dot"></span>
                   最後更新: {formatTime(worthLastUpdated)}
