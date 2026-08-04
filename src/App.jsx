@@ -73,6 +73,12 @@ export default function App() {
   // Island section open state: mainland (本島) expanded by default, outer islands (外島) collapsed
   const [islandOpen, setIslandOpen] = useState({ main: true, island: false });
 
+  // First-seen tab state (reads static first-seen.json, zero API requests)
+  const [firstSeen, setFirstSeen] = useState(null);   // parsed JSON {year, lastUpdated, species}
+  const [firstSeenLoading, setFirstSeenLoading] = useState(false);
+  const [firstSeenError, setFirstSeenError] = useState(null);
+  const [firstSeenView, setFirstSeenView] = useState('month'); // 'month' | 'recent'
+
   // Month species count
   const [monthSpeciesCount, setMonthSpeciesCount] = useState(null);
 
@@ -455,6 +461,30 @@ export default function App() {
       fetchWorth(apiKey);
     }
   }, [apiKey]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Load static first-seen.json (works even without API key — zero live requests)
+  useEffect(() => {
+    let cancelled = false;
+    const loadFirstSeen = async () => {
+      setFirstSeenLoading(true);
+      setFirstSeenError(null);
+      try {
+        const res = await fetch('/data/first-seen.json');
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const data = await res.json();
+        if (!cancelled) {
+          setFirstSeen(data);
+          setFirstSeenError(null);
+        }
+      } catch (err) {
+        if (!cancelled) setFirstSeenError('今年首見資料尚未產生，請稍後再試。');
+      } finally {
+        if (!cancelled) setFirstSeenLoading(false);
+      }
+    };
+    loadFirstSeen();
+    return () => { cancelled = true; };
+  }, []);
 
   const handleNotableSearch = () => {
     if (!apiKey) {
@@ -859,7 +889,169 @@ export default function App() {
     );
   };
 
+  // FIRST-SEEN tab content (reads static first-seen.json, zero API requests)
+  const renderFirstSeenContent = () => {
+    if (firstSeenLoading) {
+      return (
+        <div className="loading-state">
+          <div className="radar-loader">
+            <div className="radar-circle"></div>
+            <div className="radar-circle"></div>
+            <div className="radar-circle"></div>
+            <div className="radar-center"></div>
+          </div>
+          <p>正在載入今年首見資料...</p>
+        </div>
+      );
+    }
+    if (firstSeenError || !firstSeen || !firstSeen.species) {
+      return (
+        <div className="error-state">
+          <AlertTriangle size={48} style={{ color: '#ef4444' }} />
+          <h3>載入失敗</h3>
+          <p>{firstSeenError || '今年首見資料尚未產生。'}</p>
+        </div>
+      );
+    }
+
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = now.getMonth() + 1;
+    const fmt = (d) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+    const yest = new Date(now); yest.setDate(yest.getDate() - 1);
+    const twoDaysAgo = new Date(now); twoDaysAgo.setDate(twoDaysAgo.getDate() - 2);
+
+    const targetDates = new Set([fmt(yest), fmt(twoDaysAgo)]);
+    const monthPrefix = `${year}-${String(month).padStart(2, '0')}`;
+
+    // Build list of species matching current view. Each entry has date + zh/en names.
+    const entries = [];
+    Object.entries(firstSeen.species).forEach(([code, info]) => {
+      const fs = info.firstSeen || '';
+      if (firstSeenView === 'recent') {
+        if (targetDates.has(fs)) entries.push({ code, fs, info });
+      } else {
+        if (fs.startsWith(monthPrefix)) entries.push({ code, fs, info });
+      }
+    });
+    // Sort by first-seen date ascending
+    entries.sort((a, b) => a.fs.localeCompare(b.fs));
+
+    const lastUpdated = firstSeen.lastUpdated || '—';
+    const dataYear = firstSeen.year || '—';
+
+    return (
+      <>
+        <section className="glass-panel">
+          <div className="controls-grid">
+            <div className="select-container">
+              <label className="select-label">
+                {firstSeenView === 'month' ? `本月今年首見（${year} 年 ${month} 月）` : '最近兩日本月首見'}
+                <span className="last-update-text">
+                  <span className="pulse-dot"></span>
+                  資料更新至: {lastUpdated}（{dataYear} 年度）
+                </span>
+              </label>
+              <select
+                value={firstSeenView}
+                onChange={(e) => setFirstSeenView(e.target.value)}
+                className="custom-select"
+              >
+                <option value="month">本月今年首見</option>
+                <option value="recent">最近兩日本月首見</option>
+              </select>
+            </div>
+          </div>
+        </section>
+
+        <div className="stats-ribbon">
+          <div className="stats-text">
+            共 <span className="stats-count">{entries.length}</span> 種今年首見鳥類
+            <span className="static-hint">（純讀靜態資料，零 API 請求）</span>
+          </div>
+        </div>
+
+        {entries.length === 0 ? (
+          <div className="empty-state">
+            <Eye size={48} style={{ color: 'var(--text-muted)' }} />
+            <h3>{firstSeenView === 'month' ? '本月尚無今年首見鳥種' : '最近兩日尚無本月首見鳥種'}</h3>
+            <p>此時間區間內沒有符合條件的紀錄。</p>
+          </div>
+        ) : (
+          <main className="species-list-container">
+            {entries.map(({ code, fs, info }) => {
+              const isExpanded = expandedSpecies.has(code);
+              return (
+                <div
+                  className={`species-accordion-item ${isExpanded ? 'is-open' : ''}`}
+                  key={code}
+                >
+                  <div
+                    className="species-accordion-header"
+                    onClick={() => toggleSpecies(code)}
+                  >
+                    <div className="species-primary-info">
+                      <div className="species-name-row">
+                        <span className="species-chinese">{info.comNameZh || code}</span>
+                        {info.comNameEn && info.comNameEn !== info.comNameZh && (
+                          <span className="species-english">{info.comNameEn}</span>
+                        )}
+                      </div>
+                      <div className="species-subtitle-row">
+                        <span className="species-latest-date">{fs}</span>
+                        <span className="species-latest-separator">·</span>
+                        <span className="species-latest-loc">今年首見</span>
+                      </div>
+                    </div>
+                    <div className="species-meta-info">
+                      <span className="sightings-counter-pill">首見</span>
+                      <button className="accordion-arrow-btn">
+                        {isExpanded ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+                      </button>
+                    </div>
+                  </div>
+                  {isExpanded && (
+                    <div className="species-accordion-content">
+                      <div className="sightings-table-container">
+                        <table className="sightings-table">
+                          <thead>
+                            <tr>
+                              <th>今年首見日期</th>
+                              <th>首見年度</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <td className="td-date">
+                                <Calendar size={14} style={{ marginRight: '0.4rem', verticalAlign: 'middle', color: 'var(--text-muted)' }} />
+                                <span>{fs}</span>
+                              </td>
+                              <td className="td-location">
+                                <span>{dataYear} 年</span>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <p className="static-hint" style={{ padding: '0.5rem 0.75rem 0.75rem' }}>
+                          代表今年首度被觀察到的日期（資料由每日 historic 累積）。
+                        </p>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </main>
+        )}
+      </>
+    );
+  };
+
   const renderContent = () => {
+    if (activeTab === 'firstSeen') {
+      // 今年首見 tab：純讀靜態資料，不需要 API key
+      return renderFirstSeenContent();
+    }
     if (!apiKey) {
       return renderApiKeyBanner();
     }
@@ -915,6 +1107,13 @@ export default function App() {
         >
           <Eye size={16} style={{ marginRight: '0.4rem', verticalAlign: 'middle' }} />
           值得一看的鳥
+        </button>
+        <button
+          className={`tab-btn ${activeTab === 'firstSeen' ? 'tab-active' : ''}`}
+          onClick={() => setActiveTab('firstSeen')}
+        >
+          <Calendar size={16} style={{ marginRight: '0.4rem', verticalAlign: 'middle' }} />
+          今年首見
         </button>
       </nav>
 
