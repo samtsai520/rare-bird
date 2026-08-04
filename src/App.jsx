@@ -249,43 +249,36 @@ export default function App() {
     for (let attempt = 0; attempt <= maxRetries; attempt++) {
       try {
         const headers = { 'x-ebirdapitoken': activeKey };
-        // 3 batches x (EN + ZH) = 6 parallel calls, all in one round
-        const jobs = [];
+        // Fetch each region-batch sequentially (eBird ~1 req/sec rate limit).
+        // Within a batch, EN + ZH run in parallel (max 2 concurrent) then a small delay
+        // before the next batch to avoid HTTP 429 spikes that a 6-way burst caused.
+        const enRecords = [];
+        const zhMap = {};
         for (const batch of TW_REGION_BATCHES) {
           const base = `https://api.ebird.org/v2/data/obs/TW/recent?back=${WORTH_BACK_DAYS}&detail=full&includeProvisional=true&r=${encodeURIComponent(batch)}`;
-          jobs.push(fetch(`${base}`, { headers, signal: controller.signal }));
-          jobs.push(fetch(`${base}&sppLocale=zh`, { headers, signal: controller.signal }));
-        }
-        const responses = await Promise.all(jobs);
-
-        if (responses.some(r => r.status === 429)) {
-          if (attempt < maxRetries) {
-            await new Promise(r => setTimeout(r, 2500 * (attempt + 1)));
-            continue;
+          const [resEn, resZh] = await Promise.all([
+            fetch(base, { headers, signal: controller.signal }),
+            fetch(`${base}&sppLocale=zh`, { headers, signal: controller.signal })
+          ]);
+          if (resEn.status === 429 || resZh.status === 429) {
+            throw new Error('RATE_LIMIT');
           }
+          if (!resEn.ok || !resZh.ok) {
+            throw new Error('eBird API error');
+          }
+          const dataEn = await resEn.json();
+          const dataZh = await resZh.json();
+          if (controller.signal.aborted) return;
+          enRecords.push(...dataEn);
+          dataZh.forEach(item => {
+            if (item.speciesCode) zhMap[item.speciesCode] = item.comName;
+          });
+          // throttle between batches
+          await new Promise(r => setTimeout(r, 1200));
         }
-        if (responses.some(r => !r.ok)) {
-          throw new Error(`eBird API error`);
-        }
-
-        const dataArr = await Promise.all(responses.map(r => r.json()));
         if (controller.signal.aborted) return;
 
         // Merge zh names by speciesCode; collect all records
-        const zhMap = {};
-        const enRecords = [];
-        dataArr.forEach((data, i) => {
-          const isZh = i % 2 === 1; // zh calls are odd indices (EN at even, ZH at odd per push order)
-          data.forEach(item => {
-            if (!item.speciesCode) return;
-            if (isZh) {
-              zhMap[item.speciesCode] = item.comName;
-            } else {
-              enRecords.push(item);
-            }
-          });
-        });
-
         const allRecords = enRecords.map(item => ({
           ...item,
           comNameZh: zhMap[item.speciesCode] || item.comName,
