@@ -939,6 +939,9 @@ export default function App() {
 
     const lastUpdated = firstSeen.lastUpdated || '—';
     const dataYear = firstSeen.year || '—';
+    // short M/D format for the recent-two-days label
+    const fmtShort = (dt) => `${dt.getMonth() + 1}/${dt.getDate()}`;
+    const recentLabel = `最近兩天(${fmtShort(twoDaysAgo)}、${fmtShort(yest)})本月首見`;
 
     return (
       <>
@@ -946,7 +949,7 @@ export default function App() {
           <div className="controls-grid">
             <div className="select-container">
               <label className="select-label">
-                {firstSeenView === 'month' ? `本月今年首見（${year} 年 ${month} 月）` : '最近兩日本月首見'}
+                {firstSeenView === 'month' ? `本月今年首見（${year} 年 ${month} 月）` : recentLabel}
                 <span className="last-update-text">
                   <span className="pulse-dot"></span>
                   資料更新至: {lastUpdated}（{dataYear} 年度）
@@ -958,7 +961,7 @@ export default function App() {
                 className="custom-select"
               >
                 <option value="month">本月今年首見</option>
-                <option value="recent">最近兩日本月首見</option>
+                <option value="recent">{recentLabel}</option>
               </select>
             </div>
           </div>
