@@ -958,7 +958,7 @@ export default function App() {
     const dataYear = firstSeen.year || '—';
     // short M/D format for the recent-two-days label
     const fmtShort = (dt) => `${dt.getMonth() + 1}/${dt.getDate()}`;
-    const recentLabel = `最近兩天(${fmtShort(twoDaysAgo)}、${fmtShort(yest)})本月首見`;
+    const recentLabel = `最近兩天(${fmtShort(twoDaysAgo)}、${fmtShort(yest)})本年首見`;
 
     return (
       <>
@@ -993,7 +993,7 @@ export default function App() {
         {entries.length === 0 ? (
           <div className="empty-state">
             <Eye size={48} style={{ color: 'var(--text-muted)' }} />
-            <h3>{firstSeenView === 'month' ? '本月尚無今年首見鳥種' : '最近兩日尚無本月首見鳥種'}</h3>
+            <h3>{firstSeenView === 'month' ? '本月尚無今年首見鳥種' : '最近兩日尚無本年首見鳥種'}</h3>
             <p>此時間區間內沒有符合條件的紀錄。</p>
           </div>
         ) : (
