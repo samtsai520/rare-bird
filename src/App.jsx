@@ -40,7 +40,7 @@ const WORTH_FALLBACK_COUNT = 8; // how many species to show in fallback mode
 const WORTH_MAX_LOCATIONS = 10; // 觀測點數超過此值 = 常見鳥，排除（綠繡眼/白頭翁等）
 
 // Outer-island regions: Kinmen, Matsu, Penghu, Lanyu. Anything else counts as mainland (本島).
-const ISLAND_KEYWORDS = ['金門', '馬祖', '澎湖', '蘭嶼'];
+const ISLAND_KEYWORDS = ['金門', '馬祖', '澎湖', '蘭嶼', '綠島', '小琉球'];
 const isIslandLoc = (name) => ISLAND_KEYWORDS.some(k => (name || '').includes(k));
 
 // ---- 全域 eBird 請求節流器 ----
