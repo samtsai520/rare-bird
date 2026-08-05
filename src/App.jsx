@@ -1091,19 +1091,19 @@ export default function App() {
           <div className="title-section">
             <div className="title-row-container">
               <h1>eBird台灣鳥類查詢</h1>
+              <button
+                className="btn-icon btn-icon-refresh"
+                onClick={handleHeaderRefresh}
+                title="更新目前頁面資料"
+              >
+                <RotateCw size={20} className={isAnyLoading ? "spin" : ""} />
+              </button>
             </div>
             <p className="header-credit">Sam Tsai 製作，歡迎公益使用</p>
           </div>
         </div>
 
         <div className="header-actions">
-          <button
-            className="btn-icon btn-icon-refresh"
-            onClick={handleHeaderRefresh}
-            title="更新目前頁面資料"
-          >
-            <RotateCw size={20} className={isAnyLoading ? "spin" : ""} />
-          </button>
           <button
             className="btn-icon"
             onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
