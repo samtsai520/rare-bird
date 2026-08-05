@@ -260,16 +260,22 @@ body {
   transform: scale(1.05);
 }
 
-/* Header refresh button: 20% larger, yellow spin icon */
+/* Header refresh button: larger, pushed down, looks like an independent tappable button */
 .btn-icon-refresh {
-  width: 48px;
-  height: 48px;
+  width: 64px;
+  height: 64px;
+  margin-top: 0.8rem;
+  background: var(--card-bg);
+  border: 2px solid rgba(76, 175, 80, 0.5);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.18);
 }
 .btn-icon-refresh svg {
   color: #facc15;
 }
 .btn-icon-refresh:hover {
-  transform: scale(1.05);
+  transform: scale(1.06);
+  border-color: #4caf50;
+  box-shadow: 0 4px 14px rgba(76, 175, 80, 0.35);
 }
 
 .btn-icon:disabled {
@@ -1169,7 +1175,8 @@ body {
     height: 34px;
   }
   .btn-icon-refresh {
-    width: 41px;
-    height: 41px;
+    width: 54px;
+    height: 54px;
+    margin-top: 0.6rem;
   }
 }
