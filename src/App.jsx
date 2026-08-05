@@ -532,6 +532,17 @@ export default function App() {
     fetchWorth(apiKey, true);
   };
 
+  // Header refresh: update the data of whichever tab is currently active
+  const handleHeaderRefresh = () => {
+    if (!apiKey) {
+      setShowSettings(true);
+      return;
+    }
+    if (activeTab === 'worth') fetchWorth(apiKey, true);
+    else fetchObservations(days, apiKey, true);
+  };
+  const isAnyLoading = loading || worthLoading;
+
   const saveApiKey = (keyToSave = inputApiKey) => {
     const trimmed = keyToSave.trim();
     setApiKey(trimmed);
@@ -854,15 +865,6 @@ export default function App() {
                 最後更新: {formatTime(worthLastUpdated)}
               </span>
             </div>
-
-            <button
-              className="btn-primary"
-              onClick={handleWorthSearch}
-              disabled={worthLoading}
-            >
-              <RotateCw size={18} className={worthLoading ? "spin" : ""} />
-              <span>{worthLoading ? "更新中..." : "更新"}</span>
-            </button>
           </div>
         </section>
 
@@ -1110,6 +1112,13 @@ export default function App() {
             title="設定 API Key"
           >
             <Settings size={20} />
+          </button>
+          <button
+            className="btn-icon"
+            onClick={handleHeaderRefresh}
+            title="更新目前頁面資料"
+          >
+            <RotateCw size={20} className={isAnyLoading ? "spin" : ""} />
           </button>
           <button
             className="btn-icon"
