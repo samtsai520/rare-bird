@@ -265,7 +265,7 @@ body {
   width: 64px;
   height: 64px;
   margin-top: 0.8rem;
-  background: var(--card-bg);
+  background: var(--badge-bg);
   border: none;
   outline: none;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.18);

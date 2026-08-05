@@ -1099,7 +1099,6 @@ export default function App() {
                 <RotateCw size={32} className={isAnyLoading ? "spin" : ""} />
               </button>
             </div>
-            <p className="header-credit">Sam Tsai 製作，歡迎公益使用</p>
           </div>
         </div>
 
