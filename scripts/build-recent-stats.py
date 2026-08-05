@@ -5,7 +5,7 @@ build-recent-stats.py — 產出「最近 4 個完整整天」的觀察統計 JS
 由每日 cron 呼叫（建議凌晨 3 點執行，此時前一整天資料已完整）。
 輸出 public/data/recent-stats.json，前端純讀（零 live API 請求）。
 
-「4 個完整整天」＝ 昨天、前天、大前天、大大前天（不含今天，因凌晨今天無資料）。
+「3 個完整整天」＝ 昨天、前天、大前天（不含今天，因凌晨今天無資料）。
 與「值得一看」的目標窗口對應，但改用完整整天避免缺資料。
 
 安全性：API key 從環境變數 EBIRD_API_KEY 或 gitignored config.json 讀取。
@@ -66,11 +66,11 @@ def fmt(dt):
 def main():
     key = _load_api_key()
 
-    # 最近 4 個完整整天：昨天往前推 4 天
+    # 最近 3 個完整整天：昨天往前推 3 天
     from datetime import datetime, timedelta
     days = []
     today = datetime.now()
-    for i in range(1, 5):
+    for i in range(1, 4):
         days.append(fmt(today - timedelta(days=i)))
 
     print("=== 產出 recent-stats.json ===")

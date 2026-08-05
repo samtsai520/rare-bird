@@ -843,22 +843,17 @@ export default function App() {
           <div className="controls-grid">
             <div className="select-container">
               <label className="select-label">
-                {meta
-                  ? `${meta.threeDaysAgo || meta.twoDaysAgo} ~ ${meta.targetDate}`
-                  : '3天前 ~ 今天'}
+                {recentStats && recentStats.total
+                  ? `最近3天(${(recentStats.windowStart || '').slice(5).replace('-', '/')}~${(recentStats.windowEnd || '').slice(5).replace('-', '/')})eBird共收集了${recentStats.total.checklists}張觀察列表，計有${recentStats.total.species}鳥種。以下是精選值得一看的鳥種。`
+                  : (meta
+                    ? `${meta.threeDaysAgo || meta.twoDaysAgo} ~ ${meta.targetDate}`
+                    : '3天前 ~ 今天')}
               </label>
               <span className="last-update-text">
                 <span className="pulse-dot"></span>
                 最後更新: {formatTime(worthLastUpdated)}
               </span>
             </div>
-
-            {recentStats && recentStats.total && (
-              <span className="last-update-text" style={{ whiteSpace: 'nowrap' }}>
-                最近4天({(recentStats.windowStart || '').slice(5).replace('-', '/')}~{(recentStats.windowEnd || '').slice(5).replace('-', '/')})
-                共 {recentStats.total.checklists} 張列表 / {recentStats.total.species} 種
-              </span>
-            )}
 
             <button
               className="btn-primary"
