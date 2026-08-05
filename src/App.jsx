@@ -98,6 +98,9 @@ export default function App() {
   const [firstSeenError, setFirstSeenError] = useState(null);
   const [firstSeenView, setFirstSeenView] = useState('month'); // 'month' | 'recent'
 
+  // Recent 4-day stats (static recent-stats.json, zero API requests)
+  const [recentStats, setRecentStats] = useState(null); // {windowStart, windowEnd, total:{checklists, species}}
+
   // Static Taiwan-bird names (code -> {comNameZh}) for zero-API Chinese names
   const [birdNames, setBirdNames] = useState({});
   const [birdNamesLoaded, setBirdNamesLoaded] = useState(false);
@@ -499,6 +502,11 @@ export default function App() {
       }
     };
     loadFirstSeen();
+    // Load static recent-stats.json (recent 4-day observation stats, zero API requests)
+    fetch('/data/recent-stats.json')
+      .then(r => r.ok ? r.json() : Promise.reject())
+      .then(data => { if (!cancelled) setRecentStats(data); })
+      .catch(() => { /* 靜態統計檔缺失時忽略，資訊列隱藏 */ });
     // Load static Taiwan-bird names (777 species, ~100KB) — zero API requests.
     // Much smaller + faster than the old 1.5MB global birdNames.
     fetch('/data/taiwan-birds.json')
@@ -844,6 +852,13 @@ export default function App() {
                 最後更新: {formatTime(worthLastUpdated)}
               </span>
             </div>
+
+            {recentStats && recentStats.total && (
+              <span className="last-update-text" style={{ whiteSpace: 'nowrap' }}>
+                最近4天({(recentStats.windowStart || '').slice(5).replace('-', '/')}~{(recentStats.windowEnd || '').slice(5).replace('-', '/')})
+                共 {recentStats.total.checklists} 張列表 / {recentStats.total.species} 種
+              </span>
+            )}
 
             <button
               className="btn-primary"
