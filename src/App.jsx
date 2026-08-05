@@ -14,6 +14,7 @@ import {
   Key,
   Eye
 } from 'lucide-react';
+import { Analytics } from '@vercel/analytics/react';
 
 const STORAGE_API_KEY_KEY = "taiwan_birds_ebird_api_key";
 const STORAGE_THEME_KEY = "taiwan_birds_theme";
@@ -1219,6 +1220,7 @@ export default function App() {
           color: var(--text-muted);
         }
       `}</style>
+      <Analytics />
     </div>
   );
 }
