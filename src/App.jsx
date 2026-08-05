@@ -1098,14 +1098,7 @@ export default function App() {
 
         <div className="header-actions">
           <button
-            className={`btn-icon ${showSettings ? 'active-btn' : ''}`}
-            onClick={() => setShowSettings(!showSettings)}
-            title="設定 API Key"
-          >
-            <Settings size={20} />
-          </button>
-          <button
-            className="btn-icon"
+            className="btn-icon btn-icon-refresh"
             onClick={handleHeaderRefresh}
             title="更新目前頁面資料"
           >
@@ -1117,6 +1110,13 @@ export default function App() {
             title="切換主題"
           >
             {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+          </button>
+          <button
+            className={`btn-icon ${showSettings ? 'active-btn' : ''}`}
+            onClick={() => setShowSettings(!showSettings)}
+            title="設定 API Key"
+          >
+            <Settings size={20} />
           </button>
         </div>
       </header>
