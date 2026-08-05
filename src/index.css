@@ -1139,3 +1139,21 @@ body {
     font-size: 0.95rem;
   }
 }
+
+/* Mobile: compact header so title stays on one line (no font-size change) */
+@media (max-width: 600px) {
+  .app-header {
+    gap: 0.5rem;
+    padding: 0.75rem 0.5rem;
+  }
+  .brand-wrapper {
+    gap: 0.4rem;
+  }
+  .header-actions {
+    gap: 0.35rem;
+  }
+  .btn-icon {
+    width: 34px;
+    height: 34px;
+  }
+}

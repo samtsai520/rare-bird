@@ -793,15 +793,6 @@ export default function App() {
                 <option value={30}>過去 30 天</option>
               </select>
             </div>
-
-            <button
-              className="btn-primary"
-              onClick={handleNotableSearch}
-              disabled={loading}
-            >
-              <RotateCw size={18} className={loading ? "spin" : ""} />
-              <span>{loading ? "更新中..." : "更新"}</span>
-            </button>
           </div>
         </section>
 
