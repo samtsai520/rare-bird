@@ -1096,7 +1096,7 @@ export default function App() {
                 onClick={handleHeaderRefresh}
                 title="更新目前頁面資料"
               >
-                <RotateCw size={20} className={isAnyLoading ? "spin" : ""} />
+                <RotateCw size={32} className={isAnyLoading ? "spin" : ""} />
               </button>
             </div>
             <p className="header-credit">Sam Tsai 製作，歡迎公益使用</p>

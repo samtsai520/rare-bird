@@ -266,7 +266,8 @@ body {
   height: 64px;
   margin-top: 0.8rem;
   background: var(--card-bg);
-  border: 2px solid rgba(76, 175, 80, 0.5);
+  border: none;
+  outline: none;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.18);
 }
 .btn-icon-refresh svg {
@@ -274,8 +275,10 @@ body {
 }
 .btn-icon-refresh:hover {
   transform: scale(1.06);
-  border-color: #4caf50;
   box-shadow: 0 4px 14px rgba(76, 175, 80, 0.35);
+}
+.btn-icon-refresh:focus {
+  outline: none;
 }
 
 .btn-icon:disabled {
