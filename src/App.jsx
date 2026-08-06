@@ -537,10 +537,33 @@ export default function App() {
         } catch (e) { /* 靜態昨天檔缺失時忽略，僅用今天 */ }
 
         // 分類今天：每種鳥可出現在多組（本島外島都有就都列）
-        // 海拔直接用靜態表查（不打瀏覽器端會失敗的 Open-Elevation），查無此點視為平地。
+        // 海拔：先查靜態表（涵蓋常見熱點、零請求）；表沒有的點（當天新賞鳥點）再用 open-meteo live 查。
+        // （open-meteo 有 CORS *，瀏覽器端確定可用；不可用 Open-Elevation，它常回 504。）
+        const todayLocSet = new Map();
+        todayRecs.forEach(r => {
+          const k = `${r.lat.toFixed(5)},${r.lng.toFixed(5)}`;
+          if (!todayLocSet.has(k)) todayLocSet.set(k, { lat: r.lat, lng: r.lng });
+        });
+        const missLocs = Array.from(todayLocSet.values())
+          .filter(l => elevLookup(elevMapRef.current, l) === undefined);
+        const liveElev = new Map(); // "lat,lng" -> elevation (open-meteo)
+        for (const l of missLocs) {
+          try {
+            const url = `https://api.open-meteo.com/v1/elevation?latitude=${l.lat}&longitude=${l.lng}`;
+            const res = await fetch(url);
+            if (res.ok) {
+              const data = await res.json();
+              if (Array.isArray(data.elevation) && data.elevation[0] != null) {
+                liveElev.set(`${l.lat.toFixed(5)},${l.lng.toFixed(5)}`, data.elevation[0]);
+              }
+            }
+          } catch (e) { /* live 海拔查詢失敗時該點視為平地 */ }
+        }
         const catRecs = {}; // code -> {cat: [recs]}
         todayRecs.forEach(r => {
-          const elev = elevLookup(elevMapRef.current, r);
+          const k = `${r.lat.toFixed(5)},${r.lng.toFixed(5)}`;
+          let elev = elevLookup(elevMapRef.current, r);
+          if (elev === undefined) elev = liveElev.get(k);
           const name = r.locName || '';
           let cat;
           if (isIslandLoc(name)) cat = 'island';
