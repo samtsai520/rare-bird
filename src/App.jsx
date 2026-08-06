@@ -674,45 +674,25 @@ export default function App() {
     }
   }, [apiKey, activeTab, birdNames, birdNamesLoaded]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  // Auto-load: 有鳥快看 check cache first, then fetch
-  // 注意：deps 不含 activeTab — 不論使用者在哪個 tab，只要 apiKey 就緒就載入，
-  // 避免切 tab 時重複觸發 fetch 或覆蓋 quickList。
+  // Auto-load: 有鳥快看 — 啟動時強制打 API 更新一次（不用 cache），
+  // 確保顯示完整的全部鳥種、沒有過濾。
+  // 之後若 birdNames 延遲載入導致缺中文名，才重抓。
   useEffect(() => {
     if (!apiKey) return;
+    // 先從 cache 載入避免畫面全空，但同時強制 fetch 最新資料
     const cached = localStorage.getItem(QUICK_CACHE_KEYS.obs);
     const cachedTime = localStorage.getItem(QUICK_CACHE_KEYS.time);
-    let needsFetch = true;
-    let cacheHasData = false;
-    let cacheMissingZh = false;
     if (cached && cachedTime) {
-      const parsedTime = new Date(cachedTime);
-      const today = new Date();
-      if (
-        parsedTime.getFullYear() === today.getFullYear() &&
-        parsedTime.getMonth() === today.getMonth() &&
-        parsedTime.getDate() === today.getDate()
-      ) {
-        try {
-          const parsed = JSON.parse(cached);
-          setQuickList(parsed.list || []);
-          setQuickMeta(parsed.meta || null);
-          setQuickLastUpdated(cachedTime);
-          setQuickLoading(false);
-          cacheHasData = true;
-          cacheMissingZh = (parsed.list || []).some(sp =>
-            sp.comNameZh && sp.comNameEn && sp.comNameZh === sp.comNameEn
-          );
-          needsFetch = false;
-        } catch { /* ignore */ }
-      }
+      try {
+        const parsed = JSON.parse(cached);
+        setQuickList(parsed.list || []);
+        setQuickMeta(parsed.meta || null);
+        setQuickLastUpdated(cachedTime);
+      } catch { /* ignore */ }
     }
-    if (birdNamesLoaded && cacheHasData && cacheMissingZh) {
-      needsFetch = true;
-    }
-    if (needsFetch && !quickLoading) {
-      fetchQuick(apiKey);
-    }
-  }, [apiKey, birdNames, birdNamesLoaded]); // eslint-disable-line react-hooks/exhaustive-deps
+    // 強制打 API（不論 cache 新舊）
+    fetchQuick(apiKey);
+  }, [apiKey]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Load static first-seen.json + birdNames (works even without API key — zero live requests)
   useEffect(() => {
