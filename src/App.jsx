@@ -32,7 +32,7 @@ const QUICK_CACHE_KEYS = {
   time: "taiwan_birds_quick_time",
 };
 const MOUNTAIN_ELEV = 300; // 本島山地門檻（海拔 ≥300m）
-const QUICK_BACK_DAYS = 30; // 有鳥快看抓取窗口（baseline，固定）
+const QUICK_BACK_DAYS = 2; // 有鳥快看只需要今天+昨天，不必抓 30 天（原為 30，浪費下載量）
 
 // 22 subnational1 regions, split into 3 batches for the `r` param (<=10 per call)
 const TW_REGION_BATCHES = [
