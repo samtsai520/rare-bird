@@ -47,6 +47,18 @@ const WORTH_MAX_LOCATIONS = 10; // 觀測點數超過此值 = 常見鳥，排除
 
 // Outer-island regions: Kinmen, Matsu, Penghu, Lanyu. Anything else counts as mainland (本島).
 const ISLAND_KEYWORDS = ['金門', '馬祖', '澎湖', '蘭嶼', '綠島', '小琉球'];
+
+// Haversine 公式：兩點間的地球表面距離（公里）
+function haversineKm(lat1, lng1, lat2, lng2) {
+  const R = 6371; // 地球半徑（公里）
+  const toRad = (deg) => (deg * Math.PI) / 180;
+  const dLat = toRad(lat2 - lat1);
+  const dLng = toRad(lng2 - lng1);
+  const a =
+    Math.sin(dLat / 2) ** 2 +
+    Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLng / 2) ** 2;
+  return 2 * R * Math.asin(Math.sqrt(a));
+}
 const isIslandLoc = (name) => ISLAND_KEYWORDS.some(k => (name || '').includes(k));
 
 // ---- 全域 eBird 請求節流器 ----
@@ -109,6 +121,14 @@ export default function App() {
   // ref mirror so fetchQuick always reads latest blacklist (avoids closure race)
   const blacklistRef = useRef(blacklist);
   useEffect(() => { blacklistRef.current = blacklist; }, [blacklist]);
+  // 「在我附近」：勾選後用使用者 GPS 過濾 30 公里內鳥種
+  const [nearby, setNearby] = useState(false);
+  const [userLoc, setUserLoc] = useState(null); // {lat, lng}
+  const [nearbyError, setNearbyError] = useState(null);
+  const nearbyRef = useRef(nearby);
+  const userLocRef = useRef(userLoc);
+  useEffect(() => { nearbyRef.current = nearby; }, [nearby]);
+  useEffect(() => { userLocRef.current = userLoc; }, [userLoc]);
 
   // First-seen tab state (reads static first-seen.json, zero API requests)
   const [firstSeen, setFirstSeen] = useState(null);   // parsed JSON {year, lastUpdated, species}
@@ -487,10 +507,16 @@ export default function App() {
         });
 
         // 篩出 target（今天+昨天）且不在黑名單的記錄
-        const targetRecs = allRecords.filter(r => {
+        let targetRecs = allRecords.filter(r => {
           const d = (r.obsDt || '').slice(0, 10);
           return targetDates.has(d) && !blacklistRef.current.has(r.speciesCode);
         });
+
+        // 「在我附近」：若勾選且有使用者位置，過濾 30 公里內
+        if (nearbyRef.current && userLocRef.current) {
+          const { lat: ulat, lng: ulng } = userLocRef.current;
+          targetRecs = targetRecs.filter(r => haversineKm(ulat, ulng, r.lat, r.lng) <= 30);
+        }
 
         // 收集 unique 觀測點 (lat,lng) 供海拔查詢
         const locSet = new Map();
@@ -749,6 +775,38 @@ export default function App() {
       return;
     }
     fetchQuick(apiKey, true);
+  };
+
+  // 「在我附近」checkbox：勾選時取得使用者 GPS，取消時清除
+  const handleNearbyToggle = () => {
+    if (nearby) {
+      // 取消勾選：清除位置與錯誤
+      setNearby(false);
+      setUserLoc(null);
+      setNearbyError(null);
+      return;
+    }
+    // 勾選：請求瀏覽器定位
+    if (!navigator.geolocation) {
+      setNearbyError('此瀏覽器不支援定位功能。');
+      return;
+    }
+    setNearbyError(null);
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        setUserLoc({ lat: pos.coords.latitude, lng: pos.coords.longitude });
+        setNearby(true);
+        setNearbyError(null);
+        // 取得位置後重新抓取（過濾 30 公里內）
+        if (apiKey) fetchQuick(apiKey, true);
+      },
+      (err) => {
+        setNearby(false);
+        setUserLoc(null);
+        setNearbyError('無法取得您的位置，請確認已允許定位權限。');
+      },
+      { enableHighAccuracy: true, timeout: 10000, maximumAge: 300000 }
+    );
   };
 
   // Header refresh: update the data of whichever tab is currently active
@@ -1282,6 +1340,15 @@ export default function App() {
                 最後更新: {formatTime(quickLastUpdated)}
               </span>
             </div>
+            <label className="nearby-checkbox">
+              <input
+                type="checkbox"
+                checked={nearby}
+                onChange={handleNearbyToggle}
+              />
+              <span>在我附近（30公里內）</span>
+            </label>
+            {nearbyError && <div className="nearby-error">{nearbyError}</div>}
           </div>
         </section>
 
