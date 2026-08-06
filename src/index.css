@@ -383,8 +383,8 @@ body {
   font-size: 1rem;
   font-weight: 600;
   color: var(--text-secondary);
-  background: transparent;
-  border: none;
+  background: var(--badge-bg);
+  border: 1px solid var(--glass-border);
   border-radius: var(--radius-md);
   cursor: pointer;
   transition: var(--transition-smooth);
