@@ -32,7 +32,7 @@ const QUICK_CACHE_KEYS = {
   time: "taiwan_birds_quick_time",
 };
 const MOUNTAIN_ELEV = 300; // 本島山地門檻（海拔 ≥300m）
-const QUICK_BACK_DAYS = 3; // 有鳥快看：live 抓 back=3（涵蓋最近 3 天），只排除黑名單、不過濾日期
+const QUICK_BACK_DAYS = 2; // 有鳥快看：live 抓 back=2（涵蓋最近 2 天），只排除黑名單、不過濾日期
 
 // 22 subnational1 regions, split into 3 batches for the `r` param (<=10 per call)
 const TW_REGION_BATCHES = [
@@ -469,7 +469,7 @@ export default function App() {
     }
   }, [apiKey, worthList.length, birdNames]);
 
-  // ---- 有鳥快看 fetch: back=3（最近3天），排除黑名單，分類本島平地/本島山地/外島 ----
+  // ---- 有鳥快看 fetch: back=2（最近2天），排除黑名單，分類本島平地/本島山地/外島 ----
   const fetchQuick = useCallback(async (activeKey = apiKey, isManual = false) => {
     if (!activeKey) {
       setQuickError("請先設定您的 eBird API Key。");
@@ -574,7 +574,7 @@ export default function App() {
           };
         });
 
-        // 方案B：todayList 已含 back=3 抓到的全部資料（只排除黑名單），直接作為最終清單
+        // 方案B：todayList 已含 back=2 抓到的全部資料（只排除黑名單），直接作為最終清單
         const list = todayList;
 
         const nowStr = new Date().toISOString();
