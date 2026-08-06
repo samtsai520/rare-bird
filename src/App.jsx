@@ -1328,7 +1328,7 @@ export default function App() {
     return (
       <>
         <section className="glass-panel">
-          <div className="controls-grid">
+          <div className="controls-grid quick-controls">
             <div className="select-container">
               <label className="select-label">
                 {meta

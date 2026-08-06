@@ -300,7 +300,7 @@ body {
   justify-content: space-between;
   align-items: flex-end;
   gap: 1rem;
-  flex-wrap: nowrap;
+  flex-wrap: wrap; /* 允許換行，避免手機上擠壓 */
 }
 
 /* Last update inline (inside control panel) */
@@ -349,6 +349,18 @@ body {
   font-size: 0.8rem;
   color: #ef4444;
   margin-top: 0.3rem;
+  width: 100%;
+}
+
+/* 有鳥快看資訊欄：checkbox 獨立一行，不與長文字擠壓 */
+.quick-controls {
+  flex-wrap: wrap;
+}
+.quick-controls .select-container {
+  flex: 1 1 100%;
+}
+.quick-controls .nearby-checkbox {
+  align-self: flex-start;
 }
 
 /* Tab Bar */
