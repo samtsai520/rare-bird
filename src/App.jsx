@@ -61,6 +61,14 @@ function haversineKm(lat1, lng1, lat2, lng2) {
 }
 const isIslandLoc = (name) => ISLAND_KEYWORDS.some(k => (name || '').includes(k));
 
+// 依海拔表查某觀測點的海拔（key: "lat,lng" 字串，四捨五入到 5 位）。
+// 回傳 number 或 undefined（查無此點 / 海拔表未載入）。
+const elevLookup = (elevMap, r) => {
+  if (!elevMap) return undefined;
+  const key = `${r.lat.toFixed(5)},${r.lng.toFixed(5)}`;
+  return elevMap[key];
+};
+
 // ---- 全域 eBird 請求節流器 ----
 // 所有 eBird API 呼叫共用同一把鎖，避免多個功能（稀有種/值得一看/月份統計）
 // 同時對 eBird 爆發請求而觸發 429 限速。每筆請求至少間隔 MIN_API_INTERVAL ms。
@@ -125,6 +133,11 @@ export default function App() {
   // ref mirror so fetchQuick always reads latest blacklist (avoids closure race)
   const blacklistRef = useRef(blacklist);
   useEffect(() => { blacklistRef.current = blacklist; }, [blacklist]);
+  // 全台觀測點海拔對照表（cron 產出靜態檔，key 為 "lat,lng" 字串 → 海拔公尺）
+  const [elevMap, setElevMap] = useState(null);
+  const [elevMapLoaded, setElevMapLoaded] = useState(false);
+  const elevMapRef = useRef(null);
+  useEffect(() => { elevMapRef.current = elevMap; }, [elevMap]);
   // 「在我附近」：勾選後用使用者 GPS 過濾 30 公里內鳥種
   const [nearby, setNearby] = useState(false);
   const [userLoc, setUserLoc] = useState(null); // {lat, lng}
@@ -492,17 +505,14 @@ export default function App() {
       try {
         const headers = { 'x-ebirdapitoken': activeKey };
         const enRecords = [];
-        for (const batch of TW_REGION_BATCHES) {
-          const url = `https://api.ebird.org/v2/data/obs/TW/recent?back=${QUICK_BACK_DAYS}&detail=full&includeProvisional=true&r=${encodeURIComponent(batch)}`;
-          const res = await throttleApiCall(() => fetch(url, { headers, signal: controller.signal }));
-          if (res.status === 429) throw new Error('RATE_LIMIT');
-          if (!res.ok) throw new Error('eBird API error');
-          const dataEn = await res.json();
-          if (controller.signal.aborted) return;
-          enRecords.push(...dataEn);
-          await new Promise(r => setTimeout(r, 900));
-        }
+        // 單一國家級請求（無 r 參數）即可回傳全台今天資料，比 3 個地區批次更快、更少請求。
+        const url = `https://api.ebird.org/v2/data/obs/TW/recent?back=${QUICK_BACK_DAYS}&detail=full&includeProvisional=true`;
+        const res = await throttleApiCall(() => fetch(url, { headers, signal: controller.signal }));
+        if (res.status === 429) throw new Error('RATE_LIMIT');
+        if (!res.ok) throw new Error('eBird API error');
+        const dataEn = await res.json();
         if (controller.signal.aborted) return;
+        enRecords.push(...dataEn);
 
         // 合併中文名
         const allRecords = enRecords.map(item => {
@@ -527,36 +537,10 @@ export default function App() {
         } catch (e) { /* 靜態昨天檔缺失時忽略，僅用今天 */ }
 
         // 分類今天：每種鳥可出現在多組（本島外島都有就都列）
-        // 收集 today 的 unique 觀測點 (lat,lng) 供海拔查詢
-        const locSet = new Map();
-        todayRecs.forEach(r => {
-          const key = `${r.lat.toFixed(5)},${r.lng.toFixed(5)}`;
-          if (!locSet.has(key)) locSet.set(key, { lat: r.lat, lng: r.lng });
-        });
-        const locs = Array.from(locSet.values());
-        // 批次查海拔（Open-Elevation，每批 100 點）
-        const elevMap = new Map();
-        for (let i = 0; i < locs.length; i += 100) {
-          const batch = locs.slice(i, i + 100).map(l => ({ latitude: l.lat, longitude: l.lng }));
-          try {
-            const res = await fetch('https://api.open-elevation.com/api/v1/lookup', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ locations: batch }),
-            });
-            if (res.ok) {
-              const data = await res.json();
-              data.results.forEach(r => {
-                elevMap.set(`${r.latitude.toFixed(5)},${r.longitude.toFixed(5)}`, r.elevation);
-              });
-            }
-          } catch (e) { /* 海拔查詢失敗時該點視為平地 */ }
-        }
-
+        // 海拔直接用靜態表查（不打瀏覽器端會失敗的 Open-Elevation），查無此點視為平地。
         const catRecs = {}; // code -> {cat: [recs]}
         todayRecs.forEach(r => {
-          const key = `${r.lat.toFixed(5)},${r.lng.toFixed(5)}`;
-          const elev = elevMap.get(key);
+          const elev = elevLookup(elevMapRef.current, r);
           const name = r.locName || '';
           let cat;
           if (isIslandLoc(name)) cat = 'island';
@@ -760,6 +744,12 @@ export default function App() {
       .then(r => r.ok ? r.json() : Promise.reject())
       .then(data => { if (!cancelled && data && Array.isArray(data.codes)) setBlacklist(new Set(data.codes)); })
       .catch(() => { /* 黑名單缺失時忽略（不排除任何鳥） */ });
+    // Load static elevation-map (全台觀測點海拔對照表，cron 產出) — zero API requests.
+    // 「有鳥快看」今天的資料直接用此表分類 本島山地/平地，不打瀏覽器端會失敗的 Open-Elevation。
+    fetch('/data/elevation-map.json')
+      .then(r => r.ok ? r.json() : Promise.reject())
+      .then(data => { if (!cancelled && data) { setElevMap(data); setElevMapLoaded(true); } })
+      .catch(() => { /* 海拔表缺失時忽略，今天的鳥退回用打 API 分類 */ });
     return () => { cancelled = true; };
   }, []);
 
