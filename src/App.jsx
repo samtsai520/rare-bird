@@ -774,8 +774,10 @@ export default function App() {
   // 「在我附近」checkbox：勾選時取得使用者 GPS，取消時清除
   // 用 ref 追蹤目前 toggle 意圖，避免 GPS 非同步回呼（race condition）在
   // 使用者已取消勾選後又把 nearby 設回 true。
+  // 注意：ref 只由 handler 手動設定，不可用 useEffect 同步到 nearby state，
+  // 否則在 GPS 回來前 nearby 仍為 false，effect 會把 ref 覆蓋成 false，
+  // 導致 GPS 成功回呼被 guard 擋掉，setNearby(true) 永遠不執行。
   const nearbyToggleRef = useRef(false);
-  useEffect(() => { nearbyToggleRef.current = nearby; }, [nearby]);
 
   const handleNearbyToggle = () => {
     if (nearby) {
