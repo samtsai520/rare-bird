@@ -95,8 +95,8 @@ export default function App() {
   const [worthError, setWorthError] = useState(null);
   const [worthLastUpdated, setWorthLastUpdated] = useState(null);
   const [worthMeta, setWorthMeta] = useState(null); // { targetDate, count, strictUsed }
-  // Island section open state: mainland (本島) expanded by default, outer islands (外島) collapsed
-  const [islandOpen, setIslandOpen] = useState({ main: true, island: false });
+  // Island section open state: 本島/外島預設全收合，點選時另一區自動收合（accordion）
+  const [islandOpen, setIslandOpen] = useState({ main: false, island: false });
 
   // 有鳥快看 tab state
   const [quickList, setQuickList] = useState([]);   // [{speciesCode, comNameZh, comNameEn, cat, sightings}]
@@ -1067,7 +1067,11 @@ export default function App() {
       if (isIslandLoc(latestLoc)) islandList.push(sp);
       else mainList.push(sp);
     });
-    const toggleIsland = (key) => setIslandOpen(prev => ({ ...prev, [key]: !prev[key] }));
+    const toggleIsland = (key) => setIslandOpen(prev => {
+      const next = { main: false, island: false };
+      next[key] = !prev[key];
+      return next;
+    });
     return (
       <>
         <section className="glass-panel">
@@ -1270,7 +1274,7 @@ export default function App() {
             <div className="select-container">
               <label className="select-label">
                 {meta
-                  ? `這兩天出現的精彩鳥種（${meta.targetDate}、${meta.yesterday}）`
+                  ? `這兩天出現的精彩鳥種（${meta.yesterday.slice(5).replace('-', '/')}、${meta.targetDate.slice(5).replace('-', '/')}）`
                   : '這兩天出現的精彩鳥種'}
               </label>
               <span className="last-update-text">
