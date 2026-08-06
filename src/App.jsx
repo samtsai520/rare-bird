@@ -90,7 +90,7 @@ export default function App() {
   const [apiKeySavedMsg, setApiKeySavedMsg] = useState('');
 
   // Active tab: 'notable' (稀有種快報) | 'worth' (值得一看的鳥)
-  const [activeTab, setActiveTab] = useState('notable');
+  const [activeTab, setActiveTab] = useState('quick');
 
   // Notable tab state
   const [observations, setObservations] = useState([]);
