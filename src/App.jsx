@@ -507,16 +507,10 @@ export default function App() {
         });
 
         // 篩出 target（今天+昨天）且不在黑名單的記錄
-        let targetRecs = allRecords.filter(r => {
+        const targetRecs = allRecords.filter(r => {
           const d = (r.obsDt || '').slice(0, 10);
           return targetDates.has(d) && !blacklistRef.current.has(r.speciesCode);
         });
-
-        // 「在我附近」：若勾選且有使用者位置，過濾 30 公里內
-        if (nearbyRef.current && userLocRef.current) {
-          const { lat: ulat, lng: ulng } = userLocRef.current;
-          targetRecs = targetRecs.filter(r => haversineKm(ulat, ulng, r.lat, r.lng) <= 30);
-        }
 
         // 收集 unique 觀測點 (lat,lng) 供海拔查詢
         const locSet = new Map();
@@ -797,8 +791,10 @@ export default function App() {
         setUserLoc({ lat: pos.coords.latitude, lng: pos.coords.longitude });
         setNearby(true);
         setNearbyError(null);
-        // 取得位置後重新抓取（過濾 30 公里內）
-        if (apiKey) fetchQuick(apiKey, true);
+        // 若目前沒有資料（cache 空），才自動打 API 抓取；否則直接從已顯示清單過濾
+        if (apiKey && quickList.length === 0) {
+          fetchQuick(apiKey, true);
+        }
       },
       (err) => {
         setNearby(false);
@@ -1321,9 +1317,19 @@ export default function App() {
       }
       return new Date(b.sightings[0]?.obsDt) - new Date(a.sightings[0]?.obsDt);
     });
-    const flatList = sortByLat(quickList.filter(sp => (sp.cats.flat || []).length > 0).map(sp => ({ ...sp, sightings: sp.cats.flat })));
-    const mountainList = sortByLat(quickList.filter(sp => (sp.cats.mountain || []).length > 0).map(sp => ({ ...sp, sightings: sp.cats.mountain })));
-    const islandList = sortByLat(quickList.filter(sp => (sp.cats.island || []).length > 0).map(sp => ({ ...sp, sightings: sp.cats.island })));
+
+    // 「在我附近」：勾選且有使用者位置時，只保留 30 公里內的鳥種（渲染時過濾，不打 API）
+    const nearbyFiltered = nearby && userLoc
+      ? (sp) => {
+          const { lat: ulat, lng: ulng } = userLoc;
+          const recs = sp.cats.flat.concat(sp.cats.mountain, sp.cats.island);
+          return recs.some(r => haversineKm(ulat, ulng, r.lat, r.lng) <= 30);
+        }
+      : () => true;
+
+    const flatList = sortByLat(quickList.filter(sp => (sp.cats.flat || []).length > 0 && nearbyFiltered(sp)).map(sp => ({ ...sp, sightings: sp.cats.flat })));
+    const mountainList = sortByLat(quickList.filter(sp => (sp.cats.mountain || []).length > 0 && nearbyFiltered(sp)).map(sp => ({ ...sp, sightings: sp.cats.mountain })));
+    const islandList = sortByLat(quickList.filter(sp => (sp.cats.island || []).length > 0 && nearbyFiltered(sp)).map(sp => ({ ...sp, sightings: sp.cats.island })));
 
     return (
       <>
@@ -1332,8 +1338,12 @@ export default function App() {
             <div className="select-container">
               <label className="select-label">
                 {meta
-                  ? `這兩天出現的精彩鳥種（${meta.yesterday.slice(5).replace('-', '/')}、${meta.targetDate.slice(5).replace('-', '/')}）`
-                  : '這兩天出現的精彩鳥種'}
+                  ? nearby && userLoc
+                    ? `在我附近30公里內出現的精彩鳥種（${meta.yesterday.slice(5).replace('-', '/')}、${meta.targetDate.slice(5).replace('-', '/')}）`
+                    : `這兩天出現的精彩鳥種（${meta.yesterday.slice(5).replace('-', '/')}、${meta.targetDate.slice(5).replace('-', '/')}）`
+                  : nearby && userLoc
+                    ? '在我附近30公里內出現的精彩鳥種'
+                    : '這兩天出現的精彩鳥種'}
               </label>
               <span className="last-update-text">
                 <span className="pulse-dot"></span>
