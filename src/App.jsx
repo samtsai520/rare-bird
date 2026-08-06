@@ -1191,7 +1191,7 @@ export default function App() {
             <div className="select-container">
               <label className="select-label">
                 {recentStats && recentStats.total
-                  ? `最近3天(${(recentStats.windowStart || '').slice(5).replace('-', '/')}~${(recentStats.windowEnd || '').slice(5).replace('-', '/')})eBird共收集了${recentStats.total.checklists}張觀察列表，計有${recentStats.total.species}鳥種。以下是精選本月第一次出現的鳥種。`
+                  ? `最近3天(${(recentStats.windowStart || '').slice(5).replace('-', '/')}~${(recentStats.windowEnd || '').slice(5).replace('-', '/')})eBird共收集了${recentStats.total.checklists}張觀察列表，計有${recentStats.total.species}鳥種。以下是精選本月精彩推薦。`
                   : (meta
                     ? `${meta.threeDaysAgo || meta.twoDaysAgo} ~ ${meta.targetDate}`
                     : '3天前 ~ 今天')}
