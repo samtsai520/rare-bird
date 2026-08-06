@@ -1318,18 +1318,28 @@ export default function App() {
       return new Date(b.sightings[0]?.obsDt) - new Date(a.sightings[0]?.obsDt);
     });
 
-    // 「在我附近」：勾選且有使用者位置時，只保留 30 公里內的鳥種（渲染時過濾，不打 API）
-    const nearbyFiltered = nearby && userLoc
-      ? (sp) => {
-          const { lat: ulat, lng: ulng } = userLoc;
-          const recs = sp.cats.flat.concat(sp.cats.mountain, sp.cats.island);
-          return recs.some(r => haversineKm(ulat, ulng, r.lat, r.lng) <= 30);
-        }
-      : () => true;
+    // 「在我附近」：勾選且有使用者位置時，只保留 30 公里內的「觀測」本身（渲染時過濾，不打 API）
+    // 這樣某鳥種若同時有台北(30km內)與金門(遠)的觀測，只會顯示台北那筆，不會顯示金門
+    const within30 = (r) => {
+      if (!nearby || !userLoc) return true; // 未勾選 → 全部顯示
+      return haversineKm(userLoc.lat, userLoc.lng, r.lat, r.lng) <= 30;
+    };
 
-    const flatList = sortByLat(quickList.filter(sp => (sp.cats.flat || []).length > 0 && nearbyFiltered(sp)).map(sp => ({ ...sp, sightings: sp.cats.flat })));
-    const mountainList = sortByLat(quickList.filter(sp => (sp.cats.mountain || []).length > 0 && nearbyFiltered(sp)).map(sp => ({ ...sp, sightings: sp.cats.mountain })));
-    const islandList = sortByLat(quickList.filter(sp => (sp.cats.island || []).length > 0 && nearbyFiltered(sp)).map(sp => ({ ...sp, sightings: sp.cats.island })));
+    const flatList = sortByLat(
+      quickList
+        .map(sp => ({ ...sp, sightings: (sp.cats.flat || []).filter(within30) }))
+        .filter(sp => sp.sightings.length > 0)
+    );
+    const mountainList = sortByLat(
+      quickList
+        .map(sp => ({ ...sp, sightings: (sp.cats.mountain || []).filter(within30) }))
+        .filter(sp => sp.sightings.length > 0)
+    );
+    const islandList = sortByLat(
+      quickList
+        .map(sp => ({ ...sp, sightings: (sp.cats.island || []).filter(within30) }))
+        .filter(sp => sp.sightings.length > 0)
+    );
 
     return (
       <>
