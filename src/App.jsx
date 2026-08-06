@@ -32,7 +32,7 @@ const QUICK_CACHE_KEYS = {
   time: "taiwan_birds_quick_time",
 };
 const MOUNTAIN_ELEV = 300; // 本島山地門檻（海拔 ≥300m）
-const QUICK_BACK_DAYS = 1; // 有鳥快看：今天 live 抓 back=1，昨天讀靜態 quick-yesterday.json（cron 產出）
+const QUICK_BACK_DAYS = 3; // 有鳥快看：live 抓 back=3，前端過濾昨天+今天（方案B，不再讀靜態昨天檔）
 
 // 22 subnational1 regions, split into 3 batches for the `r` param (<=10 per call)
 const TW_REGION_BATCHES = [
@@ -500,7 +500,7 @@ export default function App() {
     const fmtD = (d) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
     const todayStr = fmtD(now);
     const yest = new Date(now); yest.setDate(yest.getDate() - 1); const yestStr = fmtD(yest);
-    const todayDates = new Set([todayStr]);
+    const targetDates = new Set([yestStr, todayStr]); // 方案B：昨天+今天
 
     const maxRetries = 3;
     for (let attempt = 0; attempt <= maxRetries; attempt++) {
@@ -522,21 +522,11 @@ export default function App() {
           return { ...item, comNameZh: (t && t.comNameZh) || item.comName, comNameEn: item.comName };
         });
 
-        // 篩出今天、不在黑名單的記錄（昨天改讀靜態檔，不再 live 抓）
+        // 篩出昨天+今天、不在黑名單的記錄（方案B：直接 live 抓，不再讀靜態昨天檔）
         const todayRecs = allRecords.filter(r => {
           const d = (r.obsDt || '').slice(0, 10);
-          return todayDates.has(d) && !blacklistRef.current.has(r.speciesCode);
+          return targetDates.has(d) && !blacklistRef.current.has(r.speciesCode);
         });
-
-        // 昨天：讀清晨 cron 產出的靜態檔（含黑名單/海拔/本島外島分類，零 live eBird 請求）
-        let yesterdayList = [];
-        try {
-          const sres = await fetch('/data/quick-yesterday.json');
-          if (sres.ok) {
-            const sdata = await sres.json();
-            yesterdayList = (sdata && Array.isArray(sdata.species)) ? sdata.species : [];
-          }
-        } catch (e) { /* 靜態昨天檔缺失時忽略，僅用今天 */ }
 
         // 分類今天：每種鳥可出現在多組（本島外島都有就都列）
         // 海拔：先查靜態表（涵蓋常見熱點、零請求）；表沒有的點（當天新賞鳥點）再用 open-meteo live 查。
@@ -586,25 +576,8 @@ export default function App() {
           };
         });
 
-        // 合併昨天（靜態）+ 今天（live），同鳥種合併 sightings（各分類加總）
-        const merged = {};
-        const mergeSpecies = (sp) => {
-          const code = sp.speciesCode;
-          if (!merged[code]) {
-            merged[code] = {
-              speciesCode: code,
-              comNameZh: sp.comNameZh,
-              comNameEn: sp.comNameEn,
-              cats: { flat: [], mountain: [], island: [] },
-            };
-          }
-          (sp.cats.flat || []).forEach(r => merged[code].cats.flat.push(r));
-          (sp.cats.mountain || []).forEach(r => merged[code].cats.mountain.push(r));
-          (sp.cats.island || []).forEach(r => merged[code].cats.island.push(r));
-        };
-        yesterdayList.forEach(mergeSpecies);
-        todayList.forEach(mergeSpecies);
-        const list = Object.values(merged);
+        // 方案B：todayList 已含昨天+今天（targetDates 過濾），直接作為最終清單
+        const list = todayList;
 
         const nowStr = new Date().toISOString();
         setQuickList(list);
