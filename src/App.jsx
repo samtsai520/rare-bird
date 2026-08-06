@@ -32,7 +32,7 @@ const QUICK_CACHE_KEYS = {
   time: "taiwan_birds_quick_time",
 };
 const MOUNTAIN_ELEV = 300; // 本島山地門檻（海拔 ≥300m）
-const QUICK_BACK_DAYS = 3; // 有鳥快看：live 抓 back=3，前端過濾昨天+今天（方案B，不再讀靜態昨天檔）
+const QUICK_BACK_DAYS = 3; // 有鳥快看：live 抓 back=3（涵蓋最近 3 天），只排除黑名單、不過濾日期
 
 // 22 subnational1 regions, split into 3 batches for the `r` param (<=10 per call)
 const TW_REGION_BATCHES = [
@@ -469,7 +469,7 @@ export default function App() {
     }
   }, [apiKey, worthList.length, birdNames]);
 
-  // ---- 有鳥快看 fetch: 今天+昨天，排除黑名單，分類本島平地/本島山地/外島 ----
+  // ---- 有鳥快看 fetch: back=3（最近3天），排除黑名單，分類本島平地/本島山地/外島 ----
   const fetchQuick = useCallback(async (activeKey = apiKey, isManual = false) => {
     if (!activeKey) {
       setQuickError("請先設定您的 eBird API Key。");
@@ -500,7 +500,6 @@ export default function App() {
     const fmtD = (d) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
     const todayStr = fmtD(now);
     const yest = new Date(now); yest.setDate(yest.getDate() - 1); const yestStr = fmtD(yest);
-    const targetDates = new Set([yestStr, todayStr]); // 方案B：昨天+今天
 
     const maxRetries = 3;
     for (let attempt = 0; attempt <= maxRetries; attempt++) {
@@ -522,10 +521,9 @@ export default function App() {
           return { ...item, comNameZh: (t && t.comNameZh) || item.comName, comNameEn: item.comName };
         });
 
-        // 篩出昨天+今天、不在黑名單的記錄（方案B：直接 live 抓，不再讀靜態昨天檔）
+        // 只排除黑名單，不過濾日期（直接顯示 back=3 抓到的 8/3~8/6 全部資料）
         const todayRecs = allRecords.filter(r => {
-          const d = (r.obsDt || '').slice(0, 10);
-          return targetDates.has(d) && !blacklistRef.current.has(r.speciesCode);
+          return !blacklistRef.current.has(r.speciesCode);
         });
 
         // 分類今天：每種鳥可出現在多組（本島外島都有就都列）
@@ -576,7 +574,7 @@ export default function App() {
           };
         });
 
-        // 方案B：todayList 已含昨天+今天（targetDates 過濾），直接作為最終清單
+        // 方案B：todayList 已含 back=3 抓到的全部資料（只排除黑名單），直接作為最終清單
         const list = todayList;
 
         const nowStr = new Date().toISOString();
