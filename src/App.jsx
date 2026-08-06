@@ -32,7 +32,7 @@ const QUICK_CACHE_KEYS = {
   time: "taiwan_birds_quick_time",
 };
 const MOUNTAIN_ELEV = 300; // 本島山地門檻（海拔 ≥300m）
-const QUICK_BACK_DAYS = 2; // 有鳥快看只需要今天+昨天，不必抓 30 天（原為 30，浪費下載量）
+const QUICK_BACK_DAYS = 1; // 有鳥快看：今天 live 抓 back=1，昨天讀靜態 quick-yesterday.json（cron 產出）
 
 // 22 subnational1 regions, split into 3 batches for the `r` param (<=10 per call)
 const TW_REGION_BATCHES = [
@@ -485,7 +485,7 @@ export default function App() {
     const fmtD = (d) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
     const todayStr = fmtD(now);
     const yest = new Date(now); yest.setDate(yest.getDate() - 1); const yestStr = fmtD(yest);
-    const targetDates = new Set([yestStr, todayStr]);
+    const todayDates = new Set([todayStr]);
 
     const maxRetries = 3;
     for (let attempt = 0; attempt <= maxRetries; attempt++) {
@@ -510,20 +510,30 @@ export default function App() {
           return { ...item, comNameZh: (t && t.comNameZh) || item.comName, comNameEn: item.comName };
         });
 
-        // 篩出 target（今天+昨天）且不在黑名單的記錄
-        const targetRecs = allRecords.filter(r => {
+        // 篩出今天、不在黑名單的記錄（昨天改讀靜態檔，不再 live 抓）
+        const todayRecs = allRecords.filter(r => {
           const d = (r.obsDt || '').slice(0, 10);
-          return targetDates.has(d) && !blacklistRef.current.has(r.speciesCode);
+          return todayDates.has(d) && !blacklistRef.current.has(r.speciesCode);
         });
 
-        // 收集 unique 觀測點 (lat,lng) 供海拔查詢
+        // 昨天：讀清晨 cron 產出的靜態檔（含黑名單/海拔/本島外島分類，零 live eBird 請求）
+        let yesterdayList = [];
+        try {
+          const sres = await fetch('/data/quick-yesterday.json');
+          if (sres.ok) {
+            const sdata = await sres.json();
+            yesterdayList = (sdata && Array.isArray(sdata.species)) ? sdata.species : [];
+          }
+        } catch (e) { /* 靜態昨天檔缺失時忽略，僅用今天 */ }
+
+        // 分類今天：每種鳥可出現在多組（本島外島都有就都列）
+        // 收集 today 的 unique 觀測點 (lat,lng) 供海拔查詢
         const locSet = new Map();
-        targetRecs.forEach(r => {
+        todayRecs.forEach(r => {
           const key = `${r.lat.toFixed(5)},${r.lng.toFixed(5)}`;
           if (!locSet.has(key)) locSet.set(key, { lat: r.lat, lng: r.lng });
         });
         const locs = Array.from(locSet.values());
-
         // 批次查海拔（Open-Elevation，每批 100 點）
         const elevMap = new Map();
         for (let i = 0; i < locs.length; i += 100) {
@@ -543,9 +553,8 @@ export default function App() {
           } catch (e) { /* 海拔查詢失敗時該點視為平地 */ }
         }
 
-        // 分類：每種鳥可出現在多組（本島外島都有就都列）
         const catRecs = {}; // code -> {cat: [recs]}
-        targetRecs.forEach(r => {
+        todayRecs.forEach(r => {
           const key = `${r.lat.toFixed(5)},${r.lng.toFixed(5)}`;
           const elev = elevMap.get(key);
           const name = r.locName || '';
@@ -557,9 +566,9 @@ export default function App() {
           catRecs[r.speciesCode][cat].push(r);
         });
 
-        // 轉成 list，每種鳥一個 entry（含各分類的 sightings）
-        const list = Object.entries(catRecs).map(([code, cats]) => {
-          const rec = targetRecs.find(r => r.speciesCode === code);
+        // 今天的清單（每種鳥一個 entry，含各分類的 sightings）
+        const todayList = Object.entries(catRecs).map(([code, cats]) => {
+          const rec = todayRecs.find(r => r.speciesCode === code);
           return {
             speciesCode: code,
             comNameZh: rec.comNameZh,
@@ -567,6 +576,26 @@ export default function App() {
             cats, // {flat:[], mountain:[], island:[]}
           };
         });
+
+        // 合併昨天（靜態）+ 今天（live），同鳥種合併 sightings（各分類加總）
+        const merged = {};
+        const mergeSpecies = (sp) => {
+          const code = sp.speciesCode;
+          if (!merged[code]) {
+            merged[code] = {
+              speciesCode: code,
+              comNameZh: sp.comNameZh,
+              comNameEn: sp.comNameEn,
+              cats: { flat: [], mountain: [], island: [] },
+            };
+          }
+          (sp.cats.flat || []).forEach(r => merged[code].cats.flat.push(r));
+          (sp.cats.mountain || []).forEach(r => merged[code].cats.mountain.push(r));
+          (sp.cats.island || []).forEach(r => merged[code].cats.island.push(r));
+        };
+        yesterdayList.forEach(mergeSpecies);
+        todayList.forEach(mergeSpecies);
+        const list = Object.values(merged);
 
         const nowStr = new Date().toISOString();
         setQuickList(list);
