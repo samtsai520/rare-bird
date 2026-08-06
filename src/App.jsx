@@ -27,6 +27,12 @@ const WORTH_CACHE_KEYS = {
   obs: "taiwan_birds_worth_obs",
   time: "taiwan_birds_worth_time",
 };
+const QUICK_CACHE_KEYS = {
+  obs: "taiwan_birds_quick_obs",
+  time: "taiwan_birds_quick_time",
+};
+const MOUNTAIN_ELEV = 300; // 本島山地門檻（海拔 ≥300m）
+const QUICK_BACK_DAYS = 30; // 有鳥快看抓取窗口（baseline，固定）
 
 // 22 subnational1 regions, split into 3 batches for the `r` param (<=10 per call)
 const TW_REGION_BATCHES = [
@@ -92,6 +98,18 @@ export default function App() {
   // Island section open state: mainland (本島) expanded by default, outer islands (外島) collapsed
   const [islandOpen, setIslandOpen] = useState({ main: true, island: false });
 
+  // 有鳥快看 tab state
+  const [quickList, setQuickList] = useState([]);   // [{speciesCode, comNameZh, comNameEn, cat, sightings}]
+  const [quickLoading, setQuickLoading] = useState(false);
+  const [quickError, setQuickError] = useState(null);
+  const [quickLastUpdated, setQuickLastUpdated] = useState(null);
+  const [quickMeta, setQuickMeta] = useState(null); // {targetDate, yesterday, count}
+  const [quickOpen, setQuickOpen] = useState({ flat: false, mountain: false, island: false });
+  const [blacklist, setBlacklist] = useState(new Set());
+  // ref mirror so fetchQuick always reads latest blacklist (avoids closure race)
+  const blacklistRef = useRef(blacklist);
+  useEffect(() => { blacklistRef.current = blacklist; }, [blacklist]);
+
   // First-seen tab state (reads static first-seen.json, zero API requests)
   const [firstSeen, setFirstSeen] = useState(null);   // parsed JSON {year, lastUpdated, species}
   const [firstSeenLoading, setFirstSeenLoading] = useState(false);
@@ -139,6 +157,7 @@ export default function App() {
   // AbortController for cancelling stale fetches
   const abortRef = useRef(null);
   const worthAbortRef = useRef(null);
+  const quickAbortRef = useRef(null);
 
   // ---- NOTABLE fetch (unchanged behaviour) ----
   const fetchObservations = useCallback(async (selectedDays, activeKey = apiKey, isManual = false) => {
@@ -411,6 +430,156 @@ export default function App() {
     }
   }, [apiKey, worthList.length, birdNames]);
 
+  // ---- 有鳥快看 fetch: 今天+昨天，排除黑名單，分類本島平地/本島山地/外島 ----
+  const fetchQuick = useCallback(async (activeKey = apiKey, isManual = false) => {
+    if (!activeKey) {
+      setQuickError("請先設定您的 eBird API Key。");
+      setQuickLoading(false);
+      return;
+    }
+    if (isManual && quickAbortRef.current) quickAbortRef.current.abort();
+    const controller = new AbortController();
+    quickAbortRef.current = controller;
+
+    setQuickLoading(true);
+    setQuickError(null);
+
+    // 等 birdNames 載入完成（最多 3 秒）
+    if (!birdNamesRef.current || Object.keys(birdNamesRef.current).length === 0) {
+      for (let i = 0; i < 15; i++) {
+        if (birdNamesRef.current && Object.keys(birdNamesRef.current).length > 0) break;
+        await new Promise(r => setTimeout(r, 200));
+      }
+    }
+    // 等 blacklist 載入完成（最多 3 秒）
+    for (let i = 0; i < 15; i++) {
+      if (blacklistRef.current && blacklistRef.current.size > 0) break;
+      await new Promise(r => setTimeout(r, 200));
+    }
+
+    const now = new Date();
+    const fmtD = (d) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+    const todayStr = fmtD(now);
+    const yest = new Date(now); yest.setDate(yest.getDate() - 1); const yestStr = fmtD(yest);
+    const targetDates = new Set([yestStr, todayStr]);
+
+    const maxRetries = 3;
+    for (let attempt = 0; attempt <= maxRetries; attempt++) {
+      try {
+        const headers = { 'x-ebirdapitoken': activeKey };
+        const enRecords = [];
+        for (const batch of TW_REGION_BATCHES) {
+          const url = `https://api.ebird.org/v2/data/obs/TW/recent?back=${QUICK_BACK_DAYS}&detail=full&includeProvisional=true&r=${encodeURIComponent(batch)}`;
+          const res = await throttleApiCall(() => fetch(url, { headers, signal: controller.signal }));
+          if (res.status === 429) throw new Error('RATE_LIMIT');
+          if (!res.ok) throw new Error('eBird API error');
+          const dataEn = await res.json();
+          if (controller.signal.aborted) return;
+          enRecords.push(...dataEn);
+          await new Promise(r => setTimeout(r, 900));
+        }
+        if (controller.signal.aborted) return;
+
+        // 合併中文名
+        const allRecords = enRecords.map(item => {
+          const t = birdNamesRef.current && birdNamesRef.current[item.speciesCode];
+          return { ...item, comNameZh: (t && t.comNameZh) || item.comName, comNameEn: item.comName };
+        });
+
+        // 篩出 target（今天+昨天）且不在黑名單的記錄
+        const targetRecs = allRecords.filter(r => {
+          const d = (r.obsDt || '').slice(0, 10);
+          return targetDates.has(d) && !blacklistRef.current.has(r.speciesCode);
+        });
+
+        // 收集 unique 觀測點 (lat,lng) 供海拔查詢
+        const locSet = new Map();
+        targetRecs.forEach(r => {
+          const key = `${r.lat.toFixed(5)},${r.lng.toFixed(5)}`;
+          if (!locSet.has(key)) locSet.set(key, { lat: r.lat, lng: r.lng });
+        });
+        const locs = Array.from(locSet.values());
+
+        // 批次查海拔（Open-Elevation，每批 100 點）
+        const elevMap = new Map();
+        for (let i = 0; i < locs.length; i += 100) {
+          const batch = locs.slice(i, i + 100).map(l => ({ latitude: l.lat, longitude: l.lng }));
+          try {
+            const res = await fetch('https://api.open-elevation.com/api/v1/lookup', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ locations: batch }),
+            });
+            if (res.ok) {
+              const data = await res.json();
+              data.results.forEach(r => {
+                elevMap.set(`${r.latitude.toFixed(5)},${r.longitude.toFixed(5)}`, r.elevation);
+              });
+            }
+          } catch (e) { /* 海拔查詢失敗時該點視為平地 */ }
+        }
+
+        // 分類：每種鳥可出現在多組（本島外島都有就都列）
+        const catRecs = {}; // code -> {cat: [recs]}
+        targetRecs.forEach(r => {
+          const key = `${r.lat.toFixed(5)},${r.lng.toFixed(5)}`;
+          const elev = elevMap.get(key);
+          const name = r.locName || '';
+          let cat;
+          if (isIslandLoc(name)) cat = 'island';
+          else if (elev !== undefined && elev >= MOUNTAIN_ELEV) cat = 'mountain';
+          else cat = 'flat';
+          if (!catRecs[r.speciesCode]) catRecs[r.speciesCode] = { flat: [], mountain: [], island: [] };
+          catRecs[r.speciesCode][cat].push(r);
+        });
+
+        // 轉成 list，每種鳥一個 entry（含各分類的 sightings）
+        const list = Object.entries(catRecs).map(([code, cats]) => {
+          const rec = targetRecs.find(r => r.speciesCode === code);
+          return {
+            speciesCode: code,
+            comNameZh: rec.comNameZh,
+            comNameEn: rec.comNameEn,
+            cats, // {flat:[], mountain:[], island:[]}
+          };
+        });
+
+        const nowStr = new Date().toISOString();
+        setQuickList(list);
+        setQuickLoading(false);
+        setQuickError(null);
+        setQuickLastUpdated(nowStr);
+        setQuickMeta({ targetDate: todayStr, yesterday: yestStr, count: list.length });
+        localStorage.setItem(QUICK_CACHE_KEYS.obs, JSON.stringify({ list, meta: { targetDate: todayStr, yesterday: yestStr, count: list.length } }));
+        localStorage.setItem(QUICK_CACHE_KEYS.time, nowStr);
+        return;
+      } catch (err) {
+        if (err.name === 'AbortError') return;
+        if (attempt < maxRetries) {
+          await new Promise(r => setTimeout(r, 2000 * (attempt + 1)));
+          continue;
+        }
+        console.error('Quick fetch failed:', err);
+        setQuickLoading(false);
+        const cached = localStorage.getItem(QUICK_CACHE_KEYS.obs);
+        if (quickList.length > 0) {
+          setQuickError(null);
+        } else if (cached) {
+          try {
+            const parsed = JSON.parse(cached);
+            setQuickList(parsed.list || []);
+            setQuickMeta(parsed.meta || null);
+            setQuickError(null);
+          } catch {
+            setQuickError("查詢逾時或網路不穩，請稍後再按「更新」重試。");
+          }
+        } else {
+          setQuickError("查詢逾時或網路不穩，請稍後再按「更新」重試。");
+        }
+      }
+    }
+  }, [apiKey, quickList.length, birdNames]);
+
   // Auto-load: notable check cache first, then fetch
   useEffect(() => {
     if (!apiKey) return;
@@ -481,6 +650,43 @@ export default function App() {
     }
   }, [apiKey, activeTab, birdNames, birdNamesLoaded]); // eslint-disable-line react-hooks/exhaustive-deps
 
+  // Auto-load: 有鳥快看 check cache first, then fetch
+  useEffect(() => {
+    if (!apiKey) return;
+    const cached = localStorage.getItem(QUICK_CACHE_KEYS.obs);
+    const cachedTime = localStorage.getItem(QUICK_CACHE_KEYS.time);
+    let needsFetch = true;
+    let cacheHasData = false;
+    let cacheMissingZh = false;
+    if (cached && cachedTime) {
+      const parsedTime = new Date(cachedTime);
+      const today = new Date();
+      if (
+        parsedTime.getFullYear() === today.getFullYear() &&
+        parsedTime.getMonth() === today.getMonth() &&
+        parsedTime.getDate() === today.getDate()
+      ) {
+        try {
+          const parsed = JSON.parse(cached);
+          setQuickList(parsed.list || []);
+          setQuickMeta(parsed.meta || null);
+          setQuickLastUpdated(cachedTime);
+          cacheHasData = true;
+          cacheMissingZh = (parsed.list || []).some(sp =>
+            sp.comNameZh && sp.comNameEn && sp.comNameZh === sp.comNameEn
+          );
+          needsFetch = false;
+        } catch { /* ignore */ }
+      }
+    }
+    if (birdNamesLoaded && cacheHasData && cacheMissingZh) {
+      needsFetch = true;
+    }
+    if (needsFetch && !quickLoading) {
+      fetchQuick(apiKey);
+    }
+  }, [apiKey, activeTab, birdNames, birdNamesLoaded]); // eslint-disable-line react-hooks/exhaustive-deps
+
   // Load static first-seen.json + birdNames (works even without API key — zero live requests)
   useEffect(() => {
     let cancelled = false;
@@ -513,6 +719,11 @@ export default function App() {
       .then(r => r.ok ? r.json() : Promise.reject())
       .then(data => { if (!cancelled) { setBirdNames((data && data.species) || {}); setBirdNamesLoaded(true); } })
       .catch(() => { if (!cancelled) setBirdNamesLoaded(true); });
+    // Load static blacklist (常見鳥黑名單) — zero API requests.
+    fetch('/data/blacklist.json')
+      .then(r => r.ok ? r.json() : Promise.reject())
+      .then(data => { if (!cancelled && data && Array.isArray(data.codes)) setBlacklist(new Set(data.codes)); })
+      .catch(() => { /* 黑名單缺失時忽略（不排除任何鳥） */ });
     return () => { cancelled = true; };
   }, []);
 
@@ -532,6 +743,14 @@ export default function App() {
     fetchWorth(apiKey, true);
   };
 
+  const handleQuickSearch = () => {
+    if (!apiKey) {
+      setShowSettings(true);
+      return;
+    }
+    fetchQuick(apiKey, true);
+  };
+
   // Header refresh: update the data of whichever tab is currently active
   const handleHeaderRefresh = () => {
     if (!apiKey) {
@@ -539,9 +758,10 @@ export default function App() {
       return;
     }
     if (activeTab === 'worth') fetchWorth(apiKey, true);
+    else if (activeTab === 'quick') fetchQuick(apiKey, true);
     else fetchObservations(days, apiKey, true);
   };
-  const isAnyLoading = loading || worthLoading;
+  const isAnyLoading = loading || worthLoading || quickLoading;
 
   const saveApiKey = (keyToSave = inputApiKey) => {
     const trimmed = keyToSave.trim();
@@ -552,6 +772,8 @@ export default function App() {
     if (trimmed) {
       if (activeTab === 'worth') {
         fetchWorth(trimmed);
+      } else if (activeTab === 'quick') {
+        fetchQuick(trimmed);
       } else {
         fetchObservations(days, trimmed);
       }
@@ -564,12 +786,17 @@ export default function App() {
     setObservations([]);
     setWorthList([]);
     setWorthMeta(null);
+    setQuickList([]);
+    setQuickMeta(null);
     setLoading(false);
     setWorthLoading(false);
+    setQuickLoading(false);
     setError(null);
     setWorthError(null);
+    setQuickError(null);
     setLastUpdated(null);
     setWorthLastUpdated(null);
+    setQuickLastUpdated(null);
     localStorage.removeItem(STORAGE_API_KEY_KEY);
     [1, 3, 5, 7, 10, 14, 21, 30].forEach(d => {
       localStorage.removeItem(`taiwan_birds_notable_obs_${d}d`);
@@ -578,6 +805,8 @@ export default function App() {
     localStorage.removeItem("taiwan_birds_notable_days_setting");
     localStorage.removeItem(WORTH_CACHE_KEYS.obs);
     localStorage.removeItem(WORTH_CACHE_KEYS.time);
+    localStorage.removeItem(QUICK_CACHE_KEYS.obs);
+    localStorage.removeItem(QUICK_CACHE_KEYS.time);
     localStorage.removeItem("taiwan_birds_notable_obs_cache");
     localStorage.removeItem("taiwan_birds_notable_last_fetch_time");
     setApiKeySavedMsg("API Key 已清除。觀測功能已停用。");
@@ -846,7 +1075,7 @@ export default function App() {
             <div className="select-container">
               <label className="select-label">
                 {recentStats && recentStats.total
-                  ? `最近3天(${(recentStats.windowStart || '').slice(5).replace('-', '/')}~${(recentStats.windowEnd || '').slice(5).replace('-', '/')})eBird共收集了${recentStats.total.checklists}張觀察列表，計有${recentStats.total.species}鳥種。以下是精選值得一看的鳥種。`
+                  ? `共${recentStats.total.species}鳥種。以下是精選本月第一次出現的鳥種。`
                   : (meta
                     ? `${meta.threeDaysAgo || meta.twoDaysAgo} ~ ${meta.targetDate}`
                     : '3天前 ~ 今天')}
@@ -901,6 +1130,211 @@ export default function App() {
                   {islandOpen.island ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
                 </button>
                 {islandOpen.island && renderAccordionList(islandList, false)}
+              </div>
+            )}
+          </>
+        )}
+      </>
+    );
+  };
+
+  // 有鳥快看：渲染單一分類下的鳥種清單（accordion）
+  const renderQuickSpeciesList = (speciesList) => {
+    if (speciesList.length === 0) {
+      return (
+        <div className="empty-state">
+          <Compass size={48} style={{ color: 'var(--text-muted)' }} />
+          <h3>查無觀測紀錄</h3>
+          <p>在查詢區間內，此分類沒有符合條件的鳥種。</p>
+        </div>
+      );
+    }
+    return (
+      <main className="species-list-container">
+        {speciesList.map((sp) => {
+          const isExpanded = expandedSpecies.has(sp.speciesCode);
+          return (
+            <div
+              className={`species-accordion-item ${isExpanded ? 'is-open' : ''}`}
+              key={sp.speciesCode}
+            >
+              <div
+                className="species-accordion-header"
+                onClick={() => toggleSpecies(sp.speciesCode)}
+              >
+                <div className="species-primary-info">
+                  <div className="species-name-row">
+                    <span className="species-chinese">{sp.comNameZh}</span>
+                    {sp.comNameEn && sp.comNameEn !== sp.comNameZh && (
+                      <span className="species-english">{sp.comNameEn}</span>
+                    )}
+                  </div>
+                  <div className="species-subtitle-row">
+                    <span className="species-latest-date">
+                      {sp.sightings[0].obsDt}
+                    </span>
+                    <span className="species-latest-separator">·</span>
+                    <span className="species-latest-loc" title={sp.sightings[0].locName}>
+                      {sp.sightings[0].locName}
+                    </span>
+                  </div>
+                </div>
+                <div className="species-meta-info">
+                  <span className="sightings-counter-pill">
+                    {sp.sightings.length} 筆
+                  </span>
+                  <button className="accordion-arrow-btn">
+                    {isExpanded ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+                  </button>
+                </div>
+              </div>
+              {isExpanded && (
+                <div className="species-accordion-content">
+                  <div className="sightings-table-container">
+                    <table className="sightings-table">
+                      <thead>
+                        <tr>
+                          <th>觀測日期</th>
+                          <th>發現地點</th>
+                          <th style={{ textAlign: 'right' }}>數量</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {sp.sightings.map((sighting, sIdx) => {
+                          const mapUrl = `https://www.google.com/maps/search/?api=1&query=${sighting.lat},${sighting.lng}`;
+                          return (
+                            <tr key={`${sighting.subId}-${sIdx}`}>
+                              <td className="td-date">
+                                <Calendar size={14} style={{ marginRight: '0.4rem', verticalAlign: 'middle', color: 'var(--text-muted)' }} />
+                                <span>{sighting.obsDt}</span>
+                              </td>
+                              <td className="td-location" title={sighting.locName}>
+                                <a
+                                  href={mapUrl}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="location-link"
+                                >
+                                  <MapPin size={14} className="location-nav-icon" />
+                                  <span className="location-name-text">{sighting.locName}</span>
+                                </a>
+                              </td>
+                              <td className="td-count" style={{ textAlign: 'right' }}>
+                                <span className="count-tag">
+                                  {sighting.howMany ? `${sighting.howMany} 隻` : '出現'}
+                                </span>
+                              </td>
+                            </tr>
+                          );
+                        })}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </main>
+    );
+  };
+
+  // 有鳥快看 tab content
+  const renderQuickContent = () => {
+    const meta = quickMeta;
+    // 點選某區時，其他區自動收合（accordion 行為）
+    const toggleQuick = (key) => setQuickOpen(prev => {
+      const next = { flat: false, mountain: false, island: false };
+      next[key] = !prev[key];
+      return next;
+    });
+
+    // 依分類分組：本島平地 / 本島山地 / 外島
+    // 每組內按 GPS 從北到南排列（以該分類最新一筆觀測的緯度為準，北緯高在前）
+    const sortByLat = (arr) => arr.sort((a, b) => {
+      const aLat = a.sightings[0]?.lat;
+      const bLat = b.sightings[0]?.lat;
+      if (typeof aLat === 'number' && typeof bLat === 'number' && aLat !== bLat) {
+        return bLat - aLat; // north first (higher latitude)
+      }
+      return new Date(b.sightings[0]?.obsDt) - new Date(a.sightings[0]?.obsDt);
+    });
+    const flatList = sortByLat(quickList.filter(sp => (sp.cats.flat || []).length > 0).map(sp => ({ ...sp, sightings: sp.cats.flat })));
+    const mountainList = sortByLat(quickList.filter(sp => (sp.cats.mountain || []).length > 0).map(sp => ({ ...sp, sightings: sp.cats.mountain })));
+    const islandList = sortByLat(quickList.filter(sp => (sp.cats.island || []).length > 0).map(sp => ({ ...sp, sightings: sp.cats.island })));
+
+    return (
+      <>
+        <section className="glass-panel">
+          <div className="controls-grid">
+            <div className="select-container">
+              <label className="select-label">
+                {meta
+                  ? `這兩天出現的精彩鳥種（${meta.targetDate}、${meta.yesterday}）`
+                  : '這兩天出現的精彩鳥種'}
+              </label>
+              <span className="last-update-text">
+                <span className="pulse-dot"></span>
+                最後更新: {formatTime(quickLastUpdated)}
+              </span>
+            </div>
+          </div>
+        </section>
+
+        {quickLoading && quickList.length === 0 ? (
+          <div className="loading-state">
+            <div className="radar-loader">
+              <div className="radar-circle"></div>
+              <div className="radar-circle"></div>
+              <div className="radar-circle"></div>
+              <div className="radar-center"></div>
+            </div>
+            <p>正在搜尋有鳥快看...</p>
+          </div>
+        ) : quickError && quickList.length === 0 ? (
+          <div className="error-state">
+            <AlertTriangle size={48} style={{ color: '#ef4444' }} />
+            <h3>載入失敗</h3>
+            <p>{quickError}</p>
+            <button className="btn-primary" onClick={handleQuickSearch}>重試</button>
+          </div>
+        ) : (
+          <>
+            <div className="island-section">
+              <button
+                className={`island-header ${quickOpen.flat ? 'is-open' : ''}`}
+                onClick={() => toggleQuick('flat')}
+              >
+                <span className="island-title">本島平地</span>
+                <span className="sightings-counter-pill">{flatList.length} 種</span>
+                {quickOpen.flat ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
+              </button>
+              {quickOpen.flat && renderQuickSpeciesList(flatList)}
+            </div>
+
+            <div className="island-section">
+              <button
+                className={`island-header ${quickOpen.mountain ? 'is-open' : ''}`}
+                onClick={() => toggleQuick('mountain')}
+              >
+                <span className="island-title">本島山地</span>
+                <span className="sightings-counter-pill">{mountainList.length} 種</span>
+                {quickOpen.mountain ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
+              </button>
+              {quickOpen.mountain && renderQuickSpeciesList(mountainList)}
+            </div>
+
+            {islandList.length > 0 && (
+              <div className="island-section">
+                <button
+                  className={`island-header ${quickOpen.island ? 'is-open' : ''}`}
+                  onClick={() => toggleQuick('island')}
+                >
+                  <span className="island-title">外島</span>
+                  <span className="sightings-counter-pill">{islandList.length} 種</span>
+                  {quickOpen.island ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
+                </button>
+                {quickOpen.island && renderQuickSpeciesList(islandList)}
               </div>
             )}
           </>
@@ -1077,7 +1511,9 @@ export default function App() {
     if (!apiKey) {
       return renderApiKeyBanner();
     }
-    return activeTab === 'worth' ? renderWorthContent() : renderNotableContent();
+    if (activeTab === 'worth') return renderWorthContent();
+    if (activeTab === 'quick') return renderQuickContent();
+    return renderNotableContent();
   };
 
   return (
@@ -1123,6 +1559,13 @@ export default function App() {
       {/* Tab Bar */}
       <nav className="tab-bar">
         <button
+          className={`tab-btn ${activeTab === 'quick' ? 'tab-active' : ''}`}
+          onClick={() => setActiveTab('quick')}
+        >
+          <Eye size={16} style={{ marginRight: '0.4rem', verticalAlign: 'middle' }} />
+          有鳥快看
+        </button>
+        <button
           className={`tab-btn ${activeTab === 'notable' ? 'tab-active' : ''}`}
           onClick={() => setActiveTab('notable')}
         >
@@ -1134,7 +1577,7 @@ export default function App() {
           onClick={() => setActiveTab('worth')}
         >
           <Eye size={16} style={{ marginRight: '0.4rem', verticalAlign: 'middle' }} />
-          值得一看
+          本月首見
         </button>
         <button
           className={`tab-btn ${activeTab === 'firstSeen' ? 'tab-active' : ''}`}
