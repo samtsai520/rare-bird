@@ -772,9 +772,15 @@ export default function App() {
   };
 
   // 「在我附近」checkbox：勾選時取得使用者 GPS，取消時清除
+  // 用 ref 追蹤目前 toggle 意圖，避免 GPS 非同步回呼（race condition）在
+  // 使用者已取消勾選後又把 nearby 設回 true。
+  const nearbyToggleRef = useRef(false);
+  useEffect(() => { nearbyToggleRef.current = nearby; }, [nearby]);
+
   const handleNearbyToggle = () => {
     if (nearby) {
-      // 取消勾選：清除位置與錯誤
+      // 取消勾選：清除位置與錯誤，並標記意圖為 false
+      nearbyToggleRef.current = false;
       setNearby(false);
       setUserLoc(null);
       setNearbyError(null);
@@ -785,9 +791,13 @@ export default function App() {
       setNearbyError('此瀏覽器不支援定位功能。');
       return;
     }
+    // 先標記意圖為 true，但 nearby state 等 GPS 成功才設為 true
+    nearbyToggleRef.current = true;
     setNearbyError(null);
     navigator.geolocation.getCurrentPosition(
       (pos) => {
+        // 如果使用者在 GPS 回來前已取消勾選，不要重新啟用過濾
+        if (!nearbyToggleRef.current) return;
         setUserLoc({ lat: pos.coords.latitude, lng: pos.coords.longitude });
         setNearby(true);
         setNearbyError(null);
@@ -797,6 +807,8 @@ export default function App() {
         }
       },
       (err) => {
+        // 只有在仍然意圖勾選時，才報錯並重置 state
+        if (!nearbyToggleRef.current) return;
         setNearby(false);
         setUserLoc(null);
         setNearbyError('無法取得您的位置，請確認已允許定位權限。');
