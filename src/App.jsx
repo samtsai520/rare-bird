@@ -1726,7 +1726,7 @@ export default function App() {
           onClick={() => handleTabClick('worth')}
         >
           <Eye size={16} style={{ marginRight: '0.4rem', verticalAlign: 'middle' }} />
-          本月首見
+          本月精彩推薦
         </button>
         <button
           className={`tab-btn ${activeTab === 'firstSeen' ? 'tab-active' : ''}`}
