@@ -671,6 +671,8 @@ export default function App() {
   }, [apiKey, activeTab, birdNames, birdNamesLoaded]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Auto-load: 有鳥快看 check cache first, then fetch
+  // 注意：deps 不含 activeTab — 不論使用者在哪個 tab，只要 apiKey 就緒就載入，
+  // 避免切 tab 時重複觸發 fetch 或覆蓋 quickList。
   useEffect(() => {
     if (!apiKey) return;
     const cached = localStorage.getItem(QUICK_CACHE_KEYS.obs);
@@ -705,7 +707,7 @@ export default function App() {
     if (needsFetch && !quickLoading) {
       fetchQuick(apiKey);
     }
-  }, [apiKey, activeTab, birdNames, birdNamesLoaded]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [apiKey, birdNames, birdNamesLoaded]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Load static first-seen.json + birdNames (works even without API key — zero live requests)
   useEffect(() => {
