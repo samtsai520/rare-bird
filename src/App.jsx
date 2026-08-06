@@ -382,10 +382,12 @@ export default function App() {
 
         // 排除常見鳥：觀測點數 ≥ 門檻(10) = 全台普遍出現，非「值得一看」稀有鳥
         const isCommonBird = (code) => (locPerCode[code] ? locPerCode[code].size : 0) >= WORTH_MAX_LOCATIONS;
+        // 排除黑名單鳥種（與「有鳥快看」共用 blacklist.json）
+        const isBlacklisted = (code) => blacklistRef.current.has(code);
 
-        // Strict rare: in target, not in baseline, 且非常見鳥
+        // Strict rare: in target, not in baseline, 且非常見鳥、且不在黑名單
         const rareCodes = Object.keys(targetByCode)
-          .filter(code => !baseline.has(code) && !isCommonBird(code));
+          .filter(code => !baseline.has(code) && !isCommonBird(code) && !isBlacklisted(code));
 
         // Fallback: if too few strict rare, rank target species by rarity score (fewer records = rarer)
         let selectedCodes;
@@ -394,7 +396,7 @@ export default function App() {
           selectedCodes = rareCodes;
         } else {
           selectedCodes = Object.keys(targetByCode)
-            .filter(code => !isCommonBird(code))
+            .filter(code => !isCommonBird(code) && !isBlacklisted(code))
             .sort((a, b) => (countPerCode[a] || 0) - (countPerCode[b] || 0))
             .slice(0, WORTH_FALLBACK_COUNT);
         }
