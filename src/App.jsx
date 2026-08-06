@@ -112,7 +112,11 @@ export default function App() {
 
   // 有鳥快看 tab state
   const [quickList, setQuickList] = useState([]);   // [{speciesCode, comNameZh, comNameEn, cat, sightings}]
-  const [quickLoading, setQuickLoading] = useState(false);
+  const [quickLoading, setQuickLoading] = useState(() => {
+    // App 預設在 quick tab：如果 apiKey 存在，啟動即顯示 loading state，
+    // 避免 effect 跑之前渲染空列表（看起來像被過濾）。
+    return !!localStorage.getItem(STORAGE_API_KEY_KEY);
+  });
   const [quickError, setQuickError] = useState(null);
   const [quickLastUpdated, setQuickLastUpdated] = useState(null);
   const [quickMeta, setQuickMeta] = useState(null); // {targetDate, yesterday, count}
@@ -693,6 +697,7 @@ export default function App() {
           setQuickList(parsed.list || []);
           setQuickMeta(parsed.meta || null);
           setQuickLastUpdated(cachedTime);
+          setQuickLoading(false);
           cacheHasData = true;
           cacheMissingZh = (parsed.list || []).some(sp =>
             sp.comNameZh && sp.comNameEn && sp.comNameZh === sp.comNameEn
