@@ -779,13 +779,28 @@ export default function App() {
   // 導致 GPS 成功回呼被 guard 擋掉，setNearby(true) 永遠不執行。
   const nearbyToggleRef = useRef(false);
 
+  // 統一 reset「在我附近」過濾器：清除 state + 標記 ref，
+  // 讓任何進行中的 GPS 非同步回呼都被 guard 擋掉。
+  const resetNearbyFilter = () => {
+    nearbyToggleRef.current = false;
+    setNearby(false);
+    setUserLoc(null);
+    setNearbyError(null);
+  };
+
+  // 切換 tab：離開「有鳥快看」時自動關閉「在我附近」過濾器，
+  // 下次回來時預設顯示全部鳥種，直到使用者再次勾選。
+  const handleTabClick = (tab) => {
+    if (activeTab !== tab && activeTab === 'quick') {
+      resetNearbyFilter();
+    }
+    setActiveTab(tab);
+  };
+
   const handleNearbyToggle = () => {
     if (nearby) {
-      // 取消勾選：清除位置與錯誤，並標記意圖為 false
-      nearbyToggleRef.current = false;
-      setNearby(false);
-      setUserLoc(null);
-      setNearbyError(null);
+      // 取消勾選：立即恢復顯示全部鳥種
+      resetNearbyFilter();
       return;
     }
     // 勾選：請求瀏覽器定位
@@ -1665,28 +1680,28 @@ export default function App() {
       <nav className="tab-bar">
         <button
           className={`tab-btn ${activeTab === 'quick' ? 'tab-active' : ''}`}
-          onClick={() => setActiveTab('quick')}
+          onClick={() => handleTabClick('quick')}
         >
           <Eye size={16} style={{ marginRight: '0.4rem', verticalAlign: 'middle' }} />
           有鳥快看
         </button>
         <button
           className={`tab-btn ${activeTab === 'notable' ? 'tab-active' : ''}`}
-          onClick={() => setActiveTab('notable')}
+          onClick={() => handleTabClick('notable')}
         >
           <Compass size={16} style={{ marginRight: '0.4rem', verticalAlign: 'middle' }} />
           稀有種快報
         </button>
         <button
           className={`tab-btn ${activeTab === 'worth' ? 'tab-active' : ''}`}
-          onClick={() => setActiveTab('worth')}
+          onClick={() => handleTabClick('worth')}
         >
           <Eye size={16} style={{ marginRight: '0.4rem', verticalAlign: 'middle' }} />
           本月首見
         </button>
         <button
           className={`tab-btn ${activeTab === 'firstSeen' ? 'tab-active' : ''}`}
-          onClick={() => setActiveTab('firstSeen')}
+          onClick={() => handleTabClick('firstSeen')}
         >
           <Eye size={16} style={{ marginRight: '0.4rem', verticalAlign: 'middle' }} />
           今年首見
