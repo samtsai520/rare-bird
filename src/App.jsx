@@ -34,16 +34,8 @@ const QUICK_CACHE_KEYS = {
 const MOUNTAIN_ELEV = 300; // 本島山地門檻（海拔 ≥300m）
 const QUICK_BACK_DAYS = 2; // 有鳥快看：live 抓 back=2（涵蓋最近 2 天），只排除黑名單、不過濾日期
 
-// 22 subnational1 regions, split into 3 batches for the `r` param (<=10 per call)
-const TW_REGION_BATCHES = [
-  "TW-CHA,TW-CYI,TW-CYQ,TW-HSZ,TW-HSQ,TW-HUA,TW-KHH,TW-KEE,TW-KIN,TW-LIE",
-  "TW-MIA,TW-NAN,TW-TPQ,TW-PEN,TW-PIF,TW-TXG,TW-TNN,TW-TPE,TW-TTT,TW-TAO",
-  "TW-ILA,TW-YUN",
-];
-const WORTH_BACK_DAYS = 30; // baseline window (fixed, not user-selectable)
-const WORTH_MIN_STRICT = 3; // fallback triggers when strict rare count < this
-const WORTH_FALLBACK_COUNT = 8; // how many species to show in fallback mode
-const WORTH_MAX_LOCATIONS = 10; // 觀測點數超過此值 = 常見鳥，排除（綠繡眼/白頭翁等）
+// 本月精彩推薦：cron 產出 worth-diff.json（5日差分），前端純讀 + recent?back=1 補今天
+const WORTH_BACK_DAYS = 1; // live 抓 back=1（今天），差分鳥種由靜態檔提供
 
 // Outer-island regions: Kinmen, Matsu, Penghu, Lanyu. Anything else counts as mainland (本島).
 const ISLAND_KEYWORDS = ['金門', '馬祖', '澎湖', '蘭嶼', '綠島', '小琉球'];
@@ -114,11 +106,14 @@ export default function App() {
   const [worthLoading, setWorthLoading] = useState(false);
   const [worthError, setWorthError] = useState(null);
   const [worthLastUpdated, setWorthLastUpdated] = useState(null);
-  const [worthMeta, setWorthMeta] = useState(null); // { targetDate, count, strictUsed }
+  const [worthMeta, setWorthMeta] = useState(null); // { recentWindow, baselineWindow, count }
+  // 本月精彩推薦：cron 產出的 5 日差分靜態資料
+  const [worthDiff, setWorthDiff] = useState(null); // { species: [{speciesCode, comNameZh, comNameEn, sightings}] }
   // Island section open state: 本島/外島預設全收合，點選時另一區自動收合（accordion）
   const [islandOpen, setIslandOpen] = useState({ main: false, island: false });
 
   // 有鳥快看 tab state
+  // QUICK_BACK_DAYS=2 涵蓋最近 2 天，只排除黑名單、不過濾日期
   const [quickList, setQuickList] = useState([]);   // [{speciesCode, comNameZh, comNameEn, cat, sightings}]
   const [quickLoading, setQuickLoading] = useState(() => {
     // App 預設在 quick tab：如果 apiKey 存在，啟動即顯示 loading state，
@@ -177,26 +172,12 @@ export default function App() {
     localStorage.setItem(STORAGE_THEME_KEY, theme);
   }, [theme]);
 
-  // Register Service Worker
-  useEffect(() => {
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', async () => {
-        try {
-          const registration = await navigator.serviceWorker.register('/sw.js');
-          console.log('[App] ServiceWorker registered: ', registration.scope);
-        } catch (err) {
-          console.error('[App] ServiceWorker failed: ', err);
-        }
-      });
-    }
-  }, []);
-
   // AbortController for cancelling stale fetches
   const abortRef = useRef(null);
   const worthAbortRef = useRef(null);
   const quickAbortRef = useRef(null);
 
-  // ---- NOTABLE fetch (unchanged behaviour) ----
+  // ---- NOTABLE fetch (single API call + static zh names) ----
   const fetchObservations = useCallback(async (selectedDays, activeKey = apiKey, isManual = false) => {
     if (!activeKey) {
       setError("請先設定您的 eBird API Key。");
@@ -213,47 +194,47 @@ export default function App() {
     setLoading(true);
     setError(null);
 
+    // 等 birdNames 載入（最多 3 秒），確保中文名不落空
+    if (!birdNamesRef.current || Object.keys(birdNamesRef.current).length === 0) {
+      for (let i = 0; i < 15; i++) {
+        if (birdNamesRef.current && Object.keys(birdNamesRef.current).length > 0) break;
+        await new Promise(r => setTimeout(r, 200));
+      }
+    }
+
     const maxRetries = 2;
     for (let attempt = 0; attempt <= maxRetries; attempt++) {
       try {
         const basePath = `https://api.ebird.org/v2/data/obs/TW/recent/notable`;
-        const urlEn = `${basePath}?back=${selectedDays}&detail=full&includeProvisional=true`;
-        const urlZh = `${basePath}?back=${selectedDays}&detail=full&includeProvisional=true&sppLocale=zh`;
+        const url = `${basePath}?back=${selectedDays}&detail=full&includeProvisional=true`;
         const headers = { 'x-ebirdapitoken': activeKey };
 
-        const [resEn, resZh] = await Promise.all([
-          throttleApiCall(() => fetch(urlEn, { headers, signal: controller.signal })),
-          throttleApiCall(() => fetch(urlZh, { headers, signal: controller.signal }))
-        ]);
+        const res = await throttleApiCall(() => fetch(url, { headers, signal: controller.signal }));
 
-        if (resEn.status === 429 || resZh.status === 429) {
+        if (res.status === 429) {
           if (attempt < maxRetries) {
             await new Promise(r => setTimeout(r, 2000 * (attempt + 1)));
             continue;
           }
         }
 
-        if (!resEn.ok || !resZh.ok) {
-          throw new Error(`eBird API error: ${resEn.status} / ${resZh.status}`);
+        if (!res.ok) {
+          throw new Error(`eBird API error: ${res.status}`);
         }
 
-        const dataEn = await resEn.json();
-        const dataZh = await resZh.json();
+        const dataEn = await res.json();
 
         if (controller.signal.aborted) return;
 
-        const zhNamesMap = {};
-        dataZh.forEach(item => {
-          if (item.speciesCode) {
-            zhNamesMap[item.speciesCode] = item.comName;
-          }
+        // 中文名來自靜態 taiwan-birds.json（零額外 API 呼叫）
+        const mergedList = dataEn.map(item => {
+          const t = birdNamesRef.current && birdNamesRef.current[item.speciesCode];
+          return {
+            ...item,
+            comNameZh: (t && t.comNameZh) || item.comName,
+            comNameEn: item.comName
+          };
         });
-
-        const mergedList = dataEn.map(item => ({
-          ...item,
-          comNameZh: zhNamesMap[item.speciesCode] || item.comName,
-          comNameEn: item.comName
-        }));
 
         const nowStr = new Date().toISOString();
 
@@ -286,9 +267,9 @@ export default function App() {
         }
       }
     }
-  }, [apiKey, observations.length]);
+  }, [apiKey, observations.length, birdNames]);
 
-  // ---- WORTH fetch: rare birds reported yesterday or today, absent in prior 30d ----
+  // ---- WORTH fetch: cron 差分靜態檔 + recent?back=1 補今天 ----
   const fetchWorth = useCallback(async (activeKey = apiKey, isManual = false) => {
     if (!activeKey) {
       setWorthError("請先設定您的 eBird API Key。");
@@ -305,8 +286,7 @@ export default function App() {
     setWorthLoading(true);
     setWorthError(null);
 
-    // 等 birdNames（中文名檔，~100KB）載入完成，確保取名稱不落空
-    // 最多等 3 秒；若仍未就緒則用目前已載入的（缺中文就顯示英文名）
+    // 等 birdNames 載入（最多 3 秒）
     if (!birdNamesRef.current || Object.keys(birdNamesRef.current).length === 0) {
       for (let i = 0; i < 15; i++) {
         if (birdNamesRef.current && Object.keys(birdNamesRef.current).length > 0) break;
@@ -314,129 +294,111 @@ export default function App() {
       }
     }
 
-    // Target window = calendar 3天前 + 前天 + 昨天 + today (4 days)
-    const now = new Date();
-    const fmtD = (d) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
-    const todayStr = fmtD(now);
-    const yest = new Date(now); yest.setDate(yest.getDate() - 1);   const yestStr = fmtD(yest);
-    const twoAgo = new Date(now); twoAgo.setDate(twoAgo.getDate() - 2); const twoAgoStr = fmtD(twoAgo);
-    const threeAgo = new Date(now); threeAgo.setDate(threeAgo.getDate() - 3); const threeAgoStr = fmtD(threeAgo);
-    const targetDates = new Set([threeAgoStr, twoAgoStr, yestStr, todayStr]);
-
     const maxRetries = 3;
     for (let attempt = 0; attempt <= maxRetries; attempt++) {
       try {
         const headers = { 'x-ebirdapitoken': activeKey };
-        // Fetch each region-batch sequentially, ONE request per batch (EN only).
-        // Chinese names come from the static birdNames (zero extra eBird API calls),
-        // which cuts request count from 6 → 3 and halves the chance of a 429/timeout.
-        const enRecords = [];
-        for (const batch of TW_REGION_BATCHES) {
-          const url = `https://api.ebird.org/v2/data/obs/TW/recent?back=${WORTH_BACK_DAYS}&detail=full&includeProvisional=true&r=${encodeURIComponent(batch)}`;
-          const res = await throttleApiCall(() => fetch(url, { headers, signal: controller.signal }));
-          if (res.status === 429) {
-            throw new Error('RATE_LIMIT');
+
+        // 1. 載入 cron 產出的差分靜態檔（5日差分 + 黑名單已排除）
+        //    worthDiff 在 useEffect 載入，此處直接使用 state 中的值
+        let diffSpecies = [];
+        let diffMeta = null;
+        if (worthDiff && worthDiff.species) {
+          diffSpecies = worthDiff.species;
+          diffMeta = {
+            recentWindow: worthDiff.recentWindow,
+            baselineWindow: worthDiff.baselineWindow,
+            count: worthDiff.speciesCount,
+          };
+        } else {
+          // 靜態檔尚未載入，嘗試即時 fetch
+          const diffRes = await fetch('/data/worth-diff.json');
+          if (diffRes.ok) {
+            const diffData = await diffRes.json();
+            diffSpecies = diffData.species || [];
+            diffMeta = {
+              recentWindow: diffData.recentWindow,
+              baselineWindow: diffData.baselineWindow,
+              count: diffData.speciesCount,
+            };
+            setWorthDiff(diffData);
           }
-          if (!res.ok) {
-            throw new Error('eBird API error');
-          }
-          const dataEn = await res.json();
-          if (controller.signal.aborted) return;
-          enRecords.push(...dataEn);
-          // small gap between batches
-          await new Promise(r => setTimeout(r, 900));
         }
+
         if (controller.signal.aborted) return;
 
-        // Merge zh names from static Taiwan-bird birdNames; fallback to EN name
-        const allRecords = enRecords.map(item => {
-          const t = birdNamesRef.current && birdNamesRef.current[item.speciesCode];
+        // 2. Fetch recent?back=1（今天全台），1 次 API 呼叫
+        const url = `https://api.ebird.org/v2/data/obs/TW/recent?back=${WORTH_BACK_DAYS}&detail=full&includeProvisional=true`;
+        const res = await throttleApiCall(() => fetch(url, { headers, signal: controller.signal }));
+        if (res.status === 429) throw new Error('RATE_LIMIT');
+        if (!res.ok) throw new Error('eBird API error');
+        const todayData = await res.json();
+        if (controller.signal.aborted) return;
+
+        // 3. 用差分鳥種清單過濾今天的觀測紀錄
+        //    差分清單已含 5 天內 sightings（來自靜態檔），加上今天有觀測的 sighting
+        const todayByCode = {};
+        for (const r of todayData) {
+          const code = r.speciesCode;
+          if (!code) continue;
+          const t = birdNamesRef.current && birdNamesRef.current[code];
+          const enriched = {
+            ...r,
+            comNameZh: (t && t.comNameZh) || r.comName,
+            comNameEn: r.comName,
+          };
+          if (!todayByCode[code]) todayByCode[code] = [];
+          todayByCode[code].push(enriched);
+        }
+
+        // 4. 合併：差分鳥種的靜態 sightings + 今天的 sightings
+        const list = diffSpecies.map(sp => {
+          const todaySightings = (todayByCode[sp.speciesCode] || []).map(r => ({
+            subId: r.subId || '',
+            obsDt: r.obsDt || '',
+            locName: r.locName || '',
+            lat: r.lat,
+            lng: r.lng,
+            howMany: r.howMany,
+          }));
+          // 合併靜態 + 今天，去重（用 subId+obsDt）
+          const seen = new Set();
+          const allSightings = [...(sp.sightings || []), ...todaySightings].filter(s => {
+            const k = `${s.subId}-${s.obsDt}`;
+            if (seen.has(k)) return false;
+            seen.add(k);
+            return true;
+          });
+          allSightings.sort((a, b) => new Date(b.obsDt) - new Date(a.obsDt));
           return {
-            ...item,
-            comNameZh: (t && t.comNameZh) || item.comName,
-            comNameEn: item.comName,
+            speciesCode: sp.speciesCode,
+            comNameZh: sp.comNameZh,
+            comNameEn: sp.comNameEn,
+            sightings: allSightings,
           };
         });
 
-        // Classify
-        const baseline = new Set();   // species present before 3天前 (within 30d)
-        const targetByCode = {};      // code -> { records, count }
-        const countPerCode = {};      // rarity score = total records in window
-        const locPerCode = {};        // code -> Set(unique locId) 觀測點數
-        for (const rec of allRecords) {
-          const d = (rec.obsDt || '').slice(0, 10);
-          if (!d) continue;
-          const code = rec.speciesCode;
-          countPerCode[code] = (countPerCode[code] || 0) + 1;
-          if (!locPerCode[code]) locPerCode[code] = new Set();
-          if (rec.locId) locPerCode[code].add(rec.locId);
-          if (targetDates.has(d)) {
-            if (!targetByCode[code]) {
-              targetByCode[code] = { records: [] };
-            }
-            targetByCode[code].records.push(rec);
-          } else if (d < threeAgoStr) {
-            baseline.add(code);
-          }
-        }
+        // 排除今天完全沒 sighting 且靜態檔也沒 sighting 的空記錄
+        const filteredList = list.filter(sp => sp.sightings.length > 0);
 
-        // 排除常見鳥：觀測點數 ≥ 門檻(10) = 全台普遍出現，非「值得一看」稀有鳥
-        const isCommonBird = (code) => (locPerCode[code] ? locPerCode[code].size : 0) >= WORTH_MAX_LOCATIONS;
-        // 排除黑名單鳥種（與「有鳥快看」共用 blacklist.json）
-        const isBlacklisted = (code) => blacklistRef.current.has(code);
-
-        // Strict rare: in target, not in baseline, 且非常見鳥、且不在黑名單
-        const rareCodes = Object.keys(targetByCode)
-          .filter(code => !baseline.has(code) && !isCommonBird(code) && !isBlacklisted(code));
-
-        // Fallback: if too few strict rare, rank target species by rarity score (fewer records = rarer)
-        let selectedCodes;
-        let strictUsed = rareCodes.length >= WORTH_MIN_STRICT;
-        if (strictUsed) {
-          selectedCodes = rareCodes;
-        } else {
-          selectedCodes = Object.keys(targetByCode)
-            .filter(code => !isCommonBird(code) && !isBlacklisted(code))
-            .sort((a, b) => (countPerCode[a] || 0) - (countPerCode[b] || 0))
-            .slice(0, WORTH_FALLBACK_COUNT);
-        }
-
-        // Build species list (only target-window records for display)
-        const grouped = {};
-        for (const code of selectedCodes) {
-          const g = targetByCode[code];
-          if (!g) continue;
-          const rec = g.records[0];
-          grouped[code] = {
-            speciesCode: code,
-            comNameZh: rec.comNameZh,
-            comNameEn: rec.comNameEn,
-            rarityScore: countPerCode[code] || 0,
-            sightings: g.records,
-          };
-        }
-        const list = Object.values(grouped);
-
-        // Sort species groups by GPS location (north→south by lat of latest sighting),
-        // then by latest sighting date desc as secondary key (user's choice: GPS primary, date secondary)
-        list.forEach(sp => sp.sightings.sort((a, b) => new Date(b.obsDt) - new Date(a.obsDt)));
-        list.sort((a, b) => {
-          const aLat = a.sightings[0].lat;
-          const bLat = b.sightings[0].lat;
+        // Sort by GPS north→south, date desc secondary
+        filteredList.sort((a, b) => {
+          const aLat = a.sightings[0]?.lat;
+          const bLat = b.sightings[0]?.lat;
           if (typeof aLat === 'number' && typeof bLat === 'number' && aLat !== bLat) {
-            return bLat - aLat; // north first (higher latitude)
+            return bLat - aLat;
           }
-          return new Date(b.sightings[0].obsDt) - new Date(a.sightings[0].obsDt);
+          return new Date(b.sightings[0]?.obsDt) - new Date(a.sightings[0]?.obsDt);
         });
 
         const nowStr = new Date().toISOString();
-        setWorthList(list);
+        setWorthList(filteredList);
         setWorthLoading(false);
         setWorthError(null);
         setWorthLastUpdated(nowStr);
-        setWorthMeta({ targetDate: todayStr, yesterday: yestStr, twoDaysAgo: twoAgoStr, threeDaysAgo: threeAgoStr, count: list.length, strictUsed });
+        setWorthMeta(diffMeta);
 
-        localStorage.setItem(WORTH_CACHE_KEYS.obs, JSON.stringify({ list, meta: { targetDate: todayStr, yesterday: yestStr, twoDaysAgo: twoAgoStr, threeDaysAgo: threeAgoStr, count: list.length, strictUsed } }));
+        localStorage.setItem(WORTH_CACHE_KEYS.obs, JSON.stringify({ list: filteredList, meta: diffMeta }));
         localStorage.setItem(WORTH_CACHE_KEYS.time, nowStr);
 
         return;
@@ -448,11 +410,9 @@ export default function App() {
         }
         console.error(`Worth fetch failed (attempt ${attempt + 1}):`, err);
         setWorthLoading(false);
-        // 若仍有資料（記憶體或 localStorage 快取），保留顯示並標示資料可能較舊，
-        // 避免切換 tab 時因一時限速而閃出「載入失敗」空畫面。
         const cached = localStorage.getItem(WORTH_CACHE_KEYS.obs);
         if (worthList.length > 0) {
-          setWorthError(null); // 已有資料，不顯示錯誤
+          setWorthError(null);
         } else if (cached) {
           try {
             const parsed = JSON.parse(cached);
@@ -467,7 +427,7 @@ export default function App() {
         }
       }
     }
-  }, [apiKey, worthList.length, birdNames]);
+  }, [apiKey, worthList.length, birdNames, worthDiff]);
 
   // ---- 有鳥快看 fetch: back=2（最近2天），排除黑名單，分類本島平地/本島山地/外島 ----
   const fetchQuick = useCallback(async (activeKey = apiKey, isManual = false) => {
@@ -521,7 +481,7 @@ export default function App() {
           return { ...item, comNameZh: (t && t.comNameZh) || item.comName, comNameEn: item.comName };
         });
 
-        // 只排除黑名單，不過濾日期（直接顯示 back=3 抓到的 8/3~8/6 全部資料）
+        // 只排除黑名單，不過濾日期（back=2 抓到的全部資料直接顯示）
         const todayRecs = allRecords.filter(r => {
           return !blacklistRef.current.has(r.speciesCode);
         });
@@ -613,9 +573,10 @@ export default function App() {
     }
   }, [apiKey, quickList.length, birdNames]);
 
-  // Auto-load: notable check cache first, then fetch
+  // Auto-load: notable — lazy-load, only when user switches to notable tab
   useEffect(() => {
     if (!apiKey) return;
+    if (activeTab !== 'notable') return;
 
     const cachedObs = localStorage.getItem(CACHE_KEYS.obs(days));
     const cachedTime = localStorage.getItem(CACHE_KEYS.time(days));
@@ -642,7 +603,7 @@ export default function App() {
     if (needsFetch && !loading) {
       fetchObservations(days, apiKey);
     }
-  }, [apiKey, days]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [apiKey, days, activeTab]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Auto-load: worth check cache first, then fetch
   useEffect(() => {
@@ -746,6 +707,11 @@ export default function App() {
       .then(r => r.ok ? r.json() : Promise.reject())
       .then(data => { if (!cancelled && data) { setElevMap(data); setElevMapLoaded(true); } })
       .catch(() => { /* 海拔表缺失時忽略，今天的鳥退回用打 API 分類 */ });
+    // Load static worth-diff (本月精彩推薦 5日差分，cron 產出) — zero API requests.
+    fetch('/data/worth-diff.json')
+      .then(r => r.ok ? r.json() : Promise.reject())
+      .then(data => { if (!cancelled && data) setWorthDiff(data); })
+      .catch(() => { /* 差分檔缺失時 fetchWorth 會即時 fetch */ });
     return () => { cancelled = true; };
   }, []);
 
@@ -892,8 +858,6 @@ export default function App() {
     localStorage.removeItem(WORTH_CACHE_KEYS.time);
     localStorage.removeItem(QUICK_CACHE_KEYS.obs);
     localStorage.removeItem(QUICK_CACHE_KEYS.time);
-    localStorage.removeItem("taiwan_birds_notable_obs_cache");
-    localStorage.removeItem("taiwan_birds_notable_last_fetch_time");
     setApiKeySavedMsg("API Key 已清除。觀測功能已停用。");
     setTimeout(() => setApiKeySavedMsg(''), 3000);
   };
@@ -1125,7 +1089,7 @@ export default function App() {
               <div className="radar-circle"></div>
               <div className="radar-center"></div>
             </div>
-            <p>正在搜尋稀有鳥種觀測紀錄...</p>
+            <p>正在努力幫你找鳥，請保持耐心...</p>
           </div>
         ) : error ? (
           <div className="error-state">
@@ -1164,10 +1128,10 @@ export default function App() {
             <div className="select-container">
               <label className="select-label">
                 {recentStats && recentStats.total
-                  ? `最近3天(${(recentStats.windowStart || '').slice(5).replace('-', '/')}~${(recentStats.windowEnd || '').slice(5).replace('-', '/')})eBird共收集了${recentStats.total.checklists}張觀察列表，計有${recentStats.total.species}鳥種。以下是精選本月精彩推薦。`
+                  ? `最近3天(${(recentStats.windowStart || '').slice(5).replace('-', '/')}~${(recentStats.windowEnd || '').slice(5).replace('-', '/')})eBird共收集了${recentStats.total.checklists}張觀察列表，計有${recentStats.total.species}鳥種。以下是精選本日精彩推薦。`
                   : (meta
-                    ? `${meta.threeDaysAgo || meta.twoDaysAgo} ~ ${meta.targetDate}`
-                    : '3天前 ~ 今天')}
+                    ? `${(meta.recentWindow?.start || '').slice(5).replace('-', '/')} ~ ${(meta.recentWindow?.end || '').slice(5).replace('-', '/')}`
+                    : '載入中...')}
               </label>
               <span className="last-update-text">
                 <span className="pulse-dot"></span>
@@ -1185,7 +1149,7 @@ export default function App() {
               <div className="radar-circle"></div>
               <div className="radar-center"></div>
             </div>
-            <p>正在搜尋值得一看的鳥...</p>
+            <p>正在努力幫你找鳥，請保持耐心...</p>
           </div>
         ) : worthError && worthList.length === 0 ? (
           <div className="error-state">
@@ -1411,7 +1375,7 @@ export default function App() {
               <div className="radar-circle"></div>
               <div className="radar-center"></div>
             </div>
-            <p>正在搜尋有鳥快看...</p>
+            <p>正在努力幫你找鳥，請保持耐心...</p>
           </div>
         ) : quickError && quickList.length === 0 ? (
           <div className="error-state">
@@ -1476,7 +1440,7 @@ export default function App() {
             <div className="radar-circle"></div>
             <div className="radar-center"></div>
           </div>
-          <p>正在載入今年首見資料...</p>
+          <p>正在努力幫你找鳥，請保持耐心...</p>
         </div>
       );
     }
@@ -1699,7 +1663,7 @@ export default function App() {
           onClick={() => handleTabClick('worth')}
         >
           <Eye size={16} style={{ marginRight: '0.4rem', verticalAlign: 'middle' }} />
-          本月精彩推薦
+          本日精彩推薦
         </button>
         <button
           className={`tab-btn ${activeTab === 'firstSeen' ? 'tab-active' : ''}`}
@@ -1787,10 +1751,6 @@ export default function App() {
           font-size: 0.78rem;
           color: var(--text-muted);
           margin-top: 0.25rem;
-        }
-        .worth-fallback-note {
-          font-size: 0.78rem;
-          color: var(--text-muted);
         }
       `}</style>
     </div>
