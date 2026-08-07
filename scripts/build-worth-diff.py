@@ -79,10 +79,10 @@ def main():
         (yesterday - timedelta(days=i)).strftime("%Y-%m-%d")
         for i in range(RECENT_DAYS)
     ]
-    # 基線窗口：6天前 ~ 10天前
+    # 基線窗口：5天前 ~ 9天前（緊接近期窗口，無間隔）
     baseline_dates = [
         (yesterday - timedelta(days=RECENT_DAYS + i)).strftime("%Y-%m-%d")
-        for i in range(1, BASELINE_DAYS + 1)
+        for i in range(0, BASELINE_DAYS)
     ]
 
     print("=== 產出 worth-diff.json ===")

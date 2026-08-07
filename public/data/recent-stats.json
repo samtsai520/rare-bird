@@ -5,15 +5,15 @@
   "days": [
     {
       "date": "2026-08-06",
-      "checklists": 82,
-      "species": 196,
-      "records": 196
+      "checklists": 89,
+      "species": 198,
+      "records": 198
     },
     {
       "date": "2026-08-05",
-      "checklists": 86,
-      "species": 191,
-      "records": 191
+      "checklists": 88,
+      "species": 193,
+      "records": 193
     },
     {
       "date": "2026-08-04",
@@ -23,7 +23,7 @@
     }
   ],
   "total": {
-    "checklists": 251,
-    "species": 228
+    "checklists": 260,
+    "species": 229
   }
 }
