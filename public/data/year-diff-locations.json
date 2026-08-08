@@ -635,6 +635,21 @@
   ],
   "onlyThis": [
     {
+      "code": "arcwar3",
+      "zh": "日本柳鶯",
+      "en": "Japanese Leaf Warbler",
+      "date": "2026-05-13",
+      "locations": [
+        {
+          "county": "金門",
+          "locName": "金門--金門植物園(Kinmen--Botanical Garden)",
+          "lat": 24.454654,
+          "lng": 118.3974132,
+          "obsReviewed": true
+        }
+      ]
+    },
+    {
       "code": "bohwax",
       "zh": "黃連雀",
       "en": "Bohemian Waxwing",
@@ -720,6 +735,21 @@
           "locName": "Sun Yat-sen Freeway, 太北里, Tainan City, TW (23.299, 120.285)",
           "lat": 23.2989502,
           "lng": 120.2845863,
+          "obsReviewed": true
+        }
+      ]
+    },
+    {
+      "code": "gybshr1",
+      "zh": "灰背伯勞",
+      "en": "Gray-backed Shrike",
+      "date": "2026-02-14",
+      "locations": [
+        {
+          "county": "仁德區 TW-臺南市",
+          "locName": "機場路495巷, 仁德區 TW-臺南市",
+          "lat": 22.938341,
+          "lng": 120.216267,
           "obsReviewed": true
         }
       ]
