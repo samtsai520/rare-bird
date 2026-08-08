@@ -148,6 +148,10 @@ export default function App() {
   const [firstSeenError, setFirstSeenError] = useState(null);
   const [firstSeenView, setFirstSeenView] = useState('month'); // 'month' | 'recent'
 
+  // Year-diff data (static year-diff-locations.json, zero API requests)
+  const [yearDiff, setYearDiff] = useState(null); // {lastYear, thisYear, onlyLast:[...], onlyThis:[...]}
+  const [yearDiffLoaded, setYearDiffLoaded] = useState(false);
+
   // Recent 4-day stats (static recent-stats.json, zero API requests)
   const [recentStats, setRecentStats] = useState(null); // {windowStart, windowEnd, total:{checklists, species}}
 
@@ -692,6 +696,11 @@ export default function App() {
       .then(r => r.ok ? r.json() : Promise.reject())
       .then(data => { if (!cancelled && data) setWorthDiff(data); })
       .catch(() => { /* 差分檔缺失時 fetchWorth 會即時 fetch */ });
+    // Load static year-diff (去年vs今年鳥種差異，cron 產出) — zero API requests.
+    fetch('/data/year-diff-locations.json')
+      .then(r => r.ok ? r.json() : Promise.reject())
+      .then(data => { if (!cancelled && data) { setYearDiff(data); setYearDiffLoaded(true); } })
+      .catch(() => { if (!cancelled) setYearDiffLoaded(true); });
     return () => { cancelled = true; };
   }, []);
 
@@ -1409,6 +1418,145 @@ export default function App() {
     );
   };
 
+  // YEAR-DIFF tab content (reads static year-diff-locations.json, zero API requests)
+  // type: 'onlyLast' (去年有今年沒有) or 'onlyThis' (今年有去年沒有)
+  const renderYearDiffContent = (type) => {
+    if (!yearDiffLoaded) {
+      return (
+        <div className="loading-state">
+          <div className="radar-loader">
+            <div className="radar-circle"></div>
+            <div className="radar-circle"></div>
+            <div className="radar-circle"></div>
+            <div className="radar-center"></div>
+          </div>
+          <p>正在努力幫你找鳥，請保持耐心...</p>
+        </div>
+      );
+    }
+    const list = (yearDiff && yearDiff[type]) || [];
+    const isOnlyLast = type === 'onlyLast';
+    const lastYear = yearDiff?.lastYear || '去年';
+    const thisYear = yearDiff?.thisYear || '今年';
+    const label = isOnlyLast
+      ? `${lastYear} 年有觀察紀錄、${thisYear} 年尚未出現的鳥種`
+      : `${thisYear} 年有觀察紀錄、${lastYear} 年沒有的鳥種`;
+
+    // Sort by date ascending, exclude species with no locations (該日無紀錄)
+    const sorted = [...list].filter(sp => sp.locations && sp.locations.length > 0).sort((a, b) => (a.date || '').localeCompare(b.date || ''));
+
+    return (
+      <>
+        <section className="glass-panel">
+          <div className="controls-grid">
+            <div className="select-container">
+              <label className="select-label">
+                {label}
+                <span className="last-update-text">
+                  <span className="pulse-dot"></span>
+                  資料更新至: {firstSeen?.lastUpdated || '—'}
+                </span>
+              </label>
+            </div>
+          </div>
+        </section>
+
+        <div className="stats-ribbon">
+          <div className="stats-text">
+            共 <span className="stats-count">{sorted.length}</span> 種
+          </div>
+        </div>
+
+        {sorted.length === 0 ? (
+          <div className="empty-state">
+            <Eye size={48} style={{ color: 'var(--text-muted)' }} />
+            <h3>尚無差異資料</h3>
+            <p>資料將由每日 cron 更新產生。</p>
+          </div>
+        ) : (
+          <main className="species-list-container">
+            {sorted.map((sp) => {
+              const code = sp.code;
+              const isExpanded = expandedSpecies.has(code);
+              const locStr = sp.locations && sp.locations.length > 0
+                ? sp.locations.map(l => `${l.county} - ${l.locName}`).join('; ')
+                : '(該日無紀錄)';
+              const hasUnreviewed = sp.locations && sp.locations.some(l => !l.obsReviewed);
+              return (
+                <div
+                  className={`species-accordion-item ${isExpanded ? 'is-open' : ''} ${hasUnreviewed ? 'unreviewed' : ''}`}
+                  key={code}
+                >
+                  <div
+                    className="species-accordion-header"
+                    onClick={() => toggleSpecies(code)}
+                  >
+                    <div className="species-primary-info">
+                      <div className="species-name-row">
+                        <span className="species-chinese">{sp.zh || code}</span>
+                        {sp.en && sp.en !== sp.zh && (
+                          <span className="species-english">{sp.en}</span>
+                        )}
+                        {hasUnreviewed && <span className="unreviewed-badge">未審核</span>}
+                      </div>
+                      <div className="species-subtitle-row">
+                        <span className="species-latest-date">{sp.date || '—'}</span>
+                        <span className="species-latest-separator">·</span>
+                        <span className="species-latest-loc">{locStr}</span>
+                      </div>
+                    </div>
+                    <div className="species-meta-info">
+                      <span className="sightings-counter-pill">{sp.locations?.length || 0} 處</span>
+                      <button className="accordion-arrow-btn">
+                        {isExpanded ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+                      </button>
+                    </div>
+                  </div>
+                  {isExpanded && sp.locations && sp.locations.length > 0 && (
+                    <div className="species-accordion-content">
+                      <div className="sightings-table-container">
+                        <table className="sightings-table">
+                          <thead>
+                            <tr>
+                              <th>觀測地點</th>
+                              <th>縣市</th>
+                              <th>審核</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {sp.locations.map((l, i) => (
+                              <tr key={i} className={!l.obsReviewed ? 'unreviewed-row' : ''}>
+                                <td className="td-location">
+                                  <MapPin size={14} style={{ marginRight: '0.4rem', verticalAlign: 'middle', color: 'var(--text-muted)' }} />
+                                  <span>{l.locName}</span>
+                                </td>
+                                <td className="td-location">
+                                  <span>{l.county}</span>
+                                </td>
+                                <td className="td-location">
+                                  {l.obsReviewed
+                                    ? <CheckCircle size={14} style={{ color: '#10b981', verticalAlign: 'middle' }} />
+                                    : <span className="unreviewed-badge">未審核</span>}
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                        <p className="static-hint" style={{ padding: '0.5rem 0.75rem 0.75rem' }}>
+                          首見日期：{sp.date}
+                        </p>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </main>
+        )}
+      </>
+    );
+  };
+
   // FIRST-SEEN tab content (reads static first-seen.json, zero API requests)
   const renderFirstSeenContent = () => {
     if (firstSeenLoading) {
@@ -1574,6 +1722,14 @@ export default function App() {
       // 今年首見 tab：純讀靜態資料，不需要 API key
       return renderFirstSeenContent();
     }
+    if (activeTab === 'lastYear') {
+      // 去年出現、今年沒出現：純讀靜態資料，不需要 API key
+      return renderYearDiffContent('onlyLast');
+    }
+    if (activeTab === 'thisYear') {
+      // 今年出現、去年沒出現：純讀靜態資料，不需要 API key
+      return renderYearDiffContent('onlyThis');
+    }
     if (!apiKey) {
       return renderApiKeyBanner();
     }
@@ -1593,13 +1749,15 @@ export default function App() {
           <div className="title-section">
             <div className="title-row-container">
               <h1>eBird台灣鳥類查詢</h1>
-              <button
-                className="btn-icon btn-icon-refresh"
-                onClick={handleHeaderRefresh}
-                title="更新目前頁面資料"
-              >
-                <RotateCw size={32} className={isAnyLoading ? "spin" : ""} />
-              </button>
+              {activeTab !== 'firstSeen' && activeTab !== 'lastYear' && activeTab !== 'thisYear' && (
+                <button
+                  className="btn-icon btn-icon-refresh"
+                  onClick={handleHeaderRefresh}
+                  title="更新目前頁面資料"
+                >
+                  <RotateCw size={32} className={isAnyLoading ? "spin" : ""} />
+                </button>
+              )}
             </div>
           </div>
         </div>
@@ -1651,6 +1809,20 @@ export default function App() {
         >
           <Eye size={16} style={{ marginRight: '0.4rem', verticalAlign: 'middle' }} />
           今年首見
+        </button>
+        <button
+          className={`tab-btn ${activeTab === 'lastYear' ? 'tab-active' : ''}`}
+          onClick={() => handleTabClick('lastYear')}
+        >
+          <Calendar size={16} style={{ marginRight: '0.4rem', verticalAlign: 'middle' }} />
+          去年出現今年沒有
+        </button>
+        <button
+          className={`tab-btn ${activeTab === 'thisYear' ? 'tab-active' : ''}`}
+          onClick={() => handleTabClick('thisYear')}
+        >
+          <Calendar size={16} style={{ marginRight: '0.4rem', verticalAlign: 'middle' }} />
+          今年出現去年沒有
         </button>
       </nav>
 

@@ -1,0 +1,833 @@
+{
+  "lastYear": 2025,
+  "thisYear": 2026,
+  "onlyLast": [
+    {
+      "code": "amewig",
+      "zh": "葡萄胸鴨",
+      "en": "American Wigeon",
+      "date": "2025-02-11",
+      "locations": [
+        {
+          "county": "台南",
+          "locName": "魚塭區，未命名的道路, 十份里, 台南市, TW (23.089, 120.062)",
+          "lat": 23.0888678,
+          "lng": 120.0622855,
+          "obsReviewed": true
+        }
+      ]
+    },
+    {
+      "code": "amufal1",
+      "zh": "紅腳隼",
+      "en": "Amur Falcon",
+      "date": "2025-04-24",
+      "locations": [
+        {
+          "county": "馬祖",
+          "locName": "馬祖--東引遊客中心(Matsu--Dongyin Visitor Center)",
+          "lat": 26.3600199,
+          "lng": 120.4842489,
+          "obsReviewed": true
+        }
+      ]
+    },
+    {
+      "code": "baepoc1",
+      "zh": "青頭潛鴨",
+      "en": "Baer's Pochard",
+      "date": "2025-01-01",
+      "locations": [
+        {
+          "county": "宜蘭",
+          "locName": "宜蘭竹安IBA--空中撈魚/王通塭(Zhu'an IBA--Kongzhonglaoyu/Wangtongwen)",
+          "lat": 24.8230874,
+          "lng": 121.8084384,
+          "obsReviewed": true
+        }
+      ]
+    },
+    {
+      "code": "bahgoo",
+      "zh": "斑頭雁",
+      "en": "Bar-headed Goose",
+      "date": "2025-09-18",
+      "locations": [
+        {
+          "county": "苗栗",
+          "locName": "368003, 西湖鄉 TW-苗栗縣 24.51765, 120.77104",
+          "lat": 24.517652,
+          "lng": 120.771044,
+          "obsReviewed": true
+        }
+      ]
+    },
+    {
+      "code": "bklkit",
+      "zh": "三趾鷗",
+      "en": "Black-legged Kittiwake",
+      "date": "2025-02-09",
+      "locations": [
+        {
+          "county": "tn33",
+          "locName": "tn33",
+          "lat": 23.27604,
+          "lng": 120.134,
+          "obsReviewed": false
+        }
+      ]
+    },
+    {
+      "code": "blabaz1",
+      "zh": "黑冠鵑隼",
+      "en": "Black Baza",
+      "date": "2025-04-13",
+      "locations": [
+        {
+          "county": "寶山",
+          "locName": "寶山",
+          "lat": 24.7406105,
+          "lng": 120.952969,
+          "obsReviewed": true
+        }
+      ]
+    },
+    {
+      "code": "blabit1",
+      "zh": "黃頸黑鷺",
+      "en": "Black Bittern",
+      "date": "2025-02-05",
+      "locations": [
+        {
+          "county": "花蓮",
+          "locName": "花蓮--玉里三民(Hualien--Yuli Sanming)",
+          "lat": 23.4192931,
+          "lng": 121.3501096,
+          "obsReviewed": true
+        }
+      ]
+    },
+    {
+      "code": "bncjuf1",
+      "zh": "白喉林鶲",
+      "en": "Brown-chested Jungle Flycatcher",
+      "date": "2025-10-18",
+      "locations": [
+        {
+          "county": "高雄",
+          "locName": "高雄--旗津舊高字塔(Kaohsiung--Qijin VTC Tower)",
+          "lat": 22.5540466,
+          "lng": 120.3146014,
+          "obsReviewed": true
+        }
+      ]
+    },
+    {
+      "code": "cfweye1",
+      "zh": "紅脇繡眼",
+      "en": "Chestnut-flanked White-eye",
+      "date": "2025-12-23",
+      "locations": [
+        {
+          "county": "陽明山NP--中正山產業道路",
+          "locName": "陽明山NP--中正山產業道路",
+          "lat": 25.1669012,
+          "lng": 121.5252519,
+          "obsReviewed": true
+        }
+      ]
+    },
+    {
+      "code": "comchi1",
+      "zh": "嘰喳柳鶯",
+      "en": "Common Chiffchaff",
+      "date": "2025-11-05",
+      "locations": [
+        {
+          "county": "台北",
+          "locName": "台北--田寮洋濕地(Taipei--Tianliaoyang Wetland)",
+          "lat": 25.0193121,
+          "lng": 121.923236,
+          "obsReviewed": true
+        }
+      ]
+    },
+    {
+      "code": "crebun1",
+      "zh": "冠鵐",
+      "en": "Crested Bunting",
+      "date": "2025-04-11",
+      "locations": [
+        {
+          "county": "澎湖",
+          "locName": "澎湖--吉貝嶼(Penghu--Jibei Island)",
+          "lat": 23.7424546,
+          "lng": 119.606781,
+          "obsReviewed": true
+        }
+      ]
+    },
+    {
+      "code": "deswhe1",
+      "zh": "漠䳭",
+      "en": "Desert Wheatear",
+      "date": "2025-01-01",
+      "locations": [
+        {
+          "county": "澎湖",
+          "locName": "湖西自行車道, 龍門村, 澎湖縣, TW (23.562, 119.686)",
+          "lat": 23.5619291,
+          "lng": 119.6863787,
+          "obsReviewed": true
+        }
+      ]
+    },
+    {
+      "code": "eurcrm1",
+      "zh": "岩燕",
+      "en": "Eurasian Crag-Martin",
+      "date": "2025-04-10",
+      "locations": [
+        {
+          "county": "120.492)養豬場",
+          "locName": "(26.36, 120.492)養豬場",
+          "lat": 26.3603298,
+          "lng": 120.4924897,
+          "obsReviewed": true
+        }
+      ]
+    },
+    {
+      "code": "grefri",
+      "zh": "軍艦鳥",
+      "en": "Great Frigatebird",
+      "date": "2025-06-18",
+      "locations": [
+        {
+          "county": "Pingtung",
+          "locName": "270號 沿山路二段, 成德村, Pingtung County, TW (22.627, 120.626)",
+          "lat": 22.6267702,
+          "lng": 120.6261917,
+          "obsReviewed": true
+        }
+      ]
+    },
+    {
+      "code": "grewar3",
+      "zh": "暗綠柳鶯",
+      "en": "Greenish Warbler",
+      "date": "2025-03-21",
+      "locations": [
+        {
+          "county": "宜蘭",
+          "locName": "宜蘭--新城溪口(Yilan--Shincheng River Mouth)",
+          "lat": 24.6325063,
+          "lng": 121.8460822,
+          "obsReviewed": true
+        }
+      ]
+    },
+    {
+      "code": "hoocra1",
+      "zh": "白頭鶴",
+      "en": "Hooded Crane",
+      "date": "2025-10-26",
+      "locations": [
+        {
+          "county": "121.48683",
+          "locName": "中央北路二段257巷, 北投區 TW-臺北市 25.12533, 121.48683",
+          "lat": 25.125334,
+          "lng": 121.486832,
+          "obsReviewed": true
+        }
+      ]
+    },
+    {
+      "code": "lotduc",
+      "zh": "長尾鴨",
+      "en": "Long-tailed Duck",
+      "date": "2025-01-01",
+      "locations": [
+        {
+          "county": "雲林",
+          "locName": "雲林--口湖大滯洪池(Yunlin--Kouhu Big Detention Basin)",
+          "lat": 23.543945,
+          "lng": 120.1778572,
+          "obsReviewed": true
+        }
+      ]
+    },
+    {
+      "code": "narfly3",
+      "zh": "琉球姬鶲",
+      "en": "Ryukyu Flycatcher",
+      "date": "2025-05-01",
+      "locations": [
+        {
+          "county": "台北",
+          "locName": "台北--野柳IBA(Yeliu IBA)",
+          "lat": 25.2122382,
+          "lng": 121.6983715,
+          "obsReviewed": true
+        }
+      ]
+    },
+    {
+      "code": "nazboo1",
+      "zh": "Nazca Booby",
+      "en": "Nazca Booby",
+      "date": "2025-03-20",
+      "locations": [
+        {
+          "county": "东海2431-2531渔区 (East China Sea--2431-2531 Fishing Region)",
+          "locName": "东海2431-2531渔区 (East China Sea--2431-2531 Fishing Region)",
+          "lat": 26.4501,
+          "lng": 124.8348,
+          "obsReviewed": true
+        }
+      ]
+    },
+    {
+      "code": "orhthr1",
+      "zh": "橙頭地鶇",
+      "en": "Orange-headed Thrush",
+      "date": "2025-04-05",
+      "locations": [
+        {
+          "county": "台南",
+          "locName": "台南七股IBA--頂頭額防風林(Qigu IBA--Dingtouer Coastal Forest)",
+          "lat": 23.1119238,
+          "lng": 120.0420604,
+          "obsReviewed": true
+        }
+      ]
+    },
+    {
+      "code": "pelcor",
+      "zh": "海鸕鷀",
+      "en": "Pelagic Cormorant",
+      "date": "2025-03-11",
+      "locations": [
+        {
+          "county": "墾丁NP--台灣最南點(Kenting NP--Shouthernmost Point of Taiwan)",
+          "locName": "墾丁NP--台灣最南點(Kenting NP--Shouthernmost Point of Taiwan)",
+          "lat": 21.8977399,
+          "lng": 120.8579155,
+          "obsReviewed": true
+        }
+      ]
+    },
+    {
+      "code": "pinbun",
+      "zh": "白頭鵐",
+      "en": "Pine Bunting",
+      "date": "2025-10-27",
+      "locations": [
+        {
+          "county": "宜蘭",
+          "locName": "宜蘭--烏石港(Yilan--Wushih Harbor)",
+          "lat": 24.8671255,
+          "lng": 121.8392801,
+          "obsReviewed": true
+        }
+      ]
+    },
+    {
+      "code": "plabuh1",
+      "zh": "Plain Bush-hen",
+      "en": "Plain Bush-hen",
+      "date": "2025-06-25",
+      "locations": [
+        {
+          "county": "蘭嶼朗島",
+          "locName": "蘭嶼朗島",
+          "lat": 22.0765619,
+          "lng": 121.5368918,
+          "obsReviewed": true
+        }
+      ]
+    },
+    {
+      "code": "purswa3",
+      "zh": "灰頭紫水雞",
+      "en": "Gray-headed Swamphen",
+      "date": "2025-10-30",
+      "locations": [
+        {
+          "county": "金門",
+          "locName": "金門-- 南埔池 (原金沙大舞台保齡球館旁水塘)",
+          "lat": 24.473411,
+          "lng": 118.432139,
+          "obsReviewed": false
+        }
+      ]
+    },
+    {
+      "code": "retthr1",
+      "zh": "赤頸鶇",
+      "en": "Red-throated Thrush",
+      "date": "2025-12-11",
+      "locations": [
+        {
+          "county": "屏東",
+          "locName": "37 楓林一巷, 楓林村, 屏東縣, TW (22.195, 120.72)",
+          "lat": 22.1947184,
+          "lng": 120.7199362,
+          "obsReviewed": true
+        }
+      ]
+    },
+    {
+      "code": "rossta2",
+      "zh": "粉紅椋鳥",
+      "en": "Rosy Starling",
+      "date": "2025-04-24",
+      "locations": [
+        {
+          "county": "馬祖",
+          "locName": "馬祖--東引航空站(Matsu--Dongyin Airport)",
+          "lat": 26.3590537,
+          "lng": 120.4838476,
+          "obsReviewed": true
+        }
+      ]
+    },
+    {
+      "code": "rubwoo1",
+      "zh": "棕腹啄木",
+      "en": "Rufous-bellied Woodpecker",
+      "date": "2025-01-01",
+      "locations": [
+        {
+          "county": "澎湖",
+          "locName": "澎22鄉道, 興仁里, 澎湖縣, TW (23.556, 119.612)",
+          "lat": 23.5564419,
+          "lng": 119.6122135,
+          "obsReviewed": true
+        }
+      ]
+    },
+    {
+      "code": "ryurob2",
+      "zh": "琉球歌鴝",
+      "en": "Ryukyu Robin",
+      "date": "2025-11-02",
+      "locations": [
+        {
+          "county": "宜蘭",
+          "locName": "宜蘭--龜山島(Yilan--Guishan Island)",
+          "lat": 24.8407099,
+          "lng": 121.9503024,
+          "obsReviewed": true
+        }
+      ]
+    },
+    {
+      "code": "santer1",
+      "zh": "白嘴端燕鷗",
+      "en": "Sandwich Tern",
+      "date": "2025-03-14",
+      "locations": [
+        {
+          "county": "金門",
+          "locName": "金門--新湖漁港(Kinmen--Xinhu Harbor)",
+          "lat": 24.4304236,
+          "lng": 118.40996,
+          "obsReviewed": true
+        }
+      ]
+    },
+    {
+      "code": "savspa",
+      "zh": "稀樹草鵐",
+      "en": "Savannah Sparrow",
+      "date": "2025-01-01",
+      "locations": [
+        {
+          "county": "金門",
+          "locName": "金門--沙崗農場(Kinmen--Shagang Ranch)",
+          "lat": 24.4727207,
+          "lng": 118.3235264,
+          "obsReviewed": true
+        }
+      ]
+    },
+    {
+      "code": "sibthr1",
+      "zh": "白眉地鶇",
+      "en": "Siberian Thrush",
+      "date": "2025-04-05",
+      "locations": [
+        {
+          "county": "台南",
+          "locName": "台南七股IBA--全區(Qigu IBA)",
+          "lat": 23.1075,
+          "lng": 120.06784,
+          "obsReviewed": false
+        }
+      ]
+    },
+    {
+      "code": "slbgul1",
+      "zh": "細嘴鷗",
+      "en": "Slender-billed Gull",
+      "date": "2025-01-07",
+      "locations": [
+        {
+          "county": "台南",
+          "locName": "台南七股IBA--全區(Qigu IBA)",
+          "lat": 23.1075,
+          "lng": 120.06784,
+          "obsReviewed": true
+        }
+      ]
+    },
+    {
+      "code": "solpet1",
+      "zh": "索氏圓尾鸌",
+      "en": "Providence Petrel",
+      "date": "2025-02-05",
+      "locations": [
+        {
+          "county": "2025.2.5 東澳出海第14段",
+          "locName": "2025.2.5 東澳出海第14段",
+          "lat": 24.543442,
+          "lng": 121.962559,
+          "obsReviewed": true
+        }
+      ]
+    },
+    {
+      "code": "thbwar1",
+      "zh": "厚嘴葦鶯",
+      "en": "Thick-billed Warbler",
+      "date": "2025-10-14",
+      "locations": [
+        {
+          "county": "金門",
+          "locName": "金門--烈嶼陵水湖(Kinmen--Lieyu Lingshui Lake)",
+          "lat": 24.4208641,
+          "lng": 118.2288659,
+          "obsReviewed": true
+        }
+      ]
+    },
+    {
+      "code": "whbcra1",
+      "zh": "白眉秧雞",
+      "en": "White-browed Crake",
+      "date": "2025-01-13",
+      "locations": [
+        {
+          "county": "宜蘭",
+          "locName": "宜蘭--五結季新(Yilan--Wujie Jixin)",
+          "lat": 24.6835499,
+          "lng": 121.8300664,
+          "obsReviewed": true
+        }
+      ]
+    },
+    {
+      "code": "whwsco1",
+      "zh": "Stejneger's Scoter",
+      "en": "Stejneger's Scoter",
+      "date": "2025-04-05",
+      "locations": [
+        {
+          "county": "新竹",
+          "locName": "9 鳳岡路五段155巷66弄, 崇義里, 新竹縣, TW (24.866, 120.946)",
+          "lat": 24.8661302,
+          "lng": 120.9460723,
+          "obsReviewed": true
+        }
+      ]
+    },
+    {
+      "code": "wlwwar",
+      "zh": "歐亞柳鶯",
+      "en": "Willow Warbler",
+      "date": "2025-10-10",
+      "locations": [
+        {
+          "county": "馬祖",
+          "locName": "馬祖--東引資源回收場(Matsu--Dongyin Recycling Plant)",
+          "lat": 26.3598114,
+          "lng": 120.492142,
+          "obsReviewed": true
+        }
+      ]
+    },
+    {
+      "code": "wooduc",
+      "zh": "美洲鴛鴦",
+      "en": "Wood Duck",
+      "date": "2025-10-05",
+      "locations": [
+        {
+          "county": "台北",
+          "locName": "台北--三貂嶺步道(Taipei--Sandiaoling Trail)",
+          "lat": 25.0590107,
+          "lng": 121.8205261,
+          "obsReviewed": true
+        }
+      ]
+    },
+    {
+      "code": "woowar",
+      "zh": "林柳鶯",
+      "en": "Wood Warbler",
+      "date": "2025-10-15",
+      "locations": [
+        {
+          "county": "宜蘭",
+          "locName": "宜蘭--龜山島(Yilan--Guishan Island)",
+          "lat": 24.8407099,
+          "lng": 121.9503024,
+          "obsReviewed": true
+        }
+      ]
+    },
+    {
+      "code": "wtrthr1",
+      "zh": "白喉磯鶇",
+      "en": "White-throated Rock-Thrush",
+      "date": "2025-05-13",
+      "locations": [
+        {
+          "county": "轉播塔",
+          "locName": "轉播塔",
+          "lat": 24.4606954,
+          "lng": 118.4105798,
+          "obsReviewed": true
+        }
+      ]
+    },
+    {
+      "code": "y00731",
+      "zh": "白燕窩金絲燕",
+      "en": "White-nest Swiftlet",
+      "date": "2025-08-01",
+      "locations": [
+        {
+          "county": "金門",
+          "locName": "金門--五虎山登山步道",
+          "lat": 24.501804,
+          "lng": 118.435443,
+          "obsReviewed": true
+        }
+      ]
+    },
+    {
+      "code": "y00989",
+      "zh": "黃腹柳鶯",
+      "en": "Tickell's Leaf Warbler",
+      "date": "2025-05-04",
+      "locations": [
+        {
+          "county": "高雄",
+          "locName": "高雄--旗津舊高字塔(Kaohsiung--Qijin VTC Tower)",
+          "lat": 22.5540466,
+          "lng": 120.3146014,
+          "obsReviewed": true
+        }
+      ]
+    }
+  ],
+  "onlyThis": [
+    {
+      "code": "bohwax",
+      "zh": "黃連雀",
+      "en": "Bohemian Waxwing",
+      "date": "2026-04-01",
+      "locations": [
+        {
+          "county": "台中",
+          "locName": "台中大雪山IBA--小雪山天池(Dasyueshan IBA--Siaosyueshan Tianchi)",
+          "lat": 24.2827532,
+          "lng": 121.0275149,
+          "obsReviewed": true
+        }
+      ]
+    },
+    {
+      "code": "chcwar2",
+      "zh": "栗頭鶲鶯",
+      "en": "Chestnut-crowned Warbler",
+      "date": "2026-04-19",
+      "locations": [
+        {
+          "county": "馬祖",
+          "locName": "馬祖--東引將軍廟(Matsu--Dongyin Jianjun Temple)",
+          "lat": 26.3694555,
+          "lng": 120.5027729,
+          "obsReviewed": true
+        }
+      ]
+    },
+    {
+      "code": "comgol",
+      "zh": "鵲鴨",
+      "en": "Common Goldeneye",
+      "date": "2026-01-10",
+      "locations": [
+        {
+          "county": "嘉義",
+          "locName": "嘉義鰲鼓濕地IBA--西堤(Aogu Wetland IBA--West Area)",
+          "lat": 23.503533,
+          "lng": 120.121513,
+          "obsReviewed": true
+        }
+      ]
+    },
+    {
+      "code": "eugplo",
+      "zh": "European Golden-Plover",
+      "en": "European Golden-Plover",
+      "date": "2026-02-04",
+      "locations": [
+        {
+          "county": "宜蘭",
+          "locName": "宜蘭蘭陽溪口IBA--全區(Lanyang River Estuary IBA)",
+          "lat": 24.7123774,
+          "lng": 121.8304896,
+          "obsReviewed": true
+        }
+      ]
+    },
+    {
+      "code": "grefla3",
+      "zh": "大紅鸛",
+      "en": "Greater Flamingo",
+      "date": "2026-01-03",
+      "locations": [
+        {
+          "county": "台東",
+          "locName": "台東森林公園",
+          "lat": 22.7757225,
+          "lng": 121.1484528,
+          "obsReviewed": false
+        }
+      ]
+    },
+    {
+      "code": "grseag1",
+      "zh": "花鵰",
+      "en": "Greater Spotted Eagle",
+      "date": "2026-01-11",
+      "locations": [
+        {
+          "county": "Tainan",
+          "locName": "Sun Yat-sen Freeway, 太北里, Tainan City, TW (23.299, 120.285)",
+          "lat": 23.2989502,
+          "lng": 120.2845863,
+          "obsReviewed": true
+        }
+      ]
+    },
+    {
+      "code": "gyhcaf1",
+      "zh": "方尾鶲",
+      "en": "Gray-headed Canary-Flycatcher",
+      "date": "2026-04-13",
+      "locations": [
+        {
+          "county": "馬祖",
+          "locName": "馬祖--東引全區(Matsu--Dongyin)",
+          "lat": 26.3645639,
+          "lng": 120.4908974,
+          "obsReviewed": false
+        }
+      ]
+    },
+    {
+      "code": "nohcuc1",
+      "zh": "北方鷹鵑",
+      "en": "Northern Hawk-Cuckoo",
+      "date": "2026-04-15",
+      "locations": [
+        {
+          "county": "馬祖",
+          "locName": "馬祖--東引東湧水庫(Matsu--Dongyin Dongyong Reservoir)",
+          "lat": 26.3692056,
+          "lng": 120.4925966,
+          "obsReviewed": true
+        }
+      ]
+    },
+    {
+      "code": "olbsun4",
+      "zh": "黃腹花蜜鳥",
+      "en": "Ornate Sunbird",
+      "date": "2026-04-26",
+      "locations": [
+        {
+          "county": "馬祖",
+          "locName": "馬祖--東引苗圃(Matsu--Dongyin Vegetable Farm)",
+          "lat": 26.3597826,
+          "lng": 120.4852313,
+          "obsReviewed": true
+        }
+      ]
+    },
+    {
+      "code": "sooshe",
+      "zh": "灰水薙鳥",
+      "en": "Sooty Shearwater",
+      "date": "2026-05-02",
+      "locations": [
+        {
+          "county": "20260502 東澳出海第2段",
+          "locName": "20260502 東澳出海第2段",
+          "lat": 24.511252,
+          "lng": 121.908267,
+          "obsReviewed": true
+        }
+      ]
+    },
+    {
+      "code": "subwar3",
+      "zh": "黑眉柳鶯",
+      "en": "Sulphur-breasted Warbler",
+      "date": "2026-04-13",
+      "locations": [
+        {
+          "county": "馬祖",
+          "locName": "馬祖--東引將軍廟(Matsu--Dongyin Jianjun Temple)",
+          "lat": 26.3694555,
+          "lng": 120.5027729,
+          "obsReviewed": true
+        }
+      ]
+    },
+    {
+      "code": "trepip",
+      "zh": "林鷚",
+      "en": "Tree Pipit",
+      "date": "2026-04-22",
+      "locations": [
+        {
+          "county": "馬祖",
+          "locName": "馬祖--東引運動場(Matsu--Dongyin Playground)",
+          "lat": 26.3669563,
+          "lng": 120.4918563,
+          "obsReviewed": true
+        }
+      ]
+    },
+    {
+      "code": "trspet",
+      "zh": "褐翅叉尾海燕",
+      "en": "Tristram's Storm-Petrel",
+      "date": "2026-03-23",
+      "locations": [
+        {
+          "county": "20260323東澳出海謝謝偽虎鯨 - 第九段",
+          "locName": "20260323東澳出海謝謝偽虎鯨 - 第九段",
+          "lat": 24.445614,
+          "lng": 122.102102,
+          "obsReviewed": true
+        }
+      ]
+    }
+  ]
+}

@@ -404,17 +404,17 @@ body {
 
 @media (max-width: 600px) {
   .tab-bar {
-    gap: 0.25rem;
+    gap: 0.2rem;
     padding: 0.3rem;
-    flex-wrap: wrap; /* 手機版 tab 分成兩行 */
+    flex-wrap: wrap; /* 手機版 tab 分成多行 */
   }
   .tab-btn {
-    padding: 0.5rem 0.3rem;
-    font-size: 0.8rem;
-    white-space: nowrap; /* 兩行後每格夠寬，不需換行 */
+    padding: 0.4rem 0.25rem;
+    font-size: 0.7rem;
+    white-space: nowrap;
     line-height: 1.2;
     min-width: 0;
-    flex: 1 1 45%; /* 每行放 2 個，共 2 行 */
+    flex: 1 1 30%; /* 每行放 2-3 個，6 tab = 3 行 */
   }
   .tab-btn svg {
     flex-shrink: 0;
