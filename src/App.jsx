@@ -1347,7 +1347,7 @@ export default function App() {
           </div>
         </section>
 
-        {quickLoading && quickList.length === 0 ? (
+        {quickLoading ? (
           <div className="loading-state">
             <div className="radar-loader">
               <div className="radar-circle"></div>
