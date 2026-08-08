@@ -124,6 +124,9 @@ export default function App() {
   const [quickLastUpdated, setQuickLastUpdated] = useState(null);
   const [quickMeta, setQuickMeta] = useState(null); // {targetDate, yesterday, count}
   const [quickOpen, setQuickOpen] = useState({ flat: false, mountain: false, island: false });
+
+  // Year-diff accordion state (本島/外島)
+  const [diffOpen, setDiffOpen] = useState({ main: false, island: false });
   const [blacklist, setBlacklist] = useState(new Set());
   // ref mirror so fetchQuick always reads latest blacklist (avoids closure race)
   const blacklistRef = useRef(blacklist);
@@ -1445,6 +1448,97 @@ export default function App() {
     // Sort by date ascending, exclude species with no locations (該日無紀錄)
     const sorted = [...list].filter(sp => sp.locations && sp.locations.length > 0).sort((a, b) => (a.date || '').localeCompare(b.date || ''));
 
+    // Classify into 本島 / 外島 (same as 有鳥快看: a species can appear in both)
+    const mainList = sorted.filter(sp => sp.locations.some(l => !isIslandLoc(l.locName)));
+    const islandList = sorted.filter(sp => sp.locations.some(l => isIslandLoc(l.locName)));
+
+    const toggleDiff = (key) => setDiffOpen(prev => {
+      const next = { main: false, island: false };
+      next[key] = !prev[key];
+      return next;
+    });
+
+    const renderDiffSpeciesList = (spp) => (
+      <main className="species-list-container">
+        {spp.map((sp) => {
+          const code = sp.code;
+          const isExpanded = expandedSpecies.has(code);
+          const locStr = sp.locations && sp.locations.length > 0
+            ? sp.locations.map(l => `${l.county} - ${l.locName}`).join('; ')
+            : '(該日無紀錄)';
+          const hasUnreviewed = sp.locations && sp.locations.some(l => !l.obsReviewed);
+          return (
+            <div
+              className={`species-accordion-item ${isExpanded ? 'is-open' : ''} ${hasUnreviewed ? 'unreviewed' : ''}`}
+              key={code}
+            >
+              <div
+                className="species-accordion-header"
+                onClick={() => toggleSpecies(code)}
+              >
+                <div className="species-primary-info">
+                  <div className="species-name-row">
+                    <span className="species-chinese">{sp.zh || code}</span>
+                    {sp.en && sp.en !== sp.zh && (
+                      <span className="species-english">{sp.en}</span>
+                    )}
+                    {hasUnreviewed && <span className="unreviewed-badge">未審核</span>}
+                  </div>
+                  <div className="species-subtitle-row">
+                    <span className="species-latest-date">{sp.date || '—'}</span>
+                    <span className="species-latest-separator">·</span>
+                    <span className="species-latest-loc">{locStr}</span>
+                  </div>
+                </div>
+                <div className="species-meta-info">
+                  <span className="sightings-counter-pill">{sp.locations?.length || 0} 處</span>
+                  <button className="accordion-arrow-btn">
+                    {isExpanded ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+                  </button>
+                </div>
+              </div>
+              {isExpanded && sp.locations && sp.locations.length > 0 && (
+                <div className="species-accordion-content">
+                  <div className="sightings-table-container">
+                    <table className="sightings-table">
+                      <thead>
+                        <tr>
+                          <th>觀測地點</th>
+                          <th>縣市</th>
+                          <th>審核</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {sp.locations.map((l, i) => (
+                          <tr key={i} className={!l.obsReviewed ? 'unreviewed-row' : ''}>
+                            <td className="td-location">
+                              <MapPin size={14} style={{ marginRight: '0.4rem', verticalAlign: 'middle', color: 'var(--text-muted)' }} />
+                              <span>{l.locName}</span>
+                            </td>
+                            <td className="td-location">
+                              <span>{l.county}</span>
+                            </td>
+                            <td className="td-location">
+                              {l.obsReviewed
+                                ? <CheckCircle size={14} style={{ color: '#10b981', verticalAlign: 'middle' }} />
+                                : <span className="unreviewed-badge">未審核</span>}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                    <p className="static-hint" style={{ padding: '0.5rem 0.75rem 0.75rem' }}>
+                      首見日期：{sp.date}
+                    </p>
+                  </div>
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </main>
+    );
+
     return (
       <>
         <section className="glass-panel">
@@ -1474,84 +1568,33 @@ export default function App() {
             <p>資料將由每日 cron 更新產生。</p>
           </div>
         ) : (
-          <main className="species-list-container">
-            {sorted.map((sp) => {
-              const code = sp.code;
-              const isExpanded = expandedSpecies.has(code);
-              const locStr = sp.locations && sp.locations.length > 0
-                ? sp.locations.map(l => `${l.county} - ${l.locName}`).join('; ')
-                : '(該日無紀錄)';
-              const hasUnreviewed = sp.locations && sp.locations.some(l => !l.obsReviewed);
-              return (
-                <div
-                  className={`species-accordion-item ${isExpanded ? 'is-open' : ''} ${hasUnreviewed ? 'unreviewed' : ''}`}
-                  key={code}
+          <>
+            <div className="island-section">
+              <button
+                className={`island-header ${diffOpen.main ? 'is-open' : ''}`}
+                onClick={() => toggleDiff('main')}
+              >
+                <span className="island-title">本島</span>
+                <span className="sightings-counter-pill">{mainList.length} 種</span>
+                {diffOpen.main ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
+              </button>
+              {diffOpen.main && renderDiffSpeciesList(mainList)}
+            </div>
+
+            {islandList.length > 0 && (
+              <div className="island-section">
+                <button
+                  className={`island-header ${diffOpen.island ? 'is-open' : ''}`}
+                  onClick={() => toggleDiff('island')}
                 >
-                  <div
-                    className="species-accordion-header"
-                    onClick={() => toggleSpecies(code)}
-                  >
-                    <div className="species-primary-info">
-                      <div className="species-name-row">
-                        <span className="species-chinese">{sp.zh || code}</span>
-                        {sp.en && sp.en !== sp.zh && (
-                          <span className="species-english">{sp.en}</span>
-                        )}
-                        {hasUnreviewed && <span className="unreviewed-badge">未審核</span>}
-                      </div>
-                      <div className="species-subtitle-row">
-                        <span className="species-latest-date">{sp.date || '—'}</span>
-                        <span className="species-latest-separator">·</span>
-                        <span className="species-latest-loc">{locStr}</span>
-                      </div>
-                    </div>
-                    <div className="species-meta-info">
-                      <span className="sightings-counter-pill">{sp.locations?.length || 0} 處</span>
-                      <button className="accordion-arrow-btn">
-                        {isExpanded ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
-                      </button>
-                    </div>
-                  </div>
-                  {isExpanded && sp.locations && sp.locations.length > 0 && (
-                    <div className="species-accordion-content">
-                      <div className="sightings-table-container">
-                        <table className="sightings-table">
-                          <thead>
-                            <tr>
-                              <th>觀測地點</th>
-                              <th>縣市</th>
-                              <th>審核</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            {sp.locations.map((l, i) => (
-                              <tr key={i} className={!l.obsReviewed ? 'unreviewed-row' : ''}>
-                                <td className="td-location">
-                                  <MapPin size={14} style={{ marginRight: '0.4rem', verticalAlign: 'middle', color: 'var(--text-muted)' }} />
-                                  <span>{l.locName}</span>
-                                </td>
-                                <td className="td-location">
-                                  <span>{l.county}</span>
-                                </td>
-                                <td className="td-location">
-                                  {l.obsReviewed
-                                    ? <CheckCircle size={14} style={{ color: '#10b981', verticalAlign: 'middle' }} />
-                                    : <span className="unreviewed-badge">未審核</span>}
-                                </td>
-                              </tr>
-                            ))}
-                          </tbody>
-                        </table>
-                        <p className="static-hint" style={{ padding: '0.5rem 0.75rem 0.75rem' }}>
-                          首見日期：{sp.date}
-                        </p>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </main>
+                  <span className="island-title">外島</span>
+                  <span className="sightings-counter-pill">{islandList.length} 種</span>
+                  {diffOpen.island ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
+                </button>
+                {diffOpen.island && renderDiffSpeciesList(islandList)}
+              </div>
+            )}
+          </>
         )}
       </>
     );
@@ -1602,8 +1645,9 @@ export default function App() {
         if (fs.startsWith(monthPrefix)) entries.push({ code, fs, info });
       }
     });
-    // Sort by first-seen date ascending
-    entries.sort((a, b) => a.fs.localeCompare(b.fs));
+    // Sort by first-seen date ascending, exclude species with no locations
+    const sortedEntries = entries.filter(e => e.info.locations && e.info.locations.length > 0);
+    sortedEntries.sort((a, b) => a.fs.localeCompare(b.fs));
 
     const lastUpdated = firstSeen.lastUpdated || '—';
     const dataYear = firstSeen.year || '—';
@@ -1637,11 +1681,11 @@ export default function App() {
 
         <div className="stats-ribbon">
           <div className="stats-text">
-            共 <span className="stats-count">{entries.length}</span> 種今年首見鳥類
+            共 <span className="stats-count">{sortedEntries.length}</span> 種今年首見鳥類
           </div>
         </div>
 
-        {entries.length === 0 ? (
+        {sortedEntries.length === 0 ? (
           <div className="empty-state">
             <Eye size={48} style={{ color: 'var(--text-muted)' }} />
             <h3>{firstSeenView === 'month' ? '本月尚無今年首見鳥種' : '最近兩日尚無本年首見鳥種'}</h3>
@@ -1649,11 +1693,16 @@ export default function App() {
           </div>
         ) : (
           <main className="species-list-container">
-            {entries.map(({ code, fs, info }) => {
+            {sortedEntries.map(({ code, fs, info }) => {
               const isExpanded = expandedSpecies.has(code);
+              const locs = info.locations || [];
+              const locStr = locs.length > 0
+                ? locs.map(l => l.locName || '').join('; ')
+                : '';
+              const hasUnreviewed = locs.some(l => !l.obsReviewed);
               return (
                 <div
-                  className={`species-accordion-item ${isExpanded ? 'is-open' : ''}`}
+                  className={`species-accordion-item ${isExpanded ? 'is-open' : ''} ${hasUnreviewed ? 'unreviewed' : ''}`}
                   key={code}
                 >
                   <div
@@ -1666,44 +1715,49 @@ export default function App() {
                         {info.comNameEn && info.comNameEn !== info.comNameZh && (
                           <span className="species-english">{info.comNameEn}</span>
                         )}
+                        {hasUnreviewed && <span className="unreviewed-badge">未審核</span>}
                       </div>
                       <div className="species-subtitle-row">
                         <span className="species-latest-date">{fs}</span>
                         <span className="species-latest-separator">·</span>
-                        <span className="species-latest-loc">今年首見</span>
+                        <span className="species-latest-loc">{locStr || '今年首見'}</span>
                       </div>
                     </div>
                     <div className="species-meta-info">
-                      <span className="sightings-counter-pill">首見</span>
+                      <span className="sightings-counter-pill">{locs.length} 處</span>
                       <button className="accordion-arrow-btn">
                         {isExpanded ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
                       </button>
                     </div>
                   </div>
-                  {isExpanded && (
+                  {isExpanded && locs.length > 0 && (
                     <div className="species-accordion-content">
                       <div className="sightings-table-container">
                         <table className="sightings-table">
                           <thead>
                             <tr>
-                              <th>今年首見日期</th>
-                              <th>首見年度</th>
+                              <th>觀測地點</th>
+                              <th>審核</th>
                             </tr>
                           </thead>
                           <tbody>
-                            <tr>
-                              <td className="td-date">
-                                <Calendar size={14} style={{ marginRight: '0.4rem', verticalAlign: 'middle', color: 'var(--text-muted)' }} />
-                                <span>{fs}</span>
-                              </td>
-                              <td className="td-location">
-                                <span>{dataYear} 年</span>
-                              </td>
-                            </tr>
+                            {locs.map((l, i) => (
+                              <tr key={i} className={!l.obsReviewed ? 'unreviewed-row' : ''}>
+                                <td className="td-location">
+                                  <MapPin size={14} style={{ marginRight: '0.4rem', verticalAlign: 'middle', color: 'var(--text-muted)' }} />
+                                  <span>{l.locName}</span>
+                                </td>
+                                <td className="td-location">
+                                  {l.obsReviewed
+                                    ? <CheckCircle size={14} style={{ color: '#10b981', verticalAlign: 'middle' }} />
+                                    : <span className="unreviewed-badge">未審核</span>}
+                                </td>
+                              </tr>
+                            ))}
                           </tbody>
                         </table>
                         <p className="static-hint" style={{ padding: '0.5rem 0.75rem 0.75rem' }}>
-                          代表今年首度被觀察到的日期（資料由每日 historic 累積）。
+                          首見日期：{fs}（{dataYear} 年度）
                         </p>
                       </div>
                     </div>

@@ -75,6 +75,26 @@ def _load_category_map():
     return _CATEGORY_MAP
 
 
+_BLACKLIST = None
+
+
+def _load_blacklist():
+    """載入黑名單（常見鳥 + 外來逸鳥），回傳 set of speciesCode。"""
+    global _BLACKLIST
+    if _BLACKLIST is not None:
+        return _BLACKLIST
+    p = PROJECT_ROOT / "public" / "data" / "blacklist.json"
+    if p.exists():
+        try:
+            with open(p, "r", encoding="utf-8") as f:
+                _BLACKLIST = set(json.load(f).get("codes", []))
+        except Exception:
+            _BLACKLIST = set()
+    else:
+        _BLACKLIST = set()
+    return _BLACKLIST
+
+
 def api_fetch(url, key, dry_run=False):
     if dry_run:
         return None
@@ -151,25 +171,28 @@ def _load_bird_names():
 
 
 def fetch_day(y, m, d, key, dry_run=False):
-    """Fetch all species for a single day, return dict code->{firstSeen, comNameEn}.
+    """Fetch all species for a single day, return dict code->{firstSeen, comNameEn, locations, obsReviewed}.
 
-    過濾規則（決策 2026-08-04）：
+    過濾規則（決策 2026-08-04 + 2026-08-08 更新）：
     - 排除非有效觀察：只保留 obsValid=true 的記錄。
     - 排除雜交種：官方 taxonomy 分類為 hybrid 的鳥種不予累積。
-    注意：`obsValid` 欄位需 `detail=simple` 即回傳（已實測確認）。
+    - 排除黑名單：blacklist.json 中的鳥種（常見鳥 + 外來逸鳥）。
+    - detail=full：取得 locName, lat, lng, obsReviewed 欄位。
     """
     url = (
         f"{BASE_URL}/data/obs/TW/historic/{y}/{m}/{d}"
-        f"?includeProvisional=true&detail=simple"
+        f"?includeProvisional=true&detail=full"
     )
     data = api_fetch(url, key, dry_run=dry_run)
     if data is None:
         return None
     cat_map = _load_category_map()
+    blacklist = _load_blacklist()
     day_str = f"{y:04d}-{m:02d}-{d:02d}"
     out = {}
     skipped_invalid = 0
     skipped_hybrid = 0
+    skipped_blacklist = 0
     for x in data:
         code = x.get("speciesCode")
         if not code:
@@ -182,10 +205,27 @@ def fetch_day(y, m, d, key, dry_run=False):
         if cat_map.get(code) == "hybrid":
             skipped_hybrid += 1
             continue
-        # English common name from historic response; zh filled later from bird_names
-        out[code] = {"firstSeen": day_str, "comNameEn": x.get("comName", "")}
-    if skipped_invalid or skipped_hybrid:
-        print(f"    (過濾 非有效={skipped_invalid}, 雜交={skipped_hybrid})", flush=True)
+        # 過濾 3: 黑名單
+        if code in blacklist:
+            skipped_blacklist += 1
+            continue
+        loc = {
+            "locName": x.get("locName", ""),
+            "lat": x.get("lat"),
+            "lng": x.get("lng"),
+            "obsReviewed": x.get("obsReviewed", False),
+        }
+        if code not in out:
+            out[code] = {
+                "firstSeen": day_str,
+                "comNameEn": x.get("comName", ""),
+                "locations": [loc],
+            }
+        else:
+            # 同一天同一種鳥多筆觀測，加到 locations
+            out[code]["locations"].append(loc)
+    if skipped_invalid or skipped_hybrid or skipped_blacklist:
+        print(f"    (過濾 非有效={skipped_invalid}, 雜交={skipped_hybrid}, 黑名單={skipped_blacklist})", flush=True)
     return out
 
 
@@ -199,6 +239,7 @@ def merge_day(species, day_map, day_str, bird_names):
                 "firstSeen": info["firstSeen"],
                 "comNameZh": tax.get("comNameZh", ""),
                 "comNameEn": info.get("comNameEn") or tax.get("comNameEn", ""),
+                "locations": info.get("locations", []),
             }
             added += 1
         else:
@@ -211,6 +252,11 @@ def merge_day(species, day_map, day_str, bird_names):
                     species[code]["comNameZh"] = tax["comNameZh"]
             if day_str < species[code]["firstSeen"]:
                 species[code]["firstSeen"] = day_str
+                # 首見日期更新為更早的一天，locations 用更早那天的
+                species[code]["locations"] = info.get("locations", [])
+            elif day_str == species[code]["firstSeen"]:
+                # 同一天的額外觀測點，合併進 locations
+                species[code]["locations"].extend(info.get("locations", []))
     return added
 
 
@@ -235,8 +281,19 @@ def main():
     print(f"已載入 bird_names：{len(bird_names)} 種（用於中文名補齊）", flush=True)
 
     # ---- 跨年重建（R3）：每年從頭開始 ----
+    # 也檢查格式：如果 species 中沒有 locations 欄位（舊格式），需重建
+    needs_rebuild = False
     if data.get("year") is not None and data["year"] < current_year:
         print(f"🔄 偵測跨年（{data['year']} -> {current_year}），整表從零重建", flush=True)
+        needs_rebuild = True
+    elif species:
+        # 檢查第一個物種是否有 locations 欄位
+        first_code = next(iter(species), None)
+        if first_code and "locations" not in species[first_code]:
+            print(f"🔄 偵測舊格式（無 locations 欄位），整表從零重建", flush=True)
+            needs_rebuild = True
+
+    if needs_rebuild:
         species = {}
         data = {"year": None, "lastUpdated": None, "species": {}}
 
