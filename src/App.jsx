@@ -32,7 +32,7 @@ const QUICK_CACHE_KEYS = {
   time: "taiwan_birds_quick_time",
 };
 const MOUNTAIN_ELEV = 300; // 本島山地門檻（海拔 ≥300m）
-const QUICK_BACK_DAYS = 2; // 有鳥快看：live 抓 back=2（涵蓋最近 2 天），只排除黑名單、不過濾日期
+const QUICK_BACK_DAYS = 1; // 有鳥快看：live 抓 back=1（今天），只排除黑名單、不過濾日期
 
 // 本月精彩推薦：cron 產出 worth-diff.json（5日差分），前端純讀 + recent?back=1 補今天
 const WORTH_BACK_DAYS = 1; // live 抓 back=1（今天），差分鳥種由靜態檔提供
@@ -429,7 +429,7 @@ export default function App() {
     }
   }, [apiKey, worthList.length, birdNames, worthDiff]);
 
-  // ---- 有鳥快看 fetch: back=2（最近2天），排除黑名單，分類本島平地/本島山地/外島 ----
+  // ---- 有鳥快看 fetch: back=1（今天），排除黑名單，分類本島平地/本島山地/外島 ----
   const fetchQuick = useCallback(async (activeKey = apiKey, isManual = false) => {
     if (!activeKey) {
       setQuickError("請先設定您的 eBird API Key。");
@@ -481,7 +481,7 @@ export default function App() {
           return { ...item, comNameZh: (t && t.comNameZh) || item.comName, comNameEn: item.comName };
         });
 
-        // 只排除黑名單，不過濾日期（back=2 抓到的全部資料直接顯示）
+        // 只排除黑名單，不過濾日期（back=1 抓到的全部資料直接顯示）
         const todayRecs = allRecords.filter(r => {
           return !blacklistRef.current.has(r.speciesCode);
         });
@@ -534,7 +534,7 @@ export default function App() {
           };
         });
 
-        // 方案B：todayList 已含 back=2 抓到的全部資料（只排除黑名單），直接作為最終清單
+        // 方案B：todayList 已含 back=1 抓到的全部資料（只排除黑名單），直接作為最終清單
         const list = todayList;
 
         const nowStr = new Date().toISOString();
@@ -554,19 +554,11 @@ export default function App() {
         }
         console.error('Quick fetch failed:', err);
         setQuickLoading(false);
-        const cached = localStorage.getItem(QUICK_CACHE_KEYS.obs);
         if (quickList.length > 0) {
+          // 畫面已有資料就保留，不報錯
           setQuickError(null);
-        } else if (cached) {
-          try {
-            const parsed = JSON.parse(cached);
-            setQuickList(parsed.list || []);
-            setQuickMeta(parsed.meta || null);
-            setQuickError(null);
-          } catch {
-            setQuickError("查詢逾時或網路不穩，請稍後再按「更新」重試。");
-          }
         } else {
+          // 直接顯示錯誤訊息（不回退 cache）
           setQuickError("查詢逾時或網路不穩，請稍後再按「更新」重試。");
         }
       }
@@ -644,23 +636,11 @@ export default function App() {
     }
   }, [apiKey, activeTab, birdNames, birdNamesLoaded]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  // Auto-load: 有鳥快看 — 啟動時強制打 API 更新一次（不用 cache），
+  // Auto-load: 有鳥快看 — 啟動時強制打 API 更新一次（不讀 cache），
   // 確保顯示完整的全部鳥種、沒有過濾。
-  // 之後若 birdNames 延遲載入導致缺中文名，才重抓。
   useEffect(() => {
     if (!apiKey) return;
-    // 先從 cache 載入避免畫面全空，但同時強制 fetch 最新資料
-    const cached = localStorage.getItem(QUICK_CACHE_KEYS.obs);
-    const cachedTime = localStorage.getItem(QUICK_CACHE_KEYS.time);
-    if (cached && cachedTime) {
-      try {
-        const parsed = JSON.parse(cached);
-        setQuickList(parsed.list || []);
-        setQuickMeta(parsed.meta || null);
-        setQuickLastUpdated(cachedTime);
-      } catch { /* ignore */ }
-    }
-    // 強制打 API（不論 cache 新舊）
+    // 不讀 cache，直接強制打 API 抓最新資料
     fetchQuick(apiKey);
   }, [apiKey]); // eslint-disable-line react-hooks/exhaustive-deps
 
