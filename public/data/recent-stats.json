@@ -1,29 +1,29 @@
 {
-  "lastUpdated": "2026-08-19",
-  "windowStart": "2026-08-16",
-  "windowEnd": "2026-08-18",
+  "lastUpdated": "2026-08-20",
+  "windowStart": "2026-08-17",
+  "windowEnd": "2026-08-19",
   "days": [
     {
+      "date": "2026-08-19",
+      "checklists": 54,
+      "species": 160,
+      "records": 160
+    },
+    {
       "date": "2026-08-18",
-      "checklists": 82,
-      "species": 182,
-      "records": 182
+      "checklists": 94,
+      "species": 186,
+      "records": 186
     },
     {
       "date": "2026-08-17",
       "checklists": 73,
       "species": 184,
       "records": 184
-    },
-    {
-      "date": "2026-08-16",
-      "checklists": 78,
-      "species": 193,
-      "records": 193
     }
   ],
   "total": {
-    "checklists": 233,
-    "species": 248
+    "checklists": 221,
+    "species": 236
   }
 }
